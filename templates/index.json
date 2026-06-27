@@ -1,20 +1,31 @@
 {
   "sections": {
-    "zs_hero": {
-      "type": "zerostick-hero",
-      "settings": {}
+    "banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": { "type": "heading", "settings": { "heading": "ZeroStick — No Drift. Ever.", "heading_size": "h0" } },
+        "text": { "type": "text", "settings": { "text": "<p>Modified controllers with TMR technology and a 5-year stick warranty.</p>", "text_style": "body" } },
+        "buttons": { "type": "buttons", "settings": { "button_label_1": "Shop Now", "button_link_1": "/collections/all", "button_label_2": "3D Builder", "button_link_2": "/pages/builder" } }
+      },
+      "block_order": ["heading", "text", "buttons"],
+      "settings": {
+        "image_height": "large",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "image_overlay_opacity": 30
+      }
     },
     "intro": {
       "type": "rich-text",
-      "settings": {
-        "color_scheme": "scheme-1"
-      },
+      "settings": { "color_scheme": "scheme-1" },
       "blocks": {
-        "heading": { "type": "heading", "settings": { "heading": "<h2>Design Your ZeroStick</h2>", "heading_size": "h1" } },
+        "heading": { "type": "heading", "settings": { "heading": "Design Your ZeroStick", "heading_size": "h1" } },
         "text": { "type": "text", "settings": { "text": "<p>Customise a controller from scratch in the 3D builder, or grab a pre-configured build ready to ship.</p>" } },
-        "button": { "type": "buttons", "settings": { "button_label_1": "Open 3D Builder", "button_link_1": "/pages/builder" } }
+        "buttons": { "type": "buttons", "settings": { "button_label_1": "Open 3D Builder", "button_link_1": "/pages/builder" } }
       },
-      "block_order": ["heading", "text", "button"]
+      "block_order": ["heading", "text", "buttons"]
     },
     "featured": {
       "type": "featured-collection",
@@ -25,10 +36,6 @@
         "columns_desktop": 4,
         "color_scheme": "scheme-1"
       }
-    },
-    "builder": {
-      "type": "zerostick-builder",
-      "settings": { "base_price": 99 }
     },
     "features": {
       "type": "multicolumn",
@@ -46,5 +53,5 @@
       "block_order": ["c1", "c2", "c3"]
     }
   },
-  "order": ["zs_hero", "intro", "featured", "builder", "features"]
+  "order": ["banner", "intro", "featured", "features"]
 }
