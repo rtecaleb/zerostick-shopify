@@ -66,6 +66,21 @@ a:hover { color: var(--zs-brand); }
 /* Reveal-on-scroll (Dawn already animates; reinforce with brand timing) */
 .scroll-trigger.animate--slide-in { animation-duration: .7s; }
 
+/* ===== Homepage polish: aligned card grid, spacing, brand consistency ===== */
+.builder-grid {
+  max-width: 1500px; margin: 0 auto; padding: 0 32px;
+  gap: 24px; background: transparent;            /* proper cards w/ gutters instead of full-bleed hairlines */
+}
+.builder-card {
+  background: #fff; border: 1px solid var(--border); border-radius: 12px;
+  padding: 0 0 24px; overflow: hidden;
+}
+.builder-card .card-img { border-radius: 0; margin-bottom: 16px; }
+.builder-card > :not(.card-img) { padding-left: 22px; padding-right: 22px; }
+.builder-card h3 { letter-spacing: 0; }
+.section { padding: 64px 0; }
+.feature-section { padding: 64px 0; }
+
 /* ===== Mobile product grid: 2 columns ===== */
 @media (max-width: 768px) {
   .builder-grid { grid-template-columns: 1fr 1fr !important; }
