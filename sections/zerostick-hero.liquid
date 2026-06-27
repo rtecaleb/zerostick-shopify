@@ -1,0 +1,72 @@
+{%- comment -%} ZeroStick crossfade hero slideshow — original section {%- endcomment -%}
+<style>
+  .zsh { position: relative; overflow: hidden; height: 600px; background: #111; }
+  .zsh-slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 1s ease; }
+  .zsh-slide.active { opacity: 1; visibility: visible; }
+  .zsh-slide img { width: 100%; height: 600px; object-fit: cover; }
+  .zsh-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 60px 48px;
+    background: linear-gradient(to top, rgba(0,0,0,.72), transparent); color: #fff; }
+  .zsh-content h2 { font-family:'DM Sans',sans-serif; font-size: clamp(28px,4vw,52px); font-weight:900; text-transform:uppercase; margin-bottom:16px; max-width:760px; }
+  .zsh-content p { font-size:17px; max-width:480px; margin-bottom:24px; opacity:.92; }
+  .zsh-btn { display:inline-block; background:#fff; color:#0d1117; padding:14px 34px; border-radius:28px; font-weight:700; }
+  .zsh-dots { position:absolute; bottom:22px; right:48px; display:flex; gap:8px; }
+  .zsh-dot { width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.4); border:none; cursor:pointer; }
+  .zsh-dot.active { background:#fff; }
+  @media (max-width:749px){ .zsh, .zsh-slide img { height: 420px; } .zsh-content{padding:32px 24px;} }
+</style>
+
+<div class="zsh" id="zsh">
+  {%- assign imgs = 'zs-hero-1.jpg,zs-hero-2.jpg,zs-hero-3.jpg' | split: ',' -%}
+  <div class="zsh-slide active">
+    <img src="{{ 'zs-hero-1.jpg' | asset_url }}" alt="">
+    <div class="zsh-content">
+      <h2>{{ section.settings.h1 | default: "Built for Players Who Don't Settle" }}</h2>
+      <p>{{ section.settings.p1 | default: "Modified controllers with TMR modules — speed, precision, and zero drift, guaranteed." }}</p>
+      <a class="zsh-btn" href="{{ section.settings.link1 | default: '/collections/all' }}">Shop Now</a>
+    </div>
+  </div>
+  <div class="zsh-slide">
+    <img src="{{ 'zs-hero-2.jpg' | asset_url }}" alt="">
+    <div class="zsh-content">
+      <h2>Zero Drift. Zero Compromise.</h2>
+      <p>TMR / hall-effect sticks engineered to last — backed by a 5-year stick warranty.</p>
+      <a class="zsh-btn" href="/collections/all">Shop Quick Picks</a>
+    </div>
+  </div>
+  <div class="zsh-slide">
+    <img src="{{ 'zs-hero-3.jpg' | asset_url }}" alt="">
+    <div class="zsh-content">
+      <h2>Design Your ZeroStick</h2>
+      <p>Choose every upgrade, color, and layout option in the 3D builder.</p>
+      <a class="zsh-btn" href="{{ section.settings.builder_link | default: '/pages/builder' }}">Build Now</a>
+    </div>
+  </div>
+  <div class="zsh-dots">
+    <button class="zsh-dot active" data-i="0"></button>
+    <button class="zsh-dot" data-i="1"></button>
+    <button class="zsh-dot" data-i="2"></button>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var root=document.getElementById('zsh'); if(!root) return;
+    var slides=root.querySelectorAll('.zsh-slide'), dots=root.querySelectorAll('.zsh-dot'), cur=0;
+    function go(n){slides[cur].classList.remove('active');dots[cur].classList.remove('active');cur=n;slides[cur].classList.add('active');dots[cur].classList.add('active');}
+    dots.forEach(function(d){d.addEventListener('click',function(){go(+d.dataset.i);});});
+    setInterval(function(){go((cur+1)%slides.length);},5000);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "ZeroStick Hero",
+  "settings": [
+    { "type": "text", "id": "h1", "label": "Slide 1 heading", "default": "Built for Players Who Don't Settle" },
+    { "type": "text", "id": "p1", "label": "Slide 1 text", "default": "Modified controllers with TMR modules — speed, precision, and zero drift, guaranteed." },
+    { "type": "url", "id": "link1", "label": "Slide 1 button link" },
+    { "type": "url", "id": "builder_link", "label": "Builder page link" }
+  ],
+  "presets": [{ "name": "ZeroStick Hero" }]
+}
+{% endschema %}

@@ -1,75 +1,50 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
-      "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
+    "zs_hero": {
+      "type": "zerostick-hero",
+      "settings": {}
     },
-    "featured_collection": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "scheme-1"
+      },
+      "blocks": {
+        "heading": { "type": "heading", "settings": { "heading": "<h2>Design Your ZeroStick</h2>", "heading_size": "h1" } },
+        "text": { "type": "text", "settings": { "text": "<p>Customise a controller from scratch in the 3D builder, or grab a pre-configured build ready to ship.</p>" } },
+        "button": { "type": "buttons", "settings": { "button_label_1": "Open 3D Builder", "button_link_1": "/pages/builder" } }
+      },
+      "block_order": ["heading", "text", "button"]
+    },
+    "featured": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
+        "title": "Shop Controllers & Modules",
+        "heading_size": "h1",
         "products_to_show": 8,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "color_scheme": "scheme-1"
       }
+    },
+    "builder": {
+      "type": "zerostick-builder",
+      "settings": { "base_price": 99 }
+    },
+    "features": {
+      "type": "multicolumn",
+      "settings": {
+        "title": "Why ZeroStick",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-3"
+      },
+      "blocks": {
+        "c1": { "type": "column", "settings": { "title": "TMR / Hall-Effect Sticks", "text": "<p>Magnetic sensing with zero physical contact — virtually no drift, ever.</p>" } },
+        "c2": { "type": "column", "settings": { "title": "Smart Buttons", "text": "<p>Mouse-click triggers, bumpers, and face buttons for instant, consistent inputs.</p>" } },
+        "c3": { "type": "column", "settings": { "title": "5-Year Stick Warranty", "text": "<p>Every controller is backed by a 5-year stick warranty. Built to last.</p>" } }
+      },
+      "block_order": ["c1", "c2", "c3"]
     }
   },
-  "order": [
-    "image_banner",
-    "featured_collection"
-  ]
+  "order": ["zs_hero", "intro", "featured", "builder", "features"]
 }
