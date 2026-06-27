@@ -84,6 +84,10 @@ a:hover { color: var(--zs-brand); }
 /* Dawn sometimes forces heading color on our sections — keep our headings inheriting */
 .hero-slider h2, .builder-card h3, .feature-panel h3, .review-text { color: inherit; }
 
+/* Match footer darkness to the navbar so the white logo reads crisply (was a lighter gray) */
+footer, .footer { background: var(--zs-ink) !important; }
+footer .footer-brand img { height: 46px !important; }
+
 /* Our custom footer uses brand-blue headings + links */
 footer .footer-col h4 { color: var(--zs-brand) !important; }
 footer .social-links a:hover, footer .footer-col ul li a:hover { color: var(--zs-brand) !important; }
