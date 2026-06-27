@@ -1,57 +1,9 @@
 {
   "sections": {
-    "banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": { "type": "heading", "settings": { "heading": "ZeroStick — No Drift. Ever.", "heading_size": "h0" } },
-        "text": { "type": "text", "settings": { "text": "Modified controllers with TMR technology and a 5-year stick warranty.", "text_style": "body" } },
-        "buttons": { "type": "buttons", "settings": { "button_label_1": "Shop Now", "button_link_1": "/collections/all", "button_label_2": "Contact Us", "button_link_2": "/pages/contact" } }
-      },
-      "block_order": ["heading", "text", "buttons"],
-      "settings": {
-        "image_height": "large",
-        "desktop_content_position": "middle-center",
-        "show_text_box": true,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "image_overlay_opacity": 30
-      }
-    },
-    "intro": {
-      "type": "rich-text",
-      "settings": { "color_scheme": "scheme-1" },
-      "blocks": {
-        "heading": { "type": "heading", "settings": { "heading": "Design Your ZeroStick", "heading_size": "h1" } },
-        "text": { "type": "text", "settings": { "text": "<p>Customise a controller from scratch, or grab a pre-configured build ready to ship.</p>" } },
-        "button": { "type": "button", "settings": { "button_label": "Shop Controllers", "button_link": "/collections/all" } }
-      },
-      "block_order": ["heading", "text", "button"]
-    },
-    "featured": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Shop Controllers & Modules",
-        "heading_size": "h1",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1"
-      }
-    },
-    "features": {
-      "type": "multicolumn",
-      "settings": {
-        "title": "Why ZeroStick",
-        "heading_size": "h1",
-        "columns_desktop": 3,
-        "color_scheme": "scheme-3"
-      },
-      "blocks": {
-        "c1": { "type": "column", "settings": { "title": "TMR / Hall-Effect Sticks", "text": "<p>Magnetic sensing with zero physical contact — virtually no drift, ever.</p>" } },
-        "c2": { "type": "column", "settings": { "title": "Smart Buttons", "text": "<p>Mouse-click triggers, bumpers, and face buttons for instant, consistent inputs.</p>" } },
-        "c3": { "type": "column", "settings": { "title": "5-Year Stick Warranty", "text": "<p>Every controller is backed by a 5-year stick warranty. Built to last.</p>" } }
-      },
-      "block_order": ["c1", "c2", "c3"]
+    "home": {
+      "type": "zerostick-home",
+      "settings": {}
     }
   },
-  "order": ["banner", "intro", "featured", "features"]
+  "order": ["home"]
 }
