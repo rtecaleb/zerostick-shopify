@@ -7,6 +7,7 @@
 
   <div class="nav-top">
     <div class="nav-top-inner">
+      <button class="nav-burger" aria-label="Menu" onclick="document.body.classList.toggle('zs-menu-open')">&#9776;</button>
       <a class="nav-logo" href="/"><img src="{{ 'zerostick-logo.png' | asset_url }}" alt="ZeroStick" /></a>
       <div class="nav-search">
         <span class="nav-search-icon">&#128269;</span>
@@ -54,6 +55,18 @@
       </div>
     </div>
   </nav>
+
+  <!-- Mobile menu (revealed by hamburger) -->
+  <div class="zs-mobile-menu">
+    <a href="/collections/all">PS5 Controllers</a>
+    <a href="/collections/all">TMR Modules</a>
+    <a href="/collections/all">Shop All</a>
+    <a href="/pages/builder">3D Builder</a>
+    <a href="/pages/contact">Contact Us</a>
+    <a href="/pages/contact">Support &amp; FAQ</a>
+    <a href="/account/login">Account</a>
+    <a href="/cart">Cart</a>
+  </div>
 </header>
 
 {% schema %}

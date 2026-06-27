@@ -87,3 +87,15 @@ a:hover { color: var(--zs-brand); }
 /* Our custom footer uses brand-blue headings + links */
 footer .footer-col h4 { color: var(--zs-brand) !important; }
 footer .social-links a:hover, footer .footer-col ul li a:hover { color: var(--zs-brand) !important; }
+
+/* ===== Mobile menu (hamburger) ===== */
+.nav-burger { display: none; background: none; border: none; color: #fff; font-size: 26px; line-height: 1; cursor: pointer; margin-right: 12px; padding: 4px 8px; }
+.zs-mobile-menu { display: none; flex-direction: column; background: #161b22; border-top: 1px solid rgba(255,255,255,0.08); }
+.zs-mobile-menu a { padding: 15px 24px; color: #fff; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.zs-mobile-menu a:hover { color: var(--zs-brand); background: rgba(255,255,255,0.04); }
+body.zs-menu-open .zs-mobile-menu { display: flex; }
+@media (max-width: 768px) {
+  .nav-burger { display: block; }
+  .nav-bottom { display: none; }          /* hide the desktop link row on mobile */
+  .nav-search { max-width: 100%; }
+}
