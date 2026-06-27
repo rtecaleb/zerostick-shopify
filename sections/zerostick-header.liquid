@@ -12,7 +12,7 @@
       <div class="nav-search">
         <span class="nav-search-icon">&#128269;</span>
         <form action="/search" method="get" style="width:100%">
-          <input type="search" name="q" placeholder="Search controllers, modules..." />
+          <input type="search" name="q" id="zs-search-input" placeholder="Search products..." />
         </form>
       </div>
       <div class="nav-actions">
@@ -67,6 +67,32 @@
     <a href="/account/login">Account</a>
     <a href="/cart">Cart</a>
   </div>
+
+  <script>
+    (function(){
+      var input = document.getElementById('zs-search-input');
+      if (!input) return;
+      var words = ['PS5 Controller', 'DualSense Edge Module', 'TMR Hall-Effect Module', 'Switch Pro Controller', 'Smart Triggers', 'Rear Buttons'];
+      var wi = 0, ci = 0, deleting = false, paused = false;
+      function tick(){
+        // stop animating once the user interacts
+        if (document.activeElement === input || input.value) { input.setAttribute('placeholder','Search products...'); setTimeout(tick, 1000); return; }
+        var w = words[wi];
+        if (!deleting) {
+          ci++;
+          input.setAttribute('placeholder', 'Search "' + w.substring(0, ci) + '"');
+          if (ci >= w.length) { deleting = true; setTimeout(tick, 1400); return; }
+          setTimeout(tick, 95);
+        } else {
+          ci--;
+          input.setAttribute('placeholder', 'Search "' + w.substring(0, ci) + '"');
+          if (ci <= 0) { deleting = false; wi = (wi + 1) % words.length; setTimeout(tick, 350); return; }
+          setTimeout(tick, 45);
+        }
+      }
+      tick();
+    })();
+  </script>
 </header>
 
 {% schema %}

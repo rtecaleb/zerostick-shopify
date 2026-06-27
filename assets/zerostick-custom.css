@@ -111,6 +111,7 @@ body.zs-menu-open .zs-mobile-menu { display: flex; }
   .nav-burger { display: block; }
   .nav-bottom { display: none; }              /* hide desktop link row on mobile */
   .nav-logo img { height: 30px !important; }  /* smaller so it isn't cramped */
-  .nav-top-inner { flex-wrap: wrap; gap: 10px; }
+  .nav-top-inner { flex-wrap: wrap; gap: 10px; height: auto; min-height: 60px; padding-top: 10px; padding-bottom: 12px; }
   .nav-search { order: 3; flex-basis: 100%; max-width: 100%; }  /* search drops to its own full-width line */
+  .nav-search input { box-sizing: border-box; }
 }
