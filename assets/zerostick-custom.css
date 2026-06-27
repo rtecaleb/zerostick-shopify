@@ -65,3 +65,25 @@ a:hover { color: var(--zs-brand); }
 
 /* Reveal-on-scroll (Dawn already animates; reinforce with brand timing) */
 .scroll-trigger.animate--slide-in { animation-duration: .7s; }
+
+/* ===== Fixes for 1:1 match with the Netlify site ===== */
+/* Hero slideshow text was rendering black (Dawn's h2 color) — force white */
+.hero-content h2, .hero-content p { color: #fff !important; }
+.hero-content .btn-white { color: var(--zs-ink) !important; }
+
+/* Dropdown caret + nav accents in brand blue */
+.nav-links > li > a .caret { color: var(--zs-brand) !important; }
+.dropdown { border-top-color: var(--zs-brand) !important; }
+.dropdown a:hover { border-left-color: var(--zs-brand) !important; color: var(--zs-brand) !important; }
+.btn-support { background: var(--zs-brand) !important; color: #fff !important; }
+
+/* Section eyebrow / label-blue + dividers in brand blue */
+.label-blue { color: var(--zs-brand) !important; }
+.divider-blue { background: var(--zs-brand) !important; }
+
+/* Dawn sometimes forces heading color on our sections — keep our headings inheriting */
+.hero-slider h2, .builder-card h3, .feature-panel h3, .review-text { color: inherit; }
+
+/* Our custom footer uses brand-blue headings + links */
+footer .footer-col h4 { color: var(--zs-brand) !important; }
+footer .social-links a:hover, footer .footer-col ul li a:hover { color: var(--zs-brand) !important; }
