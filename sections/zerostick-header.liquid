@@ -1,0 +1,64 @@
+{%- comment -%} ZeroStick two-row navbar (matches netlify site) {%- endcomment -%}
+<header class="site-header">
+
+  <div class="announce-bar">
+    EVERY CONTROLLER EQUIPPED WITH <strong>TMR TECHNOLOGY</strong> AND A <strong>5-YEAR STICK WARRANTY</strong>
+  </div>
+
+  <div class="nav-top">
+    <div class="nav-top-inner">
+      <a class="nav-logo" href="/"><img src="{{ 'zerostick-logo.png' | asset_url }}" alt="ZeroStick" /></a>
+      <div class="nav-search">
+        <span class="nav-search-icon">&#128269;</span>
+        <form action="/search" method="get" style="width:100%">
+          <input type="search" name="q" placeholder="Search controllers, modules..." />
+        </form>
+      </div>
+      <div class="nav-actions">
+        <a href="/account/login" class="nav-icon-btn" title="Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </a>
+        <a href="/cart" class="nav-icon-btn" title="Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav-bottom">
+    <div class="nav-bottom-inner">
+      <ul class="nav-links">
+        <li>
+          <a href="/collections/all">PS5 <span class="caret">&#8964;</span></a>
+          <div class="dropdown">
+            <div class="drop-label">Shop</div>
+            <a href="/pages/builder">Controller Designer</a>
+            <a href="/collections/all">Quick Picks</a>
+            <a href="/collections/all">Pre-Builts</a>
+          </div>
+        </li>
+        <li>
+          <a href="/collections/all">Modules <span class="caret">&#8964;</span></a>
+          <div class="dropdown">
+            <a href="/collections/all">TMR Modules</a>
+            <a href="/collections/all">DualSense Edge</a>
+            <a href="/collections/all">Mail-In Service</a>
+          </div>
+        </li>
+        <li><a href="/collections/all">Shop All</a></li>
+        <li><a href="/pages/builder">3D Builder</a></li>
+      </ul>
+      <div class="nav-info">
+        <a href="/pages/contact">Contact Us</a>
+        <a href="/pages/contact" class="btn-support">&#128100; Support &amp; FAQ</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "ZeroStick Header",
+  "settings": []
+}
+{% endschema %}
