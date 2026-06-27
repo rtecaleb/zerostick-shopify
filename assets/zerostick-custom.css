@@ -1,0 +1,67 @@
+/* ============================================================
+   ZeroStick brand overrides for Dawn
+   Brand blue: #298DDF  ·  Font: DM Sans
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&display=swap');
+
+:root, .color-scheme-1, .color-scheme-2, .color-scheme-3, .color-scheme-4, .color-scheme-5 {
+  --zs-brand: #298DDF;
+  --zs-brand-dark: #1f74bd;
+  --zs-ink: #0d1117;
+}
+
+/* Typography */
+body, .h0, .h1, .h2, .h3, .h4, .h5, button, input, select, textarea, .button {
+  font-family: 'DM Sans', sans-serif !important;
+}
+h1, h2, .h1, .h2, .section-header h2 { text-transform: uppercase; letter-spacing: -0.01em; font-weight: 800; }
+
+/* Pill buttons + brand accent */
+.button, .shopify-payment-button__button--unbranded, button.button {
+  border-radius: 28px !important;
+  text-transform: none !important;
+  letter-spacing: 0.01em !important;
+  font-weight: 700 !important;
+}
+.button:not(.button--secondary) {
+  --color-button: 41,141,223;        /* Dawn reads button color as RGB triplet */
+}
+.button--primary, .button:not([disabled]):hover { transition: transform .18s ease, box-shadow .2s ease; }
+.button:not([disabled]):hover { transform: translateY(-2px); }
+
+/* Links & accents */
+a:hover { color: var(--zs-brand); }
+.link, .product__title a:hover, .full-unstyled-link:hover { color: var(--zs-brand); }
+
+/* Header (dark navbar feel) */
+.header-wrapper { background: var(--zs-ink) !important; }
+.header { background: transparent !important; }
+.header__heading-link, .header__menu-item, .header__icon, .header__active-menu-item,
+.list-menu__item--link { color: #fff !important; }
+.header__menu-item:hover, .list-menu__item--link:hover { color: var(--zs-brand) !important; }
+.header__menu-item span { color: inherit; }
+/* dropdown caret accent */
+.header__menu-item .svg-wrapper, .header__menu-item .icon-caret { color: var(--zs-brand) !important; }
+
+/* Announcement bar */
+.announcement-bar, .utility-bar { background: #000 !important; }
+.announcement-bar__message { color: rgba(255,255,255,0.9) !important; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+.announcement-bar__message strong { color: var(--zs-brand); }
+
+/* Product cards — subtle lift + image zoom */
+.card-wrapper, .card { transition: transform .25s ease, box-shadow .25s ease; }
+.card-wrapper:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0,0,0,.12); }
+.card__media .media img { transition: transform .5s ease; }
+.card-wrapper:hover .card__media .media img { transform: scale(1.06); }
+
+/* Badges / sale tags in brand blue */
+.badge { background: var(--zs-brand) !important; color: #fff !important; border-color: var(--zs-brand) !important; }
+
+/* Footer */
+.footer { background: var(--zs-ink) !important; color: #fff; }
+.footer .footer-block__heading { color: var(--zs-brand) !important; }
+.footer a:hover { color: var(--zs-brand) !important; }
+.footer__content-bottom, .footer-block { border-color: rgba(255,255,255,.1) !important; }
+
+/* Reveal-on-scroll (Dawn already animates; reinforce with brand timing) */
+.scroll-trigger.animate--slide-in { animation-duration: .7s; }

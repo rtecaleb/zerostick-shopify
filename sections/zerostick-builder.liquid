@@ -1,0 +1,171 @@
+{%- comment -%} ZeroStick 3D Controller Builder — original section {%- endcomment -%}
+<style>
+  .zsb-wrap { max-width: 1500px; margin: 0 auto; padding: 48px 32px; }
+  .zsb-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: start; }
+  .zsb-stage { width: 100%; height: 460px; border-radius: 12px; cursor: grab;
+    background: radial-gradient(circle at 50% 40%, #20262f 0%, #0d1117 70%); position: sticky; top: 100px; }
+  .zsb-stage:active { cursor: grabbing; }
+  .zsb-hint { text-align:center; color:#888; font-size:12px; margin-top:12px; }
+  .zsb-group { padding: 20px 0; border-bottom: 1px solid #e0e0e0; }
+  .zsb-title { font-size:13px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; margin-bottom:16px; }
+  .zsb-swatches { display:flex; gap:12px; flex-wrap:wrap; }
+  .zsb-sw { width:38px; height:38px; border-radius:50%; border:2px solid #e0e0e0; cursor:pointer; padding:0; transition:transform .12s; }
+  .zsb-sw:hover { transform:scale(1.1); }
+  .zsb-sw.active { border-color:#298DDF; box-shadow:0 0 0 2px #298DDF; }
+  .zsb-row { display:flex; align-items:center; justify-content:space-between; padding:10px 0; font-size:14px; font-weight:600; cursor:pointer; }
+  .zsb-row input { margin-right:10px; accent-color:#298DDF; transform:scale(1.15); }
+  .zsb-price { font-size:13px; font-weight:700; color:#717271; }
+  .zsb-summary { margin-top:28px; background:#f5f5f5; border-radius:8px; padding:24px; }
+  .zsb-sumrow { display:flex; justify-content:space-between; padding:6px 0; }
+  .zsb-total { font-size:22px; font-weight:900; border-top:1px solid #e0e0e0; margin-top:8px; padding-top:14px; }
+  .zsb-add { width:100%; margin-top:16px; padding:14px; border:none; border-radius:28px; background:#0d1117; color:#fff; font-weight:700; font-size:15px; cursor:pointer; }
+  @media (max-width:900px){ .zsb-layout{grid-template-columns:1fr;} .zsb-stage{position:static;} }
+</style>
+
+<div class="zsb-wrap">
+  <div class="zsb-layout">
+    <div>
+      <div id="zsb-stage" class="zsb-stage"></div>
+      <p class="zsb-hint">Drag to rotate · scroll to zoom</p>
+    </div>
+    <div>
+      <div class="zsb-group">
+        <h3 class="zsb-title">Shell Color</h3>
+        <div class="zsb-swatches" id="zsbShell">
+          <button class="zsb-sw active" style="background:#298DDF" data-color="#298DDF"></button>
+          <button class="zsb-sw" style="background:#1a1a24" data-color="#1a1a24"></button>
+          <button class="zsb-sw" style="background:#e8e8ee" data-color="#e8e8ee"></button>
+          <button class="zsb-sw" style="background:#6a2bd0" data-color="#6a2bd0"></button>
+          <button class="zsb-sw" style="background:#d11a2a" data-color="#d11a2a"></button>
+          <button class="zsb-sw" style="background:#00936b" data-color="#00936b"></button>
+        </div>
+      </div>
+      <div class="zsb-group">
+        <h3 class="zsb-title">Face Button Color</h3>
+        <div class="zsb-swatches" id="zsbBtn">
+          <button class="zsb-sw active" style="background:#ffffff" data-color="#ffffff"></button>
+          <button class="zsb-sw" style="background:#15151f" data-color="#15151f"></button>
+          <button class="zsb-sw" style="background:#298DDF" data-color="#298DDF"></button>
+          <button class="zsb-sw" style="background:#ffce3a" data-color="#ffce3a"></button>
+        </div>
+      </div>
+      <div class="zsb-group">
+        <h3 class="zsb-title">Stick Accent Ring</h3>
+        <div class="zsb-swatches" id="zsbStick">
+          <button class="zsb-sw active" style="background:#298DDF" data-color="#298DDF"></button>
+          <button class="zsb-sw" style="background:#ffffff" data-color="#ffffff"></button>
+          <button class="zsb-sw" style="background:#00e5a0" data-color="#00e5a0"></button>
+          <button class="zsb-sw" style="background:#ff4d6d" data-color="#ff4d6d"></button>
+        </div>
+      </div>
+      <div class="zsb-group">
+        <h3 class="zsb-title">Thumbstick Mechanism</h3>
+        <label class="zsb-row"><span><input type="radio" name="zstick" value="0" checked> Standard</span><span class="zsb-price">Included</span></label>
+        <label class="zsb-row"><span><input type="radio" name="zstick" value="25"> Drift-Resistant</span><span class="zsb-price">+$25</span></label>
+        <label class="zsb-row"><span><input type="radio" name="zstick" value="45"> TMR / Hall-Effect</span><span class="zsb-price">+$45</span></label>
+      </div>
+      <div class="zsb-group">
+        <h3 class="zsb-title">Smart Buttons</h3>
+        <label class="zsb-row"><span><input type="checkbox" class="zsmart" id="zT" value="30"> Smart Triggers</span><span class="zsb-price">+$30</span></label>
+        <label class="zsb-row"><span><input type="checkbox" class="zsmart" id="zB" value="25"> Smart Bumpers</span><span class="zsb-price">+$25</span></label>
+        <label class="zsb-row"><span><input type="checkbox" class="zsmart" id="zF" value="30"> Smart Face Buttons</span><span class="zsb-price">+$30</span></label>
+        <label class="zsb-row"><span><input type="checkbox" class="zsmart" id="zD" value="20"> Smart D-Pad</span><span class="zsb-price">+$20</span></label>
+      </div>
+      <div class="zsb-group">
+        <h3 class="zsb-title">Rear Buttons</h3>
+        <label class="zsb-row"><span><input type="radio" name="zrear" value="0" checked> None</span><span class="zsb-price">Included</span></label>
+        <label class="zsb-row"><span><input type="radio" name="zrear" value="35"> 2 Rear Paddles</span><span class="zsb-price">+$35</span></label>
+        <label class="zsb-row"><span><input type="radio" name="zrear" value="55"> 4 Rear Paddles</span><span class="zsb-price">+$55</span></label>
+      </div>
+      <div class="zsb-summary">
+        <div class="zsb-sumrow"><span>Base Controller</span><span>${{ section.settings.base_price | default: 99 }}</span></div>
+        <div class="zsb-sumrow zsb-total"><span>Total</span><span id="zsbTotal">${{ section.settings.base_price | default: 99 }}</span></div>
+        <button class="zsb-add" id="zsbAdd">Add to Cart</button>
+        <p class="zsb-hint" style="margin-top:14px">Builds ship in 5–7 business days · 5-year stick warranty</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+}}
+</script>
+<script type="module">
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+  import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+  const ACCENT='#298DDF', DARK='#15151f';
+  const stage=document.getElementById('zsb-stage');
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(38, stage.clientWidth/stage.clientHeight, .1, 100);
+  camera.position.set(0,.4,6.4);
+  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(stage.clientWidth, stage.clientHeight); stage.appendChild(renderer.domElement);
+  scene.add(new THREE.HemisphereLight(0xffffff,0x223044,.9));
+  const key=new THREE.DirectionalLight(0xffffff,1.6); key.position.set(3,5,4); scene.add(key);
+  const fill=new THREE.DirectionalLight(0xbcd4ff,.6); fill.position.set(-4,1,2); scene.add(fill);
+  const controls=new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping=true; controls.minDistance=4.5; controls.maxDistance=10;
+  controls.autoRotate=true; controls.autoRotateSpeed=1.2; controls.target.set(0,-.1,0);
+  stage.addEventListener('pointerdown',()=>controls.autoRotate=false);
+  const shellMat=new THREE.MeshStandardMaterial({color:ACCENT,roughness:.45,metalness:.15});
+  const faceMat=new THREE.MeshStandardMaterial({color:'#ffffff',roughness:.4});
+  const ringMat=new THREE.MeshStandardMaterial({color:ACCENT,roughness:.35,emissive:ACCENT,emissiveIntensity:.25});
+  const darkMat=new THREE.MeshStandardMaterial({color:DARK,roughness:.6});
+  const triggerMat=new THREE.MeshStandardMaterial({color:DARK,roughness:.6});
+  const bumperMat=new THREE.MeshStandardMaterial({color:DARK,roughness:.6});
+  const dpadMat=new THREE.MeshStandardMaterial({color:DARK,roughness:.6});
+  const padMat=new THREE.MeshStandardMaterial({color:'#dfe6ee',roughness:.3,transparent:true,opacity:.5});
+  const paddleMat=new THREE.MeshStandardMaterial({color:ACCENT,roughness:.4});
+  const pad=new THREE.Group(); scene.add(pad);
+  const add=(g,m,x,y,z,rx=0,ry=0,rz=0)=>{const me=new THREE.Mesh(g,m);me.position.set(x,y,z);me.rotation.set(rx,ry,rz);pad.add(me);return me;};
+  add(new RoundedBoxGeometry(3.1,1.25,.62,6,.26),shellMat,0,0,0);
+  add(new THREE.CapsuleGeometry(.42,1,8,16),shellMat,-1.18,-.78,.02,.25,0,.5);
+  add(new THREE.CapsuleGeometry(.42,1,8,16),shellMat,1.18,-.78,.02,.25,0,-.5);
+  add(new RoundedBoxGeometry(.95,.6,.08,4,.05),padMat,0,.18,.31);
+  add(new RoundedBoxGeometry(.16,.5,.12,3,.04),dpadMat,-1,.05,.30);
+  add(new RoundedBoxGeometry(.5,.16,.12,3,.04),dpadMat,-1,.05,.30);
+  const faceGeo=new THREE.CylinderGeometry(.13,.13,.12,24);
+  const fb=(x,y)=>add(faceGeo,faceMat,x,y,.30,Math.PI/2,0,0);
+  fb(1,.32);fb(1.3,.02);fb(.7,.02);fb(1,-.28);
+  function stick(cx,cy){add(new THREE.CylinderGeometry(.27,.30,.12,28),darkMat,cx,cy,.30,Math.PI/2,0,0);
+    add(new THREE.TorusGeometry(.20,.045,12,28),ringMat,cx,cy,.40);
+    add(new THREE.SphereGeometry(.19,24,16),darkMat,cx,cy,.40);}
+  stick(-.55,-.18); stick(.55,-.18);
+  add(new RoundedBoxGeometry(.7,.18,.3,3,.06),bumperMat,-.95,.66,-.12);
+  add(new RoundedBoxGeometry(.7,.18,.3,3,.06),bumperMat,.95,.66,-.12);
+  add(new RoundedBoxGeometry(.7,.34,.3,3,.08),triggerMat,-.95,.5,-.32,-.5,0,0);
+  add(new RoundedBoxGeometry(.7,.34,.3,3,.08),triggerMat,.95,.5,-.32,-.5,0,0);
+  const paddleL=add(new RoundedBoxGeometry(.5,.14,.1,3,.04),paddleMat,-.7,-.55,-.4,.3,0,0);
+  const paddleR=add(new RoundedBoxGeometry(.5,.14,.1,3,.04),paddleMat,.7,-.55,-.4,.3,0,0);
+  paddleL.visible=paddleR.visible=false; pad.rotation.x=-.15;
+  (function loop(){requestAnimationFrame(loop);controls.update();renderer.render(scene,camera);})();
+  addEventListener('resize',()=>{const w=stage.clientWidth,h=stage.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h);});
+  function wire(id,fn){const b=document.getElementById(id);b.querySelectorAll('.zsb-sw').forEach(s=>s.addEventListener('click',()=>{b.querySelectorAll('.zsb-sw').forEach(x=>x.classList.remove('active'));s.classList.add('active');fn(s.dataset.color);}));}
+  wire('zsbShell',c=>shellMat.color.set(c));
+  wire('zsbBtn',c=>faceMat.color.set(c));
+  wire('zsbStick',c=>{ringMat.color.set(c);ringMat.emissive.set(c);paddleMat.color.set(c);});
+  const sm=(m,on)=>m.color.set(on?ACCENT:DARK);
+  zT.addEventListener('change',e=>sm(triggerMat,e.target.checked));
+  zB.addEventListener('change',e=>sm(bumperMat,e.target.checked));
+  zD.addEventListener('change',e=>sm(dpadMat,e.target.checked));
+  document.querySelectorAll('input[name="zrear"]').forEach(r=>r.addEventListener('change',()=>{const v=+document.querySelector('input[name="zrear"]:checked').value;paddleL.visible=v>0;paddleR.visible=v>0;}));
+  const BASE={{ section.settings.base_price | default: 99 }};
+  function recalc(){let t=BASE;t+=+document.querySelector('input[name="zstick"]:checked').value;t+=+document.querySelector('input[name="zrear"]:checked').value;document.querySelectorAll('.zsmart:checked').forEach(c=>t+=+c.value);document.getElementById('zsbTotal').textContent='$'+t;}
+  document.querySelectorAll('.zsb-wrap input').forEach(i=>i.addEventListener('change',recalc)); recalc();
+  document.getElementById('zsbAdd').addEventListener('click',()=>alert('Your custom ZeroStick ('+document.getElementById('zsbTotal').textContent+') — connect a product to enable real checkout.'));
+</script>
+
+{% schema %}
+{
+  "name": "ZeroStick 3D Builder",
+  "settings": [
+    { "type": "number", "id": "base_price", "label": "Base price ($)", "default": 99 }
+  ],
+  "presets": [{ "name": "ZeroStick 3D Builder" }]
+}
+{% endschema %}
