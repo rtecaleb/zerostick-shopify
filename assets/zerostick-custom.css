@@ -147,3 +147,50 @@ body.zs-menu-open .zs-mobile-menu { display: flex; }
   .nav-search { order: 3; flex-basis: 100%; max-width: 100%; }  /* search drops to its own full-width line */
   .nav-search input { box-sizing: border-box; }
 }
+
+/* ============================================================
+   DARK NAVY THEME  (overrides the white look site-wide)
+   ============================================================ */
+:root {
+  --text: #eaf0f8;
+  --text-muted: #9db0cc;
+  --white: #0a1530;        /* used as page/card bg in many rules */
+  --gray-light: #0d1a35;
+  --gray-mid: #11203f;
+  --border: rgba(255,255,255,0.10);
+}
+body { background: #0a1530 !important; color: #eaf0f8 !important; }
+.section-gray, .feature-section { background: #0d1a35 !important; }
+
+/* Cards -> elevated navy */
+.card, .product-card, .builder-card, .review-card { background: #11203f !important; border-color: rgba(255,255,255,0.10) !important; }
+.builder-card p, .product-feats, .review-card p, .body-lg, .review-author, .review-date { color: #9db0cc !important; }
+
+/* Headings + labels */
+h1, h2, h3, h4, .heading-xl, .heading-lg, .heading-md,
+.builder-card h3, .feature-panel h3, .review-text { color: #eaf0f8 !important; }
+.label { color: #9db0cc !important; }
+.label-blue { color: var(--zs-brand) !important; }
+
+/* Image frames sit on deep navy */
+.card-img, .product-img, .photo-frame, .feature-img { background: #0a1530 !important; }
+
+/* Feature tabs on dark */
+.feature-tab { color: #9db0cc !important; }
+.feature-tab.active { color: #fff !important; border-bottom-color: var(--zs-brand) !important; }
+.feature-tabs { border-bottom-color: rgba(255,255,255,0.12) !important; }
+.divider { background: var(--zs-brand) !important; }
+
+/* Primary buttons -> brand blue (black buttons vanish on navy) */
+.btn-dark { background: var(--zs-brand) !important; color: #fff !important; }
+.btn-dark:hover { background: var(--zs-brand-dark) !important; }
+.btn-outline { color: #eaf0f8 !important; border-color: rgba(255,255,255,0.4) !important; }
+.btn-outline:hover { background: #fff !important; color: #0a1530 !important; }
+
+/* 3D builder panels on dark */
+.zsb-summary { background: #11203f !important; }
+.zsb-group { border-color: rgba(255,255,255,0.10) !important; }
+.zsb-title, .zsb-row { color: #eaf0f8 !important; }
+.zsb-price { color: #9db0cc !important; }
+.zsb-sw { border-color: rgba(255,255,255,0.25) !important; }
+.zsb-add { background: var(--zs-brand) !important; }
