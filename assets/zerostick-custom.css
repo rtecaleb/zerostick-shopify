@@ -66,6 +66,15 @@ a:hover { color: var(--zs-brand); }
 /* Reveal-on-scroll (Dawn already animates; reinforce with brand timing) */
 .scroll-trigger.animate--slide-in { animation-duration: .7s; }
 
+/* ===== Mobile product grid: 2 columns ===== */
+@media (max-width: 768px) {
+  .builder-grid { grid-template-columns: 1fr 1fr !important; }
+  .builder-card { padding: 18px 14px !important; }
+  .builder-card h3 { font-size: 16px !important; }
+  .builder-card p { font-size: 13px !important; }
+  .builder-card .btn { padding: 11px 18px !important; font-size: 13px !important; }
+}
+
 /* ===== Stop horizontal overflow / weird mobile zoom ===== */
 html, body { overflow-x: hidden; max-width: 100%; }
 .hero-slider, .ticker-wrap, .builder-grid, .section, .zsb-wrap, footer, .site-header { max-width: 100%; }
