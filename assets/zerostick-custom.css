@@ -98,8 +98,19 @@ footer .social-links a:hover, footer .footer-col ul li a:hover { color: var(--zs
 .zs-mobile-menu a { padding: 15px 24px; color: #fff; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .zs-mobile-menu a:hover { color: var(--zs-brand); background: rgba(255,255,255,0.04); }
 body.zs-menu-open .zs-mobile-menu { display: flex; }
+
+/* Keep the logo from being squished by the flex row */
+.nav-logo { flex-shrink: 0; }
+.nav-logo img { width: auto !important; max-width: none !important; object-fit: contain; }
+
+/* Search input text must always be visible (white on dark) */
+.nav-search input { color: #fff !important; -webkit-text-fill-color: #fff !important; background: #1e2430 !important; }
+.nav-search input::placeholder { color: rgba(255,255,255,0.45) !important; }
+
 @media (max-width: 768px) {
   .nav-burger { display: block; }
-  .nav-bottom { display: none; }          /* hide the desktop link row on mobile */
-  .nav-search { max-width: 100%; }
+  .nav-bottom { display: none; }              /* hide desktop link row on mobile */
+  .nav-logo img { height: 30px !important; }  /* smaller so it isn't cramped */
+  .nav-top-inner { flex-wrap: wrap; gap: 10px; }
+  .nav-search { order: 3; flex-basis: 100%; max-width: 100%; }  /* search drops to its own full-width line */
 }
