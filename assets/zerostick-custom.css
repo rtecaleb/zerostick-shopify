@@ -166,6 +166,43 @@ body { background: #0a1530 !important; color: #eaf0f8 !important; }
 .card, .product-card, .builder-card, .review-card { background: #11203f !important; border-color: rgba(255,255,255,0.10) !important; }
 .builder-card p, .product-feats, .review-card p, .body-lg, .review-author, .review-date { color: #9db0cc !important; }
 
+/* ===== Dawn product cards (collection + search): make text/prices readable on navy ===== */
+/* Card container: keep it as a clean framed tile */
+.card-wrapper .card,
+.card-wrapper .card__content,
+.card-wrapper .card__information { background: transparent !important; }
+.card-wrapper .card--standard .card__inner,
+.card-wrapper .card { background: #11203f !important; }
+/* Titles */
+.card__heading,
+.card__heading a,
+.card-information .card__heading,
+.full-unstyled-link { color: #eaf0f8 !important; }
+/* Prices — were near-black (#121212); force light */
+.price,
+.price *,
+.price-item,
+.price__regular .price-item--regular,
+.price__sale .price-item--sale,
+.card-information .price,
+.card-information .price-item { color: #eaf0f8 !important; }
+.price__sale .price-item--regular,
+.price--on-sale .price-item--regular,
+.card-information__text,
+.card-information,
+.product-card-wrapper .caption { color: #9db0cc !important; }
+.price-item--sale, .price__sale .price-item--last { color: var(--zs-brand) !important; }
+/* Badges / sold-out labels */
+.card__badge .badge { background: var(--zs-brand) !important; color: #fff !important; }
+/* Collection page heading + filter/sort text */
+.collection .title-wrapper h1,
+.facets__summary,
+.facets__display,
+.facet-filters__label,
+.product-count__text,
+.collection-hero__title { color: #eaf0f8 !important; }
+.facets__disclosure, .facets-vertical, .facets__form { color: #9db0cc !important; }
+
 /* Headings + labels */
 h1, h2, h3, h4, .heading-xl, .heading-lg, .heading-md,
 .builder-card h3, .feature-panel h3, .review-text { color: #eaf0f8 !important; }
