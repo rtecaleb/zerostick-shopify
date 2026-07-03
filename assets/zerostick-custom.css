@@ -162,6 +162,25 @@ body.zs-menu-open .zs-mobile-menu { display: flex; }
 body { background: #0a1530 !important; color: #eaf0f8 !important; }
 .section-gray, .feature-section { background: #0d1a35 !important; }
 
+/* ===== FIX white-on-white: convert Dawn's color-scheme palette to dark =====
+   Dawn renders product pages / many sections with a WHITE color-scheme
+   background but our forced light text made price/labels invisible.
+   Remap every color scheme to the navy palette so backgrounds are dark
+   and text stays readable site-wide. */
+.color-scheme-1, .color-scheme-2, .color-scheme-3, .color-scheme-4, .color-scheme-5 {
+  --color-background: 10,21,48 !important;
+  --gradient-background: #0a1530 !important;
+  --color-foreground: 234,240,248 !important;
+  --color-shadow: 0,0,0 !important;
+}
+/* Product page info + related content on dark */
+.product__info-container, .product__description, .product__text,
+.product .rte, .product__accordion, .product-form__input label,
+.product__info-wrapper, .price, .price *, .product__title, .product__title * {
+  color: #eaf0f8 !important;
+}
+.product__info-container .rte, .product__description p { color: #9db0cc !important; }
+
 /* Cards -> elevated navy */
 .card, .product-card, .builder-card, .review-card { background: #11203f !important; border-color: rgba(255,255,255,0.10) !important; }
 .builder-card p, .product-feats, .review-card p, .body-lg, .review-author, .review-date { color: #9db0cc !important; }
