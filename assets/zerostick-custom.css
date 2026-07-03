@@ -166,6 +166,15 @@ body { background: #0a1530 !important; color: #eaf0f8 !important; }
 .card, .product-card, .builder-card, .review-card { background: #11203f !important; border-color: rgba(255,255,255,0.10) !important; }
 .builder-card p, .product-feats, .review-card p, .body-lg, .review-author, .review-date { color: #9db0cc !important; }
 
+/* ===== FIX: collapsed product cards on collection/search grids =====
+   Dawn's flex rule leaves .grid__item with max-width:calc(25% - 6px),
+   which shrinks each card to ~81px inside the CSS-grid cells. Let items
+   fill their grid column so images and cards size correctly. */
+.product-grid.grid > .grid__item,
+ul.product-grid > li.grid__item,
+.collection ul.product-grid > li,
+.search__results-list.product-grid > li { max-width: 100% !important; width: auto !important; }
+
 /* ===== Dawn product cards (collection + search): make text/prices readable on navy ===== */
 /* Card container: keep it as a clean framed tile */
 .card-wrapper .card,
