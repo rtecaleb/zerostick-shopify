@@ -261,3 +261,112 @@ h1, h2, h3, h4, .heading-xl, .heading-lg, .heading-md,
 .zsb-add { background: var(--zs-brand) !important; }
 
 /* sync 1783030149 */
+
+/* ============================================================
+   PRODUCT PAGES — clean, white, professional (Battle Beaver-inspired)
+   Header + footer stay dark; only the product content area is light.
+   ============================================================ */
+body.template-product { background: #ffffff !important; color: #2a2b2a !important; }
+
+/* Convert Dawn color schemes back to a light palette on product pages */
+body.template-product .color-scheme-1,
+body.template-product .color-scheme-2,
+body.template-product .color-scheme-3,
+body.template-product .color-scheme-4,
+body.template-product .color-scheme-5 {
+  --color-background: 255,255,255 !important;
+  --gradient-background: #ffffff !important;
+  --color-foreground: 26,27,29 !important;
+  --color-shadow: 18,18,18 !important;
+  background-color: #ffffff !important;
+}
+
+/* Keep the site chrome (header/announcement/footer) dark */
+body.template-product .header-wrapper,
+body.template-product .site-header,
+body.template-product .announcement-bar,
+body.template-product .utility-bar { background: var(--zs-ink) !important; }
+body.template-product footer,
+body.template-product .footer { background: var(--zs-ink) !important; color: #fff !important; }
+body.template-product footer * { color: #cfd6e0 !important; }
+body.template-product footer h4,
+body.template-product footer .footer-col h4 { color: var(--zs-brand) !important; }
+
+/* Title — clean, sentence case (not shouty uppercase) */
+body.template-product .product__title,
+body.template-product .product__title *,
+body.template-product h1.product__title,
+body.template-product .product h1 {
+  color: #17181a !important;
+  text-transform: none !important;
+  letter-spacing: -0.01em !important;
+  font-weight: 700 !important;
+  font-size: clamp(1.55rem, 2.3vw, 2rem) !important;
+  line-height: 1.22 !important;
+}
+
+/* Price — understated, dark */
+body.template-product .product .price,
+body.template-product .product .price *,
+body.template-product .product .price-item {
+  color: #17181a !important;
+  font-size: 1.35rem !important;
+  font-weight: 600 !important;
+}
+
+/* Description + info text */
+body.template-product .product__description,
+body.template-product .product .rte,
+body.template-product .product .rte *,
+body.template-product .product__info-container,
+body.template-product .product__text {
+  color: #3f4145 !important;
+  background: transparent !important;
+}
+body.template-product .product__info-container { background: transparent !important; }
+
+/* Variant / option controls readable on white */
+body.template-product .product-form__input .form__label,
+body.template-product .product-form__input label,
+body.template-product legend,
+body.template-product .form__label { color: #17181a !important; }
+body.template-product fieldset label,
+body.template-product .product-form__input input[type="radio"] + label {
+  color: #17181a !important; background: #fff !important; border-color: #d3d7dc !important;
+}
+body.template-product .product-form__input input[type="radio"]:checked + label {
+  border-color: var(--zs-brand) !important; color: var(--zs-brand) !important;
+}
+body.template-product .select__select { color:#17181a !important; background:#fff !important; border-color:#d3d7dc !important; }
+
+/* Add-to-cart / buy button — bold, prominent, full width */
+body.template-product .product-form__submit,
+body.template-product .product-form__buttons .button:not(.shopify-payment-button__button) {
+  background: var(--zs-brand) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+  padding: 17px 24px !important;
+  width: 100% !important;
+  box-shadow: 0 6px 18px rgba(41,141,223,0.25) !important;
+}
+body.template-product .product-form__submit:hover { background: var(--zs-brand-dark) !important; }
+body.template-product .shopify-payment-button__button {
+  border-radius: 8px !important; font-weight: 700 !important; padding: 15px 24px !important;
+}
+
+/* Recommended-products cards on the (white) product page: light tiles */
+body.template-product .card,
+body.template-product .card-wrapper .card { background: #f5f6f8 !important; border-color: #e6e8eb !important; }
+body.template-product .card__heading,
+body.template-product .card__heading a,
+body.template-product .card .price,
+body.template-product .card .price * { color: #17181a !important; }
+
+/* Subtle dividers on white */
+body.template-product .product hr,
+body.template-product .product__info-container > * { border-color: #e9ebee !important; }
