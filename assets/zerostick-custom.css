@@ -263,113 +263,140 @@ h1, h2, h3, h4, .heading-xl, .heading-lg, .heading-md,
 /* sync 1783030149 */
 
 /* ============================================================
-   PRODUCT PAGES — clean, white, professional (Battle Beaver-inspired)
-   Header + footer stay dark; only the product content area is light.
+   PRODUCT PAGES — polished dark layout (Battle Beaver-inspired)
+   Dark navy gradient canvas, product images in clean white cards,
+   variant options as labeled pill sections. Header/footer stay dark.
    ============================================================ */
-body.template-product { background: #ffffff !important; color: #2a2b2a !important; }
-
-/* Convert Dawn color schemes back to a light palette on product pages */
+body.template-product {
+  background: #12192e !important;
+  background: radial-gradient(1100px 600px at 15% -5%, rgba(41,141,223,0.12), transparent 60%),
+              radial-gradient(900px 500px at 100% 0%, rgba(41,141,223,0.10), transparent 55%),
+              linear-gradient(180deg, #161d33 0%, #10162a 100%) !important;
+  color: #eaf0f8 !important;
+}
+/* Keep Dawn schemes dark on product pages (light text) */
 body.template-product .color-scheme-1,
 body.template-product .color-scheme-2,
 body.template-product .color-scheme-3,
 body.template-product .color-scheme-4,
 body.template-product .color-scheme-5 {
-  --color-background: 255,255,255 !important;
-  --gradient-background: #ffffff !important;
-  --color-foreground: 26,27,29 !important;
-  --color-shadow: 18,18,18 !important;
-  background-color: #ffffff !important;
+  --color-background: 18,25,46 !important;
+  --gradient-background: transparent !important;
+  --color-foreground: 234,240,248 !important;
+  background: transparent !important;
 }
 
-/* Keep the site chrome (header/announcement/footer) dark */
+/* Header / announcement / footer stay solid dark */
 body.template-product .header-wrapper,
 body.template-product .site-header,
 body.template-product .announcement-bar,
 body.template-product .utility-bar { background: var(--zs-ink) !important; }
 body.template-product footer,
-body.template-product .footer { background: var(--zs-ink) !important; color: #fff !important; }
-body.template-product footer * { color: #cfd6e0 !important; }
-body.template-product footer h4,
-body.template-product footer .footer-col h4 { color: var(--zs-brand) !important; }
+body.template-product .footer { background: var(--zs-ink) !important; }
 
-/* Title — clean, sentence case (not shouty uppercase) */
+/* ---- MEDIA: each product image in a clean white card (not scattered) ---- */
+body.template-product .product__media-item,
+body.template-product .product__media-wrapper .media {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+body.template-product .product__media-item {
+  padding: 22px !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.38) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  margin-bottom: 18px !important;
+}
+body.template-product .product__media-item .media,
+body.template-product .product__media img { background: #fff !important; border-radius: 8px !important; }
+/* thumbnail strip in neat boxes */
+body.template-product .thumbnail-list__item .thumbnail,
+body.template-product .thumbnail {
+  background: #fff !important; border-radius: 10px !important;
+  border: 1px solid rgba(255,255,255,0.12) !important; padding: 6px !important;
+}
+body.template-product .thumbnail.is-active,
+body.template-product .thumbnail[aria-current] { border-color: var(--zs-brand) !important; box-shadow: 0 0 0 2px rgba(41,141,223,0.4) !important; }
+
+/* ---- INFO COLUMN ---- */
 body.template-product .product__title,
 body.template-product .product__title *,
-body.template-product h1.product__title,
 body.template-product .product h1 {
-  color: #17181a !important;
-  text-transform: none !important;
-  letter-spacing: -0.01em !important;
-  font-weight: 700 !important;
-  font-size: clamp(1.55rem, 2.3vw, 2rem) !important;
-  line-height: 1.22 !important;
+  color: #ffffff !important; text-transform: none !important;
+  letter-spacing: -0.01em !important; font-weight: 700 !important;
+  font-size: clamp(1.6rem, 2.4vw, 2.15rem) !important; line-height: 1.2 !important;
 }
-
-/* Price — understated, dark */
 body.template-product .product .price,
 body.template-product .product .price *,
 body.template-product .product .price-item {
-  color: #17181a !important;
-  font-size: 1.35rem !important;
-  font-weight: 600 !important;
+  color: #ffffff !important; font-size: 1.5rem !important; font-weight: 700 !important;
 }
-
-/* Description + info text */
 body.template-product .product__description,
 body.template-product .product .rte,
 body.template-product .product .rte *,
-body.template-product .product__info-container,
-body.template-product .product__text {
-  color: #3f4145 !important;
-  background: transparent !important;
-}
+body.template-product .product__text { color: #b8c4d6 !important; }
 body.template-product .product__info-container { background: transparent !important; }
 
-/* Variant / option controls readable on white */
+/* Variant section labels — uppercase, spaced (BB style) */
 body.template-product .product-form__input .form__label,
-body.template-product .product-form__input label,
-body.template-product legend,
-body.template-product .form__label { color: #17181a !important; }
+body.template-product .product-form__input legend,
+body.template-product legend.form__label,
+body.template-product .form__label {
+  color: #ffffff !important; text-transform: uppercase !important;
+  letter-spacing: 0.12em !important; font-weight: 600 !important; font-size: 0.82rem !important;
+  margin-bottom: 10px !important;
+}
+/* Variant pills */
 body.template-product fieldset label,
-body.template-product .product-form__input input[type="radio"] + label {
-  color: #17181a !important; background: #fff !important; border-color: #d3d7dc !important;
+body.template-product .product-form__input input[type="radio"] + label,
+body.template-product .product-form__input .product-form__input--pill label {
+  background: rgba(255,255,255,0.04) !important;
+  color: #dbe4f0 !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  border-radius: 10px !important;
+  padding: 11px 18px !important;
+  text-transform: uppercase !important; letter-spacing: 0.04em !important;
+  font-weight: 600 !important; font-size: 0.78rem !important;
+  transition: border-color .15s, box-shadow .15s, color .15s;
 }
-body.template-product .product-form__input input[type="radio"]:checked + label {
-  border-color: var(--zs-brand) !important; color: var(--zs-brand) !important;
+body.template-product fieldset label:hover { border-color: rgba(41,141,223,0.6) !important; color: #fff !important; }
+body.template-product .product-form__input input[type="radio"]:checked + label,
+body.template-product fieldset input:checked + label {
+  border-color: var(--zs-brand) !important; color: #fff !important;
+  box-shadow: 0 0 0 1px var(--zs-brand), 0 0 16px rgba(41,141,223,0.35) !important;
 }
-body.template-product .select__select { color:#17181a !important; background:#fff !important; border-color:#d3d7dc !important; }
+body.template-product .select__select {
+  color: #eaf0f8 !important; background: #182136 !important; border-color: rgba(255,255,255,0.2) !important; border-radius: 10px !important;
+}
+/* Quantity selector */
+body.template-product .quantity { background: #182136 !important; border: 1px solid rgba(255,255,255,0.18) !important; border-radius: 10px !important; }
+body.template-product .quantity__input, body.template-product .quantity__button { color: #eaf0f8 !important; }
 
-/* Add-to-cart / buy button — bold, prominent, full width */
+/* ---- BUY BUTTON — bold, prominent ---- */
 body.template-product .product-form__submit,
 body.template-product .product-form__buttons .button:not(.shopify-payment-button__button) {
-  background: var(--zs-brand) !important;
-  color: #fff !important;
-  border: none !important;
-  border-radius: 8px !important;
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.03em !important;
-  text-transform: uppercase !important;
-  padding: 17px 24px !important;
-  width: 100% !important;
-  box-shadow: 0 6px 18px rgba(41,141,223,0.25) !important;
+  background: linear-gradient(135deg, var(--zs-brand), var(--zs-brand-dark)) !important;
+  color: #fff !important; border: none !important; border-radius: 10px !important;
+  font-size: 1rem !important; font-weight: 700 !important; letter-spacing: 0.04em !important;
+  text-transform: uppercase !important; padding: 18px 24px !important; width: 100% !important;
+  box-shadow: 0 8px 24px rgba(41,141,223,0.35) !important;
 }
-body.template-product .product-form__submit:hover { background: var(--zs-brand-dark) !important; }
-body.template-product .shopify-payment-button__button {
-  border-radius: 8px !important; font-weight: 700 !important; padding: 15px 24px !important;
-}
+body.template-product .product-form__submit:hover { filter: brightness(1.06); transform: translateY(-1px); }
+body.template-product .shopify-payment-button__button { border-radius: 10px !important; font-weight: 700 !important; padding: 16px 24px !important; }
 
-/* Recommended-products cards on the (white) product page: light tiles */
+/* Ships-next-day note (injected by JS) */
+.zs-ship-note {
+  display: flex; align-items: center; gap: 8px;
+  color: #7fe0b0; font-weight: 600; font-size: 0.9rem;
+  margin: 14px 0 18px;
+}
+.zs-ship-note::before { content: "\1F69A"; font-size: 1.05rem; }
+
+/* Recommended-products cards stay dark navy */
 body.template-product .card,
-body.template-product .card-wrapper .card { background: #f5f6f8 !important; border-color: #e6e8eb !important; }
-body.template-product .card__heading,
-body.template-product .card__heading a,
-body.template-product .card .price,
-body.template-product .card .price * { color: #17181a !important; }
-
-/* Subtle dividers on white */
-body.template-product .product hr,
-body.template-product .product__info-container > * { border-color: #e9ebee !important; }
+body.template-product .card-wrapper .card { background: #182136 !important; border-color: rgba(255,255,255,0.08) !important; }
+body.template-product .card__heading, body.template-product .card__heading a,
+body.template-product .card .price, body.template-product .card .price * { color: #eaf0f8 !important; }
 
 /* ===== Coming Soon (products tagged "coming-soon") ===== */
 .zs-cs-badge {
@@ -388,3 +415,68 @@ body.template-product .product__info-container > * { border-color: #e9ebee !impo
   text-transform: uppercase; letter-spacing: .03em;
 }
 body.template-product .zs-cs-productbtn { background: #eef1f5; color: #17181a; border-color: #d3d7dc; }
+
+/* ============================================================
+   CONTACT / SUPPORT PAGE — clean white, trustworthy
+   The site is dark navy by default; the contact page reads as
+   a support/help page, so make it light with dark text. Header
+   and footer stay dark (site chrome).
+   ============================================================ */
+body.template-page-contact {
+  background: #ffffff !important;
+  color: #1c2430 !important;
+}
+
+/* Undo the global navy color-scheme remap on this page only */
+body.template-page-contact .color-scheme-1,
+body.template-page-contact .color-scheme-2,
+body.template-page-contact .color-scheme-3,
+body.template-page-contact .color-scheme-4,
+body.template-page-contact .color-scheme-5 {
+  --color-background: 255,255,255 !important;
+  --gradient-background: #ffffff !important;
+  --color-foreground: 28,36,48 !important;
+  --color-shadow: 18,18,18 !important;
+  background: #ffffff !important;
+}
+
+/* Text + headings + form labels back to dark */
+body.template-page-contact .main-page-title,
+body.template-page-contact .rte,
+body.template-page-contact .rte *,
+body.template-page-contact .contact *,
+body.template-page-contact .warranty * { color: #1c2430 !important; }
+
+body.template-page-contact .contact__support-note { color: #5a6472 !important; }
+
+/* Links use the brand blue so they read as clickable on white */
+body.template-page-contact .contact a,
+body.template-page-contact .warranty a { color: var(--zs-brand, #298ddf) !important; }
+
+/* Form fields: light with visible borders (they were navy-on-navy) */
+body.template-page-contact .field__input,
+body.template-page-contact .text-area,
+body.template-page-contact .select__select {
+  background: #ffffff !important;
+  color: #1c2430 !important;
+  border-color: rgba(28,36,48,0.2) !important;
+}
+body.template-page-contact .field__label { color: #5a6472 !important; }
+
+/* Cards: soft light surface with a hairline border */
+body.template-page-contact .contact__support,
+body.template-page-contact .warranty {
+  background: #f7f9fc !important;
+  border-color: rgba(28,36,48,0.1) !important;
+}
+
+/* Submit button: brand blue so it doesn't vanish */
+body.template-page-contact .contact__button .button {
+  background: var(--zs-brand, #298ddf) !important;
+  color: #ffffff !important;
+}
+
+/* Tighten the vertical gap between the contact block and warranty info */
+body.template-page-contact .contact { padding-bottom: 1.5rem !important; }
+body.template-page-contact .contact__support { margin-bottom: 1.5rem !important; }
+body.template-page-contact .warranty { margin-top: 0 !important; }
