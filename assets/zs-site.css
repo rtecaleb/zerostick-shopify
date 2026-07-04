@@ -242,7 +242,7 @@ h1,h2,h3,h4 { line-height: 1.15; }
 .btn-support:hover { background: var(--brand-dark); color: #0d1117 !important; }
 
 /* ── Hero Slider (crossfade) ── */
-.hero-slider { position: relative; overflow: hidden; background: #0d0b1e; width: 100%; aspect-ratio: 1752 / 725; max-height: 700px; }
+.hero-slider { position: relative; overflow: hidden; background: #0d0b1e; width: 100%; aspect-ratio: 1752 / 725; max-height: 860px; }
 .hero-slide {
   position: absolute; inset: 0;
   opacity: 0; visibility: hidden;
