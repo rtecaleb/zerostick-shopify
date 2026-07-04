@@ -683,3 +683,8 @@ footer, .footer { background: var(--black); color: #fff; padding: 64px 0 32px; }
 }
 
 /* sync-bump 6804b12 */
+
+/* ── PS5 designer bar is LIVE (not greyed) ── */
+.m-designer-bar.is-live { filter: none; opacity: 1; text-decoration: none; }
+.m-designer-bar.is-live .live-pill { background: #298DDF; border-color: #298DDF; color: #fff; }
+.m-designer-bar.is-live:hover { transform: translateY(-2px); transition: transform .15s; }
