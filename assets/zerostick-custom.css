@@ -476,7 +476,26 @@ body.template-page-contact .contact__button .button {
   color: #ffffff !important;
 }
 
+/* Stronger, less "generic" page heading (default was thin 400-weight) */
+body.template-page-contact .main-page-title {
+  font-weight: 800 !important;
+  letter-spacing: 0.01em;
+  margin-bottom: 4px !important;
+}
+
+/* Close the big dead gap: the title section and form section each carried
+   64px top+bottom padding, stacking into ~240px of empty space above the
+   form (the page body text is empty). Collapse it on this page only. */
+body.template-page-contact .shopify-section.section:has(.main-page-title) {
+  padding-top: 28px !important;
+  padding-bottom: 0 !important;
+}
+body.template-page-contact .shopify-section.section:has(.contact) {
+  padding-top: 8px !important;
+  padding-bottom: 20px !important;
+}
+body.template-page-contact .contact__support { margin-top: 8px !important; }
+
 /* Tighten the vertical gap between the contact block and warranty info */
 body.template-page-contact .contact { padding-bottom: 1.5rem !important; }
-body.template-page-contact .contact__support { margin-bottom: 1.5rem !important; }
 body.template-page-contact .warranty { margin-top: 0 !important; }
