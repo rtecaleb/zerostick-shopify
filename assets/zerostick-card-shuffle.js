@@ -66,22 +66,34 @@
     }).catch(function () {});
   }
 
+  function addShipNote() {
+    if (document.querySelector('.zs-ship-note')) return;
+    var buttons = document.querySelector('.product-form__buttons') || document.querySelector('.product-form');
+    if (!buttons) return;
+    var note = document.createElement('div');
+    note.className = 'zs-ship-note';
+    note.textContent = 'Ships next business day after purchase';
+    buttons.parentNode.insertBefore(note, buttons);
+  }
+
   function productPage() {
     if (!/template-product/.test(document.body.className)) return;
     var handle = (location.pathname.split('/products/')[1] || '').split('?')[0].split('#')[0];
     if (!handle) return;
     fetch('/products/' + handle + '.js').then(function (r) { return r.json(); }).then(function (p) {
-      if (!comingSoon(p)) return;
       var form = document.querySelector('product-form') || document.querySelector('.product-form');
-      var buttons = document.querySelector('.product-form__buttons');
-      var notice = document.createElement('div');
-      notice.className = 'zs-cs-productbtn';
-      notice.textContent = 'Coming Soon';
-      (buttons || form || document.querySelector('.product__info-container') || document.body).parentNode
-        ? (buttons || form).parentNode.insertBefore(notice, (buttons || form))
-        : null;
-      if (buttons) buttons.style.display = 'none';
-      else if (form) form.style.display = 'none';
+      var buttons = document.querySelector('.product-form__buttons') || form;
+      if (comingSoon(p)) {
+        if (buttons) {
+          var notice = document.createElement('div');
+          notice.className = 'zs-cs-productbtn';
+          notice.textContent = 'Coming Soon';
+          buttons.parentNode.insertBefore(notice, buttons);
+          buttons.style.display = 'none';
+        }
+        return;
+      }
+      addShipNote();
     }).catch(function () {});
   }
 
