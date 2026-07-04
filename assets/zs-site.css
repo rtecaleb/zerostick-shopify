@@ -663,3 +663,16 @@ footer, .footer { background: var(--black); color: #fff; padding: 64px 0 32px; }
   .m-video { padding: 64px 32px 80px; }
   .m-video-box { max-width: 920px; margin: 0 auto; }
 }
+
+/* ── Nintendo row: full-width horizontal card under the product duo ── */
+.m-duo-row { grid-column: 1 / -1; }
+.m-duo-row-link { flex-direction: row; align-items: center; gap: 16px; }
+.m-duo-row-img { flex: 0 0 42%; aspect-ratio: 4 / 3; margin-bottom: 0; }
+.m-duo-row-body { flex: 1; display: flex; flex-direction: column; }
+.m-duo-row-body p { margin-bottom: 12px; }
+.m-duo-row-body .btn { align-self: flex-start; padding: 11px 26px; }
+@media (min-width: 768px) {
+  .m-duo-row-img { flex: 0 0 34%; }
+  .m-duo-row-body h3 { font-size: 21px; }
+  .m-duo-row-body p { font-size: 15px; }
+}

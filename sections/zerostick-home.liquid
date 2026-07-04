@@ -72,6 +72,19 @@
           <span class="btn m-btn-view">View Options</span>
         </a>
       </div>
+
+      <!-- Nintendo row: full-width card under the duo -->
+      <div class="m-duo-card m-duo-row">
+        {%- assign swp = all_products['zerostick-switch-pro-controller-nintendo'] -%}
+        <a href="{{ swp.url }}" class="m-duo-link m-duo-row-link">
+          <div class="m-duo-img m-duo-row-img">{% if swp.featured_image %}<img src="{{ swp.featured_image | image_url: width: 600 }}" alt="ZeroStick Nintendo Switch 2 Controller">{% endif %}</div>
+          <div class="m-duo-row-body">
+            <h3>Nintendo Switch 2</h3>
+            <p>Genuine Switch 2 Pro controller upgraded with TMR sticks. Drift free, built for Smash and every competitive title. Backed by our 5 year stick warranty.</p>
+            <span class="btn m-btn-view">Shop Nintendo</span>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
