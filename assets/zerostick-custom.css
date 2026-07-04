@@ -376,10 +376,12 @@ body.template-product .product-form__input .product-form__input--pill label {
   background: rgba(255,255,255,0.04) !important;
   color: #dbe4f0 !important;
   border: 1px solid rgba(255,255,255,0.18) !important;
-  border-radius: 10px !important;
-  padding: 11px 18px !important;
+  border-radius: 12px !important;
+  padding: 15px 26px !important;
+  min-height: 48px !important;
+  display: inline-flex !important; align-items: center !important;
   text-transform: uppercase !important; letter-spacing: 0.04em !important;
-  font-weight: 600 !important; font-size: 0.78rem !important;
+  font-weight: 600 !important; font-size: 0.95rem !important;
   transition: border-color .15s, box-shadow .15s, color .15s;
 }
 body.template-product fieldset label:hover { border-color: rgba(41,141,223,0.6) !important; color: #fff !important; }
