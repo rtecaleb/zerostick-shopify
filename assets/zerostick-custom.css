@@ -318,6 +318,29 @@ body.template-product .thumbnail {
 body.template-product .thumbnail.is-active,
 body.template-product .thumbnail[aria-current] { border-color: var(--zs-brand) !important; box-shadow: 0 0 0 2px rgba(41,141,223,0.4) !important; }
 
+/* ---- MOBILE: keep the swipeable image cards fully on-screen ----
+   Dawn's mobile media slider sizes each slide with tight math
+   (list: margin-left -2.5rem, width calc(100% + 4rem); slide:
+   calc(100% - 3rem - spacing)). The desktop card treatment above
+   (22px padding, 1px border, 40px-blur shadow) overflowed that
+   width and clipped the right edge of each white image card. Trim
+   the card styling on phones so the slides fit and swipe cleanly. */
+@media screen and (max-width: 749px) {
+  body.template-product .product__media-item {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    padding: 10px !important;
+    margin-bottom: 12px !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.30) !important;
+  }
+  body.template-product .product__media-item .media,
+  body.template-product .product__media-item img,
+  body.template-product .product__media img {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
 /* ---- INFO COLUMN ---- */
 body.template-product .product__title,
 body.template-product .product__title *,
