@@ -624,3 +624,18 @@ body.template-cart [name="checkout"] {
   padding: 17px 20px !important; width: 100% !important;
   box-shadow: 0 8px 22px rgba(41,141,223,0.3) !important;
 }
+
+/* Cart item image — larger, clean (was tiny) */
+body.template-cart .cart-item__media,
+body.template-cart td.cart-item__media { width: 110px !important; min-width: 110px !important; }
+body.template-cart .cart-item__image-container,
+body.template-cart .cart-item__image {
+  width: 110px !important; height: auto !important; max-width: 110px !important;
+  background: #fff !important; border: 1px solid #eceef1 !important; border-radius: 10px !important; padding: 6px !important;
+}
+body.template-cart .cart-item__image { object-fit: contain !important; }
+body.template-cart .cart-item { align-items: center !important; }
+@media (max-width: 749px) {
+  body.template-cart .cart-item__media, body.template-cart .cart-item__image,
+  body.template-cart .cart-item__image-container { width: 92px !important; min-width: 92px !important; }
+}
