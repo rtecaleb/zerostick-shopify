@@ -558,8 +558,9 @@ footer, .footer { background: var(--black); color: #fff; padding: 64px 0 32px; }
 
 /* ══════════ MOBILE-ONLY HOMEPAGE (<=767px) ══════════
    .m-only = phone sections | .d-only = desktop sections hidden on phones */
-.m-only { display: none; }
-@media (max-width: 767px) {
+.m-only { display: block; }
+/* styles below apply at ALL widths */
+@media (min-width: 0px) {
   .d-only { display: none !important; }
   .m-only { display: block; }
 
@@ -627,4 +628,38 @@ footer, .footer { background: var(--black); color: #fff; padding: 64px 0 32px; }
     display: flex; align-items: center; justify-content: center; font-size: 22px; padding-left: 5px; margin-bottom: 12px; }
   .m-video-box p { font-size: 17px; font-weight: 800; }
   .m-video-box span { font-size: 13px; color: #8b96ab; margin-top: 4px; }
+}
+
+
+/* ══════════ DESKTOP SIZING for the new homepage flow (>=768px) ══════════ */
+@media (min-width: 768px) {
+  /* story reads like a statement, centered */
+  .m-story { padding: 72px 32px; }
+  .m-story p { font-size: 22px; max-width: 760px; text-align: center; }
+
+  /* designer bars: centered column, taller, bigger type */
+  .m-designer { padding: 80px 32px; text-align: center; }
+  .m-designer h2 { font-size: 48px; }
+  .m-designer-bar { max-width: 860px; margin: 0 auto 14px; height: 112px; padding: 0 28px; }
+  .m-designer-bar span { font-size: 24px; }
+
+  /* why graphic: centered, capped width */
+  .m-why { display: flex; justify-content: center; padding: 72px 0; }
+  .m-why img { max-width: 700px; }
+
+  /* product duo: centered, roomier cards */
+  .m-duo { padding: 72px 32px; }
+  .m-duo-grid { max-width: 1040px; margin: 0 auto; gap: 20px; }
+  .m-duo-card { padding: 20px; }
+  .m-duo-card h3 { font-size: 21px; }
+  .m-duo-card p { font-size: 15px; }
+
+  /* reviews: ~2.5 cards visible, centered */
+  .m-reviews h2 { font-size: 36px; }
+  .m-rev-wrap { max-width: 1240px; margin: 0 auto; }
+  .m-rev-card { flex: 0 0 40%; }
+
+  /* video: capped width, centered */
+  .m-video { padding: 64px 32px 80px; }
+  .m-video-box { max-width: 920px; margin: 0 auto; }
 }
