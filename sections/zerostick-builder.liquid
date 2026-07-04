@@ -230,8 +230,9 @@
   }
   /* home camera captured at load; up-axis detected so orbits can't go crazy */
   var camHome = null, upIdx = 2;
+  var CAM_OK = window.matchMedia('(min-width: 901px)').matches && !('ontouchstart' in window); /* auto-camera desktop-only: buggy on touch */
   function stepCam(view){
-    if(!api || !camHome) return;
+    if(!CAM_OK || !api || !camHome) return;
     var t = camHome.target.slice(), p = camHome.position.slice();
     var v = [p[0]-t[0], p[1]-t[1], p[2]-t[2]];
     var yaw = (view.yaw || 0) * Math.PI/180, zoom = view.zoom || 1;
@@ -256,7 +257,7 @@
     { yaw: 0,   zoom: 1.0 }             /* 7 review: home */
   ];
   function pushIn(){
-    if(!api) return;
+    if(!CAM_OK || !api) return;
     api.getCameraLookAt(function(err, cam){
       if (err) return;
       var p = cam.position, t = cam.target;
