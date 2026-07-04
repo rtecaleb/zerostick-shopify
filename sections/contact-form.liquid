@@ -12,6 +12,10 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  #shopify-section-{{ section.id }} .contact__support-phone {
+    margin: 0 0 1.5rem;
+  }
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
@@ -23,6 +27,9 @@
     {%- else -%}
       <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
     {%- endif -%}
+    <p class="contact__support-phone">
+      <a href="tel:+13236804706">(323) 680-4706</a> &mdash; this line receives messages only.
+    </p>
     {%- liquid
       assign contact_form_class = 'isolate'
       if settings.animations_reveal_on_scroll
