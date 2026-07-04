@@ -242,17 +242,17 @@ h1,h2,h3,h4 { line-height: 1.15; }
 .btn-support:hover { background: var(--brand-dark); color: #0d1117 !important; }
 
 /* ── Hero Slider (crossfade) ── */
-.hero-slider { position: relative; overflow: hidden; background: #111; height: 680px; }
+.hero-slider { position: relative; overflow: hidden; background: #0d0b1e; width: 100%; aspect-ratio: 1752 / 725; max-height: 700px; }
 .hero-slide {
   position: absolute; inset: 0;
   opacity: 0; visibility: hidden;
   transition: opacity 1s ease;
 }
 .hero-slide.active { opacity: 1; visibility: visible; z-index: 1; }
-.hero-slide img { width: 100%; height: 680px; object-fit: cover; animation: kenburns 8s ease-out both; }
+.hero-slide img { width: 100%; height: 100%; object-fit: cover; animation: kenburns 8s ease-out both; }
 /* Banner slide: show the full designed banner (no crop, no zoom) on a matching dark backdrop */
 .hero-slide--banner { background: #0d0b1e; }
-.hero-slide--banner img { object-fit: contain; animation: none; }
+.hero-slide--banner img { object-fit: cover; animation: none; }
 .hero-slide--banner.active img { animation: none; }
 .hero-banner-link { display: block; width: 100%; height: 100%; }
 .hero-slide.active img { animation: kenburns 8s ease-out both; }
