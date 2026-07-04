@@ -13,8 +13,34 @@
     }
   }
 
-  #shopify-section-{{ section.id }} .contact__support-phone {
-    margin: 0 0 1.5rem;
+  #shopify-section-{{ section.id }} .contact__support {
+    margin: 0 auto 2.5rem;
+    padding: 1.75rem 2rem;
+    border: 1px solid rgba(var(--color-foreground), 0.1);
+    border-radius: 12px;
+    background: rgb(var(--color-background));
+  }
+
+  #shopify-section-{{ section.id }} .contact__support-title {
+    margin: 0 0 1rem;
+    font-size: 1.4rem;
+    letter-spacing: 0.03rem;
+  }
+
+  #shopify-section-{{ section.id }} .contact__support-line {
+    margin: 0.4rem 0;
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+
+  #shopify-section-{{ section.id }} .contact__support-line strong {
+    display: inline-block;
+    min-width: 8rem;
+  }
+
+  #shopify-section-{{ section.id }} .contact__support-note {
+    color: rgba(var(--color-foreground), 0.6);
+    font-size: 1.3rem;
   }
 {%- endstyle -%}
 
@@ -27,9 +53,18 @@
     {%- else -%}
       <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
     {%- endif -%}
-    <p class="contact__support-phone">
-      <a href="tel:+13236804706">(323) 680-4706</a> &mdash; this line receives messages only.
-    </p>
+    <div class="contact__support">
+      <h3 class="contact__support-title">Get in touch</h3>
+      <p class="contact__support-line">
+        <strong>Phone / Text</strong>
+        <a href="tel:+13236804706">(323) 680-4706</a>
+        <span class="contact__support-note">— this line receives messages only</span>
+      </p>
+      <p class="contact__support-line">
+        <strong>Email</strong>
+        <a href="mailto:reliabletrendenterprises@gmail.com">reliabletrendenterprises@gmail.com</a>
+      </p>
+    </div>
     {%- liquid
       assign contact_form_class = 'isolate'
       if settings.animations_reveal_on_scroll

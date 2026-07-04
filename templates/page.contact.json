@@ -16,10 +16,24 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "warranty": {
+      "type": "warranty-info",
+      "settings": {
+        "heading": "Warranty & Guarantee",
+        "badge_text": "5-Year Guarantee",
+        "body": "<p>We stand behind every ZeroStick product. All of our products come with a 5-year guarantee on their TMR sensors, covering sensor defects and failures under normal use.</p>",
+        "covered_text": "Covered: TMR sensor defects and failures for 5 years from purchase.",
+        "excluded_text": "Not covered: any mechanical or physical damage.",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 48
+      }
     }
   },
   "order": [
     "main",
-    "form"
+    "form",
+    "warranty"
   ]
 }

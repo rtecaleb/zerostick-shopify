@@ -1,0 +1,164 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .warranty {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 2.5rem 2.5rem;
+    border: 1px solid rgba(var(--color-foreground), 0.1);
+    border-radius: 12px;
+    background: rgb(var(--color-background));
+  }
+
+  #shopify-section-{{ section.id }} .warranty__heading {
+    margin: 0 0 0.4rem;
+  }
+
+  #shopify-section-{{ section.id }} .warranty__badge {
+    display: inline-block;
+    margin: 0 0 1.5rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(var(--color-foreground), 0.08);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .warranty__text {
+    margin: 0 0 1rem;
+    font-size: 1.6rem;
+    line-height: 1.6;
+  }
+
+  #shopify-section-{{ section.id }} .warranty__list {
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #shopify-section-{{ section.id }} .warranty__list li {
+    position: relative;
+    margin: 0 0 0.9rem;
+    padding-left: 2.2rem;
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+
+  #shopify-section-{{ section.id }} .warranty__list li::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .warranty__list li.is-covered::before {
+    content: "✓";
+    color: #1a8a4a;
+  }
+
+  #shopify-section-{{ section.id }} .warranty__list li.is-excluded::before {
+    content: "✕";
+    color: #b3261e;
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="warranty">
+      <h2 class="warranty__heading">{{ section.settings.heading | escape }}</h2>
+      <span class="warranty__badge">{{ section.settings.badge_text | escape }}</span>
+      <p class="warranty__text">{{ section.settings.body }}</p>
+      <ul class="warranty__list">
+        <li class="is-covered">{{ section.settings.covered_text | escape }}</li>
+        <li class="is-excluded">{{ section.settings.excluded_text | escape }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Warranty info",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Warranty & Guarantee"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "5-Year Guarantee"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body text",
+      "default": "<p>We stand behind every ZeroStick product. All of our products come with a 5-year guarantee on their TMR sensors, covering sensor defects and failures under normal use.</p>"
+    },
+    {
+      "type": "text",
+      "id": "covered_text",
+      "label": "Covered line",
+      "default": "Covered: TMR sensor defects and failures for 5 years from purchase."
+    },
+    {
+      "type": "text",
+      "id": "excluded_text",
+      "label": "Excluded line",
+      "default": "Not covered: any mechanical or physical damage."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Warranty info"
+    }
+  ]
+}
+{% endschema %}
