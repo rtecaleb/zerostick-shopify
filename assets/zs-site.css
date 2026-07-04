@@ -676,3 +676,8 @@ footer, .footer { background: var(--black); color: #fff; padding: 64px 0 32px; }
   .m-duo-row-body h3 { font-size: 21px; }
   .m-duo-row-body p { font-size: 15px; }
 }
+
+/* ── Desktop: rein the hero in (full banner still visible, just not full-bleed) ── */
+@media (min-width: 768px) {
+  .hero-slider { max-width: 1500px; margin: 0 auto; }
+}
