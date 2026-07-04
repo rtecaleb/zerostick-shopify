@@ -149,12 +149,15 @@
   var api = null, groups = { shell: [], sticks: [], buttons: [], triggers: [], dpad: [] };
   var camHome = null; /* {position, target} captured on load */
 
-  /* material-name matching; window.ZSB.mats logged for tuning */
-  var MATCH = {
-    sticks:   /stick|thumb|analog|cap|joy/i,
-    buttons:  /button|cross|square|circle|triangle|face|key/i,
-    triggers: /trigger|bumper|l1|l2|r1|r2|shoulder/i,
-    dpad:     /d.?pad|directional/i
+  /* EXACT material map for this model (names read from the live viewer).
+     Logo / Transparent / Emmissive / Port / Gold_Plates_Below / SPCB /
+     Default_Material are intentionally never painted. */
+  var MAP = {
+    shell:    ['Side_Panels', 'Front_Panel', 'Front_Base', 'Back_Baseq'],
+    sticks:   ['Thumb_Top'],
+    buttons:  ['Buttons', 'FBCB'],
+    triggers: ['Trigger_Buttons'],
+    dpad:     ['Buttons']  /* d-pad shares the Buttons material on this model */
   };
 
   function rgb(hex){ var n=parseInt(hex.slice(1),16); return [((n>>16)&255)/255,((n>>8)&255)/255,(n&255)/255].map(function(c){return Math.pow(c,2.2);}); }
@@ -205,13 +208,11 @@
         api.getMaterialList(function(err, mats){
           if (err) return;
           window.ZSB = { mats: mats.map(function(m){ return m.name; }) }; /* debug: real material names */
-          mats.forEach(function(m){
-            var n = (m.name||'');
-            var claimed = false;
-            ['sticks','buttons','triggers','dpad'].forEach(function(g){
-              if (MATCH[g].test(n)) { groups[g].push(m); claimed = true; }
+          Object.keys(MAP).forEach(function(g){
+            MAP[g].forEach(function(name){
+              var m = mats.filter(function(x){ return x.name === name; })[0];
+              if (m) groups[g].push(m);
             });
-            if (!claimed) groups.shell.push(m); /* everything unclaimed = shell/body */
           });
         });
       });
