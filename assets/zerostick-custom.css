@@ -410,12 +410,10 @@ body.template-product .product-form__submit:hover { filter: brightness(1.06); tr
 body.template-product .shopify-payment-button__button { border-radius: 10px !important; font-weight: 700 !important; padding: 16px 24px !important; }
 
 /* Ships-next-day note (injected by JS) */
-.zs-ship-note {
-  display: flex; align-items: center; gap: 8px;
-  color: #7fe0b0; font-weight: 600; font-size: 0.9rem;
-  margin: 14px 0 18px;
-}
-.zs-ship-note::before { content: "\1F69A"; font-size: 1.05rem; }
+.zs-ship-note { display: flex; flex-direction: column; gap: 7px; margin: 14px 0 18px; }
+.zs-ship-line { display: flex; align-items: center; gap: 8px; color: #7fe0b0; font-weight: 600; font-size: 0.9rem; }
+.zs-ship-truck::before { content: "\1F69A"; font-size: 1.05rem; }
+.zs-ship-free::before { content: "\2705"; font-size: 1rem; }
 
 /* Recommended-products cards stay dark navy */
 body.template-product .card,

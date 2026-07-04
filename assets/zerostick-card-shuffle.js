@@ -72,7 +72,8 @@
     if (!buttons) return;
     var note = document.createElement('div');
     note.className = 'zs-ship-note';
-    note.textContent = 'Ships next business day after purchase';
+    note.innerHTML = '<span class="zs-ship-line zs-ship-truck">Ships next business day after purchase</span>' +
+                     '<span class="zs-ship-line zs-ship-free">Free shipping on orders over $100</span>';
     buttons.parentNode.insertBefore(note, buttons);
   }
 
