@@ -639,3 +639,19 @@ body.template-cart .cart-item { align-items: center !important; }
   body.template-cart .cart-item__media, body.template-cart .cart-item__image,
   body.template-cart .cart-item__image-container { width: 92px !important; min-width: 92px !important; }
 }
+
+/* Cart item: give the name room + stop mid-word breaking */
+body.template-cart .cart-item__media,
+body.template-cart td.cart-item__media { width: 92px !important; min-width: 92px !important; }
+body.template-cart .cart-item__image-container,
+body.template-cart .cart-item__image { width: 92px !important; max-width: 92px !important; }
+body.template-cart .cart-item__details,
+body.template-cart .cart-item__name,
+body.template-cart .cart-item__price-wrapper,
+body.template-cart .cart-item__price-wrapper * {
+  word-break: normal !important; overflow-wrap: normal !important; hyphens: none !important; white-space: normal !important;
+}
+body.template-cart .cart-item__name { font-size: 0.98rem !important; line-height: 1.3 !important; }
+body.template-cart td.cart-item__quantity { width: 150px !important; }
+body.template-cart td.cart-item__totals { width: 96px !important; white-space: nowrap !important; text-align: right !important; }
+body.template-cart td.cart-item__totals * { white-space: nowrap !important; }
