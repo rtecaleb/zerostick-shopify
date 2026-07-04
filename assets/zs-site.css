@@ -250,6 +250,11 @@ h1,h2,h3,h4 { line-height: 1.15; }
 }
 .hero-slide.active { opacity: 1; visibility: visible; z-index: 1; }
 .hero-slide img { width: 100%; height: 680px; object-fit: cover; animation: kenburns 8s ease-out both; }
+/* Banner slide: show the full designed banner (no crop, no zoom) on a matching dark backdrop */
+.hero-slide--banner { background: #0d0b1e; }
+.hero-slide--banner img { object-fit: contain; animation: none; }
+.hero-slide--banner.active img { animation: none; }
+.hero-banner-link { display: block; width: 100%; height: 100%; }
 .hero-slide.active img { animation: kenburns 8s ease-out both; }
 @keyframes kenburns { from { transform: scale(1.08); } to { transform: scale(1); } }
 .hero-slide .img-placeholder { width: 100%; height: 520px; background: #1a1a2e; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 18px; font-weight: 700; }
