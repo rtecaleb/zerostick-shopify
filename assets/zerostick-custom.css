@@ -524,3 +524,12 @@ body.template-page-contact .contact__support { margin-top: 8px !important; }
 /* Tighten the vertical gap between the contact block and warranty info */
 body.template-page-contact .contact { padding-bottom: 1.5rem !important; }
 body.template-page-contact .warranty { margin-top: 0 !important; }
+
+/* ===== Listing card image area on WHITE (transparent product PNGs read cleanly) ===== */
+.card-wrapper .card__inner,
+.card-wrapper .card__media,
+.card-wrapper .card__media .media,
+.card-wrapper .card__media img { background: #ffffff !important; }
+.card-wrapper .card__inner { border-radius: 12px 12px 0 0 !important; }
+/* keep coming-soon greyed image legible on white */
+.zs-coming-soon .card__media img { filter: grayscale(.15) brightness(.98); }
