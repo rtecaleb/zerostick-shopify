@@ -582,7 +582,8 @@ footer, .footer { background: var(--black); color: #fff; padding: 64px 0 32px; }
     border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
 
   /* M3 — WHY CHOOSE ZEROSTICK graphic */
-  .m-why { background: linear-gradient(135deg, #0e0b2a 0%, #1a1550 55%, #0d3b66 100%); color: #fff; padding: 52px 26px; position: relative; overflow: hidden; }
+  .m-why { background: #0d0b1e; padding: 0; font-size: 0; }
+  .m-why img { width: 100%; height: auto; display: block; }
   .m-why-arrows { color: #2196f3; font-size: 22px; letter-spacing: 6px; margin-bottom: 10px; }
   .m-why h2 { font-size: 40px; font-weight: 900; line-height: 1.02; letter-spacing: 0.01em; margin-bottom: 18px; font-style: italic; }
   .m-why h2 span { color: #2196f3; -webkit-text-stroke: 1px rgba(255,255,255,0.25); }
@@ -606,15 +607,15 @@ footer, .footer { background: var(--black); color: #fff; padding: 64px 0 32px; }
   .m-btn-view { background: linear-gradient(90deg, #1e88e5, #00bcd4); color: #fff; text-align: center; border-radius: 999px; padding: 11px 0; font-weight: 700; font-size: 14px; }
 
   /* M5 — swipeable reviews */
-  .m-reviews { background: #f5f7fa; padding: 44px 0 48px; }
-  .m-reviews h2 { font-size: 26px; font-weight: 800; text-align: center; margin-bottom: 20px; }
+  .m-reviews { background: #0d1117; padding: 44px 0 48px; }
+  .m-reviews h2 { font-size: 26px; font-weight: 800; text-align: center; margin-bottom: 20px; color: #fff; }
   .m-rev-wrap { display: flex; align-items: center; gap: 4px; padding: 0 6px; }
-  .m-rev-arrow { flex: 0 0 34px; height: 62px; border: none; background: transparent; font-size: 34px; color: #333; cursor: pointer; }
+  .m-rev-arrow { flex: 0 0 34px; height: 62px; border: none; background: transparent; font-size: 34px; color: #fff; cursor: pointer; }
   .m-rev-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; scrollbar-width: none; }
   .m-rev-track::-webkit-scrollbar { display: none; }
-  .m-rev-card { flex: 0 0 86%; scroll-snap-align: center; background: #fff; border: 1px solid #e3e8ef; border-radius: 14px; padding: 22px 20px; }
+  .m-rev-card { flex: 0 0 86%; scroll-snap-align: center; background: #131a2b; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 22px 20px; color: #fff; }
   .m-rev-title { font-size: 17px; font-weight: 800; margin: 8px 0 6px; }
-  .m-rev-card p { font-size: 14px; line-height: 1.55; color: #5a6572; }
+  .m-rev-card p { font-size: 14px; line-height: 1.55; color: #aeb8cc; }
   .m-rev-author { margin-top: 10px; font-size: 13px; font-weight: 700; color: #8b96ab; }
 
   /* M6 — video placeholder */
