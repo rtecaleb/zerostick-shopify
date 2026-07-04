@@ -12,7 +12,11 @@
   </div>
   <div class="hero-slide hero-slide--banner">
     <a href="/products/zerostick-pro-custom-tmr-hall-effect-joystick-module-compatible-with-ps5-dualsense-edge-tmr-drift-free-magnetic-stick-replacement-1x-high-precision-long-life-design" class="hero-banner-link" aria-label="Shop ZeroStick DualSense Edge Modules">
-      <img src="{{ 'zs-banner-dse.png' | asset_url }}" alt="ZeroStick DualSense Edge Modules" />
+      {%- comment -%} Desktop gets the wide 12:5-ish banner; phones (<=767px) get the 2:3 portrait cut {%- endcomment -%}
+      <picture>
+        <source media="(max-width: 767px)" srcset="{{ 'zs-banner-dse-mobile.png' | asset_url }}">
+        <img src="{{ 'zs-banner-dse.png' | asset_url }}" alt="ZeroStick DualSense Edge Modules" />
+      </picture>
     </a>
   </div>
   <div class="hero-dots">
