@@ -675,3 +675,13 @@ body.template-cart td.cart-item__totals { text-align: right !important; }
   body.template-cart .cart-item { grid-template-columns: 80px minmax(0,1fr) auto !important; }
   body.template-cart td.cart-item__totals { grid-column: 2 / -1 !important; text-align: left !important; }
 }
+
+/* Cart row: correct column order + remove Dawn's duplicate responsive total */
+body.template-cart .cart-item__totals.small-hide { display: none !important; }
+body.template-cart .cart-item__media { order: 1 !important; }
+body.template-cart .cart-item__details { order: 2 !important; }
+body.template-cart .cart-item__quantity { order: 3 !important; }
+body.template-cart .cart-item__totals { order: 4 !important; text-align: right !important; font-weight: 700 !important; }
+@media (max-width: 749px) {
+  body.template-cart .cart-item__totals.small-hide { display: none !important; }
+}
