@@ -1,8 +1,9 @@
 {%- comment -%}
-  ZeroStick PS5 Controller Builder v2
+  ZeroStick PS5 Controller Builder v4 - step wizard
+  - Guided flow like the big builders: one question per step, Previous/Next/Reset, progress bar
   - Photoreal 3D via Sketchfab Viewer API ("Sony PS5 DualSense Controller" by be the knight, CC-BY)
-  - Color groups repaint the model live; add-ons swing the camera + flash the part + pop a chip
-  - No auto-rotate. Preorder form emails the full build spec.
+  - Rear-buttons step shows a rear-view diagram with the paddles lit up
+  - Preorder form emails the full build spec
 {%- endcomment -%}
 
 {%- assign ps5p = all_products['zerostick-pro-modified-controller-ps5'] -%}
@@ -19,22 +20,40 @@
   .zsb-chips { position: absolute; left: 10px; top: 10px; display: flex; flex-direction: column; gap: 6px; pointer-events: none; z-index: 5; }
   .zsb-chip { background: rgba(13,17,23,.85); border: 1px solid #298DDF; color: #fff; font-size: 12px; font-weight: 700; border-radius: 999px; padding: 6px 12px; animation: zsbPop .35s cubic-bezier(.2,1.6,.4,1) both; }
   @keyframes zsbPop { from { transform: scale(.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .zsb-rear { position: absolute; inset: 0; background: #0d1117; z-index: 6; display: none; }
+  .zsb-rear.show { display: block; animation: zsbPop .3s ease both; }
+  .zsb-rear img { width: 100%; height: 100%; object-fit: contain; }
   .zsb-credit { text-align: center; color: #999; font-size: 11px; margin-top: 8px; }
   .zsb-credit a { color: #298DDF; }
   .zsb-hint { text-align: center; color: #888; font-size: 12px; margin-top: 4px; }
-  .zsb-group { padding: 20px 0; border-bottom: 1px solid #e0e0e0; }
-  .zsb-title { font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
-  .zsb-sub { font-size: 12px; color: #8a8a8a; margin-bottom: 14px; }
+  /* wizard chrome */
+  .zsb-progress { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .zsb-progress-bar { flex: 1; height: 6px; background: #e8e8e8; border-radius: 999px; overflow: hidden; }
+  .zsb-progress-fill { height: 100%; background: #298DDF; border-radius: 999px; transition: width .3s ease; }
+  .zsb-stepnum { font-size: 12px; font-weight: 800; color: #717271; white-space: nowrap; }
+  .zsb-step { display: none; }
+  .zsb-step.active { display: block; animation: zsbPop .25s ease both; }
+  .zsb-steptitle { font-size: 22px; font-weight: 800; text-transform: uppercase; margin: 14px 0 4px; }
+  .zsb-sub { font-size: 13px; color: #8a8a8a; margin-bottom: 16px; }
   .zsb-included { display: inline-block; background: #e6f4ea; color: #0b7a3e; font-size: 11px; font-weight: 800; border-radius: 999px; padding: 3px 10px; margin-left: 8px; vertical-align: middle; }
   .zsb-swatches { display: flex; gap: 12px; flex-wrap: wrap; }
-  .zsb-sw { width: 38px; height: 38px; border-radius: 50%; border: 2px solid #e0e0e0; cursor: pointer; padding: 0; transition: transform .12s; }
+  .zsb-sw { width: 44px; height: 44px; border-radius: 50%; border: 2px solid #e0e0e0; cursor: pointer; padding: 0; transition: transform .12s; }
   .zsb-sw:hover { transform: scale(1.1); }
   .zsb-sw.active { border-color: #298DDF; box-shadow: 0 0 0 2px #298DDF; }
-  .zsb-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; font-size: 14px; font-weight: 600; cursor: pointer; }
-  .zsb-row input { margin-right: 10px; accent-color: #298DDF; transform: scale(1.15); }
+  .zsb-swname { margin-top: 10px; font-size: 13px; font-weight: 700; color: #298DDF; min-height: 18px; }
+  .zsb-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; font-size: 15px; font-weight: 600; cursor: pointer; border-bottom: 1px solid #f0f0f0; }
+  .zsb-row input { margin-right: 10px; accent-color: #298DDF; transform: scale(1.2); }
   .zsb-price { font-size: 13px; font-weight: 700; color: #717271; }
-  .zsb-summary { margin-top: 28px; background: #f5f5f5; border-radius: 8px; padding: 24px; }
-  .zsb-sumrow { display: flex; justify-content: space-between; padding: 6px 0; }
+  .zsb-nav { display: flex; gap: 10px; margin-top: 24px; }
+  .zsb-btn { padding: 13px 28px; border: none; border-radius: 28px; font-weight: 700; font-size: 15px; cursor: pointer; font-family: inherit; }
+  .zsb-prev { background: #eef0f3; color: #2a2b2a; }
+  .zsb-next { background: #0d1117; color: #fff; flex: 1; }
+  .zsb-next:hover { background: #298DDF; }
+  .zsb-reset { background: none; border: none; color: #999; font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: underline; margin-left: auto; }
+  .zsb-runningtotal { position: sticky; bottom: 0; background: #fff; border-top: 2px solid #0d1117; margin-top: 18px; padding: 12px 0; display: flex; justify-content: space-between; font-size: 18px; font-weight: 900; }
+  /* review step */
+  .zsb-summary { background: #f5f5f5; border-radius: 8px; padding: 24px; }
+  .zsb-sumrow { display: flex; justify-content: space-between; padding: 6px 0; font-size: 14px; }
   .zsb-total { font-size: 22px; font-weight: 900; border-top: 1px solid #e0e0e0; margin-top: 8px; padding-top: 14px; }
   .zsb-email { width: 100%; margin-top: 16px; padding: 13px 16px; border: 1px solid #d0d0d0; border-radius: 28px; font-size: 15px; font-family: inherit; }
   .zsb-add { width: 100%; margin-top: 10px; padding: 14px; border: none; border-radius: 28px; background: #0d1117; color: #fff; font-weight: 700; font-size: 15px; cursor: pointer; }
@@ -46,7 +65,7 @@
 <div class="zsb-wrap">
   <div class="zsb-head">
     <h1>Design Your ZeroStick PS5</h1>
-    <p>Every build ships with TMR drift free sticks installed. Pick your style, reserve your build, and we email you when it's your turn in the queue.</p>
+    <p>Every build ships with TMR drift free sticks installed. Answer a few quick questions and reserve your build.</p>
   </div>
 
   {%- form 'contact', id: 'zsbForm' -%}
@@ -58,6 +77,7 @@
     <div class="zsb-stagebox">
       <div class="zsb-stage">
         <div class="zsb-chips" id="zsbChips"></div>
+        <div class="zsb-rear" id="zsbRear"><img id="zsbRearImg" src="{{ 'zs-rear-2.png' | asset_url }}" alt="Rear paddle placement"></div>
         <iframe id="zsbApi" title="ZeroStick PS5 3D preview" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share></iframe>
       </div>
       <p class="zsb-hint">Drag to rotate. Scroll to zoom.</p>
@@ -65,8 +85,16 @@
     </div>
 
     <div>
-      <div class="zsb-group">
-        <h3 class="zsb-title">Shell Color</h3>
+      <div class="zsb-progress">
+        <span class="zsb-stepnum" id="zsbStepNum">Step 1 of 7</span>
+        <div class="zsb-progress-bar"><div class="zsb-progress-fill" id="zsbFill" style="width:14%"></div></div>
+        <button type="button" class="zsb-reset" id="zsbReset">Reset</button>
+      </div>
+
+      <!-- STEP 1: shell -->
+      <div class="zsb-step active" data-title="Shell Color">
+        <h3 class="zsb-steptitle">Pick your shell color</h3>
+        <p class="zsb-sub">The body of your controller. Watch it change on the model.</p>
         <div class="zsb-swatches zsb-paint" data-group="shell" id="zsbShell">
           <button type="button" class="zsb-sw active" style="background:#e8e8ee" data-name="Stock White" data-color="#e8e8ee" data-add="0" data-stock="1"></button>
           <button type="button" class="zsb-sw" style="background:#1a1a24" data-name="Midnight Black" data-color="#1a1a24" data-add="25"></button>
@@ -75,10 +103,12 @@
           <button type="button" class="zsb-sw" style="background:#d11a2a" data-name="Cosmic Red" data-color="#d11a2a" data-add="30"></button>
           <button type="button" class="zsb-sw" style="background:#00936b" data-name="Jungle Green" data-color="#00936b" data-add="30"></button>
         </div>
+        <div class="zsb-swname" data-for="shell">Stock White</div>
       </div>
 
-      <div class="zsb-group">
-        <h3 class="zsb-title">Stick Cap Color <span class="zsb-included">TMR included on every build</span></h3>
+      <!-- STEP 2: stick caps -->
+      <div class="zsb-step" data-title="Stick Caps">
+        <h3 class="zsb-steptitle">Stick cap color <span class="zsb-included">TMR included</span></h3>
         <p class="zsb-sub">All caps are OEM DualSense Edge module caps - fully interchangeable, swap any time.</p>
         <div class="zsb-swatches zsb-paint" data-group="sticks" id="zsbSticks">
           <button type="button" class="zsb-sw active" style="background:#15151f" data-name="Stock Black" data-color="#15151f" data-add="0" data-stock="1"></button>
@@ -87,10 +117,13 @@
           <button type="button" class="zsb-sw" style="background:#ff7bac" data-name="Pink" data-color="#ff7bac" data-add="0"></button>
           <button type="button" class="zsb-sw" style="background:#e8e8ee" data-name="White" data-color="#e8e8ee" data-add="0"></button>
         </div>
+        <div class="zsb-swname" data-for="sticks">Stock Black</div>
       </div>
 
-      <div class="zsb-group">
-        <h3 class="zsb-title">Face Button Color</h3>
+      <!-- STEP 3: face buttons -->
+      <div class="zsb-step" data-title="Face Buttons">
+        <h3 class="zsb-steptitle">Face button color</h3>
+        <p class="zsb-sub">Custom color sets are +$12.</p>
         <div class="zsb-swatches zsb-paint" data-group="buttons" id="zsbBtns">
           <button type="button" class="zsb-sw active" style="background:#e8e8ee" data-name="Stock" data-color="#e8e8ee" data-add="0" data-stock="1"></button>
           <button type="button" class="zsb-sw" style="background:#15151f" data-name="Black" data-color="#15151f" data-add="12"></button>
@@ -98,10 +131,13 @@
           <button type="button" class="zsb-sw" style="background:#ffce3a" data-name="Gold" data-color="#ffce3a" data-add="12"></button>
           <button type="button" class="zsb-sw" style="background:#d11a2a" data-name="Red" data-color="#d11a2a" data-add="12"></button>
         </div>
+        <div class="zsb-swname" data-for="buttons">Stock</div>
       </div>
 
-      <div class="zsb-group">
-        <h3 class="zsb-title">Trigger &amp; Bumper Color</h3>
+      <!-- STEP 4: triggers -->
+      <div class="zsb-step" data-title="Triggers &amp; Bumpers">
+        <h3 class="zsb-steptitle">Trigger &amp; bumper color</h3>
+        <p class="zsb-sub">Custom color sets are +$12.</p>
         <div class="zsb-swatches zsb-paint" data-group="triggers" id="zsbTrig">
           <button type="button" class="zsb-sw active" style="background:#e8e8ee" data-name="Stock" data-color="#e8e8ee" data-add="0" data-stock="1"></button>
           <button type="button" class="zsb-sw" style="background:#15151f" data-name="Black" data-color="#15151f" data-add="12"></button>
@@ -109,32 +145,46 @@
           <button type="button" class="zsb-sw" style="background:#6a2bd0" data-name="Purple" data-color="#6a2bd0" data-add="12"></button>
           <button type="button" class="zsb-sw" style="background:#d11a2a" data-name="Red" data-color="#d11a2a" data-add="12"></button>
         </div>
+        <div class="zsb-swname" data-for="triggers">Stock</div>
       </div>
 
-      <div class="zsb-group">
-        <h3 class="zsb-title">Smart Buttons</h3>
+      <!-- STEP 5: smart buttons -->
+      <div class="zsb-step" data-title="Smart Buttons">
+        <h3 class="zsb-steptitle">Add smart buttons?</h3>
+        <p class="zsb-sub">Mouse-click switches: shorter travel, crisper press, faster registration. Pick any combo.</p>
         <label class="zsb-row"><span><input type="checkbox" class="zsmart" data-name="Smart Triggers" data-focus="triggers" value="30"> Smart Triggers</span><span class="zsb-price">+$30</span></label>
         <label class="zsb-row"><span><input type="checkbox" class="zsmart" data-name="Smart Bumpers" data-focus="triggers" value="25"> Smart Bumpers</span><span class="zsb-price">+$25</span></label>
         <label class="zsb-row"><span><input type="checkbox" class="zsmart" data-name="Smart Face Buttons" data-focus="buttons" value="30"> Smart Face Buttons</span><span class="zsb-price">+$30</span></label>
         <label class="zsb-row"><span><input type="checkbox" class="zsmart" data-name="Smart D-Pad" data-focus="dpad" value="20"> Smart D-Pad</span><span class="zsb-price">+$20</span></label>
       </div>
 
-      <div class="zsb-group">
-        <h3 class="zsb-title">Rear Buttons</h3>
+      <!-- STEP 6: rear buttons -->
+      <div class="zsb-step" data-title="Rear Buttons" id="zsbRearStep">
+        <h3 class="zsb-steptitle">Add rear buttons?</h3>
+        <p class="zsb-sub">Remappable paddles under your fingers - thumbs never leave the sticks. The rear view shows where they mount.</p>
         <label class="zsb-row"><span><input type="radio" name="zrear" value="0" data-name="None" checked> None</span><span class="zsb-price">Included</span></label>
         <label class="zsb-row"><span><input type="radio" name="zrear" value="35" data-name="2 Rear Paddles"> 2 Rear Paddles</span><span class="zsb-price">+$35</span></label>
         <label class="zsb-row"><span><input type="radio" name="zrear" value="55" data-name="4 Rear Paddles"> 4 Rear Paddles</span><span class="zsb-price">+$55</span></label>
       </div>
 
-      <div class="zsb-summary">
-        <div class="zsb-sumrow"><span>Base build (TMR sticks installed)</span><span id="zsbBase">${{ ps5p.price | default: 19900 | divided_by: 100 }}</span></div>
-        <div class="zsb-sumrow"><span>Options</span><span id="zsbOpts">$0</span></div>
-        <div class="zsb-sumrow zsb-total"><span>Total</span><span id="zsbTotal">$0</span></div>
-        <input class="zsb-email" type="email" name="contact[email]" placeholder="you@email.com" required>
-        <input type="hidden" name="contact[body]" id="zsbConfig" value="">
-        <button class="zsb-add" type="submit">Reserve My Build</button>
-        <p class="zsb-hint" style="margin-top:14px">No charge today. Preorder list only - first come, first built. 5 year stick warranty.</p>
+      <!-- STEP 7: review -->
+      <div class="zsb-step" data-title="Review">
+        <h3 class="zsb-steptitle">Your build</h3>
+        <div class="zsb-summary">
+          <div id="zsbReview"></div>
+          <div class="zsb-sumrow zsb-total"><span>Total</span><span id="zsbTotal">$0</span></div>
+          <input class="zsb-email" type="email" name="contact[email]" placeholder="you@email.com" required>
+          <input type="hidden" name="contact[body]" id="zsbConfig" value="">
+          <button class="zsb-add" type="submit">Reserve My Build</button>
+          <p class="zsb-hint" style="margin-top:14px">No charge today. Preorder list only - first come, first built. 5 year stick warranty.</p>
+        </div>
       </div>
+
+      <div class="zsb-nav">
+        <button type="button" class="zsb-btn zsb-prev" id="zsbPrev">Previous</button>
+        <button type="button" class="zsb-btn zsb-next" id="zsbNext">Next</button>
+      </div>
+      <div class="zsb-runningtotal"><span>Total so far</span><span id="zsbRun">$0</span></div>
     </div>
   </div>
   {%- endform -%}
@@ -146,64 +196,44 @@
   var BASE = {{ ps5p.price | default: 19900 | divided_by: 100 }};
   var MODEL_UID = 'b1d054ee67204ec1984d5fbebd707cde';
   var api = null, groups = { shell: [], sticks: [], buttons: [], triggers: [], dpad: [] };
-  var camHome = null; /* {position, target} captured on load */
 
-  /* EXACT material map for this model (names read from the live viewer).
-     Logo / Transparent / Emmissive / Port / Gold_Plates_Below / SPCB /
-     Default_Material are intentionally never painted. */
+  /* EXACT material map for this model. Logo / Transparent / Emmissive / Port /
+     Gold_Plates_Below / SPCB / Default_Material are never painted. */
   var MAP = {
     shell:    ['Side_Panels', 'Front_Panel', 'Front_Base', 'Back_Baseq'],
     sticks:   ['Thumb_Top'],
     buttons:  ['Buttons', 'FBCB'],
     triggers: ['Trigger_Buttons'],
-    dpad:     ['Buttons']  /* d-pad shares the Buttons material on this model */
+    dpad:     ['Buttons']
   };
 
   function rgb(hex){ var n=parseInt(hex.slice(1),16); return [((n>>16)&255)/255,((n>>8)&255)/255,(n&255)/255].map(function(c){return Math.pow(c,2.2);}); }
 
-  /* originals saved at load so "Stock" restores the real textured look */
-  var originals = {}; /* material id -> {texture, color} */
-  var painted = {};   /* group -> current hex or null (stock) */
-
+  var originals = {};
   function paint(group, hex, stock){
     if(!api) return;
-    painted[group] = stock ? null : hex;
     groups[group].forEach(function(m){
       var o = originals[m.id] || {};
-      if (stock) {
-        m.channels.AlbedoPBR.texture = o.texture || null;
-        m.channels.AlbedoPBR.color = o.color || false;
-      } else {
-        m.channels.AlbedoPBR.texture = null; /* flat color, normal+roughness maps stay = still looks molded */
-        m.channels.AlbedoPBR.color = rgb(hex);
-      }
+      if (stock) { m.channels.AlbedoPBR.texture = o.texture || null; m.channels.AlbedoPBR.color = o.color || false; }
+      else { m.channels.AlbedoPBR.texture = null; m.channels.AlbedoPBR.color = rgb(hex); }
       api.setMaterial(m);
     });
   }
-
-  /* safe flash: brief brighten via albedo color only, then restore exact prior state */
   function flash(group){
     if(!api || !groups[group] || !groups[group].length) return;
     groups[group].forEach(function(m){
       var prevT = m.channels.AlbedoPBR.texture, prevC = m.channels.AlbedoPBR.color;
-      m.channels.AlbedoPBR.texture = null;
-      m.channels.AlbedoPBR.color = [0.35, 0.75, 1.0]; /* zerostick blue glow */
+      m.channels.AlbedoPBR.texture = null; m.channels.AlbedoPBR.color = [0.35, 0.75, 1.0];
       api.setMaterial(m);
-      setTimeout(function(){
-        m.channels.AlbedoPBR.texture = prevT;
-        m.channels.AlbedoPBR.color = prevC;
-        api.setMaterial(m);
-      }, 650);
+      setTimeout(function(){ m.channels.AlbedoPBR.texture = prevT; m.channels.AlbedoPBR.color = prevC; api.setMaterial(m); }, 650);
     });
   }
-
-  /* tame camera feedback: gentle push toward the model, then back — axis-proof */
   function pushIn(){
     if(!api) return;
     api.getCameraLookAt(function(err, cam){
       if (err) return;
       var p = cam.position, t = cam.target;
-      var inPos = [ t[0] + (p[0]-t[0])*0.72, t[1] + (p[1]-t[1])*0.72, t[2] + (p[2]-t[2])*0.72 ];
+      var inPos = [ t[0]+(p[0]-t[0])*0.72, t[1]+(p[1]-t[1])*0.72, t[2]+(p[2]-t[2])*0.72 ];
       api.setCameraLookAt(inPos, t, 0.55);
       setTimeout(function(){ api.setCameraLookAt(p, t, 0.7); }, 1200);
     });
@@ -215,20 +245,15 @@
     success: function(a){
       api = a; api.start();
       api.addEventListener('viewerready', function(){
-        api.getCameraLookAt(function(err, cam){ if(!err) camHome = { position: cam.position, target: cam.target }; });
         api.getMaterialList(function(err, mats){
           if (err) return;
-          window.ZSB = { mats: mats.map(function(m){ return m.name; }) }; /* debug: real material names */
+          window.ZSB = { mats: mats.map(function(m){ return m.name; }) };
           Object.keys(MAP).forEach(function(g){
             MAP[g].forEach(function(name){
               var m = mats.filter(function(x){ return x.name === name; })[0];
               if (m) {
                 groups[g].push(m);
-                /* snapshot original albedo so Stock restores the true textured look */
-                if (!originals[m.id]) originals[m.id] = {
-                  texture: m.channels.AlbedoPBR.texture || null,
-                  color: m.channels.AlbedoPBR.color || false
-                };
+                if (!originals[m.id]) originals[m.id] = { texture: m.channels.AlbedoPBR.texture || null, color: m.channels.AlbedoPBR.color || false };
               }
             });
           });
@@ -238,7 +263,24 @@
     error: function(){}
   });
 
-  /* ── swatch groups: repaint + price ── */
+  /* ── wizard ── */
+  var steps = [].slice.call(document.querySelectorAll('.zsb-step'));
+  var cur = 0;
+  function showStep(n){
+    cur = Math.max(0, Math.min(steps.length - 1, n));
+    steps.forEach(function(s, i){ s.classList.toggle('active', i === cur); });
+    document.getElementById('zsbStepNum').textContent = 'Step ' + (cur+1) + ' of ' + steps.length;
+    document.getElementById('zsbFill').style.width = Math.round(((cur+1)/steps.length)*100) + '%';
+    document.getElementById('zsbPrev').style.visibility = cur === 0 ? 'hidden' : 'visible';
+    document.getElementById('zsbNext').style.display = cur === steps.length - 1 ? 'none' : 'block';
+    rearPanel(); /* rear diagram only on the rear step */
+    if (cur === steps.length - 1) review();
+  }
+  document.getElementById('zsbNext').addEventListener('click', function(){ showStep(cur + 1); });
+  document.getElementById('zsbPrev').addEventListener('click', function(){ showStep(cur - 1); });
+  document.getElementById('zsbReset').addEventListener('click', function(){ location.reload(); });
+
+  /* ── options state ── */
   var picks = { shell: {name:'Stock White', add:0}, sticks: {name:'Stock Black', add:0}, buttons: {name:'Stock', add:0}, triggers: {name:'Stock', add:0} };
   document.querySelectorAll('.zsb-paint').forEach(function(box){
     var g = box.dataset.group;
@@ -247,13 +289,13 @@
         box.querySelectorAll('.zsb-sw').forEach(function(x){ x.classList.remove('active'); });
         s.classList.add('active');
         picks[g] = { name: s.dataset.name, add: +s.dataset.add };
+        var lbl = document.querySelector('.zsb-swname[data-for="' + g + '"]'); if (lbl) lbl.textContent = s.dataset.name;
         paint(g, s.dataset.color, s.dataset.stock === '1');
         recalc();
       });
     });
   });
 
-  /* ── add-on chips over the stage ── */
   function chips(){
     var el = document.getElementById('zsbChips'); el.innerHTML = '';
     document.querySelectorAll('.zsmart:checked').forEach(function(c){
@@ -263,43 +305,60 @@
     if (+rr.value > 0) { var d = document.createElement('div'); d.className = 'zsb-chip'; d.textContent = '+ ' + rr.dataset.name; el.appendChild(d); }
   }
 
-  /* smart add-ons: part flash + gentle camera push + chip */
+  /* rear-view diagram: shows on the rear step when paddles are picked */
+  function rearPanel(){
+    var rr = document.querySelector('input[name="zrear"]:checked');
+    var onRearStep = steps[cur] && steps[cur].id === 'zsbRearStep';
+    var panel = document.getElementById('zsbRear');
+    if (onRearStep && +rr.value > 0) {
+      document.getElementById('zsbRearImg').src = "{{ 'zs-rear-2.png' | asset_url }}".replace('zs-rear-2', rr.dataset.name.indexOf('4') === 0 ? 'zs-rear-4' : 'zs-rear-2');
+      panel.classList.add('show');
+    } else {
+      panel.classList.remove('show');
+    }
+  }
+
   document.querySelectorAll('.zsmart').forEach(function(c){
     c.addEventListener('change', function(){
       if (c.checked) { flash(c.dataset.focus); pushIn(); }
       chips(); recalc();
     });
   });
-  /* rear paddles: chip + gentle push (model has no paddle geometry to show) */
   document.querySelectorAll('input[name="zrear"]').forEach(function(r){
-    r.addEventListener('change', function(){
-      if (+r.value > 0) { pushIn(); }
-      chips(); recalc();
-    });
+    r.addEventListener('change', function(){ rearPanel(); chips(); recalc(); });
   });
 
   function money(n){ return '$' + n.toFixed(2).replace(/\.00$/, ''); }
+  function lines(){
+    var L = [
+      ['Base build (TMR sticks installed)', BASE],
+      ['Shell: ' + picks.shell.name, picks.shell.add],
+      ['Stick caps: ' + picks.sticks.name + ' (OEM Edge)', picks.sticks.add],
+      ['Face buttons: ' + picks.buttons.name, picks.buttons.add],
+      ['Triggers/bumpers: ' + picks.triggers.name, picks.triggers.add]
+    ];
+    document.querySelectorAll('.zsmart:checked').forEach(function(c){ L.push([c.dataset.name, +c.value]); });
+    var rr = document.querySelector('input[name="zrear"]:checked');
+    if (+rr.value > 0) L.push(['Rear buttons: ' + rr.dataset.name, +rr.value]);
+    return L;
+  }
+  function review(){
+    var el = document.getElementById('zsbReview');
+    el.innerHTML = lines().map(function(l){ return '<div class="zsb-sumrow"><span>' + l[0] + '</span><span>' + (l[1] ? '+' + money(l[1]) : (l[0].indexOf('Base') === 0 ? money(l[1] || BASE) : 'Included')) + '</span></div>'; }).join('');
+  }
   function config(){
-    var parts = ['ZeroStick PS5 Builder preorder',
-      'Shell: ' + picks.shell.name,
-      'Stick caps: ' + picks.sticks.name + ' (OEM Edge modules, TMR included)',
-      'Face buttons: ' + picks.buttons.name,
-      'Triggers/bumpers: ' + picks.triggers.name];
-    document.querySelectorAll('.zsmart:checked').forEach(function(c){ parts.push('Add on: ' + c.dataset.name); });
-    var rr = document.querySelector('input[name="zrear"]:checked'); parts.push('Rear buttons: ' + rr.dataset.name);
-    parts.push('Quoted total: ' + document.getElementById('zsbTotal').textContent);
-    return parts.join('\n');
+    var t = document.getElementById('zsbRun').textContent;
+    return ['ZeroStick PS5 Builder preorder'].concat(lines().map(function(l){ return l[0] + (l[1] ? ' (+$' + l[1] + ')' : ''); })).concat(['Quoted total: ' + t]).join('\n');
   }
   function recalc(){
-    var opts = picks.shell.add + picks.sticks.add + picks.buttons.add + picks.triggers.add;
-    opts += +document.querySelector('input[name="zrear"]:checked').value;
-    document.querySelectorAll('.zsmart:checked').forEach(function(c){ opts += +c.value; });
-    document.getElementById('zsbOpts').textContent = money(opts);
-    document.getElementById('zsbTotal').textContent = money(BASE + opts);
+    var t = 0; lines().forEach(function(l){ t += l[1]; });
+    document.getElementById('zsbRun').textContent = money(t);
+    document.getElementById('zsbTotal').textContent = money(t);
     document.getElementById('zsbConfig').value = config();
+    if (cur === steps.length - 1) review();
   }
   document.getElementById('zsbForm') && document.getElementById('zsbForm').addEventListener('submit', function(){ document.getElementById('zsbConfig').value = config(); });
-  recalc(); chips();
+  recalc(); chips(); showStep(0);
 })();
 </script>
 
