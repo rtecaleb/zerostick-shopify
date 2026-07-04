@@ -25,8 +25,93 @@
   </div>
 </section>
 
+{%- comment -%} == MOBILE-ONLY HOMEPAGE (structure inspired by top controller stores, ZeroStick content) ==
+     Everything inside .m-only shows ONLY on phones (<=767px).
+     Desktop keeps the original sections untouched. {%- endcomment -%}
+<div class="m-only">
+
+  <!-- M1. OUR STORY -->
+  <section class="m-story">
+    <p>ZeroStick started in a garage and a mission &mdash; a kid sick of asking his
+    parents for a new controller every time the sticks drifted. So we built the
+    last controller you'll ever need: <strong>TMR technology installed on every
+    model, out of the box.</strong></p>
+  </section>
+
+  <!-- M2. CONTROLLER DESIGNER (COMING SOON) -->
+  <section class="m-designer">
+    <h2>Design Your Dream<br>ZeroStick</h2>
+    <p class="m-designer-sub">Controller designer &mdash; coming soon</p>
+    <div class="m-designer-bar" style="background-image:url('{{ 'zs-hero-1.jpg' | asset_url }}')"><span>PlayStation 5</span><em>Coming Soon</em></div>
+    <div class="m-designer-bar" style="background-image:url('{{ 'zs-2.jpg' | asset_url }}')"><span>PlayStation 4</span><em>Coming Soon</em></div>
+    <div class="m-designer-bar" style="background-image:url('{{ 'zs-1.jpg' | asset_url }}')"><span>Xbox Series X</span><em>Coming Soon</em></div>
+    <div class="m-designer-bar" style="background-image:url('{{ 'zs-3.jpg' | asset_url }}')"><span>Xbox 360 / PC</span><em>Coming Soon</em></div>
+  </section>
+
+  <!-- M3. WHY CHOOSE ZEROSTICK (graphic) -->
+  <section class="m-why">
+    <div class="m-why-arrows">&#9654;&#9654;&#9654;&#9654;</div>
+    <h2>WHY CHOOSE<br><span>ZEROSTICK?</span></h2>
+    <p class="m-why-lead">Because we won't ship you a controller unless it has
+    <strong>TMR technology out of the box</strong> &mdash; we hate stick drift too.</p>
+    <ul>
+      <li><b>&#10003;</b> Drift-free TMR sticks on every model &mdash; no exceptions</li>
+      <li><b>&#10003;</b> All thumbsticks interchangeable with DSE OEM modules</li>
+      <li><b>&#10003;</b> Smart buttons &amp; trigger add-ons available</li>
+    </ul>
+  </section>
+
+  <!-- M4. PRODUCT DUO -->
+  <section class="m-duo">
+    <div class="m-duo-grid">
+      <div class="m-duo-card">
+        {%- assign ps5p = all_products['zerostick-pro-modified-controller-ps5'] -%}
+        <div class="m-duo-img">{% if ps5p.featured_image %}<img src="{{ ps5p.featured_image | image_url: width: 500 }}" alt="ZeroStick Pro PS5 Controller">{% endif %}<span class="m-soon-badge">Coming Soon</span></div>
+        <h3>ZeroStick Pro PS5</h3>
+        <p>A genuine PS5 controller, rebuilt the ZeroStick way &mdash; TMR sticks installed, calibrated, and backed by our 5-year stick warranty.</p>
+        <span class="btn m-btn-disabled">Coming Soon</span>
+      </div>
+      <div class="m-duo-card">
+        {%- assign dsep = all_products['zerostick-pro-custom-tmr-hall-effect-joystick-module-compatible-with-ps5-dualsense-edge-tmr-drift-free-magnetic-stick-replacement-1x-high-precision-long-life-design'] -%}
+        <a href="{{ dsep.url }}" class="m-duo-link">
+          <div class="m-duo-img">{% if dsep.featured_image %}<img src="{{ dsep.featured_image | image_url: width: 500 }}" alt="ZeroStick DSE Module">{% endif %}</div>
+          <h3>DSE Modules</h3>
+          <p>Drop-in TMR stick modules for your DualSense Edge. Swap them in minutes &mdash; magnetic sensing, zero drift, calibrated out of the box.</p>
+          <span class="btn m-btn-view">View Options</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- M5. REVIEWS (swipe left/right) -->
+  <section class="m-reviews">
+    <h2>What Players Are Saying</h2>
+    <div class="m-rev-wrap">
+      <button class="m-rev-arrow" data-dir="-1" aria-label="Previous review">&#8249;</button>
+      <div class="m-rev-track" id="mRevTrack">
+        <div class="m-rev-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="m-rev-title">Best controller I've ever used.</div><p>Zero drift after months of daily use. The rear buttons changed how I play.</p><div class="m-rev-author">&mdash; Verified Buyer</div></div>
+        <div class="m-rev-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="m-rev-title">Game changer.</div><p>Smart triggers make such a difference in FPS games. Worth every penny.</p><div class="m-rev-author">&mdash; Verified Buyer</div></div>
+        <div class="m-rev-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="m-rev-title">10/10, no complaints.</div><p>Fast shipping, insane quality. Never going back to a stock controller.</p><div class="m-rev-author">&mdash; Verified Buyer</div></div>
+        <div class="m-rev-card"><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="m-rev-title">Amazing build quality.</div><p>Feels premium and responsive &mdash; exactly what I needed for ranked.</p><div class="m-rev-author">&mdash; Verified Buyer</div></div>
+      </div>
+      <button class="m-rev-arrow" data-dir="1" aria-label="Next review">&#8250;</button>
+    </div>
+  </section>
+
+  <!-- M6. VIDEO (placeholder) -->
+  <section class="m-video">
+    <div class="m-video-box">
+      <div class="m-video-play">&#9654;</div>
+      <p>See ZeroStick in action</p>
+      <span>Video coming soon</span>
+    </div>
+  </section>
+
+</div><!-- /.m-only -->
+
+
 <!-- ── DESIGN YOUR ZEROSTICK ── -->
-<section class="section reveal" style="padding-top:64px;padding-bottom:0">
+<section class="section reveal d-only" style="padding-top:64px;padding-bottom:0">
   <div class="container">
     <span class="label label-blue">Shop</span>
     <h2 class="heading-lg" style="margin-bottom:8px">Shop ZeroStick</h2>
@@ -34,7 +119,7 @@
   </div>
 </section>
 
-<div class="builder-grid reveal" style="margin-top:0">
+<div class="builder-grid reveal d-only" style="margin-top:0">
   <div class="builder-card">
     <div class="card-img"><img src="{{ 'zs-1.jpg' | asset_url }}" alt="Shop all ZeroStick products" /></div>
     <span class="label">All Products</span><h3>Shop All</h3>
@@ -68,7 +153,7 @@
 </div>
 
 <!-- ── NINTENDO SWITCH SECTION ── -->
-<section class="section reveal" style="background:linear-gradient(135deg,#0d1a35,#11203f);padding:72px 0;margin-top:24px">
+<section class="section reveal d-only" style="background:linear-gradient(135deg,#0d1a35,#11203f);padding:72px 0;margin-top:24px">
   <div class="container" style="display:flex;flex-wrap:wrap;align-items:center;gap:40px;justify-content:space-between">
     <div style="flex:1 1 340px;min-width:300px">
       <span class="label label-blue">Nintendo</span>
@@ -85,7 +170,7 @@
 </section>
 
 <!-- ── WHAT IS A ZEROSTICK (feature tabs) ── -->
-<section class="section feature-section reveal">
+<section class="section feature-section reveal d-only">
   <div class="container">
     <span class="label">The Modifications</span>
     <h2 class="heading-lg" style="margin-bottom:8px">What Is a ZeroStick?</h2>
@@ -159,7 +244,7 @@
 </div>
 
 <!-- ── REVIEWS ── -->
-<section class="section section-gray reveal">
+<section class="section section-gray reveal d-only">
   <div class="container">
     <span class="label">Customer Reviews</span>
     <h2 class="heading-lg" style="margin-bottom:8px">What Players Are Saying</h2>
@@ -178,7 +263,7 @@
 </section>
 
 <!-- ── BOTTOM CTA ── -->
-<section class="reveal" style="background:#0d1117;padding:72px 0;text-align:center;color:#fff">
+<section class="reveal d-only" style="background:#0d1117;padding:72px 0;text-align:center;color:#fff">
   <div class="container">
     <span class="label" style="color:rgba(255,255,255,0.4)">Get Started</span>
     <h2 class="heading-lg" style="margin-bottom:16px">Ready to Ditch the Drift?</h2>
@@ -195,6 +280,26 @@
     function go(n){ if(!slides.length) return; slides[cur].classList.remove('active'); dots[cur].classList.remove('active'); cur=n; slides[cur].classList.add('active'); dots[cur].classList.add('active'); }
     dots.forEach(function(d){ d.addEventListener('click', function(){ go(+d.dataset.i); }); });
     if(slides.length) setInterval(function(){ go((cur+1)%slides.length); }, 5000);
+
+    /* Swipe the hero banner left/right on touch screens */
+    var hs=document.querySelector('.hero-slider'), tx=null;
+    if(hs){
+      hs.addEventListener('touchstart', function(e){ tx=e.touches[0].clientX; }, {passive:true});
+      hs.addEventListener('touchend', function(e){
+        if(tx===null) return;
+        var dx=e.changedTouches[0].clientX - tx; tx=null;
+        if(Math.abs(dx)<40) return;                       /* ignore tiny moves */
+        go(dx<0 ? (cur+1)%slides.length : (cur-1+slides.length)%slides.length);
+      }, {passive:true});
+    }
+
+    /* Mobile reviews: arrows scroll one card at a time (swipe works natively) */
+    var track=document.getElementById('mRevTrack');
+    document.querySelectorAll('.m-rev-arrow').forEach(function(b){
+      b.addEventListener('click', function(){
+        if(track) track.scrollBy({left: (+b.dataset.dir)*(track.clientWidth*0.85), behavior:'smooth'});
+      });
+    });
 
     document.querySelectorAll('.feature-tab').forEach(function(t){
       t.addEventListener('click', function(){
