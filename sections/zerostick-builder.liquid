@@ -68,7 +68,7 @@
       <div class="zsb-group">
         <h3 class="zsb-title">Shell Color</h3>
         <div class="zsb-swatches zsb-paint" data-group="shell" id="zsbShell">
-          <button type="button" class="zsb-sw active" style="background:#e8e8ee" data-name="Stock White" data-color="#e8e8ee" data-add="0"></button>
+          <button type="button" class="zsb-sw active" style="background:#e8e8ee" data-name="Stock White" data-color="#e8e8ee" data-add="0" data-stock="1"></button>
           <button type="button" class="zsb-sw" style="background:#1a1a24" data-name="Midnight Black" data-color="#1a1a24" data-add="25"></button>
           <button type="button" class="zsb-sw" style="background:#298DDF" data-name="ZeroStick Blue" data-color="#298DDF" data-add="30"></button>
           <button type="button" class="zsb-sw" style="background:#6a2bd0" data-name="Galactic Purple" data-color="#6a2bd0" data-add="30"></button>
@@ -81,19 +81,18 @@
         <h3 class="zsb-title">Stick Cap Color <span class="zsb-included">TMR included on every build</span></h3>
         <p class="zsb-sub">All caps are OEM DualSense Edge module caps - fully interchangeable, swap any time.</p>
         <div class="zsb-swatches zsb-paint" data-group="sticks" id="zsbSticks">
-          <button type="button" class="zsb-sw active" style="background:#15151f" data-name="Stock Black" data-color="#15151f" data-add="0"></button>
-          <button type="button" class="zsb-sw" style="background:#e8e8ee" data-name="White" data-color="#e8e8ee" data-add="0"></button>
+          <button type="button" class="zsb-sw active" style="background:#15151f" data-name="Stock Black" data-color="#15151f" data-add="0" data-stock="1"></button>
           <button type="button" class="zsb-sw" style="background:#298DDF" data-name="Blue" data-color="#298DDF" data-add="0"></button>
           <button type="button" class="zsb-sw" style="background:#d11a2a" data-name="Red" data-color="#d11a2a" data-add="0"></button>
-          <button type="button" class="zsb-sw" style="background:#6a2bd0" data-name="Purple" data-color="#6a2bd0" data-add="0"></button>
-          <button type="button" class="zsb-sw" style="background:#00936b" data-name="Green" data-color="#00936b" data-add="0"></button>
+          <button type="button" class="zsb-sw" style="background:#ff7bac" data-name="Pink" data-color="#ff7bac" data-add="0"></button>
+          <button type="button" class="zsb-sw" style="background:#e8e8ee" data-name="White" data-color="#e8e8ee" data-add="0"></button>
         </div>
       </div>
 
       <div class="zsb-group">
         <h3 class="zsb-title">Face Button Color</h3>
         <div class="zsb-swatches zsb-paint" data-group="buttons" id="zsbBtns">
-          <button type="button" class="zsb-sw active" style="background:#e8e8ee" data-name="Stock" data-color="#e8e8ee" data-add="0"></button>
+          <button type="button" class="zsb-sw active" style="background:#e8e8ee" data-name="Stock" data-color="#e8e8ee" data-add="0" data-stock="1"></button>
           <button type="button" class="zsb-sw" style="background:#15151f" data-name="Black" data-color="#15151f" data-add="12"></button>
           <button type="button" class="zsb-sw" style="background:#298DDF" data-name="Blue" data-color="#298DDF" data-add="12"></button>
           <button type="button" class="zsb-sw" style="background:#ffce3a" data-name="Gold" data-color="#ffce3a" data-add="12"></button>
@@ -104,7 +103,7 @@
       <div class="zsb-group">
         <h3 class="zsb-title">Trigger &amp; Bumper Color</h3>
         <div class="zsb-swatches zsb-paint" data-group="triggers" id="zsbTrig">
-          <button type="button" class="zsb-sw active" style="background:#e8e8ee" data-name="Stock" data-color="#e8e8ee" data-add="0"></button>
+          <button type="button" class="zsb-sw active" style="background:#e8e8ee" data-name="Stock" data-color="#e8e8ee" data-add="0" data-stock="1"></button>
           <button type="button" class="zsb-sw" style="background:#15151f" data-name="Black" data-color="#15151f" data-add="12"></button>
           <button type="button" class="zsb-sw" style="background:#298DDF" data-name="Blue" data-color="#298DDF" data-add="12"></button>
           <button type="button" class="zsb-sw" style="background:#6a2bd0" data-name="Purple" data-color="#6a2bd0" data-add="12"></button>
@@ -162,41 +161,53 @@
 
   function rgb(hex){ var n=parseInt(hex.slice(1),16); return [((n>>16)&255)/255,((n>>8)&255)/255,(n&255)/255].map(function(c){return Math.pow(c,2.2);}); }
 
-  function paint(group, hex){
+  /* originals saved at load so "Stock" restores the real textured look */
+  var originals = {}; /* material id -> {texture, color} */
+  var painted = {};   /* group -> current hex or null (stock) */
+
+  function paint(group, hex, stock){
     if(!api) return;
+    painted[group] = stock ? null : hex;
     groups[group].forEach(function(m){
-      m.channels.AlbedoPBR.texture = null;
-      m.channels.AlbedoPBR.color = rgb(hex);
+      var o = originals[m.id] || {};
+      if (stock) {
+        m.channels.AlbedoPBR.texture = o.texture || null;
+        m.channels.AlbedoPBR.color = o.color || false;
+      } else {
+        m.channels.AlbedoPBR.texture = null; /* flat color, normal+roughness maps stay = still looks molded */
+        m.channels.AlbedoPBR.color = rgb(hex);
+      }
       api.setMaterial(m);
     });
   }
 
-  /* flash a part: emissive pulse on its materials, then back */
+  /* safe flash: brief brighten via albedo color only, then restore exact prior state */
   function flash(group){
     if(!api || !groups[group] || !groups[group].length) return;
     groups[group].forEach(function(m){
-      m.channels.EmitColor = { enable: true, factor: 0.8, color: [0.16, 0.55, 0.87] };
+      var prevT = m.channels.AlbedoPBR.texture, prevC = m.channels.AlbedoPBR.color;
+      m.channels.AlbedoPBR.texture = null;
+      m.channels.AlbedoPBR.color = [0.35, 0.75, 1.0]; /* zerostick blue glow */
       api.setMaterial(m);
-    });
-    setTimeout(function(){
-      groups[group].forEach(function(m){
-        m.channels.EmitColor = { enable: false, factor: 0, color: [0,0,0] };
+      setTimeout(function(){
+        m.channels.AlbedoPBR.texture = prevT;
+        m.channels.AlbedoPBR.color = prevC;
         api.setMaterial(m);
-      });
-    }, 1100);
+      }, 650);
+    });
   }
 
-  /* camera moves: home / top-back (triggers) / back (paddles) — orbit around home target */
-  function orbit(angleDeg, lift){
-    if(!api || !camHome) return;
-    var t = camHome.target, p = camHome.position;
-    var dx = p[0]-t[0], dy = p[1]-t[1], dz = p[2]-t[2];
-    var r = Math.sqrt(dx*dx + dy*dy);
-    var a0 = Math.atan2(dy, dx), a = a0 + angleDeg*Math.PI/180;
-    var pos = [ t[0] + r*Math.cos(a), t[1] + r*Math.sin(a), t[2] + dz + (lift||0) ];
-    api.setCameraLookAt(pos, t, 1.1);
+  /* tame camera feedback: gentle push toward the model, then back — axis-proof */
+  function pushIn(){
+    if(!api) return;
+    api.getCameraLookAt(function(err, cam){
+      if (err) return;
+      var p = cam.position, t = cam.target;
+      var inPos = [ t[0] + (p[0]-t[0])*0.72, t[1] + (p[1]-t[1])*0.72, t[2] + (p[2]-t[2])*0.72 ];
+      api.setCameraLookAt(inPos, t, 0.55);
+      setTimeout(function(){ api.setCameraLookAt(p, t, 0.7); }, 1200);
+    });
   }
-  function camHomeGo(){ if(api && camHome) api.setCameraLookAt(camHome.position, camHome.target, 1.1); }
 
   var client = new Sketchfab(document.getElementById('zsbApi'));
   client.init(MODEL_UID, {
@@ -211,7 +222,14 @@
           Object.keys(MAP).forEach(function(g){
             MAP[g].forEach(function(name){
               var m = mats.filter(function(x){ return x.name === name; })[0];
-              if (m) groups[g].push(m);
+              if (m) {
+                groups[g].push(m);
+                /* snapshot original albedo so Stock restores the true textured look */
+                if (!originals[m.id]) originals[m.id] = {
+                  texture: m.channels.AlbedoPBR.texture || null,
+                  color: m.channels.AlbedoPBR.color || false
+                };
+              }
             });
           });
         });
@@ -229,8 +247,7 @@
         box.querySelectorAll('.zsb-sw').forEach(function(x){ x.classList.remove('active'); });
         s.classList.add('active');
         picks[g] = { name: s.dataset.name, add: +s.dataset.add };
-        paint(g, s.dataset.color);
-        flash(g);
+        paint(g, s.dataset.color, s.dataset.stock === '1');
         recalc();
       });
     });
@@ -246,21 +263,17 @@
     if (+rr.value > 0) { var d = document.createElement('div'); d.className = 'zsb-chip'; d.textContent = '+ ' + rr.dataset.name; el.appendChild(d); }
   }
 
-  /* smart add-ons: camera swing + flash + chip */
+  /* smart add-ons: part flash + gentle camera push + chip */
   document.querySelectorAll('.zsmart').forEach(function(c){
     c.addEventListener('change', function(){
-      if (c.checked) {
-        if (c.dataset.focus === 'triggers') { orbit(160, 0.4); } else { camHomeGo(); }
-        flash(c.dataset.focus);
-        setTimeout(camHomeGo, 1900);
-      }
+      if (c.checked) { flash(c.dataset.focus); pushIn(); }
       chips(); recalc();
     });
   });
-  /* rear paddles: spin to the back so you see where they mount */
+  /* rear paddles: chip + gentle push (model has no paddle geometry to show) */
   document.querySelectorAll('input[name="zrear"]').forEach(function(r){
     r.addEventListener('change', function(){
-      if (+r.value > 0) { orbit(180, 0.2); setTimeout(camHomeGo, 2200); } else { camHomeGo(); }
+      if (+r.value > 0) { pushIn(); }
       chips(); recalc();
     });
   });
