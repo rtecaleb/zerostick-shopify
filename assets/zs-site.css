@@ -544,3 +544,14 @@ footer, .footer { background: var(--black); color: #fff; padding: 64px 0 32px; }
 /* ── Responsive ── */
 @media (max-width: 1024px) { .builder-grid { grid-template-columns: repeat(2,1fr); } .reviews-grid { grid-template-columns: repeat(2,1fr); } .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 768px) { .builder-grid, .grid-2, .grid-3, .grid-4, .feature-panel.active { grid-template-columns: 1fr; } .reviews-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; } .nav-links, .nav-info { display: none; } .compare-table { font-size: 12px; } .nav-search { max-width: 100%; } }
+
+/* ── Shop-card text: full sentences on desktop, one-liners on phones ── */
+.desc-short { display: none; }
+@media (max-width: 767px) {
+  .desc-full { display: none; }
+  .desc-short { display: inline; }
+  .builder-card p { font-size: 15px; line-height: 1.45; }
+  /* let the product image dominate the card on mobile */
+  .card-img, .builder-card img { aspect-ratio: 16 / 11; }
+  .builder-card h3 { font-size: 22px; }
+}
