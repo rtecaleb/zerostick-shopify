@@ -1,0 +1,278 @@
+{% comment %}
+  ZeroStick EXO — "Coming Soon" page.
+
+  Self-contained: all styles are scoped under .zx-exo and colours come from
+  the theme's own tokens, so this renders correctly in any colour scheme.
+  The phone illustrations are drawings of the real app screens (the app is
+  dark by design, so they keep their own dark palette).
+
+  The header tab that links here only appears once a page with the handle
+  `zerostick-exo` exists and is published — see the guarded block at the end
+  of snippets/header-dropdown-menu.liquid, header-mega-menu.liquid and
+  header-drawer.liquid.
+{% endcomment %}
+
+<style>
+  .zx-exo{ line-height:1.6; }
+  .zx-exo .zx-eyebrow{ font-size:1.2rem; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; opacity:.75; margin:0 0 1rem; }
+  .zx-exo h1{ margin:0 0 1rem; }
+  .zx-exo .zx-lede{ font-size:1.8rem; opacity:.8; max-width:64rem; margin:0 0 2.4rem; }
+  .zx-exo h2{ margin:4.4rem 0 1rem; }
+  .zx-exo h3{ margin:0 0 .6rem; }
+  .zx-exo .zx-cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(24rem,1fr));
+    gap:1.4rem; margin:2rem 0; }
+  .zx-exo .zx-card{ border:.1rem solid rgba(var(--color-foreground),.12);
+    border-radius:1.2rem; padding:1.8rem 2rem; }
+  .zx-exo .zx-card p{ margin:0; opacity:.75; font-size:1.4rem; }
+  .zx-exo .zx-journey{ display:flex; flex-wrap:wrap; gap:.8rem; align-items:center;
+    margin:1.8rem 0; font-size:1.4rem; font-weight:600; }
+  .zx-exo .zx-journey .st{ border:.1rem solid rgba(var(--color-foreground),.2);
+    border-radius:99rem; padding:.5rem 1.4rem; white-space:nowrap; }
+  .zx-exo .zx-journey .ar{ opacity:.55; }
+  .zx-exo .zx-steps{ display:flex; flex-wrap:wrap; gap:2.4rem; justify-content:center;
+    margin:2.4rem 0; }
+  .zx-exo figure{ margin:0; display:flex; flex-direction:column; gap:.8rem; align-items:center; }
+  .zx-exo figcaption{ font-size:1.3rem; opacity:.7; max-width:30rem; text-align:center; }
+  .zx-exo .zx-fine{ font-size:1.3rem; opacity:.65; margin-top:4rem;
+    border-top:.1rem solid rgba(var(--color-foreground),.12); padding-top:1.6rem; }
+  .zx-exo .zx-note{ border:.1rem solid rgba(var(--color-foreground),.18);
+    border-radius:1rem; padding:1.2rem 1.6rem; font-size:1.4rem; margin:1.6rem 0; }
+
+  /* the phone illustration — always the app's own dark palette */
+  .zx-exo .ph{ width:30rem; max-width:100%; background:#0d1117; border-radius:2.4rem;
+    padding:1.4rem 1.2rem 1.8rem; border:.1rem solid #30363d; color:#e6edf3;
+    font-size:1.3rem; line-height:1.45; box-shadow:0 1.2rem 3.2rem rgba(0,0,0,.28);
+    text-align:left; }
+  .zx-exo .ph *{ box-sizing:border-box; }
+  .zx-exo .ph .top{ color:#8b949e; font-size:1.15rem; margin:0 .4rem 1rem; }
+  .zx-exo .ph .top .bk{ color:#58a6ff; }
+  .zx-exo .ph .ttl{ font-weight:700; font-size:1.6rem; margin:0 .4rem .2rem; }
+  .zx-exo .ph .sub{ color:#8b949e; font-size:1.1rem; margin:0 .4rem 1rem; }
+  .zx-exo .ph .card{ background:#161b22; border:.1rem solid #30363d; border-radius:1.2rem;
+    padding:.4rem 0; margin:0 0 .8rem; }
+  .zx-exo .ph .row{ display:flex; align-items:center; gap:1rem; padding:.9rem 1.2rem;
+    border-bottom:.1rem solid #30363d; }
+  .zx-exo .ph .row:last-child{ border-bottom:0; }
+  .zx-exo .ph .row .t{ flex:1; min-width:0; }
+  .zx-exo .ph .row .lab{ font-weight:600; }
+  .zx-exo .ph .row .hint{ color:#8b949e; font-size:1.1rem; }
+  .zx-exo .ph .badge{ font-size:1.05rem; font-weight:700; border-radius:99rem;
+    padding:.25rem .9rem; white-space:nowrap; }
+  .zx-exo .ph .b-green{ background:rgba(63,185,80,.16); color:#3fb950; border:.1rem solid rgba(63,185,80,.45); }
+  .zx-exo .ph .b-red{ background:rgba(248,81,73,.14); color:#f85149; border:.1rem solid rgba(248,81,73,.45); }
+  .zx-exo .ph .b-grey{ background:rgba(139,148,158,.14); color:#8b949e; border:.1rem solid rgba(139,148,158,.4); }
+  .zx-exo .ph .btn{ display:inline-block; border-radius:.9rem; padding:.7rem 1.3rem;
+    font-weight:600; font-size:1.25rem; margin:.2rem .6rem .8rem .6rem;
+    background:rgba(88,166,255,.14); color:#58a6ff; border:.1rem solid rgba(88,166,255,.4); }
+  .zx-exo .ph .btn.pri{ background:#58a6ff; color:#0d1117; border-color:#58a6ff; }
+  .zx-exo .ph .note{ border:.1rem solid #30363d; background:#161b22; border-radius:1rem;
+    padding:.8rem 1.1rem; font-size:1.2rem; margin:0 0 .8rem; color:#8b949e; }
+  .zx-exo .ph .note.good{ border-color:rgba(63,185,80,.5); color:#3fb950; }
+  .zx-exo .ph .code{ font-family:ui-monospace,Consolas,Menlo,monospace; font-size:1.05rem;
+    line-height:1.5; white-space:pre; overflow-x:auto; color:#c9d1d9;
+    background:#0a0d12; border:.1rem solid #30363d; border-radius:.9rem;
+    padding:.7rem 1rem; margin:0 0 .8rem; }
+  .zx-exo .ph .rep{ font-size:1.15rem; }
+  .zx-exo .ph .rep .r{ display:flex; gap:.8rem; padding:.6rem 1rem;
+    border-bottom:.1rem solid #30363d; align-items:baseline; }
+  .zx-exo .ph .rep .r:last-child{ border-bottom:0; }
+  .zx-exo .ph .rep .ln{ font-family:ui-monospace,Consolas,Menlo,monospace; color:#58a6ff; flex:none; }
+  .zx-exo .ph .rep .w{ color:#d29922; }
+  .zx-exo .ph .tog{ width:3.6rem; height:2rem; border-radius:99rem; position:relative; flex:none; }
+  .zx-exo .ph .tog:after{ content:""; position:absolute; top:.2rem; width:1.6rem; height:1.6rem;
+    border-radius:50%; background:#fff; }
+  .zx-exo .ph .tog.on{ background:#3fb950; } .zx-exo .ph .tog.on:after{ right:.2rem; }
+  .zx-exo .ph .tog.off{ background:#30363d; } .zx-exo .ph .tog.off:after{ left:.2rem; }
+</style>
+
+<div class="page-width zx-exo section-{{ section.id }}-padding" style="padding-top:3.6rem;padding-bottom:5.6rem;">
+
+  <p class="zx-eyebrow">Coming soon</p>
+  <h1>ZeroStick EXO</h1>
+  <p class="zx-lede">An accessibility-first adapter that sits between your
+  controller and your console. Use any controller — or a mouse and keyboard —
+  on your console, run the scripts you already have, and set everything up
+  from your phone. Built by a disabled gamer, for everyone the standard pad
+  doesn't fit.</p>
+
+  {%- if section.settings.cta_link != blank -%}
+    <a href="{{ section.settings.cta_link }}" class="button">
+      {{ section.settings.cta_label | default: 'Get launch updates' | escape }}
+    </a>
+  {%- endif -%}
+
+  <div class="zx-cards">
+    <div class="zx-card"><h3>Any input, any game</h3>
+      <p>Xbox pads, DualSense, mouse &amp; keyboard — the EXO translates them all,
+      with aim tuning designed around reduced mobility and precision.</p></div>
+    <div class="zx-card"><h3>Runs your GPC scripts</h3>
+      <p>Paste the scripts you already use — rapid fire, anti-recoil, button
+      swaps — and the EXO checks them line by line, then runs them on the
+      device.</p></div>
+    <div class="zx-card"><h3>Screen Assist</h3>
+      <p>Optional computer-vision aim help that watches the game and steadies
+      your last few degrees — an accommodation, with you in charge.</p></div>
+    <div class="zx-card"><h3>Set up from your phone</h3>
+      <p>Every binding, curve and script lives in a phone app. No PC software
+      required to play.</p></div>
+  </div>
+
+  <h2>How scripts work</h2>
+  <div class="zx-journey" role="list">
+    <span class="st" role="listitem">1 · Paste</span><span class="ar">→</span>
+    <span class="st" role="listitem">2 · Check</span><span class="ar">→</span>
+    <span class="st" role="listitem">3 · Save</span><span class="ar">→</span>
+    <span class="st" role="listitem">4 · Switch on</span><span class="ar">→</span>
+    <span class="st" role="listitem">5 · Play</span>
+  </div>
+
+  <div class="zx-steps">
+    <figure>
+      <div class="ph" aria-label="Illustration of the Scripts screen with a pasted script">
+        <div class="top"><span class="bk">‹ Back</span></div>
+        <div class="ttl">Scripts</div>
+        <div class="sub">One script runs at a time on this config</div>
+        <div class="code">// Rapid fire on R2. Toggle with SHARE.
+define FIRE    = PS4_R2;
+define HOLD_MS = 40;
+define REST_MS = 30;
+
+int rapid_on = TRUE;
+
+main {
+    if (event_press(PS4_SHARE)) {
+        rapid_on = !rapid_on;
+    }
+    if (rapid_on &amp;&amp; get_val(FIRE) &gt; 90) {
+        combo_run(RapidFire);
+    }
+}
+
+combo RapidFire {
+    set_val(FIRE, 100);
+    wait(HOLD_MS);
+    set_val(FIRE, 0);
+    wait(REST_MS);
+}</div>
+        <span class="btn pri">Check script</span><span class="btn">Save</span>
+      </div>
+      <figcaption>Paste any GPC script — PS4, PS5 and Xbox names are
+      interchangeable.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="ph" aria-label="Illustration of a line-by-line script report">
+        <div class="top"><span class="bk">‹ Back</span></div>
+        <div class="ttl">Scripts</div>
+        <div class="note good">This script will run on your ZeroStick.</div>
+        <div class="card rep">
+          <div class="r"><span class="ln">line 14</span><span class="w">set_led does
+          nothing on ZeroStick — the script still runs.</span></div>
+          <div class="r"><span class="ln">line 15</span><span class="w">set_rumble does
+          nothing on ZeroStick — the script still runs.</span></div>
+        </div>
+        <span class="btn pri">Check script</span><span class="btn">Save</span>
+      </div>
+      <figcaption>The device answers line by line before anything is saved —
+      no guessing.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="ph" aria-label="Illustration of the script list with one running">
+        <div class="top"><span class="bk">‹ Back</span></div>
+        <div class="ttl">Scripts</div>
+        <div class="sub">One script runs at a time on this config</div>
+        <div class="card">
+          <div class="row"><span class="t"><span class="lab">Rapid fire — R2</span>
+            <div class="hint">rapid-fire-r2</div></span>
+            <span class="badge b-green">running</span><span class="tog on" aria-hidden="true"></span></div>
+          <div class="row"><span class="t"><span class="lab">Anti-recoil (M4)</span>
+            <div class="hint">anti-recoil-m4</div></span>
+            <span class="badge b-grey">off</span><span class="tog off" aria-hidden="true"></span></div>
+        </div>
+        <div class="note good">Saved.</div>
+      </div>
+      <figcaption>One toggle. Green means live on the device.</figcaption>
+    </figure>
+  </div>
+
+  <div class="zx-note"><strong>A script can never break your controller.</strong>
+  Every script runs on a strict per-millisecond allowance inside the device. A
+  script that misbehaves is stopped — with the exact line shown in the app —
+  and your controller passes straight through, untouched. Your own limits
+  (disabled buttons, stick caps) always outrank every script.</div>
+
+  <h2>Accounts, in one paragraph</h2>
+  <p>There is no password — anywhere. You sign in by typing a short code from
+  the app into the ZeroStick site in your own browser, and confirming a 6-digit
+  code we email you. The device itself never connects to the internet: the app
+  hands it a signed licence it can check entirely offline. If our servers ever
+  went dark mid-game, your controller would not notice.</p>
+
+  {%- if section.settings.show_pricing -%}
+    <h2>What's free, what's paid</h2>
+    <p><strong>Free:</strong> the controller, the bindings, the aim tuning,
+    keyboard &amp; mouse play, Smart Actions, and GPC scripts — no account
+    needed at all.</p>
+    <p><strong>Subscription — Screen Assist only:</strong> the computer-vision
+    aim help is {{ section.settings.price_monthly | escape }}/month or
+    {{ section.settings.price_yearly | escape }}/year, with a
+    {{ section.settings.trial_days | escape }}-day free trial on a new account
+    with a new device. Cancel any time; the device keeps working, always.</p>
+  {%- endif -%}
+
+  <p class="zx-fine">ZeroStick EXO is in active development — features and
+  pricing may change before launch. GPC script compatibility is provided as an
+  accessibility feature. Cronus Zen is a trademark of its respective owner;
+  ZeroStick is not affiliated with, or endorsed by, Cronus or XIM.</p>
+</div>
+
+{% schema %}
+{
+  "name": "ZeroStick EXO promo",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Call-to-action link (hidden when empty)"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Call-to-action label",
+      "default": "Get launch updates"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pricing",
+      "label": "Show pricing",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "price_monthly",
+      "label": "Monthly price",
+      "default": "$10"
+    },
+    {
+      "type": "text",
+      "id": "price_yearly",
+      "label": "Yearly price",
+      "default": "$99"
+    },
+    {
+      "type": "text",
+      "id": "trial_days",
+      "label": "Trial length (days)",
+      "default": "14"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ZeroStick EXO promo"
+    }
+  ]
+}
+{% endschema %}

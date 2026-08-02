@@ -90,5 +90,30 @@
         {%- endif -%}
       </li>
     {%- endfor -%}
+    {%- comment -%}
+      ZeroStick EXO tab — see header-dropdown-menu.liquid for the reasoning.
+      Renders only once a published page with handle `zerostick-exo` exists.
+    {%- endcomment -%}
+    {%- assign zx_exo = pages['zerostick-exo'] -%}
+    {%- if zx_exo != empty and zx_exo.url != blank -%}
+      <li>
+        <a
+          id="HeaderMenu-zerostick-exo"
+          href="{{ zx_exo.url }}"
+          class="header__menu-item list-menu__item link link--text focus-inset"
+          {% if request.path == zx_exo.url %}
+            aria-current="page"
+          {% endif %}
+        >
+          <span
+            {%- if request.path == zx_exo.url %}
+              class="header__active-menu-item"
+            {% endif %}
+          >
+            ZeroStick EXO — Coming Soon
+          </span>
+        </a>
+      </li>
+    {%- endif -%}
   </ul>
 </nav>
