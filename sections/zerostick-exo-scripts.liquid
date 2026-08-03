@@ -1,0 +1,218 @@
+{% comment %}
+  ZeroStick EXO — the "GPC Scripts" sub-tab: how script support works.
+
+  Companion to sections/zerostick-exo.liquid (the Overview sub-tab); same
+  scoped-CSS approach, same sub-tab bar with the roles reversed. The phone
+  illustrations are drawings of the real app screens, and the app is dark by
+  design, so they keep their own dark palette in any theme scheme.
+{% endcomment %}
+
+<style>
+  .zx-exs{ line-height:1.6; }
+  .zx-exs .zx-tabs{ display:flex; gap:.4rem; margin:0 0 2.8rem;
+    border-bottom:.1rem solid rgba(var(--color-foreground),.14); }
+  .zx-exs .zx-tabs a, .zx-exs .zx-tabs span{ display:inline-block; padding:.9rem 1.6rem;
+    font-size:1.4rem; font-weight:600; text-decoration:none;
+    color:rgba(var(--color-foreground),.65); border-bottom:.25rem solid transparent; }
+  .zx-exs .zx-tabs .on{ color:rgb(var(--color-foreground));
+    border-bottom-color:rgb(var(--color-foreground)); }
+  .zx-exs h1{ margin:0 0 1rem; }
+  .zx-exs h2{ margin:4rem 0 1rem; }
+  .zx-exs .zx-lede{ font-size:1.7rem; opacity:.8; margin:0 0 1.6rem; max-width:70rem; }
+  .zx-exs .zx-journey{ display:flex; flex-wrap:wrap; gap:.8rem; align-items:center;
+    margin:1.8rem 0; font-size:1.4rem; font-weight:600; }
+  .zx-exs .zx-journey .st{ border:.1rem solid rgba(var(--color-foreground),.2);
+    border-radius:99rem; padding:.5rem 1.4rem; white-space:nowrap; }
+  .zx-exs .zx-journey .ar{ opacity:.55; }
+  .zx-exs .zx-steps{ display:flex; flex-wrap:wrap; gap:2.4rem; justify-content:center;
+    margin:2.4rem 0; }
+  .zx-exs figure{ margin:0; display:flex; flex-direction:column; gap:.8rem; align-items:center; }
+  .zx-exs figcaption{ font-size:1.3rem; opacity:.7; max-width:30rem; text-align:center; }
+  .zx-exs .zx-note{ border:.1rem solid rgba(var(--color-foreground),.18);
+    border-radius:1rem; padding:1.2rem 1.6rem; font-size:1.4rem; margin:1.6rem 0; }
+  .zx-exs .zx-fine{ font-size:1.3rem; opacity:.65; margin-top:4rem;
+    border-top:.1rem solid rgba(var(--color-foreground),.12); padding-top:1.6rem; }
+  .zx-exs ul.zx-list{ font-size:1.5rem; }
+
+  .zx-exs .ph{ width:30rem; max-width:100%; background:#0d1117; border-radius:2.4rem;
+    padding:1.4rem 1.2rem 1.8rem; border:.1rem solid #30363d; color:#e6edf3;
+    font-size:1.3rem; line-height:1.45; box-shadow:0 1.2rem 3.2rem rgba(0,0,0,.28);
+    text-align:left; }
+  .zx-exs .ph *{ box-sizing:border-box; }
+  .zx-exs .ph .top{ color:#8b949e; font-size:1.15rem; margin:0 .4rem 1rem; }
+  .zx-exs .ph .top .bk{ color:#58a6ff; }
+  .zx-exs .ph .ttl{ font-weight:700; font-size:1.6rem; margin:0 .4rem .2rem; }
+  .zx-exs .ph .sub{ color:#8b949e; font-size:1.1rem; margin:0 .4rem 1rem; }
+  .zx-exs .ph .card{ background:#161b22; border:.1rem solid #30363d; border-radius:1.2rem;
+    padding:.4rem 0; margin:0 0 .8rem; }
+  .zx-exs .ph .row{ display:flex; align-items:center; gap:1rem; padding:.9rem 1.2rem;
+    border-bottom:.1rem solid #30363d; }
+  .zx-exs .ph .row:last-child{ border-bottom:0; }
+  .zx-exs .ph .row .t{ flex:1; min-width:0; }
+  .zx-exs .ph .row .lab{ font-weight:600; }
+  .zx-exs .ph .row .hint{ color:#8b949e; font-size:1.1rem; }
+  .zx-exs .ph .badge{ font-size:1.05rem; font-weight:700; border-radius:99rem;
+    padding:.25rem .9rem; white-space:nowrap; }
+  .zx-exs .ph .b-green{ background:rgba(63,185,80,.16); color:#3fb950; border:.1rem solid rgba(63,185,80,.45); }
+  .zx-exs .ph .b-red{ background:rgba(248,81,73,.14); color:#f85149; border:.1rem solid rgba(248,81,73,.45); }
+  .zx-exs .ph .b-grey{ background:rgba(139,148,158,.14); color:#8b949e; border:.1rem solid rgba(139,148,158,.4); }
+  .zx-exs .ph .btn{ display:inline-block; border-radius:.9rem; padding:.7rem 1.3rem;
+    font-weight:600; font-size:1.25rem; margin:.2rem .6rem .8rem .6rem;
+    background:rgba(88,166,255,.14); color:#58a6ff; border:.1rem solid rgba(88,166,255,.4); }
+  .zx-exs .ph .btn.pri{ background:#58a6ff; color:#0d1117; border-color:#58a6ff; }
+  .zx-exs .ph .note{ border:.1rem solid #30363d; background:#161b22; border-radius:1rem;
+    padding:.8rem 1.1rem; font-size:1.2rem; margin:0 0 .8rem; color:#8b949e; }
+  .zx-exs .ph .note.good{ border-color:rgba(63,185,80,.5); color:#3fb950; }
+  .zx-exs .ph .code{ font-family:ui-monospace,Consolas,Menlo,monospace; font-size:1.05rem;
+    line-height:1.5; white-space:pre; overflow-x:auto; color:#c9d1d9;
+    background:#0a0d12; border:.1rem solid #30363d; border-radius:.9rem;
+    padding:.7rem 1rem; margin:0 0 .8rem; }
+  .zx-exs .ph .rep{ font-size:1.15rem; }
+  .zx-exs .ph .rep .r{ display:flex; gap:.8rem; padding:.6rem 1rem;
+    border-bottom:.1rem solid #30363d; align-items:baseline; }
+  .zx-exs .ph .rep .r:last-child{ border-bottom:0; }
+  .zx-exs .ph .rep .ln{ font-family:ui-monospace,Consolas,Menlo,monospace; color:#58a6ff; flex:none; }
+  .zx-exs .ph .rep .w{ color:#d29922; }
+  .zx-exs .ph .tog{ width:3.6rem; height:2rem; border-radius:99rem; position:relative; flex:none; }
+  .zx-exs .ph .tog:after{ content:""; position:absolute; top:.2rem; width:1.6rem; height:1.6rem;
+    border-radius:50%; background:#fff; }
+  .zx-exs .ph .tog.on{ background:#3fb950; } .zx-exs .ph .tog.on:after{ right:.2rem; }
+  .zx-exs .ph .tog.off{ background:#30363d; } .zx-exs .ph .tog.off:after{ left:.2rem; }
+</style>
+
+<div class="page-width zx-exs" style="padding-top:3.2rem;padding-bottom:5.6rem;">
+
+  <nav class="zx-tabs" aria-label="ZeroStick EXO pages">
+    {%- assign zx_home = pages['zerostick-exo'] -%}
+    {%- if zx_home != empty and zx_home.url != blank -%}
+      <a href="{{ zx_home.url }}">Overview</a>
+    {%- endif -%}
+    <span class="on" aria-current="page">GPC Scripts</span>
+  </nav>
+
+  <h1>Your scripts, on your console</h1>
+  <p class="zx-lede">The EXO runs GPC — the scripting language the Cronus Zen
+  made famous. If you already have scripts, they come with you: paste one into
+  the ZeroStick phone app and the device itself tells you, line by line,
+  exactly what it can run.</p>
+
+  <div class="zx-journey" role="list">
+    <span class="st" role="listitem">1 · Paste</span><span class="ar">→</span>
+    <span class="st" role="listitem">2 · Check</span><span class="ar">→</span>
+    <span class="st" role="listitem">3 · Save</span><span class="ar">→</span>
+    <span class="st" role="listitem">4 · Switch on</span><span class="ar">→</span>
+    <span class="st" role="listitem">5 · Play</span>
+  </div>
+
+  <div class="zx-steps">
+    <figure>
+      <div class="ph" aria-label="Illustration of the Scripts screen with a pasted script">
+        <div class="top"><span class="bk">‹ Back</span></div>
+        <div class="ttl">Scripts</div>
+        <div class="sub">One script runs at a time on this config</div>
+        <div class="code">// Rapid fire on R2. Toggle with SHARE.
+define FIRE    = PS4_R2;
+define HOLD_MS = 40;
+define REST_MS = 30;
+
+int rapid_on = TRUE;
+
+main {
+    if (event_press(PS4_SHARE)) {
+        rapid_on = !rapid_on;
+    }
+    if (rapid_on &amp;&amp; get_val(FIRE) &gt; 90) {
+        combo_run(RapidFire);
+    }
+}
+
+combo RapidFire {
+    set_val(FIRE, 100);
+    wait(HOLD_MS);
+    set_val(FIRE, 0);
+    wait(REST_MS);
+}</div>
+        <span class="btn pri">Check script</span><span class="btn">Save</span>
+      </div>
+      <figcaption>Paste any GPC script. PS4, PS5, Xbox One and Xbox 360 names
+      are interchangeable — a PlayStation script runs on an Xbox config
+      as-is.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="ph" aria-label="Illustration of a line-by-line script report">
+        <div class="top"><span class="bk">‹ Back</span></div>
+        <div class="ttl">Scripts</div>
+        <div class="note good">This script will run on your ZeroStick.</div>
+        <div class="card rep">
+          <div class="r"><span class="ln">line 14</span><span class="w">set_led does
+          nothing on ZeroStick — the script still runs.</span></div>
+          <div class="r"><span class="ln">line 15</span><span class="w">set_rumble does
+          nothing on ZeroStick — the script still runs.</span></div>
+        </div>
+        <span class="btn pri">Check script</span><span class="btn">Save</span>
+      </div>
+      <figcaption>The device answers before anything is saved. LED and rumble
+      calls (the Zen's own hardware) are skipped with a note; the script's
+      timing stays authentic.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="ph" aria-label="Illustration of the script list with one running">
+        <div class="top"><span class="bk">‹ Back</span></div>
+        <div class="ttl">Scripts</div>
+        <div class="sub">One script runs at a time on this config</div>
+        <div class="card">
+          <div class="row"><span class="t"><span class="lab">Rapid fire — R2</span>
+            <div class="hint">rapid-fire-r2</div></span>
+            <span class="badge b-green">running</span><span class="tog on" aria-hidden="true"></span></div>
+          <div class="row"><span class="t"><span class="lab">Anti-recoil (M4)</span>
+            <div class="hint">anti-recoil-m4</div></span>
+            <span class="badge b-grey">off</span><span class="tog off" aria-hidden="true"></span></div>
+        </div>
+        <div class="note good">Saved.</div>
+      </div>
+      <figcaption>One toggle per config. Green means live on the device right
+      now.</figcaption>
+    </figure>
+  </div>
+
+  <h2>What carries over from a Cronus library</h2>
+  <ul class="zx-list">
+    <li><strong>Runs:</strong> rapid fire, turbo, anti-recoil, button remaps,
+    combos and <code>wait()</code> timing, defines, variables, functions,
+    <code>data</code> sections and <code>const</code> tables — the shapes real
+    scripts are made of, with the official identifier numbering.</li>
+    <li><strong>Runs with a note:</strong> LED, rumble and OLED calls — that
+    hardware is the Zen's, so the calls are skipped and the report says so per
+    line while the script runs on.</li>
+    <li><strong>Told no, with the line:</strong> the few things the EXO can't
+    run faithfully yet are refused by name before saving — never silently run
+    wrong.</li>
+  </ul>
+
+  <div class="zx-note"><strong>A script can never break your controller.</strong>
+  Every script runs on a strict per-millisecond allowance inside the device. A
+  script that misbehaves is stopped — with the exact line shown in the app —
+  and your controller passes straight through, untouched. Your own limits
+  (disabled buttons, stick caps) always outrank every script.</div>
+
+  <p class="zx-fine">ZeroStick EXO is in active development — features may
+  change before launch. The screens above are drawings of the real app. GPC
+  script compatibility is provided as an accessibility feature. Cronus Zen is
+  a trademark of its respective owner; ZeroStick is not affiliated with, or
+  endorsed by, Cronus or XIM.</p>
+</div>
+
+{% schema %}
+{
+  "name": "ZS EXO scripts page",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "ZS EXO scripts page"
+    }
+  ]
+}
+{% endschema %}
