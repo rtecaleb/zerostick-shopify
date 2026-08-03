@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "zerostick-8k",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

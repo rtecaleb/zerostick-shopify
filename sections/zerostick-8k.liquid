@@ -1,0 +1,235 @@
+{% comment %}
+  ZeroStick 8K — "Project Lightning" page (the 8K Controllers tab).
+
+  Layout: full-bleed hero (an inline-SVG PCB render carrying the project
+  wordmark — there is no photographable board yet, and the art is our own),
+  then mission, a four-card feature strip, the three planned ways to get one,
+  a small FAQ, and fine print. All styles scoped under .zx8; the hero is
+  deliberately self-coloured (a PCB is a PCB in any theme scheme).
+{% endcomment %}
+
+<style>
+  .zx8{ line-height:1.6; }
+  .zx8 .hero{ position:relative; background:#05070c; }
+  .zx8 .hero svg{ display:block; width:100%; height:auto; }
+  .zx8 .inner{ max-width:110rem; margin:0 auto; padding:0 2rem; }
+  .zx8 h2{ margin:4.4rem 0 1rem; }
+  .zx8 h3{ margin:0 0 .6rem; }
+  .zx8 .mission{ font-size:1.7rem; opacity:.85; max-width:76rem; margin:3.2rem auto 0; }
+  .zx8 .mission p{ margin:0 0 1.2rem; }
+  .zx8 .strip{ display:grid; grid-template-columns:repeat(auto-fit,minmax(22rem,1fr));
+    gap:1.4rem; margin:2rem 0; }
+  .zx8 .feat{ border:.1rem solid rgba(var(--color-foreground),.14);
+    border-radius:1.2rem; padding:1.8rem 2rem; }
+  .zx8 .feat .ico{ font-size:2rem; line-height:1; margin-bottom:.8rem; color:#58a6ff; }
+  .zx8 .feat p{ margin:0; opacity:.75; font-size:1.4rem; }
+  .zx8 .ways{ display:grid; grid-template-columns:repeat(auto-fit,minmax(24rem,1fr));
+    gap:1.4rem; margin:2rem 0; }
+  .zx8 .way{ border:.1rem solid rgba(var(--color-foreground),.14);
+    border-radius:1.2rem; padding:1.8rem 2rem; display:flex; flex-direction:column; }
+  .zx8 .way p{ opacity:.75; font-size:1.4rem; flex:1; }
+  .zx8 .way .tag{ display:inline-block; align-self:flex-start; font-size:1.1rem;
+    font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    border:.1rem solid rgba(var(--color-foreground),.25); border-radius:99rem;
+    padding:.3rem 1rem; margin-bottom:1rem; opacity:.8; }
+  .zx8 details{ border:.1rem solid rgba(var(--color-foreground),.14);
+    border-radius:1rem; padding:1.2rem 1.6rem; margin:0 0 1rem; }
+  .zx8 summary{ font-weight:600; cursor:pointer; font-size:1.5rem; }
+  .zx8 details p{ margin:.8rem 0 0; opacity:.78; font-size:1.45rem; }
+  .zx8 .fine{ font-size:1.3rem; opacity:.65; margin:4rem 0 0;
+    border-top:.1rem solid rgba(var(--color-foreground),.12); padding-top:1.6rem; }
+  .zx8 .cta-row{ display:flex; flex-wrap:wrap; gap:1.2rem; margin:2rem 0; }
+</style>
+
+<div class="zx8" style="padding-bottom:5.6rem;">
+
+  <div class="hero">
+    <svg viewBox="0 0 1600 700" role="img" preserveAspectRatio="xMidYMid slice"
+         aria-label="Concept render of the Project Lightning controller board: a dark circuit board with gold traces and a lightning motif, carrying the words ZeroStick 8K Polling, Project Lightning">
+      <defs>
+        <linearGradient id="z8bg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#0a0f1a"/>
+          <stop offset=".55" stop-color="#080b12"/>
+          <stop offset="1" stop-color="#04060a"/>
+        </linearGradient>
+        <linearGradient id="z8board" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#101826"/>
+          <stop offset="1" stop-color="#0a111c"/>
+        </linearGradient>
+        <linearGradient id="z8bolt" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#bfe3ff"/>
+          <stop offset=".5" stop-color="#58a6ff"/>
+          <stop offset="1" stop-color="#1f6fd0"/>
+        </linearGradient>
+        <radialGradient id="z8glow" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#58a6ff" stop-opacity=".35"/>
+          <stop offset="1" stop-color="#58a6ff" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <rect width="1600" height="700" fill="url(#z8bg)"/>
+
+      <!-- the board, tilted, filling the left two-thirds -->
+      <g transform="rotate(-8 450 350)">
+        <rect x="-80" y="120" width="1000" height="520" rx="26"
+              fill="url(#z8board)" stroke="#223047" stroke-width="2"/>
+        <!-- gold traces -->
+        <g stroke="#c9a86a" stroke-width="3" fill="none" opacity=".8"
+           stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 200 H240 L300 260 H520"/>
+          <path d="M20 260 H200 L260 320 H480 L520 360"/>
+          <path d="M20 500 H180 L240 440 H460"/>
+          <path d="M20 560 H300 L360 500 H560"/>
+          <path d="M640 180 V300 L700 360 V520"/>
+          <path d="M760 200 V280 L820 340 V480"/>
+        </g>
+        <!-- pads and vias -->
+        <g fill="#c9a86a" opacity=".9">
+          <circle cx="240" cy="200" r="7"/><circle cx="200" cy="260" r="7"/>
+          <circle cx="180" cy="500" r="7"/><circle cx="300" cy="560" r="7"/>
+          <circle cx="640" cy="180" r="7"/><circle cx="760" cy="200" r="7"/>
+          <circle cx="520" cy="200" r="7"/><circle cx="560" cy="500" r="7"/>
+        </g>
+        <!-- stick-mechanism footprints -->
+        <g stroke="#c9a86a" fill="none" stroke-width="3" opacity=".85">
+          <circle cx="180" cy="360" r="58"/>
+          <circle cx="180" cy="360" r="34"/>
+          <circle cx="180" cy="360" r="10" fill="#c9a86a"/>
+          <circle cx="620" cy="430" r="58"/>
+          <circle cx="620" cy="430" r="34"/>
+          <circle cx="620" cy="430" r="10" fill="#c9a86a"/>
+        </g>
+        <!-- the processor -->
+        <g>
+          <rect x="380" y="300" width="120" height="120" rx="8"
+                fill="#05070c" stroke="#2c3b55" stroke-width="2"/>
+          <g stroke="#c9a86a" stroke-width="3" opacity=".8">
+            <path d="M380 320 h-24 M380 350 h-24 M380 380 h-24 M380 410 h-24"/>
+            <path d="M500 320 h24 M500 350 h24 M500 380 h24 M500 410 h24"/>
+          </g>
+          <text x="440" y="352" text-anchor="middle" fill="#58a6ff"
+                font-family="Arial, sans-serif" font-size="17" font-weight="700"
+                letter-spacing="2">ZS-8K</text>
+          <text x="440" y="378" text-anchor="middle" fill="#4a5a75"
+                font-family="Arial, sans-serif" font-size="12"
+                letter-spacing="1">LIGHTNING</text>
+        </g>
+        <!-- USB-C footprint -->
+        <rect x="404" y="128" width="72" height="22" rx="11"
+              fill="#05070c" stroke="#2c3b55" stroke-width="2"/>
+        <!-- silkscreen -->
+        <text x="40" y="620" fill="#3d4c66" font-family="Arial, sans-serif"
+              font-size="15" letter-spacing="3">ZS-LTN-01 · DESIGNED BY ZEROSTICK</text>
+      </g>
+
+      <!-- lightning bolt striking the processor -->
+      <ellipse cx="470" cy="330" rx="260" ry="200" fill="url(#z8glow)"/>
+      <path d="M560 20 L470 240 L540 250 L400 470 L452 300 L384 290 Z"
+            fill="url(#z8bolt)" opacity=".95"/>
+
+      <!-- right-aligned wordmark block -->
+      <g font-family="Arial, sans-serif" text-anchor="end">
+        <text x="1540" y="210" fill="#8fa3c0" font-size="34"
+              letter-spacing="10">ZEROSTICK · 8K POLLING</text>
+        <text x="1540" y="320" fill="#f2f6fc" font-size="92" font-weight="700"
+              letter-spacing="4">PROJECT</text>
+        <text x="1540" y="424" fill="#58a6ff" font-size="92" font-weight="700"
+              letter-spacing="4">LIGHTNING</text>
+        <text x="1540" y="500" fill="#c9d5e8" font-size="30" letter-spacing="3">
+          NATIVE 8K POLLING · ULTRA-LOW INPUT LATENCY</text>
+        <text x="1540" y="560" fill="#8fa3c0" font-size="26" letter-spacing="6">
+          COMING SOON</text>
+      </g>
+
+      <!-- concept tag -->
+      <g font-family="Arial, sans-serif">
+        <rect x="28" y="640" width="190" height="34" rx="17" fill="none"
+              stroke="#3d4c66" stroke-width="2"/>
+        <text x="123" y="662" text-anchor="middle" fill="#8fa3c0" font-size="15"
+              letter-spacing="2">CONCEPT RENDER</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="inner">
+    <div class="mission">
+      <p><strong>Project Lightning is ZeroStick's own 8K board</strong> — a
+      performance-first controller platform designed in-house, from the traces
+      up. It replaces a standard pad's electronics with our board: native
+      8,000 Hz polling, response measured in microseconds, and the
+      drift-resistant TMR sticks our controllers are already known for.</p>
+      <p>A standard controller reports to your PC up to 1,000 times a second.
+      Lightning reports <strong>8,000 times a second</strong> — your input
+      arrives up to eight times sooner, every single frame.</p>
+    </div>
+
+    <h2>Built for exactly one thing</h2>
+    <div class="strip">
+      <div class="feat"><div class="ico">⚡</div><h3>Native 8K polling</h3>
+        <p>8,000 reports a second on PC — not overclocked, not software-forced.
+        Native, from the board itself.</p></div>
+      <div class="feat"><div class="ico">🎯</div><h3>TMR drift-free sticks</h3>
+        <p>The same magnetic TMR stick technology in every ZeroStick build
+        today — stable accuracy that doesn't wear into drift.</p></div>
+      <div class="feat"><div class="ico">⏱</div><h3>Microsecond response</h3>
+        <p>Every part of the signal path chosen for speed. Nothing between
+        your thumb and the game that doesn't have to be there.</p></div>
+      <div class="feat"><div class="ico">🎮</div><h3>A shell you already know</h3>
+        <p>Familiar controller in your hands — Lightning changes what's
+        inside, not what you've spent years mastering.</p></div>
+    </div>
+
+    <h2>How you'll get one</h2>
+    <div class="ways">
+      <div class="way"><span class="tag">At launch</span>
+        <h3>Built controllers</h3>
+        <p>Complete controllers built by ZeroStick on the Lightning board —
+        tuned, calibrated, and backed by our 5-year stick warranty.</p></div>
+      <div class="way"><span class="tag">Planned</span>
+        <h3>Send-in upgrades</h3>
+        <p>Send us your own controller and we install Lightning inside it —
+        your shell, our board.</p></div>
+      <div class="way"><span class="tag">Planned</span>
+        <h3>DIY kits</h3>
+        <p>The board and a pre-wired kit for builders who want to do the
+        install themselves.</p></div>
+    </div>
+    <div class="cta-row">
+      <a href="/pages/contact" class="button">Get launch updates</a>
+    </div>
+
+    <h2>Questions we're already hearing</h2>
+    <details><summary>What is Project Lightning?</summary>
+      <p>ZeroStick's own controller board: our design, our branding, our
+      firmware. Drop it into a controller shell and the controller becomes an
+      8K-polling, microsecond-response instrument.</p></details>
+    <details><summary>Does 8K polling work on console?</summary>
+      <p>Straight answer: native 8K polling is a <strong>PC</strong> feature —
+      consoles cap how fast any controller may report, and no board changes
+      that. On console you still get the TMR sticks and the response tuning;
+      on PC you get the full 8,000 Hz.</p></details>
+    <details><summary>When can I buy one?</summary>
+      <p>It's in development now. The fastest way to know the moment it's
+      real: the launch-updates button above.</p></details>
+
+    <p class="fine">Project Lightning is in active development — specifications,
+    availability and pricing may change, and the board image above is a concept
+    render of our own design, not a photograph. DualSense and DualShock are
+    trademarks of Sony Interactive Entertainment; Xbox is a trademark of
+    Microsoft. ZeroStick modifies genuine first-party hardware and is not
+    affiliated with or endorsed by Sony or Microsoft.</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "ZS 8K Project Lightning",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "ZS 8K Project Lightning"
+    }
+  ]
+}
+{% endschema %}
