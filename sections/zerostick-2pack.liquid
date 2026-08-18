@@ -271,10 +271,6 @@
               <img src="{{ section.settings.img_detail_1 }}" loading="lazy"
                    alt="K-Silver TMR magnetic sensor detail" />
             {%- endif -%}
-            {%- if section.settings.img_detail_2 != blank -%}
-              <img src="{{ section.settings.img_detail_2 }}" loading="lazy"
-                   alt="ZeroStick Pro module installed in a PS5 DualSense Edge controller" />
-            {%- endif -%}
             {%- if section.settings.img_detail_3 != blank -%}
               <img src="{{ section.settings.img_detail_3 }}" loading="lazy"
                    alt="ZeroStick Pro TMR module specification overview" />
@@ -472,13 +468,6 @@
       "id": "img_detail_1",
       "label": "Detail image 1 URL",
       "default": "https://cdn.shopify.com/s/files/1/0782/4624/8633/files/image_2.webp?v=1783121683"
-    },
-    {
-      "type": "text",
-      "id": "img_detail_2",
-      "label": "Detail image 2 URL",
-      "info": "Left empty on purpose: the on-controller shot has pink sticks, which contradicts a black or red pack. Only fill this with a colour-neutral image.",
-      "default": ""
     },
     {
       "type": "text",
