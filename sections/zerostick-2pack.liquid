@@ -97,8 +97,12 @@
 
   .zs2p .wrap{ overflow-x:auto; }
   .zs2p .pricetable{ width:100%; border-collapse:collapse; margin:1.8rem 0 0; font-size:1.45rem; }
+  /* Only the short columns hold their line; the product name wraps, otherwise
+     the table overflows and the product-page link is scrolled off. */
   .zs2p .pricetable th, .zs2p .pricetable td{ text-align:left; padding:1.2rem 1.2rem;
-    border-bottom:.1rem solid rgba(var(--color-foreground),.14); white-space:nowrap; }
+    border-bottom:.1rem solid rgba(var(--color-foreground),.14); }
+  .zs2p .pricetable td.money, .zs2p .pricetable td.sku,
+  .zs2p .pricetable td.cfg, .zs2p .pricetable td.go{ white-space:nowrap; }
   .zs2p .pricetable thead th{ font-size:1.15rem; letter-spacing:.1em;
     text-transform:uppercase; opacity:.68; }
   .zs2p .pricetable td.money{ font-weight:800; }
@@ -153,25 +157,25 @@
           <tbody>
             <tr>
               <td>{{ section.settings.family_name }}</td>
-              <td>2 Pack &mdash; Black</td>
-              <td>{{ section.settings.sku_black }}</td>
+              <td class="cfg">2 Pack &mdash; Black</td>
+              <td class="sku">{{ section.settings.sku_black }}</td>
               <td class="money">{{ section.settings.msrp_black }}</td>
-              <td><a href="{{ section.settings.page_black }}">View product</a></td>
+              <td class="go"><a href="{{ section.settings.page_black }}">View product</a></td>
             </tr>
             <tr>
               <td>{{ section.settings.family_name }}</td>
-              <td>2 Pack &mdash; Red</td>
-              <td>{{ section.settings.sku_red }}</td>
+              <td class="cfg">2 Pack &mdash; Red</td>
+              <td class="sku">{{ section.settings.sku_red }}</td>
               <td class="money">{{ section.settings.msrp_red }}</td>
-              <td><a href="{{ section.settings.page_red }}">View product</a></td>
+              <td class="go"><a href="{{ section.settings.page_red }}">View product</a></td>
             </tr>
             {%- if section.settings.show_single_row -%}
               <tr>
                 <td>{{ section.settings.family_name }}</td>
-                <td>Single Module &mdash; {{ section.settings.single_colors }}</td>
-                <td>{{ section.settings.sku_single }}</td>
+                <td class="cfg">Single Module &mdash; {{ section.settings.single_colors }}</td>
+                <td class="sku">{{ section.settings.sku_single }}</td>
                 <td class="money">{{ section.settings.msrp_single }}</td>
-                <td><a href="{{ section.settings.page_single }}">View product</a></td>
+                <td class="go"><a href="{{ section.settings.page_single }}">View product</a></td>
               </tr>
             {%- endif -%}
           </tbody>
