@@ -69,8 +69,11 @@
   .zs2p .btn-buy{ display:inline-block; background:#1668dc; color:#fff;
     border-radius:.8rem; padding:1.2rem 2.4rem; font-weight:700; font-size:1.5rem;
     text-decoration:none; }
-  .zs2p .btn-buy.ghost{ background:transparent; color:rgb(var(--color-foreground));
-    border:.1rem solid rgba(var(--color-foreground),.3); }
+  /* `inherit`, not --color-foreground: inside the price box that token resolves
+     dark on the navy scheme and the link all but disappears. */
+  .zs2p .btn-buy.ghost{ background:transparent; color:inherit;
+    border:.1rem solid currentColor; opacity:.75; }
+  .zs2p .btn-buy.ghost:hover{ opacity:1; }
   .zs2p .btn-buy:hover{ opacity:.9; }
 
   .zs2p .idgrid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
@@ -413,7 +416,12 @@
       "label": "Product image URL",
       "default": "https://cdn.shopify.com/s/files/1/0782/4624/8633/files/MAIN_BLACK_STICK.png?v=1779484666"
     },
-    { "type": "url", "id": "buy_black", "label": "Add-to-cart / product link" },
+    {
+      "type": "text",
+      "id": "buy_black",
+      "label": "Add-to-cart / product link",
+      "default": "/products/zerostick-pro-tmr-dualsense-edge-module-2-pack-black"
+    },
     {
       "type": "text",
       "id": "page_black",
@@ -437,7 +445,12 @@
       "label": "Product image URL",
       "default": "https://cdn.shopify.com/s/files/1/0782/4624/8633/files/MAIN_RED_STICK.png?v=1779484666"
     },
-    { "type": "url", "id": "buy_red", "label": "Add-to-cart / product link" },
+    {
+      "type": "text",
+      "id": "buy_red",
+      "label": "Add-to-cart / product link",
+      "default": "/products/zerostick-pro-tmr-dualsense-edge-module-2-pack-red"
+    },
     {
       "type": "text",
       "id": "page_red",
