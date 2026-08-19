@@ -1,11 +1,12 @@
 {% comment %}
   ZeroStick Pro TMR — DualSense Edge 2-Pack manufacturer product pages.
 
-  ONE section drives THREE pages, switched on the page handle:
+  ONE section drives FOUR pages, switched on the page handle:
 
     /pages/tmr-2-pack          -> index: the official MSRP price list
     /pages/tmr-2-pack-black    -> 2 Pack Black product page
     /pages/tmr-2-pack-red      -> 2 Pack Red product page
+    /pages/tmr-2-pack-blue     -> 2 Pack Blue product page
 
   Every price, SKU, image and buy link is a theme setting, so the numbers live
   in one place and are edited in the customizer. Styles are scoped under .zs2p.
@@ -18,6 +19,8 @@
     assign face = 'black'
   elsif h contains 'red'
     assign face = 'red'
+  elsif h contains 'blue'
+    assign face = 'blue'
   endif
 -%}
 
@@ -173,6 +176,13 @@
               <td class="money">{{ section.settings.msrp_red }}</td>
               <td class="go"><a href="{{ section.settings.page_red }}">View product</a></td>
             </tr>
+            <tr>
+              <td>{{ section.settings.family_name }}</td>
+              <td class="cfg">2 Pack &mdash; Blue</td>
+              <td class="sku">{{ section.settings.sku_blue }}</td>
+              <td class="money">{{ section.settings.msrp_blue }}</td>
+              <td class="go"><a href="{{ section.settings.page_blue }}">View product</a></td>
+            </tr>
             {%- if section.settings.show_single_row -%}
               <tr>
                 <td>{{ section.settings.family_name }}</td>
@@ -209,6 +219,17 @@
           <div class="price">{{ section.settings.msrp_red }}</div>
           <a class="btn-buy" href="{{ section.settings.page_red }}">View product &amp; buy</a>
         </div>
+        <div class="card">
+          {%- if section.settings.img_blue != blank -%}
+            <img src="{{ section.settings.img_blue }}" loading="lazy"
+                 alt="ZeroStick Pro TMR joystick module for PS5 DualSense Edge, blue, 2 pack" />
+          {%- endif -%}
+          <span class="lbl">2 Pack &mdash; Blue</span>
+          <h3>{{ section.settings.family_name }}</h3>
+          <span class="lbl" style="margin-top:1rem;">Manufacturer&rsquo;s Suggested Retail Price</span>
+          <div class="price">{{ section.settings.msrp_blue }}</div>
+          <a class="btn-buy" href="{{ section.settings.page_blue }}">View product &amp; buy</a>
+        </div>
       </div>
 
       <div class="fine">
@@ -227,9 +248,7 @@
           assign sku        = section.settings.sku_black
           assign buy        = section.settings.buy_black
           assign img_main   = section.settings.img_black
-          assign other_url  = section.settings.page_red
-          assign other_name = 'the 2 Pack Red'
-        else
+        elsif face == 'red'
           assign colour     = 'Red'
           assign full_name  = section.settings.name_red
           assign msrp       = section.settings.msrp_red
@@ -237,8 +256,14 @@
           assign sku        = section.settings.sku_red
           assign buy        = section.settings.buy_red
           assign img_main   = section.settings.img_red
-          assign other_url  = section.settings.page_black
-          assign other_name = 'the 2 Pack Black'
+        else
+          assign colour     = 'Blue'
+          assign full_name  = section.settings.name_blue
+          assign msrp       = section.settings.msrp_blue
+          assign price      = section.settings.price_blue
+          assign sku        = section.settings.sku_blue
+          assign buy        = section.settings.buy_blue
+          assign img_main   = section.settings.img_blue
         endif
       -%}
 
@@ -292,7 +317,7 @@
               {%- if buy != blank -%}
                 <a class="btn-buy" href="{{ buy }}">Add to cart &mdash; {{ price }}</a>
               {%- endif -%}
-              <a class="btn-buy ghost" href="{{ other_url }}">See {{ other_name }}</a>
+              <a class="btn-buy ghost" href="{{ section.settings.page_index }}">See all 2-Pack options</a>
             </div>
 
             <div class="idgrid">
@@ -366,6 +391,12 @@
   "tag": "section",
   "settings": [
     { "type": "header", "content": "Shared" },
+    {
+      "type": "text",
+      "id": "page_index",
+      "label": "MSRP price-list page URL",
+      "default": "/pages/tmr-2-pack"
+    },
     {
       "type": "text",
       "id": "family_name",
@@ -460,6 +491,35 @@
       "id": "page_red",
       "label": "Page URL (cross-links)",
       "default": "/pages/tmr-2-pack-red"
+    },
+
+    { "type": "header", "content": "2 Pack — Blue" },
+    {
+      "type": "text",
+      "id": "name_blue",
+      "label": "Full product name",
+      "default": "ZeroStick Pro Custom TMR Hall Effect Joystick Module — Compatible with PS5 DualSense Edge — TMR Drift Free Magnetic Stick Replacement, High Precision Long Life Design (2 Pack Blue)"
+    },
+    { "type": "text", "id": "msrp_blue", "label": "MSRP", "default": "$149.99" },
+    { "type": "text", "id": "price_blue", "label": "Current selling price", "default": "$149.99" },
+    { "type": "text", "id": "sku_blue", "label": "Model / SKU", "default": "ZS-PRO-DSE-2PK-BLU" },
+    {
+      "type": "text",
+      "id": "img_blue",
+      "label": "Product image URL",
+      "default": "https://cdn.shopify.com/s/files/1/0782/4624/8633/files/MAIN_BLUE_STICK.png?v=1779484666"
+    },
+    {
+      "type": "text",
+      "id": "buy_blue",
+      "label": "Add-to-cart / product link",
+      "default": "/products/zerostick-pro-tmr-dualsense-edge-module-2-pack-blue"
+    },
+    {
+      "type": "text",
+      "id": "page_blue",
+      "label": "Page URL (cross-links)",
+      "default": "/pages/tmr-2-pack-blue"
     },
 
     { "type": "header", "content": "Detail images (product pages)" },
