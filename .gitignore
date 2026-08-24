@@ -10,3 +10,6 @@ Thumbs.db
 .shopify
 node_modules
 *.zip
+# Internal SEO working notes — drafts, editorial markers and open
+# questions about live marketing claims. This repo is public; these stay local.
+.seo/
