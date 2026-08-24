@@ -1,0 +1,233 @@
+{% comment %}
+  ZeroStick guide page — the shared shell for every long-form content page
+  (drift guide, TMR vs Hall effect, installation, compatibility, and so on).
+
+  Deliberately generic. The prose lives in the Shopify page body, so it stays
+  editable in admin without a theme deploy; this section supplies only the
+  furniture that prose cannot carry itself:
+
+    - Article structured data, so the page is attributable and dateable
+    - A breadcrumb trail, so it is not an orphan in search results
+    - A "related guides" rail, which is the internal-linking spine — each guide
+      pointing at the next is what turns seven pages into a topic cluster
+      rather than seven unconnected documents
+    - A contextual product CTA, so a guide never dead-ends
+
+  Every related link is guarded on `pg.url`, so the rail only ever shows pages
+  that actually exist. Same idiom as zerostick-exo.liquid and the footer.
+{% endcomment %}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<style>
+  .zs-guide{ line-height:1.7; }
+  .zs-guide .zs-crumbs{ font-size:1.3rem; opacity:.65; margin:0 0 1.6rem; }
+  .zs-guide .zs-crumbs a{ color:inherit; }
+  .zs-guide h1{ margin:0 0 1.2rem; line-height:1.15; }
+  .zs-guide .zs-lede{ font-size:1.9rem; line-height:1.5; opacity:.82; margin:0 0 2.4rem;
+    padding-bottom:2.4rem; border-bottom:.1rem solid rgba(var(--color-foreground),.14); }
+  .zs-guide .zs-body{ max-width:72rem; }
+  .zs-guide .zs-body h2{ margin:4rem 0 1.2rem; line-height:1.25; }
+  .zs-guide .zs-body h3{ margin:2.8rem 0 .8rem; }
+  .zs-guide .zs-body p, .zs-guide .zs-body li{ font-size:1.6rem; }
+  .zs-guide .zs-body ul, .zs-guide .zs-body ol{ padding-left:2.2rem; margin:0 0 1.6rem; }
+  .zs-guide .zs-body li{ margin-bottom:.6rem; }
+  .zs-guide .zs-body img{ max-width:100%; height:auto; border-radius:.8rem; }
+  /* Tables carry the comparison content on these pages and must never
+     push the page into a horizontal scroll on a phone. */
+  .zs-guide .zs-body table{ width:100%; border-collapse:collapse; margin:2rem 0; font-size:1.45rem; }
+  .zs-guide .zs-body th, .zs-guide .zs-body td{ text-align:left; padding:.9rem 1.1rem;
+    border:.1rem solid rgba(var(--color-foreground),.16); vertical-align:top; }
+  .zs-guide .zs-body th{ background:rgba(var(--color-foreground),.05); font-weight:600; }
+  .zs-guide .zs-table-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .zs-guide .zs-body blockquote{ margin:2rem 0; padding:1.2rem 1.6rem;
+    border-left:.4rem solid #298DDF; background:rgba(var(--color-foreground),.04);
+    border-radius:0 .6rem .6rem 0; font-size:1.5rem; }
+  .zs-guide .zs-cta{ margin:4rem 0 0; padding:2.4rem 2.6rem;
+    border:.1rem solid rgba(var(--color-foreground),.16); border-radius:1.2rem; }
+  .zs-guide .zs-cta h2{ margin:0 0 .6rem; font-size:2rem; }
+  .zs-guide .zs-cta p{ margin:0 0 1.6rem; opacity:.78; font-size:1.5rem; }
+  .zs-guide .zs-related{ margin:4rem 0 0; padding-top:2.4rem;
+    border-top:.1rem solid rgba(var(--color-foreground),.14); }
+  .zs-guide .zs-related h2{ font-size:1.7rem; margin:0 0 1.4rem; }
+  .zs-guide .zs-related-grid{ display:grid; gap:1rem;
+    grid-template-columns:repeat(auto-fit,minmax(24rem,1fr)); }
+  .zs-guide .zs-related-card{ display:block; padding:1.4rem 1.6rem; text-decoration:none;
+    border:.1rem solid rgba(var(--color-foreground),.14); border-radius:.9rem;
+    color:inherit; font-size:1.5rem; font-weight:600; }
+  .zs-guide .zs-related-card:hover{ border-color:rgba(var(--color-foreground),.34); }
+  @media (max-width:749px){
+    .zs-guide .zs-lede{ font-size:1.7rem; }
+    .zs-guide .zs-cta{ padding:1.8rem; }
+  }
+</style>
+
+<div class="zs-guide page-width section-{{ section.id }}-padding">
+
+  <nav class="zs-crumbs" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">Home</a>
+    <span aria-hidden="true">/</span>
+    <span>{{ page.title | default: section.settings.heading | escape }}</span>
+  </nav>
+
+  <h1>{{ page.title | default: section.settings.heading | escape }}</h1>
+
+  {%- if section.settings.lede != blank -%}
+    <div class="zs-lede">{{ section.settings.lede }}</div>
+  {%- endif -%}
+
+  {%- comment -%}
+    page.content is the prose, authored in admin. Falls back to the section's
+    own rich text so the template is previewable before a page exists.
+  {%- endcomment -%}
+  <div class="zs-body">
+    {%- if page.content != blank -%}
+      {{ page.content }}
+    {%- else -%}
+      {{ section.settings.fallback_body }}
+    {%- endif -%}
+  </div>
+
+  {%- assign cta_product = all_products[section.settings.cta_product] -%}
+  {%- if cta_product.title -%}
+    <div class="zs-cta">
+      <h2>{{ section.settings.cta_heading | default: cta_product.title | escape }}</h2>
+      {%- if section.settings.cta_text != blank -%}
+        <p>{{ section.settings.cta_text }}</p>
+      {%- endif -%}
+      <a class="button" href="{{ cta_product.url }}">
+        {{ section.settings.cta_label | default: 'View product' | escape }}
+      </a>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%}
+    The internal-linking spine. Handles are entered per page in the theme
+    editor, so each guide can point at the next one in the reading order
+    rather than every guide linking to every other.
+  {%- endcomment -%}
+  {%- assign related = section.settings.related_handles | split: ',' -%}
+  {%- assign related_count = 0 -%}
+  {%- for h in related -%}
+    {%- assign hh = h | strip -%}
+    {%- assign rp = pages[hh] -%}
+    {%- if rp.url -%}{%- assign related_count = related_count | plus: 1 -%}{%- endif -%}
+  {%- endfor -%}
+
+  {%- if related_count > 0 -%}
+    <div class="zs-related">
+      <h2>{{ section.settings.related_heading | default: 'Keep reading' | escape }}</h2>
+      <div class="zs-related-grid">
+        {%- for h in related -%}
+          {%- assign hh = h | strip -%}
+          {%- assign rp = pages[hh] -%}
+          {%- if rp.url -%}
+            <a class="zs-related-card" href="{{ rp.url }}">{{ rp.title | escape }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+{%- comment -%}
+  Article + BreadcrumbList. Article gives the page an author and dates, which
+  is what lets it be treated as a document rather than a loose block of text.
+{%- endcomment -%}
+{%- if page.title -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Article",
+  "headline": {{ page.title | json }},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ page.url | prepend: request.origin | json }}
+  },
+  {%- if page.published_at %}
+  "datePublished": {{ page.published_at | date: '%Y-%m-%d' | json }},
+  {%- endif %}
+  "dateModified": {{ 'now' | date: '%Y-%m-%d' | json }},
+  "author": { "@type": "Organization", "name": {{ shop.name | json }} },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": {{ request.origin | json }}
+  },
+  "description": {{ page.content | strip_html | strip_newlines | truncate: 300 | json }}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",
+      "item": {{ request.origin | append: routes.root_url | json }} },
+    { "@type": "ListItem", "position": 2, "name": {{ page.title | json }},
+      "item": {{ page.url | prepend: request.origin | json }} }
+  ]
+}
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "ZeroStick Guide",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Fallback heading",
+      "info": "Only used when previewing without a page attached. The page title wins."
+    },
+    {
+      "type": "richtext",
+      "id": "lede",
+      "label": "Standfirst",
+      "info": "One or two sentences under the title. This is the passage most often quoted in an AI answer, so make it a complete, standalone statement."
+    },
+    {
+      "type": "richtext",
+      "id": "fallback_body",
+      "label": "Fallback body",
+      "info": "Shown only when the page has no content of its own."
+    },
+    { "type": "header", "content": "Product call to action" },
+    {
+      "type": "product",
+      "id": "cta_product",
+      "label": "Product",
+      "info": "Leave empty to hide the block. A guide should never dead-end."
+    },
+    { "type": "text", "id": "cta_heading", "label": "Heading" },
+    { "type": "richtext", "id": "cta_text", "label": "Text" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "View product" },
+    { "type": "header", "content": "Related guides" },
+    { "type": "text", "id": "related_heading", "label": "Heading", "default": "Keep reading" },
+    {
+      "type": "text",
+      "id": "related_handles",
+      "label": "Page handles, comma separated",
+      "info": "e.g. tmr-vs-hall-effect, how-tmr-modules-work. Links to pages that do not exist yet are skipped automatically."
+    },
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding top", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Padding bottom", "default": 56 }
+  ],
+  "presets": [{ "name": "ZeroStick Guide" }]
+}
+{% endschema %}

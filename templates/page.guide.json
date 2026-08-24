@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main": {
+      "type": "zs-guide",
+      "settings": {
+        "related_heading": "Keep reading"
+      }
+    },
+    "faq": {
+      "type": "zs-faq",
+      "settings": {
+        "heading": "Common questions",
+        "open_first": false
+      },
+      "blocks": {},
+      "block_order": []
+    }
+  },
+  "order": ["main", "faq"]
+}
