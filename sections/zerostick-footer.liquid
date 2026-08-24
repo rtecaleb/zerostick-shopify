@@ -1,55 +1,175 @@
-{%- comment -%} ZeroStick footer (matches netlify site) {%- endcomment -%}
-<footer>
+{%- comment -%}
+  ZeroStick footer.
+
+  Four columns — SHOP / RESOURCES / SUPPORT / COMPANY. RESOURCES is the content
+  hub: it is the only sitewide link into the guide pages, so every one of them
+  gets a crawlable route from every page on the store.
+
+  Three things to know before editing:
+
+  1. Every guide link is wrapped in `{% if pages['handle'] != blank %}`. The
+     pages are created in admin separately from this theme, so an unguarded link
+     would 404 sitewide until the page existed. Same idiom as the EXO tab.
+  2. Social URLs come from section settings, not hardcoded hrefs. The previous
+     version shipped `href="#"` on all three, which is a dead link on every page
+     of the site. An unset setting now renders nothing at all.
+  3. Colours are white alphas, NOT Dawn's scheme tokens. zs-main.css:430 sets
+     `footer { background: var(--black) }` unconditionally, so the footer is
+     always a dark band — `rgb(var(--color-foreground))` would render near-black
+     text on it in a light scheme.
+{%- endcomment -%}
+
+{%- style -%}
+  /* zs-main.css sets .footer-grid to 2fr 1fr 1fr 1fr. The RESOURCES column
+     makes a fifth child, which would wrap misaligned on that track list. */
+  .zs-footer .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  .zs-footer .footer-grid.has-resources { grid-template-columns: 2fr 1fr 1fr 1fr 1fr; }
+  @media (max-width: 989px) {
+    .zs-footer .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 599px) {
+    .zs-footer .footer-grid { grid-template-columns: 1fr; }
+  }
+  .zs-footer .footer-col ul { list-style: none; margin: 0; padding: 0; }
+  .zs-footer .footer-col li { margin-bottom: 8px; }
+  .zs-footer .zs-legal a { color: rgba(255,255,255,0.7); }
+  .zs-footer .zs-legal a:hover { color: #fff; }
+{%- endstyle -%}
+
+{%- comment -%}
+  Count first: with no guides published the column would otherwise render
+  as a bare "Resources" heading over an empty list.
+{%- endcomment -%}
+{%- assign guide_count = 0 -%}
+{%- assign guide_handles_probe = 'dualsense-edge-stick-drift-guide,tmr-vs-hall-effect,how-tmr-modules-work,testing-and-calibration,installation-guide,compatibility,faq,8k-controllers,ps5-builder' | split: ',' -%}
+{%- for h in guide_handles_probe -%}
+  {%- assign probe = pages[h] -%}
+  {%- if probe.url -%}{%- assign guide_count = guide_count | plus: 1 -%}{%- endif -%}
+{%- endfor -%}
+
+<footer class="zs-footer">
   <div class="container">
-    <div class="footer-grid">
+    <div class="footer-grid{% if guide_count > 0 %} has-resources{% endif %}">
       <div class="footer-brand">
-        <a href="/"><img src="{{ 'zerostick-logo.png' | asset_url }}" alt="ZeroStick" style="height:38px;width:auto;margin-bottom:16px" /></a>
-        <p>High-performance modified controllers built for speed, precision, and durability. Genuine first-party controllers, upgraded with TMR technology and backed by a 5-year stick warranty.</p>
+        <a href="{{ routes.root_url }}">
+          <img
+            src="{{ 'zerostick-logo.png' | asset_url }}"
+            alt="ZeroStick"
+            width="150" height="38" loading="lazy"
+            style="height:38px;width:auto;margin-bottom:16px">
+        </a>
+        <p>{{ section.settings.blurb }}</p>
       </div>
+
       <div class="footer-col">
         <h4>Shop</h4>
         <ul>
           <li><a href="/collections/all">All Products</a></li>
-          <li><a href="/collections/all">Quick Picks</a></li>
-          <li><a href="/collections/all">Pre-Builts</a></li>
-          <li><a href="/collections/all">DSE Modules</a></li>
+          <li><a href="/collections/playstation-5">PlayStation 5</a></li>
+          <li><a href="/collections/nintendo-switch">Nintendo Switch 2</a></li>
+          <li><a href="/collections/zerostick-dualsense-edge-tmr-replacement">DualSense Edge Modules</a></li>
+          <li><a href="/collections/tmr-mail-in-service-ps5-xbox-switch-2">Mail-In TMR Service</a></li>
         </ul>
       </div>
+
+      {%- comment -%}
+        The content hub. Each link appears only once its page exists in admin,
+        so this column grows as the guides are published.
+      {%- endcomment -%}
+      {%- if guide_count > 0 -%}
+      <div class="footer-col">
+        <h4>Resources</h4>
+        {%- comment -%}
+          Handles and labels are parallel lists. Each link renders only if the
+          page exists — testing `pg.url` rather than the page object, which is
+          the idiom already used in zerostick-exo.liquid and is unambiguous when
+          the handle is missing (nil.url is nil, which is falsy).
+        {%- endcomment -%}
+        {%- assign guide_handles = 'dualsense-edge-stick-drift-guide,tmr-vs-hall-effect,how-tmr-modules-work,testing-and-calibration,installation-guide,compatibility,faq,8k-controllers,ps5-builder' | split: ',' -%}
+        {%- assign guide_labels = 'DualSense Edge Drift Guide,TMR vs Hall Effect,How TMR Modules Work,Testing &amp; Calibration,Installation Guide,Compatibility,FAQ,8K Controllers,PS5 Builder' | split: ',' -%}
+        <ul>
+          {%- for h in guide_handles -%}
+            {%- assign pg = pages[h] -%}
+            {%- if pg.url -%}
+              <li><a href="{{ pg.url }}">{{ guide_labels[forloop.index0] }}</a></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+      {%- endif -%}
+
       <div class="footer-col">
         <h4>Support</h4>
         <ul>
           <li><a href="/pages/contact">Contact Us</a></li>
-          <li><a href="/pages/contact">Mail-In Service</a></li>
-          <li><a href="/policies/refund-policy">Returns</a></li>
+          <li><a href="/products/mail-in-tmr-service">Mail-In Service</a></li>
           <li><a href="/policies/shipping-policy">Shipping</a></li>
+          <li><a href="/policies/refund-policy">Returns</a></li>
+          <li><a href="/policies/terms-of-service">Warranty</a></li>
         </ul>
       </div>
+
       <div class="footer-col">
         <h4>Company</h4>
         <ul>
-          <li><a href="/">About ZeroStick</a></li>
+          {%- assign about_pg = pages['about'] -%}
+          {%- if about_pg.url -%}
+            <li><a href="{{ about_pg.url }}">About ZeroStick</a></li>
+          {%- endif -%}
           <li><a href="/account/login">My Account</a></li>
-          <li><a href="/cart">Cart</a></li>
+          <li><a href="{{ routes.cart_url }}">Cart</a></li>
+          {%- if blogs['news'].articles_count > 0 -%}
+            <li><a href="/blogs/news">News</a></li>
+          {%- endif -%}
         </ul>
-        <h4 style="margin-top:24px">Follow Us</h4>
-        <div class="social-links" style="flex-direction:column;gap:8px;margin-top:8px">
-          <a href="#">Instagram</a>
-          <a href="#">TikTok</a>
-          <a href="#">YouTube</a>
-        </div>
+
+        {%- comment -%}
+          Social URLs are settings now. Unset renders nothing — the old markup
+          hardcoded href="#" and shipped three dead links on every page.
+        {%- endcomment -%}
+        {%- if section.settings.social_instagram != blank
+            or section.settings.social_tiktok != blank
+            or section.settings.social_youtube != blank -%}
+          <h4 style="margin-top:24px">Follow Us</h4>
+          <div class="social-links" style="flex-direction:column;gap:8px;margin-top:8px">
+            {%- if section.settings.social_instagram != blank -%}
+              <a href="{{ section.settings.social_instagram }}" rel="me noopener" target="_blank">Instagram</a>
+            {%- endif -%}
+            {%- if section.settings.social_tiktok != blank -%}
+              <a href="{{ section.settings.social_tiktok }}" rel="me noopener" target="_blank">TikTok</a>
+            {%- endif -%}
+            {%- if section.settings.social_youtube != blank -%}
+              <a href="{{ section.settings.social_youtube }}" rel="me noopener" target="_blank">YouTube</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 ZeroStick, a brand of Reliable Trend Enterprises LLC. All rights reserved.</span>
+
+    <div class="footer-bottom zs-legal">
+      <span>&copy; {{ 'now' | date: '%Y' }} ZeroStick, a brand of Reliable Trend Enterprises LLC. All rights reserved.</span>
       <div class="social-links">
         <a href="/policies/privacy-policy">Privacy Policy</a>
         <a href="/policies/terms-of-service">Terms of Service</a>
+        {%- comment -%}
+          CCPA/CPRA opt-out. This page was live but unreachable — nothing in the
+          theme linked to it, so the opt-out route did not actually exist for a
+          visitor. Reliable Trend Enterprises is a California LLC.
+        {%- endcomment -%}
+        {%- assign ccpa_pg = pages['data-sharing-opt-out'] -%}
+        {%- if ccpa_pg.url -%}
+          <a href="{{ ccpa_pg.url }}">Do Not Sell or Share My Personal Information</a>
+        {%- endif -%}
         <a href="/pages/contact">Contact</a>
       </div>
     </div>
+
     <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,0.06);margin-top:12px;padding-top:12px;font-size:12px;opacity:0.75">
       <span>7426 Cherry Ave, Ste 210 #1062, Fontana, CA 92336</span>
-      <span><a href="tel:+13236804706" style="color:inherit">(323) 680-4706</a> &middot; <a href="mailto:reliabletrendenterprises@gmail.com" style="color:inherit">reliabletrendenterprises@gmail.com</a></span>
+      <span>
+        <a href="tel:+13236804706" style="color:inherit">(323) 680-4706</a> &middot;
+        <a href="mailto:reliabletrendenterprises@gmail.com" style="color:inherit">reliabletrendenterprises@gmail.com</a>
+      </span>
     </div>
   </div>
 </footer>
@@ -57,6 +177,21 @@
 {% schema %}
 {
   "name": "ZeroStick Footer",
-  "settings": []
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "blurb",
+      "label": "Brand blurb",
+      "default": "High-performance modified controllers built for speed, precision, and durability. Genuine first-party controllers, upgraded with TMR technology and backed by a 5-year stick warranty."
+    },
+    {
+      "type": "header",
+      "content": "Social links",
+      "info": "Leave a field empty to hide that link entirely."
+    },
+    { "type": "url", "id": "social_instagram", "label": "Instagram" },
+    { "type": "url", "id": "social_tiktok", "label": "TikTok" },
+    { "type": "url", "id": "social_youtube", "label": "YouTube" }
+  ]
 }
 {% endschema %}
