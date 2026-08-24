@@ -61,7 +61,10 @@
     (function(){
       var input = document.getElementById('zs-search-input');
       if (!input) return;
-      var words = ['PS5 Controller', 'DualSense Edge Module', 'TMR Hall-Effect Module', 'Switch Pro Controller', 'Smart Triggers', 'Rear Buttons'];
+      // 'TMR Hall-Effect Module' conflated two different sensing technologies,
+      // and 'Switch Pro Controller' named a product we do not sell — the Switch 2
+      // item is a Joy-Con-style pair. Both corrected.
+      var words = ['PS5 Controller', 'DualSense Edge Module', 'TMR Stick Module', 'Switch 2 Controllers', 'Smart Triggers', 'Rear Buttons'];
       var wi = 0, ci = 0, deleting = false, paused = false;
       function tick(){
         // stop animating once the user interacts

@@ -578,6 +578,11 @@ footer, .footer { background: var(--black); color: #fff; padding: 64px 0 32px; }
     display: flex; align-items: center; justify-content: space-between; padding: 0 18px;
     filter: grayscale(0.85); opacity: 0.75; }
   .m-designer-bar::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.75), rgba(0,0,0,0.35)); }
+  /* Coming-soon tiles carry no photo — see zerostick-home.liquid. A branded
+     gradient reads as deliberate, where a wrong controller reads as careless. */
+  .m-designer-bar--soon { background: linear-gradient(115deg, #1b2430 0%, #223243 55%, #298DDF 190%);
+    filter: none; opacity: 0.62; }
+  .m-designer-bar--soon::before { background: linear-gradient(90deg, rgba(0,0,0,0.45), rgba(0,0,0,0.10)); }
   .m-designer-bar span { position: relative; color: #fff; font-size: 19px; font-weight: 800; }
   .m-designer-bar em { position: relative; font-style: normal; color: #cfd8e3; background: rgba(255,255,255,0.14);
     border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }

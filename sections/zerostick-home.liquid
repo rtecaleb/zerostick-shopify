@@ -13,9 +13,21 @@
   <div class="hero-slide hero-slide--banner">
     <a href="/products/zerostick-pro-custom-tmr-hall-effect-joystick-module-compatible-with-ps5-dualsense-edge-tmr-drift-free-magnetic-stick-replacement-1x-high-precision-long-life-design" class="hero-banner-link" aria-label="Shop ZeroStick DualSense Edge Modules">
       {%- comment -%} Desktop gets the wide 12:5-ish banner; phones (<=767px) get the 2:3 portrait cut {%- endcomment -%}
+      {%- comment -%}
+        WebP first, PNG fallback. The mobile PNG was 1.9MB and is the phone LCP;
+        the WebP is 61KB with the same rounded-corner transparency. Explicit
+        dimensions prevent layout shift, and fetchpriority beats the slider JS
+        to the punch since this is the largest paint on the page.
+      {%- endcomment -%}
       <picture>
+        <source media="(max-width: 767px)" type="image/webp" srcset="{{ 'zs-banner-dse-mobile.webp' | asset_url }}">
         <source media="(max-width: 767px)" srcset="{{ 'zs-banner-dse-mobile.png' | asset_url }}">
-        <img src="{{ 'zs-banner-dse.png' | asset_url }}" alt="ZeroStick DualSense Edge Modules" />
+        <source type="image/webp" srcset="{{ 'zs-banner-dse.webp' | asset_url }}">
+        <img
+          src="{{ 'zs-banner-dse.png' | asset_url }}"
+          alt="ZeroStick TMR replacement stick modules for the PS5 DualSense Edge"
+          width="1752" height="725"
+          fetchpriority="high" decoding="async" />
       </picture>
     </a>
   </div>
@@ -43,9 +55,20 @@
     <h2>Design Your Dream<br>ZeroStick</h2>
     <p class="m-designer-sub">Controller designer coming soon</p>
     <a class="m-designer-bar is-live" href="/pages/ps5-builder" style="background-image:url('{{ 'zs-hero-1.jpg' | asset_url }}')"><span>PlayStation 5</span><em class="live-pill">Design Yours</em></a>
-    <div class="m-designer-bar" style="background-image:url('{{ 'zs-2.jpg' | asset_url }}')"><span>PlayStation 4</span><em>Coming Soon</em></div>
-    <div class="m-designer-bar" style="background-image:url('{{ 'zs-1.jpg' | asset_url }}')"><span>Xbox Series X</span><em>Coming Soon</em></div>
-    <div class="m-designer-bar" style="background-image:url('{{ 'zs-3.jpg' | asset_url }}')"><span>Xbox 360 / PC</span><em>Coming Soon</em></div>
+    {%- comment -%}
+      These three tiles used stock photos that contradicted their own labels:
+      the PlayStation 4 tile showed a PS5 DualSense, Xbox Series X showed a
+      DualSense too, and Xbox 360 / PC showed a PS3 SIXAXIS. For a company whose
+      whole pitch is controller expertise, that is the worst possible detail to
+      get wrong on the homepage.
+
+      No correct Xbox or PS4 photography exists in the theme, and inventing it
+      is not an option, so the tiles carry a neutral branded ground until real
+      hardware shots exist. Add a matching image here when they do.
+    {%- endcomment -%}
+    <div class="m-designer-bar m-designer-bar--soon"><span>PlayStation 4</span><em>Coming Soon</em></div>
+    <div class="m-designer-bar m-designer-bar--soon"><span>Xbox Series X</span><em>Coming Soon</em></div>
+    <div class="m-designer-bar m-designer-bar--soon"><span>Xbox 360 / PC</span><em>Coming Soon</em></div>
   </section>
 
   <!-- M3. WHY CHOOSE ZEROSTICK (graphic) -->
@@ -80,7 +103,16 @@
           <div class="m-duo-img m-duo-row-img">{% if swp.featured_image %}<img src="{{ swp.featured_image | image_url: width: 600 }}" alt="ZeroStick Nintendo Switch 2 Controller">{% endif %}</div>
           <div class="m-duo-row-body">
             <h3>Nintendo Switch 2</h3>
-            <p>Genuine Switch 2 Pro controller upgraded with TMR sticks. Drift free, built for Smash and every competitive title. Backed by our 5 year stick warranty.</p>
+            {%- comment -%}
+              This said "Genuine Switch 2 Pro controller". The product is a
+              Joy-Con-style pair, not a Pro Controller — the packaging photo
+              shows left and right units with blue and orange accents. The
+              upgraded D-pad is called out on the box but appeared nowhere in
+              the site copy, so it is picked up here.
+              Still unverified: whether these are modified first-party Joy-Cons
+              or third-party units. "Genuine" is therefore not claimed.
+            {%- endcomment -%}
+            <p>A Joy-Con-style pair for Switch 2 with TMR magnetic sticks and an upgraded D-pad in place of the stock directional buttons. Drift free, built for Smash and every competitive title. Backed by our 5 year stick warranty.</p>
             <span class="btn m-btn-view">Shop Nintendo</span>
           </div>
         </a>

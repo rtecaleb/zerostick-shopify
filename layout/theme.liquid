@@ -7,8 +7,20 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
 
+    {%- comment -%}
+      The store shipped with no favicon at all — settings.favicon is unset, so
+      this block emitted nothing and tabs fell back to the browser's blank page
+      icon. zs-favicon.png is the crosshair ZS mark on brand blue: the monogram
+      is black and the rings are white, so a mid-tone ground is the only one on
+      which both halves survive at 16px. Setting a favicon in theme settings
+      still overrides it.
+    {%- endcomment -%}
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180, height: 180 }}">
+    {%- else -%}
+      <link rel="icon" type="image/png" href="{{ 'zs-favicon.png' | asset_url }}">
+      <link rel="apple-touch-icon" href="{{ 'zs-favicon.png' | asset_url }}">
     {%- endif -%}
 
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
