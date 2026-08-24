@@ -1,0 +1,145 @@
+{%- comment -%}
+  ZeroStick rich Product structured data.
+  Replaces Shopify's minimal `product | structured_data` filter.
+
+  Adds the fields Google rich results and AI search engines actually read:
+  sku, mpn, itemCondition, shippingDetails, hasMerchantReturnPolicy, warranty.
+
+  All values below mirror the published policies at /policies/shipping-policy,
+  /policies/refund-policy and /policies/terms-of-service. If those change,
+  change these to match — never let the schema drift from the stated policy.
+
+  Deliberately NOT emitted: aggregateRating / review. There is no review data
+  on the store yet, and inventing it is structured-data fraud. Wire it up here
+  once a review app is installed and exposing real ratings.
+{%- endcomment -%}
+
+{%- liquid
+  assign p = product
+  assign v = p.selected_or_first_available_variant
+  assign price_valid = 'now' | date: '%s' | plus: 31536000 | date: '%Y-%m-%d'
+  # Mail-in work is a custom service performed on the buyer's own hardware and is
+  # excluded from the 30-day return window by the refund policy.
+  assign is_service = false
+  if p.handle contains 'mail-in'
+    assign is_service = true
+  endif
+-%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "@id": {{ p.url | prepend: request.origin | append: '#product' | json }},
+  "name": {{ p.title | json }},
+  {%- comment -%}
+    strip_html concatenates across block tags, turning "...hardware.</p><p>A genuine..."
+    into "hardware.A genuine". Space the block-level closers before stripping.
+  {%- endcomment -%}
+  {%- liquid
+    assign desc = p.description
+    assign desc = desc | replace: '</p>', '</p> ' | replace: '</li>', '</li> '
+    assign desc = desc | replace: '</div>', '</div> ' | replace: '</h2>', '</h2> '
+    assign desc = desc | replace: '</h3>', '</h3> ' | replace: '<br>', ' '
+    assign desc = desc | replace: '<br/>', ' ' | replace: '<br />', ' '
+    assign desc = desc | strip_html | strip_newlines | replace: '  ', ' ' | strip
+  -%}
+  "description": {{ desc | truncate: 5000 | json }},
+  "url": {{ p.url | prepend: request.origin | json }},
+  {%- if p.featured_media %}
+  "image": [
+    {%- for media in p.media limit: 5 -%}
+      {{ media | image_url: width: 1920 | prepend: "https:" | json }}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ],
+  {%- endif %}
+  "brand": {
+    "@type": "Brand",
+    "name": {{ p.vendor | default: 'ZeroStick' | json }}
+  },
+  {%- if p.type != blank %}
+  "category": {{ p.type | json }},
+  {%- endif %}
+  "sku": {{ v.sku | default: v.id | append: '' | json }},
+  "mpn": {{ v.sku | default: v.id | append: '' | json }},
+  {%- if v.barcode and v.barcode != blank %}
+  "gtin": {{ v.barcode | json }},
+  {%- endif %}
+  {%- unless is_service %}
+  "itemCondition": "https://schema.org/NewCondition",
+  {%- endunless %}
+  "offers": [
+    {%- for variant in p.variants -%}
+    {
+      "@type": "Offer",
+      "@id": {{ variant.url | prepend: request.origin | append: '#offer' | json }},
+      "sku": {{ variant.sku | default: variant.id | append: '' | json }},
+      {%- if p.variants.size > 1 %}
+      "name": {{ variant.title | json }},
+      {%- endif %}
+      "price": {{ variant.price | divided_by: 100.0 | json }},
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "priceValidUntil": {{ price_valid | json }},
+      "availability": {% if variant.available %}"https://schema.org/InStock"{% else %}"https://schema.org/OutOfStock"{% endif %},
+      "url": {{ variant.url | prepend: request.origin | json }},
+      "seller": {
+        "@type": "Organization",
+        "name": {{ shop.name | json }}
+      },
+      {%- comment -%} 5-year stick warranty against drift — see /policies/terms-of-service {%- endcomment -%}
+      "warranty": {
+        "@type": "WarrantyPromise",
+        "durationOfWarranty": {
+          "@type": "QuantitativeValue",
+          "value": 5,
+          "unitCode": "ANN"
+        }
+      },
+      {%- comment -%} Ships 1-2 business days, 3-7 in transit, US only, free over $100 {%- endcomment -%}
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "0",
+          "currency": "USD",
+          "eligibleTransactionVolume": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "USD",
+            "minPrice": "100"
+          }
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "US"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 1,
+            "maxValue": 2,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 3,
+            "maxValue": 7,
+            "unitCode": "DAY"
+          }
+        }
+      }
+      {%- unless is_service -%}
+      ,
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "US",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 30,
+        "returnMethod": "https://schema.org/ReturnByMail"
+      }
+      {%- endunless -%}
+    }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}
+</script>

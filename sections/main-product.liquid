@@ -746,9 +746,12 @@
         endif
       -%}
 
-      <script type="application/ld+json">
-        {{ product | structured_data }}
-      </script>
+      {%- comment -%}
+        Rich Product schema (sku, shipping, returns, warranty) — replaces
+        Shopify's minimal `product | structured_data` output.
+      {%- endcomment -%}
+      {% render 'zs-product-schema', product: product %}
+      {% render 'zs-breadcrumb-schema', product: product %}
     </div>
   </product-component>
 </product-info>
