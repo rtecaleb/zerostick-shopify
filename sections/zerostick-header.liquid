@@ -16,9 +16,12 @@
         </form>
       </div>
       <div class="nav-actions">
-        <a href="/account/login" class="nav-icon-btn" title="Account">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        </a>
+        {%- comment -%} Accounts are disabled on this store; /account/login 406s. {%- endcomment -%}
+        {%- if shop.customer_accounts_enabled -%}
+          <a href="/account/login" class="nav-icon-btn" title="Account">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </a>
+        {%- endif -%}
         <a href="/cart" class="nav-icon-btn" title="Cart">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         </a>
@@ -53,7 +56,7 @@
     <a href="/collections/all">Shop All</a>
     <a href="/pages/contact">Contact Us</a>
     <a href="/pages/contact">Support &amp; FAQ</a>
-    <a href="/account/login">Account</a>
+    {%- if shop.customer_accounts_enabled -%}<a href="/account/login">Account</a>{%- endif -%}
     <a href="/cart">Cart</a>
   </div>
 

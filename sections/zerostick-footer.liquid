@@ -116,7 +116,14 @@
           {%- if about_pg.url -%}
             <li><a href="{{ about_pg.url }}">About ZeroStick</a></li>
           {%- endif -%}
-          <li><a href="/account/login">My Account</a></li>
+          {%- comment -%}
+            Customer accounts are disabled on this store — /account, /account/login
+            and /account/register all return 406. Linking them sends people to a
+            dead end, so the link only appears if accounts are ever turned on.
+          {%- endcomment -%}
+          {%- if shop.customer_accounts_enabled -%}
+            <li><a href="/account/login">My Account</a></li>
+          {%- endif -%}
           <li><a href="{{ routes.cart_url }}">Cart</a></li>
           {%- if blogs['news'].articles_count > 0 -%}
             <li><a href="/blogs/news">News</a></li>
