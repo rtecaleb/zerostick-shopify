@@ -59,7 +59,11 @@
   .zx8 .field--select .field__label{ font-size:1rem; top:.5rem;
     letter-spacing:.04em; }
   .zx8 .field--select select.field__input{ padding:2.2rem 1.5rem .8rem 2rem;
-    width:100%; cursor:pointer; }
+    width:100%; cursor:pointer;
+    /* 4.5rem (Dawn's default) clips the value's descenders by 1px under the
+       pinned label; the qty input beside it flex-grows to match, so the row
+       stays even. */
+    min-height:5rem; }
   .zx8 .biz-direct{ font-size:1.4rem; opacity:.75; margin:1.6rem 0 0; }
 </style>
 
