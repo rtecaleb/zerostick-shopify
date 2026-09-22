@@ -1,11 +1,16 @@
 {% comment %}
-  ZeroStick 8K — "Project Lightning" page (the 8K Controllers tab).
+  ZeroStick 8K — business-inquiry page (the "8K for Business" tab).
 
-  Layout: full-bleed hero (an inline-SVG PCB render carrying the project
-  wordmark — there is no photographable board yet, and the art is our own),
-  then mission, a four-card feature strip, the three planned ways to get one,
-  a small FAQ, and fine print. All styles scoped under .zx8; the hero is
-  deliberately self-coloured (a PCB is a PCB in any theme scheme).
+  The 8K controller is finished, so this page turned from a coming-soon
+  teaser into a B2B page: other companies can buy Lightning boards in
+  bulk, integrate them into their own products (OEM), or resell.
+
+  Layout: the same full-bleed PCB hero (our own inline-SVG render), a
+  short "the board is finished" mission, the four-card feature strip,
+  three ways-to-work-with-us cards, a business-inquiry form (Shopify
+  contact form — submissions email the store inbox), a B2B FAQ, and
+  fine print. All styles scoped under .zx8; the hero is deliberately
+  self-coloured (a PCB is a PCB in any theme scheme).
 {% endcomment %}
 
 <style>
@@ -39,13 +44,30 @@
   .zx8 .fine{ font-size:1.3rem; opacity:.65; margin:4rem 0 0;
     border-top:.1rem solid rgba(var(--color-foreground),.12); padding-top:1.6rem; }
   .zx8 .cta-row{ display:flex; flex-wrap:wrap; gap:1.2rem; margin:2rem 0; }
+
+  /* --- business-inquiry form --- */
+  .zx8 .biz{ max-width:76rem; margin:0 auto; }
+  .zx8 .biz-lead{ opacity:.78; font-size:1.5rem; margin:0 0 2rem; }
+  .zx8 .bizgrid{ display:grid; grid-template-columns:1fr 1fr; gap:1.4rem; }
+  .zx8 .bizgrid .span2{ grid-column:1 / -1; }
+  @media screen and (max-width: 749px){
+    .zx8 .bizgrid{ grid-template-columns:1fr; }
+  }
+  /* A <select> can't float Dawn's label the way text inputs do (no
+     :placeholder-shown on selects), so pin its label in the "shrunk"
+     position and pad the select to match a filled text field. */
+  .zx8 .field--select .field__label{ font-size:1rem; top:.5rem;
+    letter-spacing:.04em; }
+  .zx8 .field--select select.field__input{ padding:2.2rem 1.5rem .8rem 2rem;
+    width:100%; cursor:pointer; }
+  .zx8 .biz-direct{ font-size:1.4rem; opacity:.75; margin:1.6rem 0 0; }
 </style>
 
 <div class="zx8" style="padding-bottom:5.6rem;">
 
   <div class="hero">
     <svg viewBox="0 0 1600 700" role="img" preserveAspectRatio="xMidYMid slice"
-         aria-label="Concept render of the Project Lightning controller board: a dark circuit board with gold traces and a lightning motif, carrying the words ZeroStick 8K Polling, Project Lightning, Built exclusively for PC, Coming soon">
+         aria-label="Render of the Project Lightning controller board: a dark circuit board with gold traces and a lightning motif, carrying the words ZeroStick 8K Polling, Project Lightning, Built exclusively for PC, Now taking business orders">
       <defs>
         <linearGradient id="z8bg" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#0a0f1a"/>
@@ -139,11 +161,11 @@
           NATIVE 8K POLLING · ULTRA-LOW INPUT LATENCY</text>
         <text x="1540" y="556" fill="#58a6ff" font-size="30" font-weight="700"
               letter-spacing="4">BUILT EXCLUSIVELY FOR PC</text>
-        <text x="1540" y="608" fill="#8fa3c0" font-size="26" letter-spacing="6">
-          COMING SOON</text>
+        <text x="1540" y="608" fill="#c9d5e8" font-size="26" letter-spacing="6">
+          NOW TAKING BUSINESS ORDERS</text>
       </g>
 
-      <!-- concept tag -->
+      <!-- render tag (it's our own art, not a photograph) -->
       <g font-family="Arial, sans-serif">
         <rect x="28" y="640" width="190" height="34" rx="17" fill="none"
               stroke="#3d4c66" stroke-width="2"/>
@@ -155,23 +177,24 @@
 
   <div class="inner">
     <div class="mission">
-      <p><strong>Project Lightning is ZeroStick's own 8K board</strong> — a
-      performance-first controller platform designed in-house, from the traces
-      up, and <strong>built exclusively for PC</strong>. It replaces a standard
-      pad's electronics with our board: native 8,000 Hz polling, response
-      measured in microseconds, and the drift-resistant TMR sticks our
-      controllers are already known for.</p>
-      <p>A standard controller reports to your PC up to 1,000 times a second.
-      Lightning reports <strong>8,000 times a second</strong> — your input
-      arrives up to eight times sooner, every single frame.</p>
+      <p><strong>The Lightning board is finished.</strong> Project Lightning is
+      ZeroStick's own 8K controller board — designed in-house, from the traces
+      up, and <strong>built exclusively for PC</strong>: native 8,000&nbsp;Hz
+      polling, response measured in microseconds, and the drift-resistant TMR
+      sticks our controllers are already known for.</p>
+      <p>This page is for <strong>businesses that want the board itself</strong> —
+      controller brands, modding shops, esports organizations and hardware
+      companies who want Lightning in bulk, inside their own products, or on
+      their own shelves. Tell us what you're building in the inquiry form
+      below.</p>
       <p style="border:.1rem solid rgba(var(--color-foreground),.25);
         border-left:.4rem solid #58a6ff; border-radius:.8rem;
-        padding:1.2rem 1.6rem;"><strong>PC only.</strong> This is not a console
-      controller — it does not connect to a PS5, Xbox or Switch, and it never
-      will; consoles cap how fast any controller may report, which defeats the
-      entire point of this board. Play on console? The
-      <a href="/pages/zerostick-exo">ZeroStick EXO</a> is the product built
-      for you.</p>
+        padding:1.2rem 1.6rem;"><strong>PC only.</strong> Lightning is not a
+      console board — it does not connect to a PS5, Xbox or Switch, and it
+      never will; consoles cap how fast any controller may report, which
+      defeats the entire point of this board. Building for console players?
+      The <a href="/pages/zerostick-exo">ZeroStick EXO</a> is the product
+      line for that.</p>
     </div>
 
     <h2>Built for exactly one thing</h2>
@@ -190,59 +213,174 @@
         inside, not what you've spent years mastering.</p></div>
     </div>
 
-    <h2>How you'll get one</h2>
+    <h2>How we work with companies</h2>
     <div class="ways">
-      <div class="way"><span class="tag">At launch</span>
-        <h3>Built controllers</h3>
-        <p>Complete controllers built by ZeroStick on the Lightning board —
-        tuned, calibrated, and backed by our 5-year stick warranty.</p></div>
-      <div class="way"><span class="tag">Planned</span>
-        <h3>Send-in upgrades</h3>
-        <p>Send us your own controller and we install Lightning inside it —
-        your shell, our board.</p></div>
-      <div class="way"><span class="tag">Planned</span>
-        <h3>DIY kits</h3>
-        <p>The board and a pre-wired kit for builders who want to do the
-        install themselves.</p></div>
+      <div class="way"><span class="tag">Bulk</span>
+        <h3>Bulk board orders</h3>
+        <p>Lightning boards in quantity for your own builds — bare boards or
+        pre-wired kits, ready for your bench or production line.</p></div>
+      <div class="way"><span class="tag">OEM</span>
+        <h3>OEM integration</h3>
+        <p>Put Lightning inside your own product. We work with your team on
+        fit, firmware and branding.</p></div>
+      <div class="way"><span class="tag">Resell</span>
+        <h3>Reseller &amp; distribution</h3>
+        <p>Carry ZeroStick 8K products in your store, catalog or region.</p></div>
     </div>
     <div class="cta-row">
-      <a href="/pages/contact" class="button">Get launch updates</a>
+      <a href="#BizInquiry" class="button">Start a business inquiry</a>
     </div>
 
-    <h2>Questions we're already hearing</h2>
-    <details><summary>What is Project Lightning?</summary>
-      <p>ZeroStick's own controller board: our design, our branding, our
-      firmware. Drop it into a controller shell and the controller becomes an
-      8K-polling, microsecond-response instrument.</p></details>
-    <details><summary>Does it work on console?</summary>
-      <p><strong>No. Project Lightning is a PC-only controller.</strong> It does
-      not connect to a PS5, Xbox or Switch — consoles cap how fast any
-      controller may report, and an 8K board inside a capped console would be
-      a fast engine behind a closed gate. We would rather say that plainly
-      than sell you one for the wrong machine. If you play on console, the
-      <a href="/pages/zerostick-exo">ZeroStick EXO</a> is the product designed
-      for you.</p></details>
-    <details><summary>When can I buy one?</summary>
-      <p>It's in development now. The fastest way to know the moment it's
-      real: the launch-updates button above.</p></details>
+    {% comment %}
+      The inquiry form. Shopify's built-in contact form: every field named
+      contact[...] is emailed to the store inbox, so no app or backend is
+      needed. Only the email field is required by Shopify.
+    {% endcomment %}
+    <div class="biz" id="BizInquiry">
+      <h2>Business inquiries</h2>
+      <p class="biz-lead">Tell us who you are, what you're building, and the
+      volumes you have in mind — we answer every serious inquiry.</p>
 
-    <p class="fine">Project Lightning is in active development — specifications,
-    availability and pricing may change, and the board image above is a concept
-    render of our own design, not a photograph. DualSense and DualShock are
-    trademarks of Sony Interactive Entertainment; Xbox is a trademark of
-    Microsoft. ZeroStick modifies genuine first-party hardware and is not
-    affiliated with or endorsed by Sony or Microsoft.</p>
+      {%- form 'contact', id: 'BizInquiryForm', class: 'isolate' -%}
+        {%- if form.posted_successfully? -%}
+          <h3 class="form-status form-status-list form__message" tabindex="-1" autofocus>
+            {{- 'icon-success.svg' | inline_asset_content -}}
+            Thanks — your inquiry is in. We'll get back to you by email.
+          </h3>
+        {%- elsif form.errors -%}
+          <div class="form__message">
+            <h3 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+              {{- 'icon-error.svg' | inline_asset_content -}}
+              Please fix the highlighted field and send again.
+            </h3>
+          </div>
+          <ul class="form-status-list caption-large" role="list">
+            <li>
+              <a href="#BizInquiry-email" class="link">
+                {{ form.errors.translated_fields.email | capitalize }}
+                {{ form.errors.messages.email }}
+              </a>
+            </li>
+          </ul>
+        {%- endif -%}
+
+        <div class="bizgrid">
+          <div class="field">
+            <input class="field__input" type="text" id="BizInquiry-company"
+                   name="contact[Company]" autocomplete="organization"
+                   placeholder="Company">
+            <label class="field__label" for="BizInquiry-company">Company</label>
+          </div>
+          <div class="field">
+            <input class="field__input" type="text" id="BizInquiry-name"
+                   name="contact[Name]" autocomplete="name"
+                   value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                   placeholder="Your name">
+            <label class="field__label" for="BizInquiry-name">Your name</label>
+          </div>
+          <div class="field field--with-error">
+            <input class="field__input" type="email" id="BizInquiry-email"
+                   name="contact[email]" autocomplete="email" spellcheck="false"
+                   autocapitalize="off" aria-required="true" required
+                   value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                   {% if form.errors contains 'email' %}
+                     aria-invalid="true" aria-describedby="BizInquiry-email-error"
+                   {% endif %}
+                   placeholder="Work email">
+            <label class="field__label" for="BizInquiry-email">Work email
+              <span aria-hidden="true">*</span></label>
+            {%- if form.errors contains 'email' -%}
+              <small class="contact__field-error" id="BizInquiry-email-error">
+                <span class="visually-hidden">Error</span>
+                <span class="form__message">
+                  <span class="svg-wrapper">
+                    {{- 'icon-error.svg' | inline_asset_content -}}
+                  </span>
+                  {{- form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email -}}
+                </span>
+              </small>
+            {%- endif -%}
+          </div>
+          <div class="field">
+            <input class="field__input" type="tel" id="BizInquiry-phone"
+                   name="contact[Phone]" autocomplete="tel"
+                   placeholder="Phone (optional)">
+            <label class="field__label" for="BizInquiry-phone">Phone (optional)</label>
+          </div>
+          <div class="field field--select">
+            <select class="field__input" id="BizInquiry-interest"
+                    name="contact[Interested in]">
+              <option value="Bulk board order">Bulk board order</option>
+              <option value="OEM / build Lightning into our product">OEM — build Lightning into our product</option>
+              <option value="Reseller / distribution">Reseller / distribution</option>
+              <option value="Something else">Something else</option>
+            </select>
+            <label class="field__label" for="BizInquiry-interest">Interested in</label>
+          </div>
+          <div class="field">
+            <input class="field__input" type="text" id="BizInquiry-qty"
+                   name="contact[Estimated quantity]"
+                   placeholder="Estimated quantity">
+            <label class="field__label" for="BizInquiry-qty">Estimated quantity</label>
+          </div>
+          <div class="field span2">
+            <textarea rows="8" id="BizInquiry-body"
+                      class="text-area field__input"
+                      name="contact[Message]"
+                      placeholder="Tell us about your project">{{- form.body -}}</textarea>
+            <label class="form__label field__label" for="BizInquiry-body">
+              Tell us about your project</label>
+          </div>
+        </div>
+        <div class="cta-row">
+          <button type="submit" class="button">Send inquiry</button>
+        </div>
+      {%- endform -%}
+
+      <p class="biz-direct">Prefer direct?
+        Email <a href="mailto:reliabletrendenterprises@gmail.com">reliabletrendenterprises@gmail.com</a>
+        or text <a href="tel:+13236804706">(323) 680-4706</a>.</p>
+    </div>
+
+    <h2>Questions companies ask us</h2>
+    <details><summary>What exactly can we buy?</summary>
+      <p>The Lightning board itself (ZS-LTN-01) in quantity — bare boards or
+      pre-wired kits — plus OEM work if you want it designed into your own
+      product, and reseller terms for finished ZeroStick 8K controllers.</p></details>
+    <details><summary>Do you have order minimums?</summary>
+      <p>No hard minimum to start the conversation. Tell us the volumes you
+      have in mind and we'll quote around them — pricing and lead times are
+      quoted per inquiry.</p></details>
+    <details><summary>Does it work on console?</summary>
+      <p><strong>No. Lightning is a PC-only board.</strong> It does not
+      connect to a PS5, Xbox or Switch — consoles cap how fast any controller
+      may report, and an 8K board inside a capped console would be a fast
+      engine behind a closed gate. We would rather say that plainly than sell
+      you boards for the wrong machine. Building for console players? Ask us
+      about the <a href="/pages/zerostick-exo">ZeroStick EXO</a> line instead.</p></details>
+    <details><summary>I'm a gamer, not a company — can I still get one?</summary>
+      <p>Yes — finished 8K controllers built on Lightning are coming to the
+      store. The fastest way to hear the moment they're live is the
+      <a href="/pages/contact">contact page</a>.</p></details>
+
+    <p class="fine">Business pricing, specifications and lead times are quoted
+    per inquiry and may change. The board image above is a render of our own
+    design, not a photograph. DualSense and DualShock are trademarks of Sony
+    Interactive Entertainment; Xbox is a trademark of Microsoft. ZeroStick
+    modifies genuine first-party hardware and is not affiliated with or
+    endorsed by Sony or Microsoft.</p>
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "ZS 8K Project Lightning",
+  "name": "ZS 8K Business Inquiries",
   "tag": "section",
   "settings": [],
   "presets": [
     {
-      "name": "ZS 8K Project Lightning"
+      "name": "ZS 8K Business Inquiries"
     }
   ]
 }
