@@ -3,34 +3,35 @@
 
   The QR codes printed on packaging point at simple paths like
   zerostickgaming.com/DSE_Box. Those paths don't exist as real pages, so
-  Shopify serves the 404 template. theme.liquid renders this snippet in
-  <head> on every page; it outputs nothing unless the visitor is on one
-  of the short-link paths below — and those paths only ever occur on the
-  404 page, because no real page lives at them. On a match the browser is
-  sent to the destination immediately: the <meta refresh> works even with
-  JavaScript turned off, and the script makes it instant and keeps the
-  dead 404 page out of the phone's back button.
+  Shopify serves the 404 template.
 
-  To add a new short link later: copy the two-line "when / assign" pair
-  below, put the new path in lowercase (both with and without a trailing
-  slash), and set the destination URL. Case doesn't matter to visitors —
-  the path is lowercased before matching.
+  Why this is JavaScript and not Liquid: on a 404, Shopify rewrites the
+  request internally to /404, so Liquid's request.path never sees the
+  path the visitor actually typed (the page's canonical URL comes out as
+  /404 — we verified this on the live store). The browser's address bar
+  DOES keep the real path, so a tiny script in <head> reads it, and on a
+  match sends the visitor along instantly. location.replace also keeps
+  the dead 404 page out of the phone's back button.
 
-  The zs-sl comment below is a deploy marker: it shows up in the page
-  source on every page, which is how we confirm from outside that this
-  file actually reached the live theme.
+  theme.liquid renders this on every page; on real pages the script finds
+  no match and does nothing. To add a new short link later, add one line
+  to the map below: '/the-path-in-lowercase': 'https://destination'.
+  Case and trailing slashes don't matter to visitors — the script
+  lowercases the path and strips trailing slashes before matching.
+
+  The zs-sl2 comment is a deploy marker: it shows up in the page source
+  on every page, which is how we confirm from outside that this file
+  actually reached the live theme.
 {% endcomment %}
-<!--zs-sl-->
-{%- assign zs_path = request.path | downcase -%}
-{%- assign zs_go = '' -%}
-
-{%- case zs_path -%}
-  {%- when '/dse_box_label', '/dse_box_label/', '/dse_box', '/dse_box/' -%}
-    {%- comment -%} The two DSE packaging QR codes -> the DSE video {%- endcomment -%}
-    {%- assign zs_go = 'https://www.youtube.com/watch?v=gRXz2YZY388' -%}
-{%- endcase -%}
-
-{%- if zs_go != '' -%}
-  <meta http-equiv="refresh" content="0; url={{ zs_go }}">
-  <script>window.location.replace({{ zs_go | json }});</script>
-{%- endif -%}
+<!--zs-sl2-->
+<script>
+  (function () {
+    var map = {
+      /* The two DSE packaging QR codes -> the DSE video */
+      '/dse_box_label': 'https://www.youtube.com/watch?v=gRXz2YZY388',
+      '/dse_box': 'https://www.youtube.com/watch?v=gRXz2YZY388'
+    };
+    var path = location.pathname.toLowerCase().replace(/\/+$/, '');
+    if (map[path]) location.replace(map[path]);
+  })();
+</script>
