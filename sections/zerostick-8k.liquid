@@ -8,9 +8,15 @@
   Layout: the same full-bleed PCB hero (our own inline-SVG render), a
   short "the board is finished" mission, the four-card feature strip,
   three ways-to-work-with-us cards, a business-inquiry form (Shopify
-  contact form — submissions email the store inbox), a B2B FAQ, and
-  fine print. All styles scoped under .zx8; the hero is deliberately
-  self-coloured (a PCB is a PCB in any theme scheme).
+  contact form — submissions email the store inbox), the ZS8K
+  Configurator block (id="app" — see below), a B2B FAQ, and fine print.
+  All styles scoped under .zx8; the hero is deliberately self-coloured
+  (a PCB is a PCB in any theme scheme).
+
+  The ZS8K Configurator block is where owners of a finished controller
+  land: the controller's read-only ZS8K SETUP drive carries a shortcut
+  to https://zerostickgaming.com/pages/8k-controllers#app, so id="app"
+  must never change. It only claims what the app really does.
 {% endcomment %}
 
 <style>
@@ -65,6 +71,38 @@
        stays even. */
     min-height:5rem; }
   .zx8 .biz-direct{ font-size:1.4rem; opacity:.75; margin:1.6rem 0 0; }
+
+  /* --- ZS8K Configurator block (#app) ---
+     A little air above the heading when the setup drive's link lands on
+     #app. The header scrolls away with the page (zs-main.css marks it
+     sticky, but its section wrapper is only as tall as the header, so it
+     never sticks); if it is ever made truly sticky, raise this to about
+     18rem so the heading is not hidden under it. */
+  .zx8 .app{ scroll-margin-top:2.4rem; }
+  .zx8 .app-lead{ font-size:1.7rem; opacity:.85; max-width:76rem; margin:0; }
+  .zx8 .app .cta-row{ align-items:center; }
+  .zx8 .app-meta{ font-size:1.4rem; margin:0; }
+  /* links in the new copy use the page's accent: Dawn's .link blue drops
+     under 4.5:1 on this navy once the mission's opacity dims it */
+  .zx8 .app .link, .zx8 .mission .link{ color:#58a6ff; }
+  .zx8 .app-note{ border:.1rem solid rgba(var(--color-foreground),.25);
+    border-left:.4rem solid #58a6ff; border-radius:.8rem;
+    padding:1.2rem 1.6rem; max-width:76rem; margin:0; font-size:1.5rem; }
+  .zx8 .app-h{ font-size:calc(var(--font-heading-scale) * 2rem);
+    font-weight:700; margin:3.6rem 0 0; }
+  .zx8 .app-h + .ways, .zx8 .app-h + .strip{ margin-top:1.4rem; }
+  .zx8 .app-steps{ grid-template-columns:repeat(auto-fit,minmax(20rem,1fr)); }
+  .zx8 .app-feats{ grid-template-columns:repeat(auto-fit,minmax(28rem,1fr)); }
+  .zx8 .app-duo{ grid-template-columns:repeat(auto-fit,minmax(min(100%,36rem),1fr)); }
+  /* card titles are h4 here (under the h3 sub-headings), sized like the
+     page's h3 card titles */
+  .zx8 .app h4{ margin:0 0 .6rem; font-size:calc(var(--font-heading-scale) * 1.7rem); }
+  @media screen and (min-width: 750px){
+    .zx8 .app h4{ font-size:calc(var(--font-heading-scale) * 1.8rem); }
+  }
+  .zx8 .app-text{ max-width:76rem; font-size:1.6rem; margin:1.4rem 0 0; }
+  .zx8 .app-text p{ margin:0 0 1.2rem; opacity:.85; }
+  .zx8 .app-h + details{ margin-top:1.4rem; }
 </style>
 
 <div class="zx8" style="padding-bottom:5.6rem;">
@@ -193,12 +231,15 @@
       below.</p>
       <p style="border:.1rem solid rgba(var(--color-foreground),.25);
         border-left:.4rem solid #58a6ff; border-radius:.8rem;
-        padding:1.2rem 1.6rem;"><strong>PC only.</strong> Lightning is not a
-      console board — it does not connect to a PS5, Xbox or Switch, and it
-      never will; consoles cap how fast any controller may report, which
-      defeats the entire point of this board. Building for console players?
-      The <a href="/pages/zerostick-exo">ZeroStick EXO</a> is the product
-      line for that.</p>
+        padding:1.2rem 1.6rem;"><strong>8K is PC only.</strong> Lightning is
+      not a console board — it does not connect to a PS5 or Xbox, and no
+      console will ever run it at 8K; consoles cap how fast any controller
+      may report, which defeats the entire point of this board. Building for
+      console players? The <a href="/pages/zerostick-exo">ZeroStick EXO</a>
+      is the product line for that.</p>
+      <p>Already have a ZeroStick 8K controller?
+      <a href="#app" class="link">Get the free ZS8K Configurator</a> for
+      settings and updates.</p>
     </div>
 
     <h2>Built for exactly one thing</h2>
@@ -347,6 +388,147 @@
         or text <a href="tel:+13236804706">(323) 680-4706</a>.</p>
     </div>
 
+    {% comment %}
+      The ZS8K Configurator block (id="app" — the controller's setup
+      drive links straight here). The two links come from the section
+      settings, and the markup falls back to the GitHub defaults whenever
+      a setting is blank: a page that already exists does not reliably
+      pick up new schema defaults. The Windows note shows unless the
+      setting is explicitly switched off (a missing value counts as on).
+    {% endcomment %}
+    {%- liquid
+      assign zs_app_url = section.settings.app_download_url | strip
+      if zs_app_url == blank
+        assign zs_app_url = 'https://github.com/rtecaleb/zs8k-updates/releases/latest/download/ZS8K-Configurator.exe'
+      endif
+      assign zs_releases_url = section.settings.app_releases_url | strip
+      if zs_releases_url == blank
+        assign zs_releases_url = 'https://github.com/rtecaleb/zs8k-updates/releases'
+      endif
+    -%}
+    <div class="app" id="app">
+      <h2>Get the ZS8K Configurator</h2>
+      <p class="app-lead">The free app for ZeroStick 8K controllers, for
+      Windows 10 and 11: remap buttons, tune sticks and triggers, test your
+      8K rate and keep the controller up to date. You don't need it to
+      play — it's only for settings and updates.</p>
+      <div class="cta-row">
+        <a href="{{ zs_app_url | escape }}" class="button">Download for Windows</a>
+        <p class="app-meta">Free · Windows 10 &amp; 11 ·
+          <a href="{{ zs_releases_url | escape }}" class="link" target="_blank"
+             rel="noopener" aria-describedby="a11y-new-window-message">All
+             versions and release notes</a></p>
+      </div>
+
+      {%- unless section.settings.show_windows_note == false %}
+        <p class="app-note"><strong>Heads-up for the first launch:</strong>
+        Windows may show “Windows protected your PC” the first time — click
+        <strong>More info</strong>, then <strong>Run anyway</strong>. That's
+        Microsoft Defender SmartScreen being careful with a new app that
+        isn't code-signed yet — it isn't a virus warning. Only do this for
+        the file you downloaded from this page.</p>
+      {%- endunless %}
+
+      <h3 class="app-h">Up and running in three steps</h3>
+      <div class="ways app-steps">
+        <div class="way"><span class="tag">Step 1</span>
+          <h4>Plug in the controller</h4>
+          <p>Connect it to your PC with a USB cable. It works as an
+          8,000&nbsp;Hz controller straight away.</p></div>
+        <div class="way"><span class="tag">Step 2</span>
+          <h4>Open the ZS8K SETUP drive</h4>
+          <p>A small drive called ZS8K SETUP appears in File Explorer.
+          Double-click “Get the ZS8K app” to land back here — or just use
+          the download button above.</p></div>
+        <div class="way"><span class="tag">Step 3</span>
+          <h4>Open the app</h4>
+          <p>Run the file you downloaded. One click installs it, and it
+          finds your controller by itself.</p></div>
+      </div>
+
+      <h3 class="app-h">What the app does</h3>
+      <div class="strip app-feats">
+        <div class="feat"><div class="ico">🕹️</div><h4>Buttons &amp; paddles</h4>
+          <p>Remap any button and choose what each back paddle does.</p></div>
+        <div class="feat"><div class="ico">🎚️</div><h4>Sticks &amp; triggers</h4>
+          <p>Dead zones, response curves and hair triggers, tuned to your
+          hands.</p></div>
+        <div class="feat"><div class="ico">💡</div><h4>Lightbar colour</h4>
+          <p>Pick any colour — the controller remembers it.</p></div>
+        <div class="feat"><div class="ico">🔀</div><h4>Output modes</h4>
+          <p>The native 8K PC mode, or show up as an Xbox 360, PS4 or PS5
+          controller in PC games — still at 8,000&nbsp;Hz. Switch&nbsp;1&nbsp;/&nbsp;2
+          mode runs at normal Switch speed.</p></div>
+        <div class="feat"><div class="ico">📈</div><h4>Live 8K rate test</h4>
+          <p>Watch, second by second, how many reports your PC really
+          receives.</p></div>
+        <div class="feat"><div class="ico">🔄</div><h4>Controller updates</h4>
+          <p>New controller firmware in one click — about 3 seconds.</p></div>
+      </div>
+
+      <h3 class="app-h">Always up to date — safely</h3>
+      <div class="ways app-duo">
+        <div class="way"><span class="tag">Automatic</span>
+          <h4>The app updates itself</h4>
+          <p>It checks for a new version when it opens and once a day,
+          downloads it quietly, and switches over the next time you start
+          it — or when you click <strong>Restart to update</strong>. It never
+          restarts by itself, so never in the middle of a game.</p></div>
+        <div class="way"><span class="tag">One click</span>
+          <h4>Controller updates in about 3 seconds</h4>
+          <p>When new firmware is out, the app says <strong>Controller
+          update available</strong>. One click and it's done. Prefer
+          hands-off? You can let it update the controller automatically —
+          only ever while the controller isn't in use.</p></div>
+        <div class="way"><span class="tag">Signed</span>
+          <h4>Every update is signed</h4>
+          <p>Each update is signed with a private key only ZeroStick holds,
+          and the app refuses anything without a valid signature. Even if
+          someone broke into our download site, they couldn't push fake
+          software or firmware to you.</p></div>
+        <div class="way"><span class="tag">Fail-safe</span>
+          <h4>Safe if the cable comes out</h4>
+          <p>The controller only runs new firmware once it's completely
+          written and checked. If an update gets cut off, the controller
+          waits in update mode — plug it back in and run the update
+          again.</p></div>
+      </div>
+
+      <h3 class="app-h">No app? It still just works.</h3>
+      <div class="app-text">
+        <p><strong>You never need the app to play.</strong> Out of the box
+        the controller is a normal 8,000&nbsp;Hz PC controller, with nothing
+        to install. Your settings are saved on the controller itself, so
+        they come with it to any PC.</p>
+        <p><strong>The setup drive.</strong> When you plug the controller
+        in, it also shows a small read-only drive called ZS8K SETUP, with a
+        shortcut to this page and a short read-me. It comes back at every
+        plug-in until the app has connected once — and if you never want
+        the app, it stops by itself after 5 plug-ins.</p>
+        <p><strong>Want the drive back later?</strong> Hold the PS button
+        while you plug the controller in: it starts in PC mode for that
+        session and shows the ZS8K SETUP drive again. Or click
+        <strong>Show the setup drive again next plug-in</strong> on the
+        app's Advanced tab.</p>
+      </div>
+
+      <h3 class="app-h">App questions</h3>
+      <details><summary>Where are my settings saved?</summary>
+        <p>On the controller itself. Button maps, stick and trigger tuning,
+        the lightbar colour and the output mode all live in the controller,
+        so they work on any PC — with or without the app.</p></details>
+      <details><summary>A game doesn't see my controller. What now?</summary>
+        <p>Open the app and set the output mode to Xbox 360 (Advanced tab →
+        Output Mode). Almost every PC game understands an Xbox 360
+        controller with no extra software, and the controller still runs at
+        8,000&nbsp;Hz.</p></details>
+      <details><summary>Will the app ever update my controller without asking?</summary>
+        <p>Only if you turn on <strong>Update my controller
+        automatically</strong> — it's off until you do. Even then it only
+        updates right after you connect, while the controller isn't in use,
+        and never in Switch mode.</p></details>
+    </div>
+
     <h2>Questions companies ask us</h2>
     <details><summary>What exactly can we buy?</summary>
       <p>The Lightning board itself (ZS-LTN-01) in quantity — bare boards or
@@ -357,12 +539,14 @@
       have in mind and we'll quote around them — pricing and lead times are
       quoted per inquiry.</p></details>
     <details><summary>Does it work on console?</summary>
-      <p><strong>No. Lightning is a PC-only board.</strong> It does not
-      connect to a PS5, Xbox or Switch — consoles cap how fast any controller
-      may report, and an 8K board inside a capped console would be a fast
-      engine behind a closed gate. We would rather say that plainly than sell
-      you boards for the wrong machine. Building for console players? Ask us
-      about the <a href="/pages/zerostick-exo">ZeroStick EXO</a> line instead.</p></details>
+      <p><strong>Not at 8K — Lightning is a PC board.</strong> It does not
+      connect to a PS5 or Xbox, and consoles cap how fast any controller may
+      report: an 8K board inside a capped console would be a fast engine
+      behind a closed gate. Its one console mode, for Switch&nbsp;1&nbsp;/&nbsp;2,
+      is an ordinary wired Switch pad at normal Switch speed. We would rather
+      say that plainly than sell you boards for the wrong machine. Building
+      for console players? Ask us about the
+      <a href="/pages/zerostick-exo">ZeroStick EXO</a> line instead.</p></details>
     <details><summary>I'm a gamer, not a company — can I still get one?</summary>
       <p>Yes — finished 8K controllers built on Lightning are coming to the
       store. The fastest way to hear the moment they're live is the
@@ -370,10 +554,11 @@
 
     <p class="fine">Business pricing, specifications and lead times are quoted
     per inquiry and may change. The board image above is a render of our own
-    design, not a photograph. DualSense and DualShock are trademarks of Sony
-    Interactive Entertainment; Xbox is a trademark of Microsoft. ZeroStick
-    modifies genuine first-party hardware and is not affiliated with or
-    endorsed by Sony or Microsoft.</p>
+    design, not a photograph. PlayStation, PS4, PS5, DualSense and DualShock
+    are trademarks of Sony Interactive Entertainment; Xbox, Xbox 360 and
+    Windows are trademarks of Microsoft; Nintendo Switch is a trademark of
+    Nintendo. ZeroStick modifies genuine first-party hardware and is not
+    affiliated with or endorsed by Sony, Microsoft or Nintendo.</p>
   </div>
 </div>
 
@@ -381,7 +566,33 @@
 {
   "name": "ZS 8K Business Inquiries",
   "tag": "section",
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "ZS8K Configurator (the #app block)"
+    },
+    {
+      "type": "text",
+      "id": "app_download_url",
+      "label": "App download link",
+      "default": "https://github.com/rtecaleb/zs8k-updates/releases/latest/download/ZS8K-Configurator.exe",
+      "info": "Where the Download for Windows button goes. Leave blank to use the default GitHub link (always the newest version)."
+    },
+    {
+      "type": "text",
+      "id": "app_releases_url",
+      "label": "All versions link",
+      "default": "https://github.com/rtecaleb/zs8k-updates/releases",
+      "info": "Where All versions and release notes goes. Leave blank to use the default."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_windows_note",
+      "label": "Show the \"Windows protected your PC\" note",
+      "default": true,
+      "info": "Switch this off once the app is code-signed and Windows stops warning."
+    }
+  ],
   "presets": [
     {
       "name": "ZS 8K Business Inquiries"
