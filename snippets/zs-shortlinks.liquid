@@ -29,7 +29,11 @@
     var map = {
       /* The two DSE packaging QR codes -> the DSE video */
       '/dse_box_label': 'https://www.youtube.com/watch?v=gRXz2YZY388',
-      '/dse_box': 'https://www.youtube.com/watch?v=gRXz2YZY388'
+      '/dse_box': 'https://www.youtube.com/watch?v=gRXz2YZY388',
+      /* The spoken/printed short link -> the same video ("/tutorials"
+         included so a typed plural still lands) */
+      '/tutorial': 'https://www.youtube.com/watch?v=gRXz2YZY388',
+      '/tutorials': 'https://www.youtube.com/watch?v=gRXz2YZY388'
     };
     var path = location.pathname.toLowerCase().replace(/\/+$/, '');
     if (map[path]) location.replace(map[path]);
