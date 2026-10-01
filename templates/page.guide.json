@@ -3,7 +3,12 @@
     "main": {
       "type": "zs-guide",
       "settings": {
-        "related_heading": "Keep reading"
+        "related_heading": "Keep reading",
+        "related_handles": "dualsense-edge-stick-drift-guide,tmr-vs-hall-effect,how-tmr-modules-work,testing-and-calibration,installation-guide,compatibility,faq",
+        "cta_product": "zerostick-pro-custom-tmr-hall-effect-joystick-module-compatible-with-ps5-dualsense-edge-tmr-drift-free-magnetic-stick-replacement-1x-high-precision-long-life-design",
+        "cta_heading": "End stick drift for good",
+        "cta_text": "<p>K-Silver TMR modules for the DualSense Edge. Pre-calibrated, drop-in, and backed by our 5-year stick warranty.</p>",
+        "cta_label": "Shop TMR modules"
       }
     },
     "faq": {
@@ -16,5 +21,8 @@
       "block_order": []
     }
   },
-  "order": ["main", "faq"]
+  "order": [
+    "main",
+    "faq"
+  ]
 }

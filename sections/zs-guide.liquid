@@ -122,7 +122,7 @@
   {%- for h in related -%}
     {%- assign hh = h | strip -%}
     {%- assign rp = pages[hh] -%}
-    {%- if rp.url -%}{%- assign related_count = related_count | plus: 1 -%}{%- endif -%}
+    {%- if rp.url and hh != page.handle -%}{%- assign related_count = related_count | plus: 1 -%}{%- endif -%}
   {%- endfor -%}
 
   {%- if related_count > 0 -%}
@@ -132,7 +132,7 @@
         {%- for h in related -%}
           {%- assign hh = h | strip -%}
           {%- assign rp = pages[hh] -%}
-          {%- if rp.url -%}
+          {%- if rp.url and hh != page.handle -%}
             <a class="zs-related-card" href="{{ rp.url }}">{{ rp.title | escape }}</a>
           {%- endif -%}
         {%- endfor -%}
