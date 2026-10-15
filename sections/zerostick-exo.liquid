@@ -56,7 +56,7 @@
 
   <div class="zx-hero">
     <div>
-      <p class="zx-eyebrow">Coming soon</p>
+      <p class="zx-eyebrow">EXO for Xbox $139.99 · EXO for PS5 $159.99</p>
       <h1>ZeroStick EXO</h1>
       <p class="zx-lede">The adapter that brings <strong>AI to console
       players</strong>. Any controller — or mouse &amp; keyboard — on your
@@ -70,6 +70,9 @@
       <div class="zx-cta-row">
         {%- if zx_scripts != empty and zx_scripts.url != blank -%}
           <a href="{{ zx_scripts.url }}" class="button">See how scripts work</a>
+        {%- endif -%}
+        {%- if pages['exo-manual'].url -%}
+          <a href="{{ pages['exo-manual'].url }}" class="button button--secondary">Read the EXO manual</a>
         {%- endif -%}
         {%- if section.settings.cta_link != blank -%}
           <a href="{{ section.settings.cta_link }}" class="button button--secondary">
@@ -175,13 +178,12 @@
     between your controller and your console, sees the game the way you do —
     through the HDMI picture — and helps in real time.</p>
     <p><strong>Screen Assist</strong>, its flagship AI feature, watches the
-    screen and steadies your aim over the last few degrees: it helps you
-    <em>finish</em> a movement you started, and never makes one for you. It was
-    built as an accessibility accommodation first — ZeroStick's founder is a
-    disabled gamer — and that shows in every rule it follows: your thumb always
-    wins, every limit is visible, and nothing runs that you didn't switch on.</p>
-    <p>The same philosophy runs through the whole device: it can never make
-    your controller worse. Every feature fails toward "your pad, untouched."</p>
+    game's picture and helps you aim. It runs in <strong>EXO Studio</strong>,
+    our free PC app, with ready-made game packs you switch on and tune with a
+    few sliders. It was built as an accessibility tool first — ZeroStick's
+    founder is a disabled gamer — so every pack has its own limits, every
+    config has stick caps you set, and a kill switch turns it all off
+    instantly. Nothing runs that you didn't switch on.</p>
   </div>
 
   <h2>What it does</h2>
@@ -189,38 +191,34 @@
     <div class="zx-card"><h3>Any input, any game</h3>
       <p>Xbox pads, DualSense, mouse &amp; keyboard — the EXO translates them
       all, with aim tuning designed around reduced mobility and precision.</p></div>
-    <div class="zx-card"><h3>AI aim help on-device</h3>
-      <p>Screen Assist runs on the EXO's own neural processor. No PC, no cloud,
-      no game mods — it works from the picture alone.</p></div>
+    <div class="zx-card"><h3>AI aim help</h3>
+      <p>Screen Assist runs in EXO Studio on your PC and works from the game's
+      picture alone — no cloud, no game mods.</p></div>
     <div class="zx-card"><h3>Runs your GPC scripts</h3>
       <p>Paste the Cronus-style scripts you already use — rapid fire,
       anti-recoil, button swaps — checked line by line before they run.</p></div>
     <div class="zx-card"><h3>Set up from your phone</h3>
-      <p>Every binding, curve and script lives in a phone app. No PC software
-      required to play.</p></div>
+      <p>Every binding, curve and script lives in the ZeroStick app — on your
+      phone, or inside EXO Studio on your PC.</p></div>
     <div class="zx-card"><h3>Smart Actions</h3>
       <p>Turbo, combos and timed sequences on one button — for hands that
       can't do claw grips and quarter-circle inputs.</p></div>
     <div class="zx-card"><h3>Fails safe, always</h3>
-      <p>Servers down, subscription lapsed, script misbehaving — your
-      controller keeps working. That rule is built into the hardware's
-      design, not a promise.</p></div>
+      <p>No servers, no logins, script misbehaving — your controller keeps
+      working. That rule is built into the hardware's design, not a
+      promise.</p></div>
   </div>
 
   {%- if section.settings.show_pricing -%}
-    <h2>What's free, what's paid</h2>
-    <p><strong>Free:</strong> the controller, the bindings, the aim tuning,
-    keyboard &amp; mouse play, Smart Actions, and GPC scripts — no account
-    needed at all.</p>
-    <p><strong>Subscription — Screen Assist only:</strong> the AI aim help is
-    {{ section.settings.price_monthly | escape }}/month or
-    {{ section.settings.price_yearly | escape }}/year, with a
-    {{ section.settings.trial_days | escape }}-day free trial on a new account
-    with a new device. Cancel any time; the device keeps working, always.</p>
+    <h2>Pricing</h2>
+    <p><strong>EXO for Xbox — $139.99. EXO for PS5 — $159.99</strong> (the PS5
+    version includes the P5General adapter). The software is free: the app,
+    EXO Studio, bindings, aim tuning, keyboard &amp; mouse play, Smart Actions,
+    GPC scripts and Screen Assist — no subscription and no account.
+    {%- if pages['exo-pricing'].url %} <a href="{{ pages['exo-pricing'].url }}">Why it costs what it does</a>.{%- endif -%}</p>
   {%- endif -%}
 
-  <p class="zx-fine">ZeroStick EXO is in active development — features and
-  pricing may change before launch. The product image above is a design
+  <p class="zx-fine">Features and specifications may change. The product image above is a design
   prototype render, not a photograph. GPC script compatibility is provided as
   an accessibility feature. Cronus Zen and XIM are trademarks of their
   respective owners, named here only for comparison; ZeroStick is not
