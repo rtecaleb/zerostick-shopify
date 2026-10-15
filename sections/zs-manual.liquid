@@ -44,6 +44,10 @@
 {%- assign asset_base = 'zs-manual-base.txt' | asset_url | split: 'zs-manual-base.txt' | first -%}
 
 <style>
+  /* The theme's body overflow-x:hidden turns the body into a scroll box,
+     which stops position:sticky (sidebar, tab bar) from working. clip hides
+     the same overflow without that side effect. */
+  body.template-page-exo-manual{ overflow-x:clip; overflow-y:visible; }
   .zsm{ --zsm-blue:#298DDF; display:grid; grid-template-columns:26rem minmax(0,1fr) 22rem;
     gap:4rem; max-width:140rem; margin:0 auto; padding:4rem 2rem 6rem; line-height:1.7; }
   .zsm-side{ position:sticky; top:2rem; align-self:start; max-height:calc(100vh - 4rem);
