@@ -1,0 +1,1 @@
+Marker file: zs-manual.liquid uses this asset's URL to find the theme asset folder for manual screenshots.

@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "zs-manual",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
