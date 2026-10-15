@@ -98,7 +98,7 @@
   .zsm-pager small{ display:block; opacity:.6; font-size:1.2rem; }
   .zsm-pager .is-next{ text-align:right; grid-column:2; }
   .zsm{ grid-template-columns:26rem minmax(0,1fr); }
-  .zsm-tabs{ display:flex; flex-wrap:wrap; gap:.6rem;
+  .zsm-tabs{ position:sticky; top:0; z-index:3; display:flex; flex-wrap:nowrap; overflow-x:auto; gap:.6rem;
     margin:2.4rem 0 2rem; padding:1rem 0;
     border-bottom:.1rem solid rgba(var(--color-foreground),.14); scrollbar-width:thin; }
   .zsm-tab{ flex:0 0 auto; padding:.8rem 1.4rem; border-radius:99rem; cursor:pointer;
@@ -106,7 +106,9 @@
     border:.1rem solid rgba(var(--color-foreground),.18); }
   .zsm-tab:hover{ border-color:var(--zsm-blue); }
   .zsm-tab.is-on{ background:var(--zsm-blue); border-color:var(--zsm-blue); color:#fff; font-weight:600; }
-  .zsm-panel > h2:first-child{ margin-top:0; }
+  .zsm-panel{ scroll-margin-top:12rem; }
+  .zsm-panel > h2{ margin-top:4.4rem; }
+  .zsm-panel:first-of-type > h2{ margin-top:1rem; }
   .zsm-nexttab{ margin-top:3rem; }
   .zsm-subtabs{ margin:.2rem 0 .8rem 1.2rem; padding-left:.8rem;
     border-left:.2rem solid rgba(41,141,223,.35); }
@@ -229,36 +231,56 @@
     });
     body.insertBefore(bar, panels[0].panel);
 
-    panels.forEach(function (p, i) {
-      if (i < panels.length - 1) {
-        var nx = document.createElement('button');
-        nx.type = 'button'; nx.className = 'button button--secondary zsm-nexttab';
-        nx.textContent = 'Next: ' + panels[i + 1].title;
-        nx.addEventListener('click', function () { show(panels[i + 1].id, true); });
-        p.panel.appendChild(nx);
-      }
-    });
-
-    function show(id, scroll) {
-      var hit = panels.filter(function (p) { return p.id === id; })[0] || panels[0];
-      panels.forEach(function (p) {
-        var on = p === hit;
-        p.panel.hidden = !on;
-        p.tab.classList.toggle('is-on', on);
-        p.tab.setAttribute('aria-selected', on ? 'true' : 'false');
-      });
-      if (side) side.querySelectorAll('a').forEach(function (a) { a.classList.toggle('is-on', a.dataset.id === hit.id); });
-      if (history.replaceState) history.replaceState(null, '', '#' + hit.id);
-      hit.tab.scrollIntoView({ block: 'nearest', inline: 'center' });
-      if (scroll) bar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    /* Every section stays on the page. The tab bar sticks to the top while
+       you read, and the highlighted tab (and the sidebar entry) follows the
+       section you're in. Clicking a tab jumps to its section. */
+    var bg = 'transparent', el = bar.parentNode;
+    while (el && el !== document.documentElement) {
+      var c = getComputedStyle(el).backgroundColor;
+      if (c && c !== 'transparent' && !/rgba\(.*,\s*0\)$/.test(c)) { bg = c; break; }
+      el = el.parentNode;
     }
-    bar.addEventListener('click', function (e) { var b = e.target.closest('.zsm-tab'); if (b) show(b.dataset.id, false); });
+    bar.style.background = bg === 'transparent' ? getComputedStyle(document.body).backgroundColor : bg;
+
+    var current = null;
+    function mark(p) {
+      if (!p || p === current) return;
+      current = p;
+      panels.forEach(function (q) {
+        var on = q === p;
+        q.tab.classList.toggle('is-on', on);
+        q.tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      if (side) side.querySelectorAll('a').forEach(function (a) { a.classList.toggle('is-on', a.dataset.id === p.id); });
+      if (history.replaceState) history.replaceState(null, '', '#' + p.id);
+      bar.scrollTo({ left: p.tab.offsetLeft - bar.clientWidth / 2 + p.tab.offsetWidth / 2, behavior: 'smooth' });
+    }
+    function offset() { return bar.getBoundingClientRect().height + 16; }
+    function jump(id) {
+      var p = panels.filter(function (q) { return q.id === id; })[0];
+      if (!p) return;
+      var y = p.panel.getBoundingClientRect().top + window.pageYOffset - offset();
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      mark(p);
+    }
+    function spy() {
+      var line = offset() + 40, hit = panels[0];
+      panels.forEach(function (p) { if (p.panel.getBoundingClientRect().top <= line) hit = p; });
+      if ((window.innerHeight + window.pageYOffset) >= document.body.scrollHeight - 4) hit = panels[panels.length - 1];
+      mark(hit);
+    }
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function () { ticking = false; spy(); });
+    }, { passive: true });
+
+    bar.addEventListener('click', function (e) { var b = e.target.closest('.zsm-tab'); if (b) jump(b.dataset.id); });
     if (side) side.addEventListener('click', function (e) {
-      var a = e.target.closest('a'); if (!a) return; e.preventDefault(); show(a.dataset.id, true);
+      var a = e.target.closest('a'); if (!a) return; e.preventDefault(); jump(a.dataset.id);
       var sb = document.querySelector('.zsm-side'); if (sb) sb.classList.remove('is-open');
     });
-    window.addEventListener('hashchange', function () { show(location.hash.slice(1), true); });
-    show(location.hash.slice(1), !!location.hash);
+    if (location.hash) setTimeout(function () { jump(location.hash.slice(1)); }, 50); else spy();
   })();
 </script>
 
