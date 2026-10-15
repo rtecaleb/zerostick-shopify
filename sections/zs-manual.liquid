@@ -10,8 +10,8 @@
     - Previous / Next links following the sidebar order
     - callout and screenshot styling for the classes the page bodies use
 
-  Screenshots are theme assets. Page bodies reference them as src="zsimg:name.png";
-  the zsimg: prefix is swapped here for the theme's asset folder URL, so the
+  Screenshots are theme assets. Page bodies reference them as src="/zsimg/name.png";
+  that prefix is swapped here for the theme's asset folder URL, so the
   pages never hard-code a theme ID that changes when the theme is republished.
 
   Pages are listed by handle in `manual_handles`; any handle without a published
@@ -140,7 +140,7 @@
     </nav>
     <h1>{{ page.title | escape }}</h1>
     <div class="zsm-body">
-      {{ page.content | replace: 'zsimg:', asset_base }}
+      {{ page.content | replace: '/zsimg/', asset_base | replace: 'zsimg:', asset_base }}
     </div>
 
     <div class="zsm-pager">
