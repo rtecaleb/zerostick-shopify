@@ -97,6 +97,22 @@
   .zsm-pager a:hover{ border-color:var(--zsm-blue); }
   .zsm-pager small{ display:block; opacity:.6; font-size:1.2rem; }
   .zsm-pager .is-next{ text-align:right; grid-column:2; }
+  .zsm{ grid-template-columns:26rem minmax(0,1fr); }
+  .zsm-tabs{ position:sticky; top:0; z-index:2; display:flex; gap:.6rem; overflow-x:auto;
+    margin:2.4rem 0 2rem; padding:1rem 0; background:rgb(var(--color-background));
+    border-bottom:.1rem solid rgba(var(--color-foreground),.14); scrollbar-width:thin; }
+  .zsm-tab{ flex:0 0 auto; padding:.8rem 1.4rem; border-radius:99rem; cursor:pointer;
+    font:inherit; font-size:1.4rem; color:inherit; background:transparent;
+    border:.1rem solid rgba(var(--color-foreground),.18); }
+  .zsm-tab:hover{ border-color:var(--zsm-blue); }
+  .zsm-tab.is-on{ background:var(--zsm-blue); border-color:var(--zsm-blue); color:#fff; font-weight:600; }
+  .zsm-panel > h2:first-child{ margin-top:0; }
+  .zsm-nexttab{ margin-top:3rem; }
+  .zsm-subtabs{ margin:.2rem 0 .8rem 1.2rem; padding-left:.8rem;
+    border-left:.2rem solid rgba(41,141,223,.35); }
+  .zsm-subtabs a{ padding:.3rem .8rem; font-size:1.3rem; }
+  .zsm-subtabs a.is-on{ color:var(--zsm-blue); opacity:1; font-weight:600; }
+  .zsm-toc{ display:none !important; }
   .zsm-menu-btn{ display:none; }
   @media (max-width:1199px){
     .zsm{ grid-template-columns:24rem minmax(0,1fr); }
@@ -125,6 +141,7 @@
         {%- assign mp = pages[h] -%}
         {%- if mp.url -%}
           <a href="{{ mp.url }}"{% if h == page.handle %} class="is-current" aria-current="page"{% endif %}>{{ mp.title | escape }}</a>
+          {%- if h == page.handle -%}<div class="zsm-subtabs" data-zsm-subtabs></div>{%- endif -%}
         {%- endif -%}
       {%- endfor -%}
     {%- endfor -%}
@@ -140,7 +157,8 @@
     </nav>
     <h1>{{ page.title | escape }}</h1>
     <div class="zsm-body">
-      {{ page.content | replace: '/zsimg/', asset_base | replace: 'zsimg:', asset_base }}
+      {%- comment -%} The case's port is printed AUTH; early drafts called it PS5 AUTH. {%- endcomment -%}
+      {{ page.content | replace: '/zsimg/', asset_base | replace: 'zsimg:', asset_base | replace: 'PS5 AUTH', 'AUTH' }}
     </div>
 
     <div class="zsm-pager">
@@ -157,14 +175,75 @@
 </div>
 
 <script>
+  /* Tabs: every h2 in the page body becomes a tab, so a page shows one
+     topic at a time. Text before the first h2 stays above the tab bar as
+     the page's summary. The sidebar lists the same tabs under the current
+     page, and #tab-name in the URL opens that tab directly. */
   (function () {
-    var box = document.querySelector('[data-zsm-toc]');
-    var heads = document.querySelectorAll('.zsm-body h2');
-    if (!box || heads.length < 2) { var t = document.querySelector('.zsm-toc'); if (t) t.style.display = 'none'; return; }
+    var body = document.querySelector('.zsm-body');
+    var heads = body ? body.querySelectorAll(':scope > h2') : [];
+    var toc = document.querySelector('.zsm-toc');
+    if (toc) toc.style.display = 'none';
+    if (heads.length < 2) return;
+
+    var slug = function (t, i) {
+      return (t || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'tab-' + i;
+    };
+    var panels = [], bar = document.createElement('div');
+    bar.className = 'zsm-tabs'; bar.setAttribute('role', 'tablist');
+    var side = document.querySelector('[data-zsm-subtabs]');
+
     heads.forEach(function (h, i) {
-      if (!h.id) h.id = (h.textContent || 'section').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section-' + i;
-      var a = document.createElement('a'); a.href = '#' + h.id; a.textContent = h.textContent; box.appendChild(a);
+      var id = slug(h.textContent, i);
+      var panel = document.createElement('section');
+      panel.className = 'zsm-panel'; panel.id = id; panel.setAttribute('role', 'tabpanel');
+      h.parentNode.insertBefore(panel, h);
+      var n = h;
+      while (n && !(n !== h && n.nodeType === 1 && n.tagName === 'H2' && n.parentNode === body)) {
+        var next = n.nextSibling; panel.appendChild(n); n = next;
+      }
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'zsm-tab'; b.setAttribute('role', 'tab');
+      b.textContent = h.textContent; b.dataset.id = id;
+      bar.appendChild(b);
+      if (side) {
+        var a = document.createElement('a'); a.href = '#' + id; a.textContent = h.textContent; a.dataset.id = id;
+        side.appendChild(a);
+      }
+      panels.push({ id: id, panel: panel, tab: b, title: h.textContent });
     });
+    body.insertBefore(bar, panels[0].panel);
+
+    panels.forEach(function (p, i) {
+      if (i < panels.length - 1) {
+        var nx = document.createElement('button');
+        nx.type = 'button'; nx.className = 'button button--secondary zsm-nexttab';
+        nx.textContent = 'Next: ' + panels[i + 1].title;
+        nx.addEventListener('click', function () { show(panels[i + 1].id, true); });
+        p.panel.appendChild(nx);
+      }
+    });
+
+    function show(id, scroll) {
+      var hit = panels.filter(function (p) { return p.id === id; })[0] || panels[0];
+      panels.forEach(function (p) {
+        var on = p === hit;
+        p.panel.hidden = !on;
+        p.tab.classList.toggle('is-on', on);
+        p.tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      if (side) side.querySelectorAll('a').forEach(function (a) { a.classList.toggle('is-on', a.dataset.id === hit.id); });
+      if (history.replaceState) history.replaceState(null, '', '#' + hit.id);
+      hit.tab.scrollIntoView({ block: 'nearest', inline: 'center' });
+      if (scroll) bar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    bar.addEventListener('click', function (e) { var b = e.target.closest('.zsm-tab'); if (b) show(b.dataset.id, false); });
+    if (side) side.addEventListener('click', function (e) {
+      var a = e.target.closest('a'); if (!a) return; e.preventDefault(); show(a.dataset.id, true);
+      var sb = document.querySelector('.zsm-side'); if (sb) sb.classList.remove('is-open');
+    });
+    window.addEventListener('hashchange', function () { show(location.hash.slice(1), true); });
+    show(location.hash.slice(1), !!location.hash);
   })();
 </script>
 
