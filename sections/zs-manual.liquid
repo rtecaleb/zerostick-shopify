@@ -273,8 +273,10 @@
       if ((window.innerHeight + window.pageYOffset) >= document.body.scrollHeight - 4) hit = panels[panels.length - 1];
       mark(hit);
     }
-    var ticking = false;
+    var ticking = false, settle;
     window.addEventListener('scroll', function () {
+      clearTimeout(settle);
+      settle = setTimeout(spy, 120);   /* re-check once scrolling stops, so a jump never lags a tab behind */
       if (ticking) return; ticking = true;
       requestAnimationFrame(function () { ticking = false; spy(); });
     }, { passive: true });
