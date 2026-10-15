@@ -287,6 +287,7 @@
       var sb = document.querySelector('.zsm-side'); if (sb) sb.classList.remove('is-open');
     });
     if (location.hash) setTimeout(function () { jump(location.hash.slice(1)); }, 50); else spy();
+    setInterval(function () { if (!document.hidden) spy(); }, 300);   /* belt and braces: some browsers skip scroll events after a jump */
   })();
 </script>
 
