@@ -98,7 +98,7 @@
   .zsm-pager small{ display:block; opacity:.6; font-size:1.2rem; }
   .zsm-pager .is-next{ text-align:right; grid-column:2; }
   .zsm{ grid-template-columns:26rem minmax(0,1fr); }
-  .zsm-tabs{ position:sticky; top:0; z-index:2; display:flex; gap:.6rem; overflow-x:auto;
+  .zsm-tabs{ display:flex; flex-wrap:wrap; gap:.6rem;
     margin:2.4rem 0 2rem; padding:1rem 0; background:rgb(var(--color-background));
     border-bottom:.1rem solid rgba(var(--color-foreground),.14); scrollbar-width:thin; }
   .zsm-tab{ flex:0 0 auto; padding:.8rem 1.4rem; border-radius:99rem; cursor:pointer;
@@ -193,24 +193,39 @@
     bar.className = 'zsm-tabs'; bar.setAttribute('role', 'tablist');
     var side = document.querySelector('[data-zsm-subtabs]');
 
+    /* Short tab labels: the first section is the Overview, "(Advanced view)"
+       style notes drop off, and sections sharing a "Prefix:" (e.g. five
+       "Walkthrough: ..." sections) share one tab named after the prefix. */
+    var labelOf = function (t, i) {
+      if (i === 0) return { label: 'Overview', group: null };
+      var m = t.match(/^([^:]{2,24}):\s/);
+      if (m) return { label: m[1].trim().replace(/([^s])$/, '$1s'), group: m[1].trim() };
+      return { label: t.replace(/\s*\([^)]*\)\s*$/, '').trim(), group: null };
+    };
     heads.forEach(function (h, i) {
-      var id = slug(h.textContent, i);
-      var panel = document.createElement('section');
-      panel.className = 'zsm-panel'; panel.id = id; panel.setAttribute('role', 'tabpanel');
-      h.parentNode.insertBefore(panel, h);
+      var info = labelOf(h.textContent, i);
+      var last = panels[panels.length - 1];
+      var panel;
+      if (info.group && last && last.group === info.group) {
+        panel = last.panel;
+      } else {
+        panel = document.createElement('section');
+        panel.className = 'zsm-panel'; panel.id = slug(info.label, i); panel.setAttribute('role', 'tabpanel');
+        h.parentNode.insertBefore(panel, h);
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'zsm-tab'; b.setAttribute('role', 'tab');
+        b.textContent = info.label; b.dataset.id = panel.id;
+        bar.appendChild(b);
+        if (side) {
+          var a = document.createElement('a'); a.href = '#' + panel.id; a.textContent = info.label; a.dataset.id = panel.id;
+          side.appendChild(a);
+        }
+        panels.push({ id: panel.id, panel: panel, tab: b, title: info.label, group: info.group });
+      }
       var n = h;
       while (n && !(n !== h && n.nodeType === 1 && n.tagName === 'H2' && n.parentNode === body)) {
         var next = n.nextSibling; panel.appendChild(n); n = next;
       }
-      var b = document.createElement('button');
-      b.type = 'button'; b.className = 'zsm-tab'; b.setAttribute('role', 'tab');
-      b.textContent = h.textContent; b.dataset.id = id;
-      bar.appendChild(b);
-      if (side) {
-        var a = document.createElement('a'); a.href = '#' + id; a.textContent = h.textContent; a.dataset.id = id;
-        side.appendChild(a);
-      }
-      panels.push({ id: id, panel: panel, tab: b, title: h.textContent });
     });
     body.insertBefore(bar, panels[0].panel);
 
