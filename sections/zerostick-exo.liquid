@@ -9,6 +9,11 @@
 {% endcomment %}
 
 <style>
+  .zx-photo{ display:block; width:100%; height:auto; border-radius:1.6rem; background:#f2f3f5; }
+  .zx-hw{ display:grid; gap:2rem; margin:2rem 0 1rem; }
+  .zx-hw figure{ margin:0; }
+  .zx-hw img{ display:block; width:100%; height:auto; border-radius:1.2rem; background:#f2f3f5; }
+  .zx-hw figcaption{ font-size:1.45rem; opacity:.8; margin-top:.8rem; line-height:1.55; }
   .zx-exo{ line-height:1.6; }
   .zx-exo .zx-tabs{ display:flex; gap:.4rem; margin:0 0 2.8rem;
     border-bottom:.1rem solid rgba(var(--color-foreground),.14); }
@@ -82,91 +87,9 @@
       </div>
     </div>
     <div>
-      <svg class="zx-render" viewBox="0 0 640 480" role="img"
-           aria-label="Prototype render of the ZeroStick EXO: a slim dark adapter box with controller ports, a console port, and an HDMI input for Screen Assist">
-        <defs>
-          <linearGradient id="zxTop" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#262c36"/>
-            <stop offset="1" stop-color="#14181f"/>
-          </linearGradient>
-          <linearGradient id="zxFace" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#10141a"/>
-            <stop offset="1" stop-color="#080a0e"/>
-          </linearGradient>
-          <linearGradient id="zxGlow" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#58a6ff" stop-opacity="0"/>
-            <stop offset=".5" stop-color="#58a6ff"/>
-            <stop offset="1" stop-color="#58a6ff" stop-opacity="0"/>
-          </linearGradient>
-          <radialGradient id="zxHalo" cx=".5" cy=".45" r=".6">
-            <stop offset="0" stop-color="#58a6ff" stop-opacity=".22"/>
-            <stop offset="1" stop-color="#58a6ff" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-
-        <rect x="0" y="0" width="640" height="480" fill="none"/>
-        <ellipse cx="320" cy="250" rx="300" ry="180" fill="url(#zxHalo)"/>
-
-        <!-- body: slim wedge, top face + front face -->
-        <g>
-          <ellipse cx="320" cy="392" rx="238" ry="26" fill="#000" opacity=".45"/>
-          <path d="M96 236 L544 236 L560 340 Q560 356 544 356 L96 356 Q80 356 80 340 Z"
-                fill="url(#zxFace)" stroke="#30363d" stroke-width="1.5"/>
-          <path d="M128 156 Q128 148 136 148 L504 148 Q512 148 512 156 L544 236 L96 236 Z"
-                fill="url(#zxTop)" stroke="#3a414b" stroke-width="1.5"/>
-          <!-- top face: wordmark + status LED -->
-          <text x="320" y="204" text-anchor="middle" fill="#e6edf3"
-                font-family="Arial, sans-serif" font-size="26" font-weight="700"
-                letter-spacing="6">ZEROSTICK</text>
-          <text x="320" y="226" text-anchor="middle" fill="#8b949e"
-                font-family="Arial, sans-serif" font-size="13" letter-spacing="8">E X O</text>
-          <circle cx="497" cy="171" r="4.5" fill="#3fb950"/>
-          <circle cx="497" cy="171" r="9" fill="#3fb950" opacity=".22"/>
-          <!-- light strip along the front edge -->
-          <rect x="112" y="238" width="416" height="3.5" rx="1.75" fill="url(#zxGlow)" opacity=".9"/>
-
-          <!-- front ports -->
-          <g font-family="Arial, sans-serif" font-size="10.5" fill="#8b949e" text-anchor="middle">
-            <rect x="140" y="278" width="52" height="24" rx="4" fill="#05070a" stroke="#3a414b"/>
-            <rect x="150" y="286" width="32" height="8" rx="2" fill="#161b22" stroke="#30363d" stroke-width=".8"/>
-            <text x="166" y="322">PAD 1</text>
-
-            <rect x="216" y="278" width="52" height="24" rx="4" fill="#05070a" stroke="#3a414b"/>
-            <rect x="226" y="286" width="32" height="8" rx="2" fill="#161b22" stroke="#30363d" stroke-width=".8"/>
-            <text x="242" y="322">PAD 2</text>
-
-            <rect x="300" y="282" width="44" height="16" rx="8" fill="#05070a" stroke="#58a6ff" stroke-width="1.2"/>
-            <text x="322" y="322" fill="#58a6ff">CONSOLE</text>
-
-            <rect x="380" y="278" width="70" height="24" rx="4" fill="#05070a" stroke="#3a414b"/>
-            <path d="M388 284 L442 284 L436 296 L394 296 Z" fill="#161b22" stroke="#30363d" stroke-width=".8"/>
-            <text x="415" y="322">HDMI IN</text>
-
-            <circle cx="490" cy="290" r="9" fill="#05070a" stroke="#3a414b"/>
-            <circle cx="490" cy="290" r="3" fill="#161b22"/>
-            <text x="490" y="322">PAIR</text>
-          </g>
-        </g>
-
-        <!-- labels -->
-        <g font-family="Arial, sans-serif" font-size="12" fill="#8b949e">
-          <text x="96" y="120">Your controllers plug in here</text>
-          <path d="M150 128 L160 146" stroke="#4a5361" stroke-width="1"/>
-          <text x="392" y="120">The game's picture, for Screen Assist</text>
-          <path d="M452 128 L432 146" stroke="#4a5361" stroke-width="1"/>
-          <text x="286" y="404" fill="#58a6ff">One cable to the console</text>
-          <path d="M322 384 L322 366" stroke="#58a6ff" stroke-width="1" opacity=".6"/>
-        </g>
-
-        <!-- prototype tag -->
-        <g>
-          <rect x="16" y="440" width="150" height="24" rx="12" fill="none"
-                stroke="#4a5361" stroke-width="1"/>
-          <text x="91" y="456" text-anchor="middle" fill="#8b949e"
-                font-family="Arial, sans-serif" font-size="11" letter-spacing="2">PROTOTYPE RENDER</text>
-        </g>
-      </svg>
-      <p class="zx-render-cap">Design prototype — final hardware may differ.</p>
+      <img class="zx-photo" src="{{ 'exo-render-front.webp' | asset_url }}" width="1600" height="972"
+           alt="ZeroStick EXO: a slim black adapter with the ZS EXO logo on the lid, USB-C and three USB-A ports along the front and the button on the side">
+      <p class="zx-render-cap">ZeroStick EXO — product render.</p>
     </div>
   </div>
 
@@ -184,6 +107,24 @@
     founder is a disabled gamer — so every pack has its own limits, every
     config has stick caps you set, and a kill switch turns it all off
     instantly. Nothing runs that you didn't switch on.</p>
+  </div>
+
+  <h2>The hardware</h2>
+  <div class="zx-hw">
+    <figure>
+      <img src="{{ 'exo-render-back.webp' | asset_url }}" width="1600" height="840" loading="lazy"
+           alt="Back of the EXO with its labelled ports: Console and Aux / Power (USB-C), Auth (USB-A), Ethernet, and HDMI In and Out">
+      <figcaption><strong>Every port labelled.</strong> CONSOLE goes to your console or PC, AUX/POWER
+      powers the EXO, AUTH takes the controller that handles your console's security check, and
+      HDMI IN and OUT pass your game's picture through for AI Scripts and Screen Assist.</figcaption>
+    </figure>
+    <figure>
+      <img src="{{ 'exo-render-board.webp' | asset_url }}" width="1600" height="887" loading="lazy"
+           alt="The EXO's circuit board, designed by ZeroStick in California">
+      <figcaption><strong>Our own board, designed in California.</strong> A dedicated processor for
+      your inputs and scripts, a separate chip that talks to the console, built-in HDMI capture,
+      and Wi-Fi and Bluetooth — all on one board.</figcaption>
+    </figure>
   </div>
 
   <h2>What it does</h2>
