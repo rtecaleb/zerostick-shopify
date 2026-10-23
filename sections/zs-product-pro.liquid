@@ -1,0 +1,269 @@
+{% comment %}
+  ZeroStick premium product page — used by the DSE TMR module (template
+  product.zs-pro). Replaces the stock Dawn layout for this product only.
+
+  Gallery rule: each variant's featured image belongs to that variant alone.
+  The gallery shows the selected variant's image first, then every image that
+  isn't some variant's featured image (box, specs, install shots). Picking a
+  colour swaps the first image with a cross-fade; other colours' photos never
+  appear. Swatch colours come from the variant title (black/red/pink/blue,
+  falling back to a neutral chip), so new colours still render.
+
+  Add to cart posts to /cart/add.js and confirms in place; Shop Pay and other
+  dynamic checkout buttons come from Shopify's own payment_button.
+{% endcomment %}
+
+{%- liquid
+  assign current = product.selected_or_first_available_variant
+  assign variant_media_ids = ''
+  for v in product.variants
+    if v.featured_media
+      assign variant_media_ids = variant_media_ids | append: ',' | append: v.featured_media.id | append: ','
+    endif
+  endfor
+-%}
+
+<style>
+  .zsp{ --zsp-blue:#298DDF; --zsp-card:#0f1626; --zsp-line:rgba(255,255,255,.10);
+    --zsp-soft:rgba(255,255,255,.62); --zsp-ease:cubic-bezier(.22,.61,.36,1);
+    max-width:128rem; margin:0 auto; padding:3.2rem 2rem 6rem; color:#eef3fa; }
+  .zsp-grid{ display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:5.6rem; align-items:start; }
+
+  /* gallery */
+  .zsp-stage{ position:relative; aspect-ratio:1/1; border-radius:2.4rem; overflow:hidden;
+    background:linear-gradient(180deg,#ffffff,#eef1f5); border:1px solid var(--zsp-line); }
+  .zsp-track{ display:flex; height:100%; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; }
+  .zsp-track::-webkit-scrollbar{ display:none; }
+  .zsp-slide{ flex:0 0 100%; height:100%; scroll-snap-align:center; display:grid; place-items:center; padding:6%; }
+  .zsp-slide img{ max-width:100%; max-height:100%; object-fit:contain; border-radius:1.4rem;
+    transition:opacity .45s var(--zsp-ease), transform .6s var(--zsp-ease); }
+  .zsp-slide.is-swapping img{ opacity:0; transform:scale(.97); }
+  .zsp-arrow{ position:absolute; top:50%; translate:0 -50%; width:4.4rem; height:4.4rem; border-radius:50%;
+    border:1px solid var(--zsp-line); background:rgba(10,16,30,.72); backdrop-filter:blur(8px); color:#fff;
+    display:grid; place-items:center; cursor:pointer; opacity:0; transition:opacity .25s, transform .2s; }
+  .zsp-stage:hover .zsp-arrow{ opacity:1; }
+  .zsp-arrow:hover{ transform:scale(1.06); }
+  .zsp-arrow--prev{ left:1.4rem; } .zsp-arrow--next{ right:1.4rem; }
+  .zsp-dots{ position:absolute; bottom:1.4rem; left:0; right:0; display:flex; justify-content:center; gap:.6rem; }
+  .zsp-dots i{ width:.7rem; height:.7rem; border-radius:99rem; background:rgba(10,20,40,.22);
+    transition:width .35s var(--zsp-ease), background .35s; }
+  .zsp-dots i.is-on{ width:2.2rem; background:#0f1626; }
+  .zsp-thumbs{ display:flex; gap:1rem; margin-top:1.4rem; overflow-x:auto; padding:.4rem .2rem; scrollbar-width:thin; }
+  .zsp-thumb{ flex:0 0 7.6rem; height:7.6rem; border-radius:1.4rem; padding:.6rem; cursor:pointer;
+    background:#f3f5f8; border:1px solid transparent; display:grid; place-items:center;
+    transition:border-color .25s, transform .25s var(--zsp-ease), opacity .25s; opacity:.6; }
+  .zsp-thumb img{ width:100%; height:100%; object-fit:contain; border-radius:.8rem; }
+  .zsp-thumb:hover{ opacity:1; transform:translateY(-2px); }
+  .zsp-thumb.is-on{ opacity:1; border-color:var(--zsp-blue); box-shadow:0 0 0 1px var(--zsp-blue) inset; }
+
+  /* buy box */
+  .zsp-info{ position:sticky; top:2.4rem; }
+  .zsp-eyebrow{ font-size:1.2rem; letter-spacing:.14em; text-transform:uppercase; color:var(--zsp-blue); font-weight:700; margin:0 0 1rem; }
+  .zsp-title{ font-size:clamp(2.8rem,3.4vw,4.2rem); line-height:1.08; letter-spacing:-.02em; margin:0 0 1.2rem; }
+  .zsp-sub{ color:var(--zsp-soft); font-size:1.6rem; line-height:1.55; margin:0 0 2.4rem; }
+  .zsp-price{ display:flex; align-items:baseline; gap:1rem; font-size:2.6rem; font-weight:700; margin:0 0 2.8rem; }
+  .zsp-price s{ font-size:1.6rem; color:var(--zsp-soft); font-weight:400; }
+  .zsp-price span{ transition:opacity .25s; }
+  .zsp-label{ display:flex; justify-content:space-between; font-size:1.4rem; margin:0 0 1.2rem; }
+  .zsp-label b{ font-weight:600; } .zsp-label em{ font-style:normal; color:var(--zsp-soft); }
+  .zsp-swatches{ display:flex; gap:1.4rem; margin:0 0 3rem; flex-wrap:wrap; }
+  .zsp-swatch{ position:relative; width:4.4rem; height:4.4rem; border-radius:50%; cursor:pointer; padding:0;
+    border:0; background:var(--sw); box-shadow:inset 0 0 0 1px rgba(255,255,255,.18), inset 0 -6px 12px rgba(0,0,0,.35);
+    transition:transform .25s var(--zsp-ease); }
+  .zsp-swatch::after{ content:""; position:absolute; inset:-.6rem; border-radius:50%; border:2px solid var(--zsp-blue);
+    opacity:0; transform:scale(.85); transition:opacity .3s, transform .35s var(--zsp-ease); }
+  .zsp-swatch:hover{ transform:scale(1.07); }
+  .zsp-swatch.is-on::after{ opacity:1; transform:scale(1); }
+  .zsp-swatch[disabled]{ opacity:.35; cursor:not-allowed; }
+  .zsp-row{ display:flex; gap:1.2rem; margin:0 0 1.2rem; }
+  .zsp-qty{ display:flex; align-items:center; border:1px solid var(--zsp-line); border-radius:99rem; background:#0f1626; }
+  .zsp-qty button{ width:4.4rem; height:5.4rem; border:0; background:none; color:#fff; font-size:2rem; cursor:pointer; }
+  .zsp-qty input{ width:3.6rem; text-align:center; border:0; background:none; color:#fff; font:inherit; font-size:1.6rem; -moz-appearance:textfield; }
+  .zsp-qty input::-webkit-outer-spin-button,.zsp-qty input::-webkit-inner-spin-button{ -webkit-appearance:none; }
+  .zsp-add{ flex:1; height:5.6rem; border:0; border-radius:99rem; cursor:pointer; font:inherit; font-size:1.6rem; font-weight:700;
+    color:#fff; background:linear-gradient(180deg,#3aa0f0,#1f7fd0); box-shadow:0 10px 30px -10px rgba(41,141,223,.7);
+    transition:transform .2s var(--zsp-ease), box-shadow .2s, filter .2s; position:relative; overflow:hidden; }
+  .zsp-add:hover{ transform:translateY(-1px); filter:brightness(1.06); }
+  .zsp-add:active{ transform:scale(.98); }
+  .zsp-add[disabled]{ filter:grayscale(1); opacity:.6; cursor:not-allowed; }
+  .zsp-add.is-loading{ color:transparent; }
+  .zsp-add.is-loading::after{ content:""; position:absolute; inset:0; margin:auto; width:2rem; height:2rem; border-radius:50%;
+    border:2px solid rgba(255,255,255,.4); border-top-color:#fff; animation:zsp-spin .7s linear infinite; }
+  @keyframes zsp-spin{ to{ transform:rotate(360deg); } }
+  .zsp-dyn .shopify-payment-button__button{ border-radius:99rem !important; min-height:5.4rem; }
+  .zsp-dyn .shopify-payment-button__more-options{ color:var(--zsp-soft); }
+  .zsp-trust{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:2.8rem 0 0; }
+  .zsp-trust div{ display:flex; gap:1rem; align-items:center; padding:1.2rem 1.4rem; border-radius:1.4rem;
+    background:var(--zsp-card); border:1px solid var(--zsp-line); font-size:1.3rem; line-height:1.35; }
+  .zsp-trust svg{ flex:0 0 2rem; color:var(--zsp-blue); }
+
+  /* toast */
+  .zsp-toast{ position:fixed; left:50%; bottom:2.4rem; z-index:50; translate:-50% 140%; width:min(44rem,calc(100% - 3.2rem));
+    display:flex; align-items:center; gap:1.2rem; padding:1.2rem 1.2rem 1.2rem 1.6rem; border-radius:1.8rem;
+    background:rgba(16,24,40,.92); backdrop-filter:blur(14px); border:1px solid var(--zsp-line);
+    box-shadow:0 20px 50px -15px rgba(0,0,0,.7); transition:translate .5s var(--zsp-ease); color:#fff; }
+  .zsp-toast.is-on{ translate:-50% 0; }
+  .zsp-toast img{ width:4.8rem; height:4.8rem; object-fit:contain; border-radius:1rem; background:#f3f5f8; }
+  .zsp-toast p{ flex:1; margin:0; font-size:1.4rem; line-height:1.35; }
+  .zsp-toast p small{ display:block; color:var(--zsp-soft); font-size:1.25rem; }
+  .zsp-toast a{ padding:.9rem 1.4rem; border-radius:99rem; font-size:1.3rem; font-weight:700; text-decoration:none; white-space:nowrap; }
+  .zsp-toast .zsp-t-cart{ color:#fff; border:1px solid var(--zsp-line); }
+  .zsp-toast .zsp-t-checkout{ color:#fff; background:var(--zsp-blue); }
+
+  /* details */
+  .zsp-feats{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.6rem; margin:8rem 0 0; }
+  .zsp-feat{ padding:2.6rem; border-radius:2rem; background:linear-gradient(180deg,#121b2e,#0d1424); border:1px solid var(--zsp-line); }
+  .zsp-feat b{ display:block; font-size:2.4rem; letter-spacing:-.01em; margin:0 0 .6rem; color:#fff; }
+  .zsp-feat p{ margin:0; color:var(--zsp-soft); font-size:1.45rem; line-height:1.5; }
+  .zsp-desc{ max-width:76rem; margin:6rem auto 0; font-size:1.6rem; line-height:1.7; color:rgba(255,255,255,.82); }
+  .zsp-desc ul{ padding-left:2rem; } .zsp-desc li{ margin:.4rem 0; }
+  .zsp-reveal{ opacity:0; transform:translateY(24px); transition:opacity .8s var(--zsp-ease), transform .8s var(--zsp-ease); }
+  .zsp-reveal.is-in{ opacity:1; transform:none; }
+
+  @media (max-width:989px){
+    .zsp{ padding-top:1.6rem; }
+    .zsp-grid{ grid-template-columns:1fr; gap:3rem; }
+    .zsp-info{ position:static; }
+    .zsp-stage{ border-radius:1.8rem; }
+    .zsp-arrow{ display:none; }
+    .zsp-feats{ grid-template-columns:1fr; margin-top:5rem; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .zsp *, .zsp-toast{ transition:none !important; animation:none !important; }
+    .zsp-reveal{ opacity:1; transform:none; }
+  }
+</style>
+
+<section class="zsp" data-zsp>
+  <div class="zsp-grid">
+    <div class="zsp-gallery">
+      <div class="zsp-stage">
+        <div class="zsp-track" data-track></div>
+        <button type="button" class="zsp-arrow zsp-arrow--prev" data-prev aria-label="Previous image">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button type="button" class="zsp-arrow zsp-arrow--next" data-next aria-label="Next image">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button>
+        <div class="zsp-dots" data-dots></div>
+      </div>
+      <div class="zsp-thumbs" data-thumbs></div>
+    </div>
+
+    <div class="zsp-info">
+      <p class="zsp-eyebrow">ZeroStick Pro · DualSense Edge</p>
+      <h1 class="zsp-title">{{ product.title | escape }}</h1>
+      {%- if section.settings.subtitle != blank -%}<p class="zsp-sub">{{ section.settings.subtitle }}</p>{%- endif -%}
+
+      <div class="zsp-price" data-price>
+        <span data-amount>{{ current.price | money }}</span>
+        <s data-compare{% unless current.compare_at_price > current.price %} hidden{% endunless %}>{{ current.compare_at_price | money }}</s>
+      </div>
+
+      {%- form 'product', product, data-zsp-form: '' -%}
+        <input type="hidden" name="id" value="{{ current.id }}" data-variant-input>
+        {%- if product.has_only_default_variant == false -%}
+          <div class="zsp-label"><b>{{ product.options.first }}</b><em data-variant-name>{{ current.title }}</em></div>
+          <div class="zsp-swatches" role="radiogroup" aria-label="{{ product.options.first | escape }}">
+            {%- for v in product.variants -%}
+              {%- liquid
+                assign t = v.title | downcase
+                assign sw = '#5b6576'
+                if t contains 'black'
+                  assign sw = 'radial-gradient(circle at 35% 30%, #4a4f58, #0b0c0f 70%)'
+                elsif t contains 'red'
+                  assign sw = 'radial-gradient(circle at 35% 30%, #ff6b6b, #b3131b 70%)'
+                elsif t contains 'pink'
+                  assign sw = 'radial-gradient(circle at 35% 30%, #ffc2dc, #e55a9b 70%)'
+                elsif t contains 'blue'
+                  assign sw = 'radial-gradient(circle at 35% 30%, #7cc4ff, #1b6fc4 70%)'
+                elsif t contains 'white'
+                  assign sw = 'radial-gradient(circle at 35% 30%, #ffffff, #c9ced6 70%)'
+                endif
+              -%}
+              <button type="button" class="zsp-swatch{% if v.id == current.id %} is-on{% endif %}" role="radio"
+                      aria-checked="{% if v.id == current.id %}true{% else %}false{% endif %}"
+                      aria-label="{{ v.title | escape }}" title="{{ v.title | escape }}" style="--sw:{{ sw }}"
+                      data-variant="{{ v.id }}"{% unless v.available %} disabled{% endunless %}></button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <div class="zsp-row">
+          <div class="zsp-qty">
+            <button type="button" data-qty="-1" aria-label="Decrease quantity">−</button>
+            <input type="number" name="quantity" value="1" min="1" aria-label="Quantity" data-qty-input>
+            <button type="button" data-qty="1" aria-label="Increase quantity">+</button>
+          </div>
+          <button type="submit" class="zsp-add" data-add{% unless current.available %} disabled{% endunless %}>
+            {%- if current.available -%}Add to cart{%- else -%}Sold out{%- endif -%}
+          </button>
+        </div>
+        <div class="zsp-dyn">{{ form | payment_button }}</div>
+      {%- endform -%}
+
+      <div class="zsp-trust">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/></svg>5-year stick warranty</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>Pre-calibrated &amp; tested</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Ships next business day</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7S10 3 7.5 3 5 6 7 7m5 0s2-4 4.5-4S19 6 17 7"/></svg>Free shipping over $100</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="zsp-feats">
+    <div class="zsp-feat zsp-reveal"><b>Zero drift.</b><p>Magnetic TMR sensing with no carbon track to wear out, so drift never develops.</p></div>
+    <div class="zsp-feat zsp-reveal"><b>Drop-in.</b><p>Swaps into your DualSense Edge in about a minute. No tools, no soldering.</p></div>
+    <div class="zsp-feat zsp-reveal"><b>Ready to play.</b><p>Calibrated and tested before it ships, with calibration left unlocked if you ever want to re-tune.</p></div>
+  </div>
+
+  {%- if product.description != blank -%}
+    <div class="zsp-desc zsp-reveal">{{ product.description }}</div>
+  {%- endif -%}
+
+  <div class="zsp-toast" data-toast role="status" aria-live="polite">
+    <img alt="" width="48" height="48" data-toast-img>
+    <p><span data-toast-title>Added to cart</span><small data-toast-sub></small></p>
+    <a class="zsp-t-cart" href="{{ routes.cart_url }}">View cart</a>
+    <a class="zsp-t-checkout" href="/checkout">Checkout</a>
+  </div>
+</section>
+
+<script type="application/json" data-zsp-data>
+{
+  "variants": [
+    {%- for v in product.variants -%}
+      {"id": {{ v.id }}, "title": {{ v.title | json }}, "available": {{ v.available | json }},
+       "price": {{ v.price | money | json }},
+       "compare": {% if v.compare_at_price > v.price %}{{ v.compare_at_price | money | json }}{% else %}null{% endif %},
+       "media": {% if v.featured_media %}{{ v.featured_media.id }}{% else %}null{% endif %}}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "media": [
+    {%- assign first = true -%}
+    {%- for m in product.media -%}
+      {%- if m.media_type == 'image' -%}
+        {%- unless first -%},{%- endunless -%}{%- assign first = false -%}
+        {%- assign key = ',' | append: m.id | append: ',' -%}
+        {"id": {{ m.id }}, "src": {{ m | image_url: width: 1400 | json }}, "thumb": {{ m | image_url: width: 220 | json }},
+         "alt": {{ m.alt | default: product.title | json }}, "variantOnly": {% if variant_media_ids contains key %}true{% else %}false{% endif %}}
+      {%- endif -%}
+    {%- endfor -%}
+  ],
+  "current": {{ current.id }}
+}
+</script>
+
+<script src="{{ 'zs-product-pro.js' | asset_url }}" defer="defer"></script>
+
+{% render 'zs-product-schema', product: product %}
+{% render 'zs-breadcrumb-schema', product: product %}
+
+{% schema %}
+{
+  "name": "ZeroStick premium product",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "subtitle", "label": "Subtitle under the title",
+      "default": "The last stick module your DualSense Edge will ever need." }
+  ]
+}
+{% endschema %}
