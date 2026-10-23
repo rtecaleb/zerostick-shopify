@@ -48,7 +48,8 @@
   .zsp-dots i{ width:.7rem; height:.7rem; border-radius:99rem; background:rgba(10,20,40,.22);
     transition:width .35s var(--zsp-ease), background .35s; }
   .zsp-dots i.is-on{ width:2.2rem; background:#0f1626; }
-  .zsp-thumbs{ display:flex; gap:1rem; margin-top:1.4rem; overflow-x:auto; padding:.4rem .2rem; scrollbar-width:thin; }
+  .zsp-thumbs{ display:flex; gap:1rem; margin-top:1.4rem; overflow-x:auto; padding:.4rem .2rem; scrollbar-width:none; }
+  .zsp-thumbs::-webkit-scrollbar{ display:none; }
   .zsp-thumb{ flex:0 0 7.6rem; height:7.6rem; border-radius:1.4rem; padding:.6rem; cursor:pointer;
     background:#f3f5f8; border:1px solid transparent; display:grid; place-items:center;
     transition:border-color .25s, transform .25s var(--zsp-ease), opacity .25s; opacity:.6; }
