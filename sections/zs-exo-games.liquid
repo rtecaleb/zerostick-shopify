@@ -136,6 +136,12 @@
   .zg .x2-gamesbar{ position:sticky; top:var(--zg-stick); z-index:20; flex-wrap:wrap; align-items:center; gap:1rem;
     pointer-events:none; }
   .zg .x2-gamesbar > *{ pointer-events:auto; }
+  /* while stuck, a soft dark fade behind the bar keeps it readable over the
+     cards (fades in with opacity only, so it stays smooth) */
+  .zg .x2-gamesbar::before{ content:""; position:absolute; z-index:-1; left:50%; width:100vw; translate:-50% 0;
+    top:calc(var(--zg-stick) * -1); bottom:-2.4rem; pointer-events:none; opacity:0;
+    background:linear-gradient(180deg,rgba(5,7,13,.92) 55%,rgba(5,7,13,0)); transition:opacity .35s var(--x-ease); }
+  .zg .x2-gamesbar.is-stuck::before{ opacity:1; }
   .zg .x2-filter{ background:rgba(12,18,32,.78); border-color:var(--x-line2);
     -webkit-backdrop-filter:blur(16px) saturate(1.4); backdrop-filter:blur(16px) saturate(1.4);
     box-shadow:0 1rem 3rem -1.6rem rgba(0,0,0,.6); transition:box-shadow .4s var(--x-ease); }
@@ -682,9 +688,14 @@
     // If you change the filter while scrolled down inside the grid, bring the
     // top of the (now shorter) grid back up under the sticky bar.
     function settle() {
-      var barBottom = bar.getBoundingClientRect().bottom;
+      // Where the bottom of the bar sits while it is stuck: its sticky "top"
+      // (the --zg-stick value in the CSS) plus its own height. Measured from
+      // the CSS rather than the bar's current position, because a shorter
+      // grid can un-stick the bar for a moment.
+      var stickTop = parseFloat(getComputedStyle(bar).top) || 0;
+      var barBottom = stickTop + bar.offsetHeight;
       var gridTop = grid.getBoundingClientRect().top;
-      if (gridTop < barBottom - 4) {
+      if (gridTop < barBottom) {
         window.scrollTo({ top: window.pageYOffset + gridTop - barBottom - 16, behavior: reduce ? 'auto' : 'smooth' });
       }
     }
