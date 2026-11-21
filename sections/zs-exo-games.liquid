@@ -22,7 +22,7 @@
   Look and behaviour come from the shared design system:
     assets/zs-exo2.css  (colours, cards, badges, buttons, reveal animation)
     assets/zs-exo2.js   (reveal on scroll, the status filter, scroll progress)
-  Extra styles only this page needs are in the <style> block below. They are
+  Extra styles only this page needs are in the style block below. They are
   all under .zg so they cannot affect any other page.
   The small script at the bottom of this file adds the search box, the
   count-up numbers and the "jump to filter" links.
@@ -63,17 +63,17 @@
 
   /* Why this is here: assets/zerostick-custom.css sets
      "html, body { overflow-x: hidden }" for the whole store. "hidden" turns
-     <body> into its own scroll box, and that silently stops position:sticky
+     the page body into its own scroll box, and that silently stops position:sticky
      from working anywhere inside it (our filter bar would never stick).
      "clip" cuts off sideways overflow exactly the same way but does not make
-     a scroll box, so sticky works. This <style> only loads on this page, so
+     a scroll box, so sticky works. This style block only loads on this page, so
      no other page changes. Browsers too old for "clip" ignore it and keep the
      old behaviour (the bar just doesn't stick). */
   @supports (overflow:clip){
     html, body{ overflow-x:clip; }
   }
-  /* The theme's base.css hides every empty <div> ("div:empty{display:none}").
-     The glow backdrop and the faint grid lines are empty <div>s on purpose,
+  /* The theme's base.css hides every empty div element ("div:empty{display:none}").
+     The glow backdrop and the faint grid lines are empty div elements on purpose,
      so switch them back on here. */
   .zg .x2-aura, .zg .x2-gridlines{ display:block; }
   /* ".x2 a" (link colour) is more specific than ".x2-btn--primary", so link
@@ -722,7 +722,7 @@
     /* ---------- 4. stronger shadow while the filter bar is stuck ---------- */
     // A 1px marker just above the bar: once it has scrolled off the top, the
     // bar is stuck. Checked at most once per frame while scrolling (cheap).
-    // (a <span>, not a <div>: the theme hides every empty <div>)
+    // (a span, not a div: the theme hides every empty div)
     var marker = document.createElement('span');
     marker.setAttribute('aria-hidden', 'true');
     marker.style.cssText = 'display:block;height:1px;';
