@@ -1,0 +1,241 @@
+{% comment %}
+  ==========================================================================
+  ZeroStick EXO manual v2: the SHELL (staged, not live until Caleb assigns it)
+  --------------------------------------------------------------------------
+  Template: templates/page.exo-manual-v2.json
+  Preview:  https://zerostickgaming.com/pages/exo-manual?view=exo-manual-v2
+
+  How the manual works, in plain words
+  - The whole manual is ONE Shopify page. Every manual "page" is an
+    article element with class m2-page and an id that starts with p-
+    (for example p-platforms-ps5). They all live in the content snippets
+    rendered below, in reading order.
+  - assets/zs-manual2.js shows ONE article at a time, based on the part of
+    the address after the # (the "hash"). So #p-platforms-ps5 opens the PS5
+    page and #p-platforms-ps5--hdmi opens it and scrolls to that heading.
+    Back / forward buttons work because the browser remembers each hash.
+  - The same script builds the sidebar, the search, the "On this page"
+    list, previous / next links, the "Step n of 12" bar, the image zoom and
+    the copy-link buttons, all from the articles themselves. To add a page
+    you only add an article to a snippet: nothing here needs changing.
+  - If the script ever fails to load, every page simply shows, one after
+    the other, so the manual is still readable.
+
+  Files
+    assets/zs-exo2.css      shared EXO design system (colours, buttons, badges)
+    assets/zs-exo2.js       shared EXO behaviour (3D viewer, port viewer)
+    assets/zs-manual2.css   manual-only styles (everything starts with m2-)
+    assets/zs-manual2.js    manual-only behaviour (routing, search, ...)
+    snippets/zs-man2-*.liquid  the content, one snippet per part
+
+  Content snippets and who writes them
+    home, start, connect, app, help, reference   Agent A (this shell's author)
+    aim, scripts, auto, games                    Agent B
+  Until a snippet exists, Shopify prints "Could not find asset" in its
+  place. The script hides that note and just leaves that part out.
+
+  Links that depend on settings (edit them in Customize > this section):
+  content snippets write href="#discord", "#app-store", "#play-store",
+  "#support-email", "#preorder" or "#games", and the script swaps in the
+  real address from the settings below (they are passed to it on the
+  data- attributes of the outer div).
+  ==========================================================================
+{% endcomment %}
+
+{%- liquid
+  # The Discord invite isn't known yet: the default is a placeholder.
+  # Paste the real invite link into the section setting when you have it.
+  assign discord_url = section.settings.discord_url | default: '#discord-invite-placeholder'
+  # The app store links aren't known yet either (placeholders start with #).
+  assign app_store_url = section.settings.app_store_url | default: '#app-store-placeholder'
+  assign play_store_url = section.settings.play_store_url | default: '#play-store-placeholder'
+  assign support_email = section.settings.support_email | default: 'caleb@zerostickgaming.com'
+  assign preorder_url = section.settings.preorder_url | default: '/products/zerostick-exo'
+  assign games_url = section.settings.games_url | default: '/pages/supported-games'
+-%}
+
+{{ 'zs-exo2.css' | asset_url | stylesheet_tag }}
+{{ 'zs-manual2.css' | asset_url | stylesheet_tag }}
+
+<div class="x2 m2" id="m2"
+     data-discord-url="{{ discord_url | escape }}"
+     data-app-store-url="{{ app_store_url | escape }}"
+     data-play-store-url="{{ play_store_url | escape }}"
+     data-support-email="{{ support_email | escape }}"
+     data-preorder-url="{{ preorder_url | escape }}"
+     data-games-url="{{ games_url | escape }}">
+
+  {%- comment -%} Thin bar at the very top that fills as you read the current page. {%- endcomment -%}
+  <div class="m2-progress" aria-hidden="true"><span class="m2-progress-bar"></span></div>
+
+  {%- comment -%}
+    Manual top bar. On phones it also holds the Menu button and the
+    "On this page" chip (it sticks to the top while you scroll).
+  {%- endcomment -%}
+  <div class="m2-bar" id="m2-bar">
+    <div class="m2-bar-in">
+      <button type="button" class="m2-iconbtn m2-only-mobile" data-m2-open="menu" aria-controls="m2-sheet" aria-label="Open the manual menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+      <a class="m2-brand" href="#p-home" aria-label="ZeroStick EXO Manual home">
+        <span class="m2-brand-mark" aria-hidden="true">ZS</span>
+        <span class="m2-brand-txt">EXO <b>Manual</b></span>
+      </a>
+      <button type="button" class="m2-chip m2-only-mobile" data-m2-open="toc" aria-controls="m2-sheet" hidden>
+        <span class="m2-chip-k">On this page</span>
+        <span class="m2-chip-v" data-m2-chip>Top</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg>
+      </button>
+      <button type="button" class="m2-search-btn" data-m2-open="search" aria-label="Search the manual">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+        <span class="m2-search-btn-txt">Search the manual</span>
+        <kbd class="m2-kbd">/</kbd>
+      </button>
+    </div>
+  </div>
+
+  <div class="m2-layout">
+    {%- comment -%} Left sidebar: filled by assets/zs-manual2.js from the articles. {%- endcomment -%}
+    <nav class="m2-side" id="m2-side" aria-label="Manual sections">
+      <div class="m2-side-in" data-m2-nav></div>
+    </nav>
+
+    <main class="m2-main" id="m2-main">
+      {%- comment -%} "Step n of 12" bar, shown only on first-run journey pages. {%- endcomment -%}
+      <div class="m2-journey" data-m2-journey hidden></div>
+
+      <div class="m2-pages" id="m2-pages">
+        {%- comment -%}
+          Each part sits in its own m2-chunk box so a missing snippet's
+          error note stays inside it (the script hides empty chunks).
+        {%- endcomment -%}
+        <div class="m2-chunk" data-chunk="home">{% render 'zs-man2-home' %}</div>
+        <div class="m2-chunk" data-chunk="start">{% render 'zs-man2-start' %}</div>
+        <div class="m2-chunk" data-chunk="connect">{% render 'zs-man2-connect' %}</div>
+        <div class="m2-chunk" data-chunk="app">{% render 'zs-man2-app' %}</div>
+        <div class="m2-chunk" data-chunk="aim">{% render 'zs-man2-aim' %}</div>
+        <div class="m2-chunk" data-chunk="scripts">{% render 'zs-man2-scripts' %}</div>
+        <div class="m2-chunk" data-chunk="auto">{% render 'zs-man2-auto' %}</div>
+        <div class="m2-chunk" data-chunk="games">{% render 'zs-man2-games' %}</div>
+        <div class="m2-chunk" data-chunk="help">{% render 'zs-man2-help' %}</div>
+        <div class="m2-chunk" data-chunk="reference">{% render 'zs-man2-reference' %}</div>
+      </div>
+
+      {%- comment -%} Previous / Next cards, filled by the script for the page on screen. {%- endcomment -%}
+      <nav class="m2-pn" data-m2-pn aria-label="Previous and next page"></nav>
+
+      <footer class="m2-foot">
+        <p>ZeroStick EXO Manual · v2 preview · updated November 21, 2026</p>
+        <p>Questions? Email <a href="#support-email">{{ support_email | escape }}</a> or ask in the <a href="#discord">ZeroStick Discord</a>.</p>
+        <p><a href="#m2" class="m2-totop" data-m2-top>Back to top</a></p>
+      </footer>
+    </main>
+
+    {%- comment -%} Right column: "On this page" with scroll-spy (wide screens only). {%- endcomment -%}
+    <aside class="m2-toc" aria-label="On this page">
+      <div class="m2-toc-in">
+        <p class="m2-toc-title">On this page</p>
+        <ol data-m2-toc></ol>
+      </div>
+    </aside>
+  </div>
+
+  {%- comment -%} Phone bottom sheet: shows either the menu or "On this page". {%- endcomment -%}
+  <div class="m2-sheet" id="m2-sheet" role="dialog" aria-modal="true" aria-labelledby="m2-sheet-title" hidden>
+    <div class="m2-sheet-back" data-m2-close></div>
+    <div class="m2-sheet-panel">
+      <div class="m2-sheet-grip" aria-hidden="true"></div>
+      <div class="m2-sheet-head">
+        <p class="m2-sheet-title" id="m2-sheet-title">Menu</p>
+        <button type="button" class="m2-iconbtn" data-m2-close aria-label="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="m2-sheet-body" data-m2-sheet-body></div>
+    </div>
+  </div>
+
+  {%- comment -%} Search window. {%- endcomment -%}
+  <div class="m2-search" id="m2-search" role="dialog" aria-modal="true" aria-label="Search the manual" hidden>
+    <div class="m2-search-back" data-m2-close></div>
+    <div class="m2-search-panel">
+      <div class="m2-search-field">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+        <input type="search" id="m2-q" placeholder="Search: pair, sens, turbo, PS5 not working..." autocomplete="off" spellcheck="false"
+               role="combobox" aria-expanded="true" aria-controls="m2-results" aria-autocomplete="list">
+        <button type="button" class="m2-search-esc" data-m2-close>Esc</button>
+      </div>
+      <ul class="m2-results" id="m2-results" role="listbox" aria-label="Search results"></ul>
+      <p class="m2-search-foot"><span><kbd class="m2-kbd">&uarr;</kbd><kbd class="m2-kbd">&darr;</kbd> to move</span><span><kbd class="m2-kbd">Enter</kbd> to open</span></p>
+    </div>
+  </div>
+
+  {%- comment -%} Picture zoom (lightbox) for screenshots. {%- endcomment -%}
+  <div class="m2-lb" id="m2-lb" role="dialog" aria-modal="true" aria-label="Enlarged picture" hidden>
+    <div class="m2-lb-back" data-m2-close></div>
+    <figure class="m2-lb-fig">
+      <img class="m2-lb-img" alt="" width="786" height="1704" decoding="async">
+      <figcaption class="m2-lb-cap"></figcaption>
+    </figure>
+    <button type="button" class="m2-iconbtn m2-lb-x" data-m2-close aria-label="Close picture">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  {%- comment -%} Small pop-up messages ("Link copied"). Screen readers hear them too. {%- endcomment -%}
+  <div class="m2-toast" role="status" aria-live="polite" data-m2-toast></div>
+</div>
+
+<script src="{{ 'zs-exo2.js' | asset_url }}" defer></script>
+<script src="{{ 'zs-manual2.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "EXO manual v2",
+  "tag": "section",
+  "class": "section zs-manual-v2",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Links used inside the manual"
+    },
+    {
+      "type": "text",
+      "id": "discord_url",
+      "label": "Discord invite link",
+      "default": "#discord-invite-placeholder",
+      "info": "Paste the ZeroStick Discord invite. Until then the manual shows a note to email support."
+    },
+    {
+      "type": "text",
+      "id": "app_store_url",
+      "label": "App Store link (iPhone)",
+      "default": "#app-store-placeholder"
+    },
+    {
+      "type": "text",
+      "id": "play_store_url",
+      "label": "Google Play link (Android)",
+      "default": "#play-store-placeholder"
+    },
+    {
+      "type": "text",
+      "id": "support_email",
+      "label": "Support email",
+      "default": "caleb@zerostickgaming.com"
+    },
+    {
+      "type": "text",
+      "id": "preorder_url",
+      "label": "Pre-order page",
+      "default": "/products/zerostick-exo"
+    },
+    {
+      "type": "text",
+      "id": "games_url",
+      "label": "Supported games page",
+      "default": "/pages/supported-games"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,274 @@
+{% comment %}
+  Manual v2: REFERENCE pages (every setting, glossary, specs, fair play, safety, what's new).
+  Ranges and defaults in the settings table come ONLY from the app source
+  (C:\esp\wt-exe-build\dashboard\public: sections/10-aim.js, zk-pad.js, sections/04-update-rate.js,
+  sections/10-aim-controller.js, sections/12-translation.js, read 2026-11-21) or from
+  C:\zsg\overhaul\APP-FACTS.md / EXO-LAUNCH-FEATURES.md. Anything else is [CONFIRM].
+  Specs: only confirmed numbers (BRIEF.md hardware facts). No certification claims anywhere.
+  Row anchors (#p-reference-settings--speed etc.) let other pages link to one setting.
+{% endcomment %}
+
+{%- comment -%} ===================== Every setting ===================== {%- endcomment -%}
+<article class="m2-page" id="p-reference-settings" data-group="Reference" data-title="Every setting" data-time="8 min"
+  data-keywords="settings table ranges defaults speed smoothing y scale fine aim deadzone update rate dpi sync to game activate deactivate">
+  <header class="m2-head">
+    <p class="m2-crumb">Reference</p>
+    <h1>Every setting</h1>
+    <p class="m2-get">Each setting's range, default and when to change it, in one place.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">8 min</span></div>
+  </header>
+  <p>Change one setting at a time, then test it in a training area. "Start here" is a safe first value.</p>
+
+  <section class="m2-sec" id="p-reference-settings--aim">
+    <h2>Mouse aim</h2>
+    <p>Where: HOME › <b>Settings</b> › <b>Aim</b>. Hip aim and ADS aim each have their own Speed and Smoothing.</p>
+    <div class="m2-table"><table class="m2-settings">
+      <thead><tr><th>Setting</th><th>What it does</th><th>Range</th><th>Default</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
+      <tbody>
+        <tr id="p-reference-settings--speed"><td><b>Speed</b> (Hip aim)</td><td data-label="What it does">How fast your view turns. The app shows the matching cm/360 under it.</td><td data-label="Range">Standard (0) to 100, step 1. Higher is faster.</td><td data-label="Default">Set by your game <span class="m2-confirm">[CONFIRM]</span></td><td data-label="Start here">The default</td><td data-label="Raise it if…">turning feels slow</td><td data-label="Lower it if…">you overshoot targets</td></tr>
+        <tr id="p-reference-settings--ads-speed"><td><b>Speed</b> (ADS aim)</td><td data-label="What it does">Turn speed while aiming down sights.</td><td data-label="Range">Same as hip, or 0 to 100</td><td data-label="Default">Same as hip</td><td data-label="Start here">Same as hip</td><td data-label="Raise it if…">ADS feels slow</td><td data-label="Lower it if…">ADS feels twitchy</td></tr>
+        <tr id="p-reference-settings--smoothing"><td><b>Smoothing</b></td><td data-label="What it does">Evens out small bumps in your aim.</td><td data-label="Range">Disabled, Light, Balanced, Heavy, Custom</td><td data-label="Default">Disabled <span class="m2-confirm">[CONFIRM]</span></td><td data-label="Start here">Disabled</td><td data-label="Raise it if…">aim looks jittery</td><td data-label="Lower it if…">aim feels floaty</td></tr>
+        <tr class="m2-group-row"><td colspan="7">Custom smoothing, Standard</td></tr>
+        <tr id="p-reference-settings--precision"><td><b>Precision</b></td><td data-label="What it does">Smoother at low speeds, a heavier reticle. 0 switches this filter off.</td><td data-label="Range">0–100 %, step 0.5</td><td data-label="Default">0 % <span class="m2-confirm">[CONFIRM]</span></td><td data-label="Start here">0 %</td><td data-label="Raise it if…">slow tracking is shaky</td><td data-label="Lower it if…">aim feels heavy</td></tr>
+        <tr id="p-reference-settings--response"><td><b>Response</b></td><td data-label="What it does">How quickly the filter follows you. Needs Precision above 0.</td><td data-label="Range">0–100 %, step 0.5</td><td data-label="Default">10 % <span class="m2-confirm">[CONFIRM]</span></td><td data-label="Start here">10 %</td><td data-label="Raise it if…">aim lags behind you</td><td data-label="Lower it if…">aim is still shaky</td></tr>
+        <tr id="p-reference-settings--easing"><td><b>Easing</b></td><td data-label="What it does">How gently the filter blends in. Needs Precision above 0.</td><td data-label="Range">0–100 %, step 0.5</td><td data-label="Default">35 % <span class="m2-confirm">[CONFIRM]</span></td><td data-label="Start here">35 %</td><td data-label="Raise it if…">the change feels sudden</td><td data-label="Lower it if…">aim feels soft</td></tr>
+        <tr class="m2-group-row"><td colspan="7">Custom smoothing, Classic</td></tr>
+        <tr id="p-reference-settings--smooth"><td><b>Smooth</b></td><td data-label="What it does">How much smoothing. Higher means more.</td><td data-label="Range">0–100, step 0.5</td><td data-label="Default">0 <span class="m2-confirm">[CONFIRM]</span></td><td data-label="Start here">0</td><td data-label="Raise it if…">aim looks jittery</td><td data-label="Lower it if…">aim feels floaty</td></tr>
+        <tr id="p-reference-settings--decay"><td><b>Decay</b></td><td data-label="What it does">How much Smooth leans on past movement.</td><td data-label="Range">0–20, step 0.5</td><td data-label="Default">9 (the app's "usual")</td><td data-label="Start here">9</td><td data-label="Raise it if…">aim feels floaty</td><td data-label="Lower it if…">aim feels jittery</td></tr>
+        <tr class="m2-group-row"><td colspan="7">ADS Activation</td></tr>
+        <tr id="p-reference-settings--activate"><td><b>Activate</b></td><td data-label="What it does">Keeps hip settings this long after you start aiming, while the game zooms in.</td><td data-label="Range">0–1000 ms, step 4</td><td data-label="Default">0 ms</td><td data-label="Start here">0 ms</td><td data-label="Raise it if…">aim jumps as you zoom in</td><td data-label="Lower it if…">the switch feels late</td></tr>
+        <tr id="p-reference-settings--deactivate"><td><b>Deactivate</b></td><td data-label="What it does">The same, when you stop aiming.</td><td data-label="Range">0–1000 ms, step 4</td><td data-label="Default">0 ms</td><td data-label="Start here">0 ms</td><td data-label="Raise it if…">aim jumps as you zoom out</td><td data-label="Lower it if…">the switch back feels late</td></tr>
+        <tr id="p-reference-settings--smooth-ads"><td><b>Smooth ADS Transition</b></td><td data-label="What it does">Blends from hip to ADS settings instead of switching at once.</td><td data-label="Range">On or off</td><td data-label="Default">Off</td><td data-label="Start here">Off</td><td data-label="Raise it if…">turn it on if the switch feels sudden</td><td data-label="Lower it if…">turn it off if it feels slow</td></tr>
+        <tr class="m2-group-row"><td colspan="7">Advanced</td></tr>
+        <tr id="p-reference-settings--fine-aim"><td><b>Fine aim</b></td><td data-label="What it does">Makes small, slow moves count for more. Flicks stay the same.</td><td data-label="Range">0–100 %, step 5 (0 = off)</td><td data-label="Default">0 %</td><td data-label="Start here">0 %</td><td data-label="Raise it if…">small corrections feel stuck</td><td data-label="Lower it if…">small moves feel jumpy</td></tr>
+        <tr id="p-reference-settings--y-scale"><td><b>Y Scale</b></td><td data-label="What it does">Up-and-down speed compared with left-and-right.</td><td data-label="Range">30–200 %, step 5</td><td data-label="Default">100 %</td><td data-label="Start here">100 %</td><td data-label="Raise it if…">looking up and down feels slow</td><td data-label="Lower it if…">vertical aim overshoots</td></tr>
+        <tr id="p-reference-settings--ignore-tiny"><td><b>Ignore tiny movement</b></td><td data-label="What it does">Hand movement slower than this is ignored.</td><td data-label="Range">0–300 mm/s, step 1 (0 = off)</td><td data-label="Default">0 (off)</td><td data-label="Start here">0</td><td data-label="Raise it if…">a resting hand still moves the view</td><td data-label="Lower it if…">small moves are ignored</td></tr>
+        <tr id="p-reference-settings--feel"><td><b>Feel</b></td><td data-label="What it does">How your aim stops when your hand stops.</td><td data-label="Range">Snappy, Balanced, Smooth</td><td data-label="Default">Snappy</td><td data-label="Start here">Snappy (the app's pick)</td><td data-label="Raise it if…">try Smooth if stops feel abrupt</td><td data-label="Lower it if…">go back to Snappy if aim drifts</td></tr>
+        <tr id="p-reference-settings--startup-feel"><td><b>Start-up feel</b></td><td data-label="What it does">How gently a move starts after your hand was still.</td><td data-label="Range">0–200 ms, step 5 (0 = instant)</td><td data-label="Default">0 ms</td><td data-label="Start here">0 ms</td><td data-label="Raise it if…">starts feel twitchy</td><td data-label="Lower it if…">starts feel slow</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="m2-sec" id="p-reference-settings--sticks">
+    <h2>Controller sticks</h2>
+    <p>Where: HOME › <b>Settings</b> › <b>Aim</b> › <b>Switch ›</b> (Controller).</p>
+    <div class="m2-table"><table class="m2-settings">
+      <thead><tr><th>Setting</th><th>What it does</th><th>Range</th><th>Default</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
+      <tbody>
+        <tr id="p-reference-settings--stick-sensitivity"><td><b>Sensitivity</b></td><td data-label="What it does">How far the stick turns your view.</td><td data-label="Range">10–100 %</td><td data-label="Default"><span class="m2-confirm">[CONFIRM]</span></td><td data-label="Start here">The default</td><td data-label="Raise it if…">turning feels slow</td><td data-label="Lower it if…">you overshoot</td></tr>
+        <tr id="p-reference-settings--inner"><td><b>Inner</b> deadzone</td><td data-label="What it does">Ignores stick movement near the centre.</td><td data-label="Range">0–40 %</td><td data-label="Default">8 %</td><td data-label="Start here">8 %</td><td data-label="Raise it if…">the stick drifts</td><td data-label="Lower it if…">small moves are ignored</td></tr>
+        <tr id="p-reference-settings--outer"><td><b>Outer</b> deadzone</td><td data-label="What it does">Reaches full speed before the stick hits the edge.</td><td data-label="Range">0–40 %</td><td data-label="Default">0 %</td><td data-label="Start here">0 %</td><td data-label="Raise it if…">you can't reach full speed</td><td data-label="Lower it if…">full speed comes too early</td></tr>
+        <tr id="p-reference-settings--anti"><td><b>Anti</b> (anti-deadzone)</td><td data-label="What it does">Steps over the game's own deadzone, so small moves count.</td><td data-label="Range">0–40 %</td><td data-label="Default"><span class="m2-confirm">[CONFIRM]</span></td><td data-label="Start here">Match the game's deadzone</td><td data-label="Raise it if…">small moves do nothing</td><td data-label="Lower it if…">the view creeps on its own</td></tr>
+        <tr id="p-reference-settings--limit"><td><b>Limit</b></td><td data-label="What it does">Caps how far the sticks can go.</td><td data-label="Range">10–100 %</td><td data-label="Default">100 %</td><td data-label="Start here">100 %</td><td data-label="Raise it if…">turning tops out too soon</td><td data-label="Lower it if…">you want a lower top speed</td></tr>
+        <tr id="p-reference-settings--deadzone-shape"><td><b>Deadzone shape</b></td><td data-label="What it does">One round deadzone, or one per direction.</td><td data-label="Range">Round, Per-axis</td><td data-label="Default"><span class="m2-confirm">[CONFIRM]</span></td><td data-label="Start here">Round</td><td data-label="Raise it if…">try Per-axis for straight-line aim</td><td data-label="Lower it if…">go back to Round if diagonals feel off</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="m2-sec" id="p-reference-settings--device">
+    <h2>Device and Translation</h2>
+    <div class="m2-table"><table class="m2-settings">
+      <thead><tr><th>Setting</th><th>What it does</th><th>Range</th><th>Default</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
+      <tbody>
+        <tr id="p-reference-settings--update-rate"><td><b>Update Rate</b></td><td data-label="What it does">How often the EXO updates the console.</td><td data-label="Range">125, 250, 500, 1000 Hz</td><td data-label="Default">1000 Hz on mouse configs. Controller configs: <span class="m2-confirm">[CONFIRM]</span></td><td data-label="Start here">The default</td><td data-label="Raise it if…">aim feels a little behind</td><td data-label="Lower it if…">support asks you to test it</td></tr>
+        <tr id="p-reference-settings--mouse-dpi"><td><b>Mouse DPI</b></td><td data-label="What it does">Tells the EXO your mouse's DPI, so Speed means the same on any mouse.</td><td data-label="Range">Your mouse's DPI. The app recommends 3200–12000.</td><td data-label="Default">Measured or typed in</td><td data-label="Start here">3200</td><td data-label="Raise it if…">match your mouse; don't use it to change speed</td><td data-label="Lower it if…">match your mouse; use Speed instead</td></tr>
+        <tr id="p-reference-settings--connection-method"><td><b>Connection Method</b></td><td data-label="What it does">The console this config plays on.</td><td data-label="Range">PlayStation 5, Xbox, PC</td><td data-label="Default">Picked in New config</td><td data-label="Start here">Your console</td><td data-label="Raise it if…">—</td><td data-label="Lower it if…">—</td></tr>
+        <tr id="p-reference-settings--what-you-play-with"><td><b>What you play with</b></td><td data-label="What it does">Which kind of controls this config expects.</td><td data-label="Range">Auto, Mouse + Keyboard, Controller, Joystick + Mouse</td><td data-label="Default">Auto</td><td data-label="Start here">Auto</td><td data-label="Raise it if…">—</td><td data-label="Lower it if…">—</td></tr>
+        <tr id="p-reference-settings--sync-to-game"><td><b>Sync to game</b></td><td data-label="What it does">Sends aim in step with your game's frame rate.</td><td data-label="Range">60, 120, Custom (20–360 Hz), Off</td><td data-label="Default">60</td><td data-label="Start here">The frame rate you play at</td><td data-label="Raise it if…">your game runs at 120 fps</td><td data-label="Lower it if…">your game runs at 60 fps</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="m2-sec" id="p-reference-settings--global">
+    <h2>Global Settings</h2>
+    <div class="m2-table"><table class="m2-settings">
+      <thead><tr><th>Setting</th><th>What it does</th><th>Range</th><th>Default</th></tr></thead>
+      <tbody>
+        <tr id="p-reference-settings--passthrough-shortcut"><td><b>Pass-through</b> shortcut</td><td data-label="What it does">Pauses your config for menus, chat and typing.</td><td data-label="Range">Any key combo</td><td data-label="Default"><span class="m2-key">1</span> + <span class="m2-key">5</span></td></tr>
+        <tr id="p-reference-settings--shortcut-buttons"><td><b>Shortcut buttons</b></td><td data-label="What it does">Lets the shortcut keys work.</td><td data-label="Range">On, off</td><td data-label="Default">On</td></tr>
+        <tr id="p-reference-settings--tournament-mode"><td><b>Tournament Mode</b></td><td data-label="What it does">Turns every Script off in one tap.</td><td data-label="Range">On, off</td><td data-label="Default">Off <span class="m2-confirm">[CONFIRM]</span></td></tr>
+        <tr id="p-reference-settings--controller-shortcut"><td><b>Controller shortcut</b></td><td data-label="What it does">Change config from your controller.</td><td data-label="Range">Off; Home + Share / View; Home + L3</td><td data-label="Default">Off (Home + Share / View when on)</td></tr>
+        <tr id="p-reference-settings--text-size"><td><b>Text size</b></td><td data-label="What it does">Bigger writing in the app.</td><td data-label="Range">Default, Large, XL</td><td data-label="Default">Default</td></tr>
+        <tr id="p-reference-settings--high-contrast"><td><b>High contrast</b>, <b>Reduce motion</b>, <b>Bigger touch targets</b></td><td data-label="What it does">Easier-to-see app screens.</td><td data-label="Range">On, off</td><td data-label="Default">Off</td></tr>
+        <tr id="p-reference-settings--hold-repeat"><td><b>Hold-repeat speed</b></td><td data-label="What it does">How fast a held − or + keeps stepping.</td><td data-label="Range">Fast, Normal, Slow</td><td data-label="Default">Normal</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+</article>
+
+{%- comment -%} ===================== Glossary ===================== {%- endcomment -%}
+<article class="m2-page" id="p-reference-glossary" data-group="Reference" data-title="Glossary" data-time="5 min"
+  data-keywords="glossary words meaning definition what does mean cm/360 dpi ads hip deadzone">
+  <header class="m2-head">
+    <p class="m2-crumb">Reference</p>
+    <h1>Glossary</h1>
+    <p class="m2-get">Plain meanings for the words you'll see in the app and this manual.</p>
+    <div class="m2-badges"><span class="m2-time">5 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-reference-glossary--aim">
+    <h2>Aim words</h2>
+    <div class="m2-table"><table>
+      <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr id="p-reference-glossary--ads"><td><b>ADS</b></td><td data-label="Meaning">Aim down sights: when you zoom in to aim. The opposite is hip fire.</td></tr>
+        <tr id="p-reference-glossary--anti-deadzone"><td><b>Anti-deadzone</b></td><td data-label="Meaning">A push past the game's deadzone, so tiny moves still turn your view.</td></tr>
+        <tr id="p-reference-glossary--cm360"><td><b>cm/360</b></td><td data-label="Meaning">How far you move your mouse, in centimetres, to turn all the way around. Lower means faster.</td></tr>
+        <tr id="p-reference-glossary--curve"><td><b>Curve</b></td><td data-label="Meaning">How turn speed grows as you move faster.</td></tr>
+        <tr id="p-reference-glossary--deadzone"><td><b>Deadzone</b></td><td data-label="Meaning">A small area around the stick's centre where movement is ignored.</td></tr>
+        <tr id="p-reference-glossary--dpi"><td><b>DPI</b></td><td data-label="Meaning">How many dots your mouse reports per inch of movement.</td></tr>
+        <tr id="p-reference-glossary--hip"><td><b>Hip fire</b></td><td data-label="Meaning">Aiming and shooting without zooming in.</td></tr>
+        <tr id="p-reference-glossary--polling-rate"><td><b>Polling rate</b></td><td data-label="Meaning">How many times a second your mouse reports, in Hz. 1000 Hz is common.</td></tr>
+        <tr id="p-reference-glossary--smoothing"><td><b>Smoothing</b></td><td data-label="Meaning">Evens out small bumps in your aim. Too much feels floaty.</td></tr>
+        <tr id="p-reference-glossary--sync"><td><b>Sync to game</b></td><td data-label="Meaning">Sends aim in step with your game's frame rate.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="m2-sec" id="p-reference-glossary--exo">
+    <h2>EXO and app words</h2>
+    <div class="m2-table"><table>
+      <thead><tr><th>Word</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr id="p-reference-glossary--ai-scripts"><td><b>AI Scripts</b></td><td data-label="Meaning">The app's screen for Scripts that switch on by themselves for the gun you hold (automatic gun detection).</td></tr>
+        <tr id="p-reference-glossary--anti-recoil-lab"><td><b>Anti-Recoil Lab</b></td><td data-label="Meaning">The tool that builds anti-recoil for a gun.</td></tr>
+        <tr id="p-reference-glossary--auth"><td><b>AUTH</b></td><td data-label="Meaning">The back port for the PS5 auth dongle, or your own genuine Xbox controller.</td></tr>
+        <tr id="p-reference-glossary--config"><td><b>Config</b></td><td data-label="Meaning">Everything for one way of playing: game, console, aim, mappings and Scripts.</td></tr>
+        <tr id="p-reference-glossary--connection-method"><td><b>Connection Method</b></td><td data-label="Meaning">The console a config plays on.</td></tr>
+        <tr id="p-reference-glossary--hdmi-loop"><td><b>HDMI loop</b></td><td data-label="Meaning">Console into HDMI IN, HDMI OUT to the TV, so the EXO can see the game.</td></tr>
+        <tr id="p-reference-glossary--mappings"><td><b>Mappings</b></td><td data-label="Meaning">What each button, key or click sends to the console.</td></tr>
+        <tr id="p-reference-glossary--native-mk"><td><b>Native Mouse &amp; Keyboard</b></td><td data-label="Meaning">A config type for PC players, in final testing.</td></tr>
+        <tr id="p-reference-glossary--passthrough"><td><b>Pass-through</b></td><td data-label="Meaning">A shortcut that pauses your config for menus, chat and typing.</td></tr>
+        <tr id="p-reference-glossary--script"><td><b>Script</b></td><td data-label="Meaning">A trigger plus steps the EXO presses for you, like rapid fire.</td></tr>
+        <tr id="p-reference-glossary--tournament-mode"><td><b>Tournament Mode</b></td><td data-label="Meaning">One switch that turns every Script off.</td></tr>
+        <tr id="p-reference-glossary--update-rate"><td><b>Update Rate</b></td><td data-label="Meaning">How often the EXO updates the console, in Hz.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+</article>
+
+{%- comment -%} ===================== Specs ===================== {%- endcomment -%}
+<article class="m2-page" id="p-reference-specs" data-group="Reference" data-title="Specifications" data-time="2 min"
+  data-keywords="specifications specs size dimensions weight ports bluetooth platforms">
+  <header class="m2-head">
+    <p class="m2-crumb">Reference</p>
+    <h1>Specifications</h1>
+    <p class="m2-get">The confirmed facts about ZeroStick EXO.</p>
+    <div class="m2-badges"><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-reference-specs--table">
+    <h2>At a glance</h2>
+    <div class="m2-table"><table>
+      <thead><tr><th>Item</th><th>Spec</th></tr></thead>
+      <tbody>
+        <tr><td><b>Platforms</b></td><td data-label="Spec">PS5, Xbox Series X|S / Xbox One, PC</td></tr>
+        <tr><td><b>Size</b></td><td data-label="Spec">105.1 × 66.3 × 15.45 mm (case, not counting the logo ring and feet)</td></tr>
+        <tr><td><b>Weight</b></td><td data-label="Spec"><span class="m2-confirm">[CONFIRM]</span></td></tr>
+        <tr><td><b>Colours</b></td><td data-label="Spec">White body, black lid</td></tr>
+        <tr><td><b>Back ports</b></td><td data-label="Spec">CONSOLE (USB-C), AUX/POWER (USB-C), AUTH (USB-A), HDMI IN, HDMI OUT</td></tr>
+        <tr><td><b>Front ports</b></td><td data-label="Spec">1 × USB-C, 3 × USB-A</td></tr>
+        <tr><td><b>Power</b></td><td data-label="Spec">From the CONSOLE cable. Optional extra power on AUX/POWER.</td></tr>
+        <tr><td><b>Phone link</b></td><td data-label="Spec">Bluetooth, to the free ZeroStick app (iPhone and Android)</td></tr>
+        <tr><td><b>Mouse input</b></td><td data-label="Spec">Read up to 1000 Hz. Up to 16 mouse buttons.</td></tr>
+        <tr><td><b>Update rate to the console</b></td><td data-label="Spec">125, 250, 500 or 1000 Hz</td></tr>
+        <tr><td><b>Light</b></td><td data-label="Spec">Logo lit in your config's colour</td></tr>
+        <tr><td><b>Configs</b></td><td data-label="Spec">As many as you want, limited only by storage</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+</article>
+
+{%- comment -%} ===================== Fair play ===================== {%- endcomment -%}
+<article class="m2-page" id="p-reference-fair-play" data-group="Reference" data-title="Fair play and Tournament Mode" data-time="2 min"
+  data-keywords="fair play rules tournament mode events esports scripts off">
+  <header class="m2-head">
+    <p class="m2-crumb">Reference</p>
+    <h1>Fair play and Tournament Mode</h1>
+    <p class="m2-get">Play by the rules, and switch every Script off in one tap when you need to.</p>
+    <div class="m2-badges"><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-reference-fair-play--rules">
+    <h2>Follow the rules</h2>
+    <p class="m2-lead">Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p>
+  </section>
+
+  <section class="m2-sec" id="p-reference-fair-play--tournament-mode">
+    <h2>1. Turn on Tournament Mode</h2>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>⋮</b>, then <b>Global Settings</b>.</li>
+      <li>On the <b>General</b> tab, switch on <b>Tournament Mode</b>.</li>
+    </ol>
+    <div class="m2-table"><table>
+      <thead><tr><th>Turns off</th><th>Keeps</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Turns off">Scripts, rapid fire, anti-recoil help and gun-detection actions</td><td data-label="Keeps">Your mappings, stick settings and aim settings</td></tr>
+      </tbody>
+    </table></div>
+    <div class="m2-shot-todo"><b>Screenshot needed</b> — Global Settings › General with Tournament Mode switched on, and HOME showing the Tournament chip, capture on a live EXO.</div>
+  </section>
+
+  <section class="m2-sec" id="p-reference-fair-play--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>App:</b> HOME shows a Tournament chip.</li><li><b>Game:</b> your Scripts no longer fire.</li></ul>
+      <p>A Script still runs? <a href="#p-help-scripts--script-wont-stop">A Script won't stop</a></p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== Safety and care ===================== {%- endcomment -%}
+<article class="m2-page" id="p-reference-safety" data-group="Reference" data-title="Safety and care" data-time="2 min"
+  data-keywords="safety care clean heat vents water warranty">
+  <header class="m2-head">
+    <p class="m2-crumb">Reference</p>
+    <h1>Safety and care</h1>
+    <p class="m2-get">Keep your EXO working well for years.</p>
+    <div class="m2-badges"><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-reference-safety--use">
+    <h2>Everyday use</h2>
+    <ul>
+      <li>Keep the vents on the case clear. Don't cover the EXO or stack things on it while it's on.</li>
+      <li>Keep it dry. Don't use it near water or spilled drinks.</li>
+      <li>Use good USB and HDMI cables, and pull them out by the plug, not the cord.</li>
+      <li>Use a normal USB charger or PC USB port for AUX/POWER.</li>
+      <li>Keep small parts, like the PS5 auth dongle, away from small children.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-reference-safety--clean">
+    <h2>Cleaning</h2>
+    <ul>
+      <li>Unplug the EXO first.</li>
+      <li>Wipe it with a soft, dry cloth.</li>
+      <li>Don't use sprays, solvents or water.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-reference-safety--legal">
+    <h2>Warranty and notices</h2>
+    <p><span class="m2-confirm">[CONFIRM: warranty terms and any required notices]</span></p>
+  </section>
+</article>
+
+{%- comment -%} ===================== What's new ===================== {%- endcomment -%}
+<article class="m2-page" id="p-reference-whats-new" data-group="Reference" data-title="What's new" data-time="1 min"
+  data-keywords="whats new changelog release notes version updates">
+  <header class="m2-head">
+    <p class="m2-crumb">Reference</p>
+    <h1>What's new</h1>
+    <p class="m2-get">Changes to the manual, the app and the EXO, newest first.</p>
+    <div class="m2-badges"><span class="m2-time">1 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-reference-whats-new--2026-11">
+    <h2>November 2026</h2>
+    <ul>
+      <li><b>Manual:</b> new manual, with search, setup steps and a problem finder.</li>
+      <li><b>App and EXO:</b> <span class="m2-confirm">[CONFIRM: launch app and EXO software versions and their notes]</span></li>
+    </ul>
+  </section>
+</article>

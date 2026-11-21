@@ -1,0 +1,554 @@
+{% comment %}
+  Manual v2: THE APP pages (one page per app screen, in on-screen order).
+  Labels in bold are copied exactly from the app screenshots / C:\zsg\overhaul\APP-FACTS.md.
+  Screenshot letters (red) and numbers (teal, on the connected-app captures) match the legends.
+  Pass-through copy rule (BRIEF.md late corrections): only 1 + 5, "to the console", for menus,
+  chat and typing. Never mention the second shortcut row, PC pass-through or native mouse and
+  keyboard in games through Pass-through.
+{% endcomment %}
+
+{%- comment -%} ===================== App tour ===================== {%- endcomment -%}
+<article class="m2-page" id="p-app-tour" data-group="The App" data-title="App tour" data-time="3 min"
+  data-keywords="app tour map navigation menu more settings where is">
+  <header class="m2-head">
+    <p class="m2-crumb">The App</p>
+    <h1>App tour</h1>
+    <p class="m2-get">A map of the ZeroStick app, so you always know where a setting lives.</p>
+    <div class="m2-badges"><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-app-tour--map">
+    <h2>The three places</h2>
+    <ul class="m2-cards">
+      <li><a class="m2-card" href="#p-app-home"><b>HOME</b><span>The playing config, the EXO's status and the gun it sees.</span></a></li>
+      <li><a class="m2-card" href="#p-app-tour--settings"><b>Settings</b><span>Everything about one config: Device, Aim, Mappings, AI Scripts and Advanced.</span></a></li>
+      <li><a class="m2-card" href="#p-app-tour--more"><b>⋮ More</b><span>Your devices, Your configs and Global Settings.</span></a></li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-app-tour--settings">
+    <h2>Settings (one config)</h2>
+    <p>On HOME, tap <b>Settings</b> under the game picture. The menu's title is your config's name.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-settings-menu-m2.webp' | asset_url }}" width="786" height="1704" loading="lazy"
+        alt="A config's Settings menu titled BO2 Ranked. 1: Device. 2: Aim. 3: Mappings. 4: AI Scripts, Scripts for each weapon. 5: Advanced, folded at the bottom.">
+      <figcaption>Figure TOUR.1 — HOME › Settings</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Device</b></td><td>Console connection, mouse DPI, light, copy and paste. <a href="#p-app-device">Device page</a></td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Aim</b></td><td>Mouse speed, hip fire and ADS, or your controller's sticks. <a href="#p-aim-mouse">Aim</a></td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Mappings</b></td><td>Rebind any button to any button. <a href="#p-controls-mappings">Mappings</a></td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>AI Scripts</b></td><td>Scripts for each weapon, switched on by automatic gun detection. <a href="#p-auto-gun-detection">Gun detection</a></td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">5</span></td><td><b>Advanced</b></td><td>Translation and the Advanced Script Maker.</td></tr>
+    </tbody></table>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>On an NBA 2K27 config, <b>Auto green</b> takes the place of AI Scripts. It helps with shot timing.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-app-tour--more">
+    <h2>⋮ More</h2>
+    <p>Tap <b>⋮</b> at the top right of HOME. A sheet titled <b>More</b> opens.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-profiles-2.webp' | asset_url }}" width="786" height="1535" loading="lazy"
+        alt="The More sheet over HOME. A: Your devices. B: Your configs. C: Global Settings.">
+      <figcaption>Figure TOUR.2 — HOME › ⋮ (More)</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Your devices</b></td><td>The EXO your phone is linked to.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Your configs</b></td><td>Switch, add, search and reorder configs. <a href="#p-app-configs">Configs</a></td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Global Settings</b></td><td>Settings for the whole app and EXO. <a href="#p-app-global-settings">Global Settings</a></td></tr>
+    </tbody></table>
+  </section>
+</article>
+
+{%- comment -%} ===================== HOME ===================== {%- endcomment -%}
+<article class="m2-page" id="p-app-home" data-group="The App" data-title="The HOME screen" data-time="3 min"
+  data-keywords="home screen status connected offline active weapon exo card mode">
+  <header class="m2-head">
+    <p class="m2-crumb">The App</p>
+    <h1>The HOME screen</h1>
+    <p class="m2-get">What each part of HOME shows, and what its messages mean.</p>
+    <div class="m2-badges"><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-app-home--overview">
+    <h2>HOME at a glance</h2>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-home-m2.webp' | asset_url }}" width="786" height="1560" loading="lazy"
+        alt="HOME with the EXO connected. A: device pictures. B: config name and game. C: Settings. D: EXO card. E: Active weapon. F: More button.">
+      <figcaption>Figure HOME.1 — HOME, EXO connected, playing on PS5</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Device pictures</b></td><td>What's plugged into the EXO now. Tap one to see its name.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Config name</b></td><td>The config that's playing, and its game.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Settings</b></td><td>Opens this config's settings menu.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td><b>EXO card</b></td><td>Connection and mode. Tap it for <b>Your board</b>.</td></tr>
+      <tr><td><span class="m2-letter">E</span></td><td><b>Active weapon</b></td><td>The gun the EXO reads on screen. Tap for the live gun view.</td></tr>
+      <tr><td><span class="m2-letter">F</span></td><td><b>⋮</b></td><td>Opens <b>More</b>.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-app-home--exo-card">
+    <h2>The EXO card</h2>
+    <div class="m2-table"><table>
+      <thead><tr><th>It says</th><th>What it means</th><th>What to do</th></tr></thead>
+      <tbody>
+        <tr><td data-label="It says"><b>Connected</b></td><td data-label="Means">The app can reach your EXO.</td><td data-label="Do">Nothing. You're good.</td></tr>
+        <tr><td data-label="It says"><b>PS5 Mode</b> / <b>Xbox Mode</b> / <b>PC Mode</b></td><td data-label="Means">The console this config plays on.</td><td data-label="Do">Change it in <a href="#p-app-device--connection-method">Connection Method</a>.</td></tr>
+        <tr><td data-label="It says"><b>Offline</b></td><td data-label="Means">The app can't reach the EXO right now.</td><td data-label="Do">See <a href="#p-help-app-connection--app-says-offline">The app says Offline</a>.</td></tr>
+        <tr><td data-label="It says"><b>Passthrough mode</b></td><td data-label="Means">Your config is paused for menus.</td><td data-label="Do">Tap <b>Turn off Passthrough</b>.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="m2-sec" id="p-app-home--offline">
+    <h2>When the EXO is offline</h2>
+    <p>The top bar says <b>No device connected</b>. Your settings sync when the EXO reconnects.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-health-2.webp' | asset_url }}" width="786" height="1704" loading="lazy"
+        alt="HOME with the EXO offline. A: the EXO card says Offline, last seen just now, check Bluetooth is on. B: Weapon detection unavailable.">
+      <figcaption>Figure HOME.2 — HOME, EXO not reachable</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Offline</b></td><td>When it last saw the EXO, and what to check.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Weapon detection unavailable</b></td><td>Gun detection needs a connected EXO.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-app-home--passthrough">
+    <h2>When Pass-through is on</h2>
+    <p>The game picture is covered by <b>Passthrough mode active</b>, with a <b>Turn off Passthrough</b> button. It also shows the shortcut you used, so you can press it again.</p>
+    <div class="m2-shot-todo"><b>Screenshot needed</b> — HOME with Pass-through on (Passthrough mode active, Turn off Passthrough, "or press 1 + 5"), capture on a live EXO.</div>
+  </section>
+</article>
+
+{%- comment -%} ===================== Configs ===================== {%- endcomment -%}
+<article class="m2-page" id="p-app-configs" data-group="The App" data-title="Configs: switch, copy, paste" data-time="4 min"
+  data-keywords="configs profiles switch change duplicate copy paste reorder search share">
+  <header class="m2-head">
+    <p class="m2-crumb">The App</p>
+    <h1>Configs: switch, copy, paste</h1>
+    <p class="m2-get">Switch configs, make copies and reorder your list.</p>
+    <div class="m2-badges"><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-app-configs--what">
+    <h2>What a config is</h2>
+    <p>A config holds everything for one way of playing: the game, the console, your aim, your mappings and your Scripts. Make as many configs as you want. You're limited only by storage.</p>
+  </section>
+
+  <section class="m2-sec" id="p-app-configs--switch">
+    <h2>1. Switch configs</h2>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>⋮</b> (top right).</li>
+      <li>Tap <b>Your configs</b>.</li>
+      <li>Tap the config you want to play (E).</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-profiles-m2.webp' | asset_url }}" width="786" height="1630" loading="lazy"
+        alt="The Configs screen. A: New config. B: Search configs. C: Reorder. D: the playing config, marked PLAYING. E: another config to tap.">
+      <figcaption>Figure CFG.1 — ⋮ › Your configs</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>New config</b></td><td>Starts the new-config steps. <a href="#p-app-new-config">New config</a></td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Search configs</b></td><td>Finds a config by name.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Reorder</b></td><td>Changes the order of your list.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td><b>PLAYING</b></td><td>Marks the config that's on now.</td></tr>
+      <tr><td><span class="m2-letter">E</span></td><td>Any other config</td><td>Tap to make it the one that plays.</td></tr>
+    </tbody></table>
+    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>You can also switch without your phone: hold your controller's home button and press Share / View. Turn it on in <a href="#p-app-global-settings--change-config">Global Settings</a>.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-app-configs--copy">
+    <h2>2. Duplicate, copy and paste</h2>
+    <p>These buttons sit on the config card at the top of the <b>Device</b> page.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-profiles-3.webp' | asset_url }}" width="786" height="1704" loading="lazy"
+        alt="The config card on the Device page. A: Duplicate. B: Copy. C: Paste. D: More.">
+      <figcaption>Figure CFG.2 — Settings › Device, config card</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Duplicate</b></td><td>Makes a copy of this config.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Copy</b></td><td>Copies the whole config as text, to send to a friend.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Paste</b></td><td>Makes a <b>new</b> config from copied text. Yours is never replaced.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td><b>More</b></td><td>More config options.</td></tr>
+    </tbody></table>
+    <p>Copy takes the whole config: mappings, aim, Scripts, game and console. A pasted config gets "(copy)" added to its name. Its Scripts are scaled to your own in-game settings, and a message tells you so.</p>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Paste needs your EXO connected. Configs are shared as copied text. Share codes are for Scripts.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-app-configs--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>App:</b> HOME shows the config you picked.</li><li><b>EXO:</b> the logo changes to that config's colour.</li></ul>
+      <p>Not changing? <a href="#p-help-app-connection--app-says-offline">The app says Offline</a></p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== New config (journey 7) ===================== {%- endcomment -%}
+<article class="m2-page" id="p-app-new-config" data-group="The App" data-title="Make a new config" data-time="3 min" data-journey="7"
+  data-keywords="new config create add wizard game pick console mouse controller dpi fps name colour">
+  <header class="m2-head">
+    <p class="m2-crumb">The App</p>
+    <h1>Make a new config</h1>
+    <p class="m2-get">Four quick steps give you a config made for your game and console.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-app-new-config--before-you-start">
+    <h2>Before you start</h2>
+    <ul>
+      <li>Your phone is <a href="#p-start-pair-your-phone">paired</a> and HOME says <b>Connected</b>.</li>
+      <li>Know your mouse's DPI, if you play with a mouse. The app can measure it for you too.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-app-new-config--1-game">
+    <h2>1. Pick the game</h2>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>⋮</b>, then <b>Your configs</b>.</li>
+      <li>Tap <b>New config</b>.</li>
+      <li>Tap your game. Use <b>Search games</b> (A) to find it fast.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-games-list.webp' | asset_url }}" width="786" height="1704" loading="lazy"
+        alt="New config, step 1 of 4. A: Search games. B: the Ready section. C: the In progress section.">
+      <figcaption>Figure NEW.1 — New config, step 1 of 4</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Search games</b></td><td>Finds your game by name.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Ready</b></td><td>Games whose settings are finished.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>In progress</b></td><td>Games still being tuned. You can still pick them.</td></tr>
+    </tbody></table>
+    <aside class="m2-call m2-call--important"><p class="m2-call-label">Important</p><p>The game can't be changed later. For a different game, make another config.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-app-new-config--2-console">
+    <h2>2. Pick where it plays</h2>
+    <ol class="m2-steps">
+      <li>Tap <b>PlayStation 5</b>, <b>Xbox</b> or <b>PC</b>.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-platform-m2.webp' | asset_url }}" width="786" height="1135" loading="lazy"
+        alt="New config, step 2 of 4: where does it play. A: PlayStation 5. B: Xbox. C: PC. D: the step's instruction text.">
+      <figcaption>Figure NEW.2 — New config, step 2 of 4</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>PlayStation 5</b></td><td>For PS5, with the included PS5 auth dongle.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Xbox</b></td><td>For Xbox Series X|S / Xbox One.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>PC</b></td><td>For a Windows PC.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td>Step text</td><td>You can change the console later.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-app-new-config--3-input">
+    <h2>3. Pick how you play</h2>
+    <ol class="m2-steps">
+      <li>Tap <b>Mouse</b> or <b>Controller</b>. <span class="m2-confirm">[CONFIRM: exact tile labels on step 3]</span></li>
+      <li>Mouse only: pick or type your mouse's DPI.</li>
+      <li>Mouse only: pick the frame rate you play the game at, <b>60</b> or <b>120</b>.</li>
+    </ol>
+    <div class="m2-shot-todo"><b>Screenshot needed</b> — New config step 3 (Mouse / Controller tiles, DPI step, FPS step), capture on a live EXO. Crop out the Native Mouse &amp; Keyboard tile while it's in final testing.</div>
+  </section>
+
+  <section class="m2-sec" id="p-app-new-config--4-name">
+    <h2>4. Name it and play</h2>
+    <ol class="m2-steps">
+      <li>Type a name, like "Ranked".</li>
+      <li>Pick a colour. The EXO logo lights up in it.</li>
+      <li>Tap the finish button. <span class="m2-confirm">[CONFIRM: finish button label]</span></li>
+    </ol>
+    <div class="m2-shot-todo"><b>Screenshot needed</b> — New config step 4 (name, colour, finish), capture on a live EXO.</div>
+  </section>
+
+  <section class="m2-sec" id="p-app-new-config--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>App:</b> HOME shows your new config's name and game.</li><li><b>EXO:</b> the logo glows in the colour you picked.</li></ul>
+      <p>Not seeing it? <a href="#p-help-app-connection--changes-didnt-save">My changes didn't save</a></p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== Device page (journey 8) ===================== {%- endcomment -%}
+<article class="m2-page" id="p-app-device" data-group="The App" data-title="The Device page" data-time="4 min" data-journey="8"
+  data-keywords="device page connection method console update rate mouse dpi what you play with light brightness in-game settings">
+  <header class="m2-head">
+    <p class="m2-crumb">The App</p>
+    <h1>The Device page</h1>
+    <p class="m2-get">Set the console, light, DPI and update rate for one config.</p>
+    <div class="m2-badges"><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-app-device--top">
+    <h2>Top of the page</h2>
+    <p>Where: HOME › <b>Settings</b> › <b>Device</b>.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-settings-2.webp' | asset_url }}" width="786" height="1704" loading="lazy"
+        alt="The top of the Device page. A: the game picture. B: EXO light colour. C: Brightness. D: In-game settings.">
+      <figcaption>Figure DEV.1 — Settings › Device, top</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td>Game picture</td><td><b>Tap for aim presets made for it.</b> Shows what each preset changes before you apply it.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>EXO light</b></td><td>The colour the EXO glows for this config.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Brightness</b></td><td>How bright the logo glows.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td><b>In-game settings</b></td><td>Your game's own settings, so aim and Scripts can match them.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-app-device--update-rate">
+    <h2>Update Rate and Mouse DPI</h2>
+    <p><b>Update Rate</b> sets how often the EXO updates the console: <b>125</b>, <b>250</b>, <b>500</b> or <b>1000 Hz</b>. Mouse configs use 1000 Hz by default. A faster rate keeps each update fresher. The console still reads at its own pace.</p>
+    <p><b>Mouse DPI</b> tells the EXO your mouse's DPI. Tap <b>Measure my DPI</b> to find it, or <b>Check rate (Hz)</b> to test your mouse's polling rate. The app recommends 3200 DPI.</p>
+    <p>Ranges and defaults: <a href="#p-reference-settings--device">Every setting</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-app-device--connection-method">
+    <h2>Connection Method</h2>
+    <ol class="m2-steps">
+      <li>Scroll down to <b>Connection Method</b> (A).</li>
+      <li>Tap the console row (B).</li>
+      <li>Tap <b>PlayStation 5</b>, <b>Xbox</b> or <b>PC</b>.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-platform-3-m2.webp' | asset_url }}" width="786" height="935" loading="lazy"
+        alt="Device page. A: Connection Method. B: the console row, PlayStation 5, Joystick plus Mouse. C: What you play with.">
+      <figcaption>Figure DEV.2 — Settings › Device › Connection Method</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Connection Method</b></td><td>The console this config plays on.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td>Console row</td><td>Tap to change the console.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>What you play with</b></td><td><b>Auto</b>, <b>Mouse + Keyboard</b>, <b>Controller</b> or <b>Joystick + Mouse</b>.</td></tr>
+    </tbody></table>
+    <p>It saves the moment you tap. There's no Save button. A message says <b>Now playing from</b> your console. The console connection restarts in about a second, but the EXO doesn't restart.</p>
+  </section>
+
+  <section class="m2-sec" id="p-app-device--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>App:</b> the EXO card on HOME shows <b>PS5 Mode</b>, <b>Xbox Mode</b> or <b>PC Mode</b>, matching your console.</li><li><b>Console:</b> your controls move around the console's menus.</li></ul>
+      <p>Wrong mode? <a href="#p-help-ps5--wrong-mode">HOME shows the wrong mode</a></p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== Pass-through (journey 10) ===================== {%- endcomment -%}
+<article class="m2-page" id="p-app-passthrough" data-group="The App" data-title="Pass-through (menus and chat)" data-time="3 min" data-journey="10"
+  data-keywords="pass-through passthrough navigate mode menus chat typing pause config shortcut 1 + 5">
+  <header class="m2-head">
+    <p class="m2-crumb">The App</p>
+    <h1>Pass-through</h1>
+    <p class="m2-get">Pause your config with one shortcut, for menus, chat and typing.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-app-passthrough--what">
+    <h2>What it does</h2>
+    <p>Press <span class="m2-key">1</span> + <span class="m2-key">5</span> on your keyboard (the default) to pause your config. Your keyboard and mouse go straight to the console for menus, chat and typing. Press it again to come back.</p>
+    <p>While it's on, the EXO logo breathes cyan.</p>
+  </section>
+
+  <section class="m2-sec" id="p-app-passthrough--use">
+    <h2>1. Turn it on and off</h2>
+    <ol class="m2-steps">
+      <li>Press <span class="m2-key">1</span> + <span class="m2-key">5</span> together on your keyboard.</li>
+      <li>Use the menus, chat or type.</li>
+      <li>Press <span class="m2-key">1</span> + <span class="m2-key">5</span> again to go back to your config.</li>
+    </ol>
+    <p>Or tap <b>Turn off Passthrough</b> on HOME.</p>
+  </section>
+
+  <section class="m2-sec" id="p-app-passthrough--settings">
+    <h2>2. Change the shortcut</h2>
+    <p>Where: HOME › <b>⋮</b> › <b>Global Settings</b> › <b>General</b> › <b>Pass-through</b>.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-passthrough-card-m2.webp' | asset_url }}" width="786" height="1091" loading="lazy"
+        alt="Global Settings, General tab, Pass-through card with the 1 plus 5 shortcut. 1: Edit shortcut. 2: Turn on. 3: Shortcut buttons switch, on.">
+      <figcaption>Figure PT.1 — Global Settings › General › Pass-through</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Edit shortcut</b></td><td>Choose the keys that switch Pass-through on and off.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Turn on</b></td><td>Starts Pass-through from the app instead of the keys.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Shortcut buttons</b></td><td>Leave this on, so the shortcut keys work.</td></tr>
+    </tbody></table>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>The app's card says <b>Pass-through to PS5</b> on every config, Xbox too. On any console, it goes to whatever is on the CONSOLE cable.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-app-passthrough--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> HOME shows <b>Passthrough mode active</b> after you press the shortcut.</li>
+        <li><b>EXO:</b> the logo breathes cyan.</li>
+        <li><b>Console:</b> you can type in a chat box or menu.</li>
+      </ul>
+      <p>Not switching? <a href="#p-help-mouse-and-keyboard--passthrough-not-switching">Pass-through doesn't switch</a></p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== Lights ===================== {%- endcomment -%}
+<article class="m2-page" id="p-app-lights" data-group="The App" data-title="Lights" data-time="2 min"
+  data-keywords="light led logo colour color brightness rainbow light bar dualsense status lights">
+  <header class="m2-head">
+    <p class="m2-crumb">The App</p>
+    <h1>Lights</h1>
+    <p class="m2-get">The logo lights up in your config's colour. Here's how to change it.</p>
+    <div class="m2-badges"><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-app-lights--colour">
+    <h2>1. Change the colour</h2>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>Settings</b>, then <b>Device</b>.</li>
+      <li>On the config card, swipe the colours under <b>EXO light</b> and tap one.</li>
+      <li>Drag <b>Brightness</b> to set how bright it glows.</li>
+    </ol>
+    <p>Each config has its own colour, so you can tell at a glance which config is on. A DualSense, DualSense Edge or DualShock 4 light bar can follow it too.</p>
+    <p>More light options (one colour, rainbow or off): <span class="m2-confirm">[CONFIRM: exact path to the Light screen and its labels]</span></p>
+    <div class="m2-shot-todo"><b>Screenshot needed</b> — the Light screen (EXO light: One colour / Rainbow / Off, Brightness, Rainbow speed, light-bar rows), capture on a live EXO.</div>
+  </section>
+
+  <section class="m2-sec" id="p-app-lights--patterns">
+    <h2>What the light tells you</h2>
+    <div class="m2-table"><table>
+      <thead><tr><th>You see</th><th>It means</th></tr></thead>
+      <tbody>
+        <tr><td data-label="You see">Steady, in your config's colour</td><td data-label="It means">Your config is on.</td></tr>
+        <tr><td data-label="You see">Cyan, slowly breathing</td><td data-label="It means">Pass-through is on.</td></tr>
+        <tr><td data-label="You see">Other patterns</td><td data-label="It means"><span class="m2-confirm">[CONFIRM: other light states, described in words]</span></td></tr>
+      </tbody>
+    </table></div>
+    <p>The light never flashes more than twice a second.</p>
+  </section>
+
+  <section class="m2-sec" id="p-app-lights--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>EXO:</b> the logo glows in the colour you picked.</li><li><b>App:</b> the config card shows the same colour.</li></ul>
+      <p>No light at all? <a href="#p-help-power-and-usb--no-light">The EXO doesn't light up</a></p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== Global Settings ===================== {%- endcomment -%}
+<article class="m2-page" id="p-app-global-settings" data-group="The App" data-title="Global Settings" data-time="4 min"
+  data-keywords="global settings general performance access tournament mode change config controller shortcut output rate">
+  <header class="m2-head">
+    <p class="m2-crumb">The App</p>
+    <h1>Global Settings</h1>
+    <p class="m2-get">Settings for the whole app and EXO, not just one config.</p>
+    <div class="m2-badges"><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-app-global-settings--where">
+    <h2>Where to find it</h2>
+    <p>HOME › <b>⋮</b> › <b>Global Settings</b>. It has three tabs: <b>General</b>, <b>Performance</b> and <b>Access</b>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-app-global-settings--general">
+    <h2>General</h2>
+    <div class="m2-table"><table>
+      <thead><tr><th>Setting</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Setting"><b>Pass-through</b></td><td data-label="What it does">The shortcut that pauses your config for menus, chat and typing. <a href="#p-app-passthrough">Pass-through</a></td></tr>
+        <tr><td data-label="Setting"><b>Tournament Mode</b></td><td data-label="What it does">Turns every Script off in one tap. <a href="#p-reference-fair-play">Fair play</a></td></tr>
+        <tr><td data-label="Setting"><b>Change config from your controller</b></td><td data-label="What it does">Switch configs with a controller shortcut. See below.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="m2-sec" id="p-app-global-settings--change-config">
+    <h2>Change config from your controller</h2>
+    <ol class="m2-steps">
+      <li>Switch on <b>Controller shortcut</b> (1).</li>
+      <li>Pick <b>Home + Share / View</b> (2) or <b>Home + L3</b> (3).</li>
+    </ol>
+    <p>Now hold your controller's home button (PS, Xbox or Home) and press Share / View (or L3). The EXO goes to your next config, and loops after the last one. This works from a controller, not a keyboard.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-change-config-m2.webp' | asset_url }}" width="786" height="823" loading="lazy"
+        alt="Global Settings, General tab: Change config from your controller. 1: Controller shortcut switch. 2: Home plus Share or View. 3: Home plus L3. 4: the help button.">
+      <figcaption>Figure GS.1 — Global Settings › General › Change config from your controller</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Controller shortcut</b></td><td>Switch on to change config without your phone. Off by default.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Home + Share / View</b></td><td>Hold Home, then press Share (or View). The default.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Home + L3</b></td><td>Hold Home, then click the left stick.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>?</b></td><td>Shows the app's own explanation.</td></tr>
+    </tbody></table>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>This card only shows while your EXO is connected.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-app-global-settings--performance">
+    <h2>Performance</h2>
+    <p>Shows the active config's output rate and live counters. To change the rate, use <a href="#p-app-device--update-rate">Update Rate on the Device page</a>.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-settings-3.webp' | asset_url }}" width="786" height="930" loading="lazy"
+        alt="Global Settings, Performance tab. A: Output rate 250 Hz. B: Change it on Device. C: Live counters.">
+      <figcaption>Figure GS.2 — Global Settings › Performance</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Output rate</b></td><td>The playing config's rate, read live from the EXO.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Change it on Device</b></td><td>Jumps to Update Rate.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Live</b></td><td>Counters that show the EXO is busy working.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-app-global-settings--access">
+    <h2>Access</h2>
+    <p>Text size, contrast, motion and more. See <a href="#p-app-accessibility">Accessibility</a>.</p>
+  </section>
+</article>
+
+{%- comment -%} ===================== Accessibility ===================== {%- endcomment -%}
+<article class="m2-page" id="p-app-accessibility" data-group="The App" data-title="Accessibility" data-time="4 min"
+  data-keywords="accessibility adaptive one handed disability text size high contrast reduce motion bigger touch targets hold toggle">
+  <header class="m2-head">
+    <p class="m2-crumb">The App</p>
+    <h1>Accessibility</h1>
+    <p class="m2-get">Make the app easier to use, and set up controls that fit how you play.</p>
+    <div class="m2-badges"><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-app-accessibility--one-tap">
+    <h2>1. Make the app easier to see</h2>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>⋮</b>, then <b>Global Settings</b>.</li>
+      <li>Tap the <b>Access</b> tab.</li>
+      <li>Tap <b>Make everything easier to see</b> (A).</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-settings-4-m2.webp' | asset_url }}" width="786" height="1536" loading="lazy"
+        alt="Global Settings, Access tab. A: Make everything easier to see. B: Text size, Default, Large, XL. C: High contrast. D: Reduce motion.">
+      <figcaption>Figure ACC.1 — Global Settings › Access</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Make everything easier to see</b></td><td>One tap for bigger, clearer screens.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Text size</b></td><td><b>Default</b>, <b>Large</b> or <b>XL</b>.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>High contrast</b></td><td>Brighter text and stronger borders.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td><b>Reduce motion</b></td><td>No slide or fade animations.</td></tr>
+    </tbody></table>
+    <p>Also on this tab: <b>Bigger touch targets</b> and <b>Hold-repeat speed</b> (how fast a held − or + keeps stepping).</p>
+  </section>
+
+  <section class="m2-sec" id="p-app-accessibility--controls">
+    <h2>2. Controls that fit you</h2>
+    <p>Remap any button to any button in <a href="#p-controls-mappings">Mappings</a>. Ready-made Scripts can also take work off your hands. Some to try:</p>
+    <ul>
+      <li><b>Hold any button for me</b></li>
+      <li><b>Aim without holding it</b></li>
+      <li><b>Crouch without holding it</b></li>
+      <li><b>Fire without holding</b></li>
+      <li><b>Auto sprint</b></li>
+    </ul>
+    <p>Find them in the <a href="#p-scripts-library">Ready-made Scripts</a> list.</p>
+  </section>
+
+  <section class="m2-sec" id="p-app-accessibility--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>App:</b> text and buttons look bigger and clearer.</li><li><b>Game:</b> the remapped button or Script does what you set.</li></ul>
+      <p>A Script not firing? <a href="#p-help-scripts--script-wont-fire">A Script won't fire</a></p></aside>
+  </section>
+</article>

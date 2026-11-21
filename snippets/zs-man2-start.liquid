@@ -1,0 +1,407 @@
+{% comment %}
+  Manual v2: GET STARTED pages (plus the 10-minute setup, which sits in "Start here").
+  Shell + markup rules: sections/zs-manual-v2.liquid, C:\zsg\overhaul\MANUAL-CONTRACT.md.
+  Facts: C:\zsg\overhaul\BRIEF.md (hardware, box contents) and APP-FACTS.md.
+
+  First-run journey (data-journey on each article; the shell shows "Step n of 12"):
+    1 whats-in-the-box  2 ports-and-buttons  3 install-the-app
+    4 the three platform pages (zs-man2-connect)  5 pair-your-phone  6 updates
+    7 app/new-config  8 app/device  9 aim/game-settings (Agent B)
+    10 app/passthrough  11 + 12 Agent B (tune aim, gun detection)
+  Anything marked [CONFIRM] is not confirmed yet and shows as an amber tag.
+  Screenshots: assets/exo2-ann-*.webp (made by C:\zsg\overhaul\tools\make_manual2_imgs.py).
+{% endcomment %}
+
+{%- comment -%} ===================== 10-minute setup ===================== {%- endcomment -%}
+<article class="m2-page" id="p-start-quick-start" data-group="Start here" data-title="10-minute setup" data-time="10 min"
+  data-keywords="quick start setup first time new getting started journey steps unbox">
+  <header class="m2-head">
+    <p class="m2-crumb">Start here</p>
+    <h1>10-minute setup</h1>
+    <p class="m2-get">Go from the box to your first match in twelve short steps. You don't need a PC or an account.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">PS5</span><span class="x2-badge x2-badge--plain">Xbox</span><span class="x2-badge x2-badge--plain">PC</span><span class="m2-time">10 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-start-quick-start--steps">
+    <h2>The twelve steps</h2>
+    <p>Tap a step to open it. Each page ends with a <b>Next</b> button, so you can follow the steps in order.</p>
+    <ol class="m2-jlist">
+      <li><a href="#p-start-whats-in-the-box">
+        <span><b>Unbox</b><span>Check what's in the box and what you need for your console.</span><span class="is-done-when">Done when: you have everything on your list.</span><em>1 min</em></span>
+        {% render 'zs-exo2-visual', view: 'top', class: 'm2-jthumb m2-jthumb--product', alt: '' %}</a></li>
+      <li><a href="#p-start-ports-and-buttons">
+        <span><b>Meet the ports</b><span>Find CONSOLE, AUX/POWER, AUTH, HDMI IN, HDMI OUT and the front ports.</span><span class="is-done-when">Done when: you can point at each port.</span><em>1 min</em></span>
+        {% render 'zs-exo2-visual', view: 'ports-back', class: 'm2-jthumb m2-jthumb--product', alt: '' %}</a></li>
+      <li><a href="#p-start-install-the-app">
+        <span><b>Install the app</b><span>Get the free ZeroStick app on your iPhone or Android phone.</span><span class="is-done-when">Done when: the app opens on "Connect to your ZeroStick".</span><em>2 min</em></span>
+        <img class="m2-jthumb" src="{{ 'exo2-ann-connect-m2.webp' | asset_url }}" width="786" height="720" loading="lazy" alt=""></a></li>
+      <li><a href="#p-platforms-ps5">
+        <span><b>Wire it up</b><span>Controls in the front, then auth, the console cable and HDMI. Follow steps 1 to 4 of your platform guide.</span><span class="is-done-when">Done when: the EXO logo lights up.</span><em>3 min</em></span>
+        {% render 'zs-exo2-visual', view: 'ports-front', class: 'm2-jthumb m2-jthumb--product', alt: '' %}</a></li>
+      <li><a href="#p-start-pair-your-phone">
+        <span><b>Pair your phone</b><span>Open the app, tap Connect and pick ZeroStick EXO.</span><span class="is-done-when">Done when: HOME shows your EXO as Connected.</span><em>1 min</em></span>
+        <img class="m2-jthumb" src="{{ 'exo2-ann-home-m2.webp' | asset_url }}" width="786" height="1560" loading="lazy" alt=""></a></li>
+      <li><a href="#p-start-updates">
+        <span><b>Check for updates</b><span>Make sure the ZeroStick app is up to date.</span><span class="is-done-when">Done when: your app store shows Open, not Update.</span><em>1 min</em></span>
+        <img class="m2-jthumb" src="{{ 'exo2-ann-health.webp' | asset_url }}" width="786" height="1298" loading="lazy" alt=""></a></li>
+      <li><a href="#p-app-new-config">
+        <span><b>Make your first config</b><span>Pick your game, your console, mouse or controller, then a name and colour.</span><span class="is-done-when">Done when: your new config shows on HOME.</span><em>2 min</em></span>
+        <img class="m2-jthumb" src="{{ 'exo2-ann-games-list.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt=""></a></li>
+      <li><a href="#p-app-device">
+        <span><b>Choose your platform</b><span>Check Connection Method on the Device page.</span><span class="is-done-when">Done when: HOME shows PS5 Mode, Xbox Mode or PC Mode.</span><em>1 min</em></span>
+        <img class="m2-jthumb" src="{{ 'exo2-ann-platform-3-m2.webp' | asset_url }}" width="786" height="935" loading="lazy" alt=""></a></li>
+      <li><a href="#p-aim-game-settings">
+        <span><b>Set your in-game settings</b><span>Copy the app's recommended settings into your game.</span><span class="is-done-when">Done when: every setting on the list is set in the game.</span><em>2 min</em></span>
+        <img class="m2-jthumb" src="{{ 'exo2-ann-settings-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt=""></a></li>
+      <li><a href="#p-app-passthrough">
+        <span><b>Play</b><span>Run your platform's success check. Use Pass-through for menus and chat.</span><span class="is-done-when">Done when: the light, the app and the console checks all pass.</span><em>2 min</em></span>
+        <img class="m2-jthumb" src="{{ 'exo2-ann-passthrough-card-m2.webp' | asset_url }}" width="786" height="1091" loading="lazy" alt=""></a></li>
+      <li><a href="#p-aim-check-your-mouse">
+        <span><b>Tune your aim</b><span>Check your mouse DPI and polling rate, then adjust Speed.</span><span class="is-done-when">Done when: aim feels right in a training area.</span><em>5 min</em></span>
+        <img class="m2-jthumb" src="{{ 'exo2-ann-platform-3-m2.webp' | asset_url }}" width="786" height="935" loading="lazy" alt=""></a></li>
+      <li><a href="#p-auto-gun-detection">
+        <span><b>Level up</b><span>Set up automatic gun detection, per-gun Scripts and the Anti-Recoil Lab.</span><span class="is-done-when">Done when: the Active weapon card follows your gun.</span><em>10 min</em></span>
+        <img class="m2-jthumb" src="{{ 'exo2-ann-home-m2.webp' | asset_url }}" width="786" height="1560" loading="lazy" alt=""></a></li>
+    </ol>
+    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Wire it up before you pair. The EXO gets its power from the CONSOLE cable, so it needs to be plugged in before your phone can find it.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-start-quick-start--platform">
+    <h2>Pick your platform guide</h2>
+    <p>Steps 4, 8 and 10 happen in your platform guide. All three guides use the same step numbers.</p>
+    <div class="m2-plats">
+      <a class="m2-plat" href="#p-platforms-ps5"><b>PS5</b><span>Uses the included PS5 auth dongle.</span></a>
+      <a class="m2-plat" href="#p-platforms-xbox"><b>Xbox</b><span>Uses your own genuine Xbox controller.</span></a>
+      <a class="m2-plat" href="#p-platforms-pc"><b>PC</b><span>No sign-in device needed.</span></a>
+    </div>
+  </section>
+</article>
+
+{%- comment -%} ===================== What ZeroStick EXO does ===================== {%- endcomment -%}
+<article class="m2-page" id="p-start-what-is-exo" data-group="Get Started" data-title="What ZeroStick EXO does" data-time="3 min"
+  data-keywords="what is exo overview how it works signal flow features adapter">
+  <header class="m2-head">
+    <p class="m2-crumb">Get Started</p>
+    <h1>What ZeroStick EXO does</h1>
+    <p class="m2-get">A one-minute picture of how the EXO works and what it can do for you.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">PS5</span><span class="x2-badge x2-badge--plain">Xbox</span><span class="x2-badge x2-badge--plain">PC</span><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-start-what-is-exo--in-one-line">
+    <h2>In one line</h2>
+    <p class="m2-lead">You plug your mouse, keyboard or controller into the EXO. The EXO turns it into a controller your console accepts. You set it all up from your phone.</p>
+    <p>ZeroStick EXO works with PS5, Xbox Series X|S / Xbox One and PC. It's a one-time purchase. There's no subscription and no account.</p>
+  </section>
+
+  <section class="m2-sec" id="p-start-what-is-exo--how-it-works">
+    <h2>How the signal flows</h2>
+    <p>Follow the letters. The moving dots show which way each signal travels.</p>
+    <div class="m2-flow" role="img" aria-label="Diagram: your controls (A) go into the EXO (B), which sends a controller signal to your console or PC (C). The console's picture goes through the EXO's HDMI IN and out of HDMI OUT to your TV (D). Your phone (E) talks to the EXO over Bluetooth.">
+      <p class="m2-flow-label">Your controls</p>
+      <div class="m2-flow-row">
+        <div class="m2-flow-node"><span class="m2-letter">A</span>Mouse, keyboard, controller<small>Front ports</small></div>
+        <div class="m2-flow-link" aria-hidden="true"><i></i></div>
+        <div class="m2-flow-node is-exo"><span class="m2-letter">B</span>ZeroStick EXO<small>Your config runs here</small></div>
+        <div class="m2-flow-link" aria-hidden="true"><i></i></div>
+        <div class="m2-flow-node"><span class="m2-letter">C</span>PS5, Xbox or PC<small>CONSOLE cable</small></div>
+      </div>
+      <p class="m2-flow-label" style="margin-top:2rem">The picture (for automatic gun detection)</p>
+      <div class="m2-flow-row">
+        <div class="m2-flow-node"><span class="m2-letter">C</span>Console<small>HDMI out</small></div>
+        <div class="m2-flow-link" aria-hidden="true"><i></i></div>
+        <div class="m2-flow-node is-exo"><span class="m2-letter">B</span>EXO<small>HDMI IN to HDMI OUT</small></div>
+        <div class="m2-flow-link" aria-hidden="true"><i></i></div>
+        <div class="m2-flow-node"><span class="m2-letter">D</span>TV or monitor<small>Same picture as before</small></div>
+      </div>
+      <p class="m2-flow-label" style="margin-top:2rem">Set-up</p>
+      <div class="m2-flow-row">
+        <div class="m2-flow-node"><span class="m2-letter">E</span>Your phone<small>Free ZeroStick app</small></div>
+        <div class="m2-flow-link m2-flow-link--both" aria-hidden="true"><i></i></div>
+        <div class="m2-flow-node is-exo"><span class="m2-letter">B</span>EXO<small>Bluetooth</small></div>
+      </div>
+    </div>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Your controls</b></td><td>Mouse, keyboard or controller, plugged into the front of the EXO.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>ZeroStick EXO</b></td><td>Runs your config: aim, button mappings and Scripts.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Console or PC</b></td><td>Sees the EXO as a controller on the CONSOLE cable.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td><b>TV or monitor</b></td><td>Gets the same picture, passed through the EXO.</td></tr>
+      <tr><td><span class="m2-letter">E</span></td><td><b>Your phone</b></td><td>Sets everything up over Bluetooth. You don't need it to play.</td></tr>
+    </tbody></table>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>The HDMI loop is optional. You only need it for features that read the game picture, like automatic gun detection and Auto green in NBA 2K27.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-start-what-is-exo--what-you-can-do">
+    <h2>What you can do with it</h2>
+    <ul class="m2-cards">
+      <li><a class="m2-card" href="#p-aim-mouse"><b>Aim with a mouse on console</b><span>Set your speed in real cm/360, with separate hip fire and aim down sights.</span></a></li>
+      <li><a class="m2-card" href="#p-controls-mappings"><b>Use the controller you like</b><span>Plug in a PlayStation or Xbox controller, or most wired USB pads, on any supported console.</span></a></li>
+      <li><a class="m2-card" href="#p-controls-mappings"><b>Remap anything</b><span>Rebind any button, key or mouse click to any controller button.</span></a></li>
+      <li><a class="m2-card" href="#p-scripts-library"><b>Add Scripts</b><span>33 ready-made Scripts, or build your own with the Advanced Script Maker.</span></a></li>
+      <li><a class="m2-card" href="#p-auto-gun-detection"><b>Automatic gun detection</b><span>The EXO sees which gun you hold and switches that gun's Scripts on for you.</span></a></li>
+      <li><a class="m2-card" href="#p-app-configs"><b>As many configs as you want</b><span>One per game, or several. Limited only by storage.</span></a></li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-start-what-is-exo--next">
+    <h2>Next</h2>
+    <p>Ready to begin? Start with <a href="#p-start-whats-in-the-box">what's in the box</a>, or jump straight into the <a href="#p-start-quick-start">10-minute setup</a>.</p>
+  </section>
+</article>
+
+{%- comment -%} ===================== What's in the box (journey 1) ===================== {%- endcomment -%}
+<article class="m2-page" id="p-start-whats-in-the-box" data-group="Get Started" data-title="What's in the box" data-time="1 min" data-journey="1"
+  data-keywords="box contents cables included need dongle hdmi cable unbox">
+  <header class="m2-head">
+    <p class="m2-crumb">Get Started</p>
+    <h1>What's in the box</h1>
+    <p class="m2-get">Check you have everything, and see what you need to add for your console.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">PS5</span><span class="x2-badge x2-badge--plain">Xbox</span><span class="x2-badge x2-badge--plain">PC</span><span class="m2-time">1 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-start-whats-in-the-box--in-the-box">
+    <h2>In every box</h2>
+    <ul class="m2-box">
+      <li>ZeroStick EXO</li>
+      <li>1 HDMI cable</li>
+      <li>1 USB-C to USB-A power cable</li>
+      <li>1 braided USB-C to USB-A controller cable</li>
+    </ul>
+    <figure class="m2-media">{% render 'zs-exo2-visual', view: 'hero' %}<figcaption>ZeroStick EXO. The logo lights up in your config's colour.</figcaption></figure>
+  </section>
+
+  <section class="m2-sec" id="p-start-whats-in-the-box--by-platform">
+    <h2>What else you need</h2>
+    <div class="m2-table"><table>
+      <thead><tr><th>Platform</th><th>Also in your box</th><th>You add</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Platform"><b>PS5</b> (PS5 version)</td><td data-label="In your box">The PS5 auth dongle</td><td data-label="You add">A second HDMI cable, or reuse your PS5's own HDMI cable</td></tr>
+        <tr><td data-label="Platform"><b>Xbox Series X|S / Xbox One</b> (Xbox version)</td><td data-label="In your box">Nothing extra</td><td data-label="You add">Your own genuine Xbox controller and its USB cable. A second HDMI cable, or reuse your Xbox's own.</td></tr>
+        <tr><td data-label="Platform"><b>PC</b></td><td data-label="In your box">Nothing extra</td><td data-label="You add">A free USB port on your PC</td></tr>
+      </tbody>
+    </table></div>
+    <p>You also need an iPhone or Android phone for the free ZeroStick app. <span class="m2-confirm">[CONFIRM: minimum iOS and Android versions]</span></p>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>The second HDMI cable is only for the HDMI loop. You can skip HDMI for now and add it later for automatic gun detection.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-start-whats-in-the-box--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>Box:</b> you have the EXO and the three cables listed above.</li><li><b>Your platform:</b> you have everything in the "You add" column for your console.</li></ul>
+      <p>Something missing? <a href="#p-help-get-support">Contact ZeroStick</a></p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== Ports (journey 2) ===================== {%- endcomment -%}
+<article class="m2-page" id="p-start-ports-and-buttons" data-group="Get Started" data-title="Ports and light" data-time="2 min" data-journey="2"
+  data-keywords="ports back front console aux power auth hdmi in out usb-c usb-a light logo">
+  <header class="m2-head">
+    <p class="m2-crumb">Get Started</p>
+    <h1>Ports and light</h1>
+    <p class="m2-get">Learn what each port does, so wiring up takes a minute.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">PS5</span><span class="x2-badge x2-badge--plain">Xbox</span><span class="x2-badge x2-badge--plain">PC</span><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-start-ports-and-buttons--back">
+    <h2>The back</h2>
+    <p>Seen from behind, left to right: <b>CONSOLE</b>, <b>AUX/POWER</b>, <b>AUTH</b>, <b>HDMI IN</b> and <b>HDMI OUT</b>.</p>
+    <figure class="m2-media">{% render 'zs-exo2-visual', view: 'ports-back' %}<figcaption>Figure PORT.1 — The back of the EXO, with each port named.</figcaption></figure>
+    <div class="m2-table"><table>
+      <thead><tr><th>Port</th><th>Type</th><th>What it's for</th><th>Needed?</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Port"><b>CONSOLE</b></td><td data-label="Type">USB-C</td><td data-label="What it's for">The play cable. It goes to your console, or to your PC when you play on PC. The EXO gets its power from it.</td><td data-label="Needed?">Always</td></tr>
+        <tr><td data-label="Port"><b>AUX/POWER</b></td><td data-label="Type">USB-C</td><td data-label="What it's for">Optional extra power from any USB charger or PC USB port.</td><td data-label="Needed?">Never required</td></tr>
+        <tr><td data-label="Port"><b>AUTH</b></td><td data-label="Type">USB-A</td><td data-label="What it's for">PS5 version: the included PS5 auth dongle. Xbox version: your own genuine Xbox controller.</td><td data-label="Needed?">PS5 and Xbox</td></tr>
+        <tr><td data-label="Port"><b>HDMI IN</b></td><td data-label="Type">HDMI</td><td data-label="What it's for">The picture from your console. The EXO reads it for automatic gun detection.</td><td data-label="Needed?">Optional</td></tr>
+        <tr><td data-label="Port"><b>HDMI OUT</b></td><td data-label="Type">HDMI</td><td data-label="What it's for">To your TV or monitor. Your picture passes straight through.</td><td data-label="Needed?">With HDMI IN</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="m2-sec" id="p-start-ports-and-buttons--front">
+    <h2>The front</h2>
+    <p>The front has <b>1 USB-C</b> port (on the left) and <b>3 USB-A</b> ports. Plug in controllers, a mouse, a keyboard or a USB hub. Any front port works for any of them.</p>
+    <figure class="m2-media">{% render 'zs-exo2-visual', view: 'ports-front' %}<figcaption>Figure PORT.2 — The front of the EXO: one USB-C port and three USB-A ports.</figcaption></figure>
+  </section>
+
+  <section class="m2-sec" id="p-start-ports-and-buttons--explore">
+    <h2>Explore the ports in 3D</h2>
+    <p>Tap a dot or a row to see what each port does. Use <b>Back</b> and <b>Front</b> to turn the EXO around.</p>
+    {% render 'zs-exo2-visual', view: 'ports' %}
+  </section>
+
+  <section class="m2-sec" id="p-start-ports-and-buttons--light">
+    <h2>The light</h2>
+    <p>The ZS EXO logo on top lights up in your config's colour. So you can see which config is on at a glance. You can change the colour and brightness in the app: see <a href="#p-app-lights">Lights</a>.</p>
+    <p>The EXO has no power button. It turns on when the CONSOLE cable has power.</p>
+    <p>Other light patterns: <span class="m2-confirm">[CONFIRM: any other light states customers should know, described in words]</span></p>
+  </section>
+
+  <section class="m2-sec" id="p-start-ports-and-buttons--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>Back:</b> you can find CONSOLE, AUTH and the two HDMI ports.</li><li><b>Front:</b> you know any front port takes any of your controls.</li></ul>
+      <p>Next, <a href="#p-start-install-the-app">install the app</a>.</p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== Install the app (journey 3) ===================== {%- endcomment -%}
+<article class="m2-page" id="p-start-install-the-app" data-group="Get Started" data-title="Install the app" data-time="2 min" data-journey="3"
+  data-keywords="install app download iphone android ios app store google play bluetooth permission">
+  <header class="m2-head">
+    <p class="m2-crumb">Get Started</p>
+    <h1>Install the app</h1>
+    <p class="m2-get">Get the free ZeroStick app on your phone. It sets up everything over Bluetooth.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">iPhone</span><span class="x2-badge x2-badge--plain">Android</span><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-start-install-the-app--before-you-start">
+    <h2>Before you start</h2>
+    <ul>
+      <li>An iPhone or Android phone with Bluetooth. <span class="m2-confirm">[CONFIRM: minimum iOS and Android versions]</span></li>
+      <li>No account, no Wi-Fi and no PC are needed.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-start-install-the-app--install">
+    <h2>1. Get the app</h2>
+    <ol class="m2-steps">
+      <li>Open the <a href="#app-store">App Store</a> (iPhone) or <a href="#play-store">Google Play</a> (Android).</li>
+      <li>Search for <b>ZeroStick</b>.</li>
+      <li>Tap <b>Get</b> or <b>Install</b>.</li>
+      <li>Open the app when it finishes.</li>
+    </ol>
+    <aside class="m2-call m2-call--important"><p class="m2-call-label">Important</p><p>On iPhone, use the ZeroStick app. A web browser like Safari can't connect to the EXO over Bluetooth.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-start-install-the-app--first-launch">
+    <h2>2. First launch</h2>
+    <ol class="m2-steps">
+      <li>Read the terms, then agree when the app asks. <span class="m2-confirm">[CONFIRM: exact first-run terms screen and button label]</span></li>
+      <li>Tap <b>Allow</b> when your phone asks to use Bluetooth. <span class="m2-confirm">[CONFIRM: exact permission wording on iPhone and Android]</span></li>
+    </ol>
+    <div class="m2-shot-todo"><b>Screenshot needed</b> — the app's first-run terms screen and the phone's Bluetooth permission prompt (iPhone and Android), capture on a live EXO setup.</div>
+    <p>The app now shows <b>Connect to your ZeroStick</b>. Leave it open: you'll pair in step 5, after wiring up.</p>
+  </section>
+
+  <section class="m2-sec" id="p-start-install-the-app--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>Phone:</b> the ZeroStick app is installed and opens.</li><li><b>App:</b> it shows <b>Connect to your ZeroStick</b>.</li></ul>
+      <p>Not seeing it? <a href="#p-help-app-connection--cant-find-exo">The app can't find my EXO</a></p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== Pair your phone (journey 5) ===================== {%- endcomment -%}
+<article class="m2-page" id="p-start-pair-your-phone" data-group="Get Started" data-title="Pair your phone" data-time="1 min" data-journey="5"
+  data-keywords="pair phone bluetooth connect app find exo connect to your zerostick">
+  <header class="m2-head">
+    <p class="m2-crumb">Get Started</p>
+    <h1>Pair your phone</h1>
+    <p class="m2-get">Link the app to your EXO once. After that, the app reconnects by itself.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">iPhone</span><span class="x2-badge x2-badge--plain">Android</span><span class="m2-time">1 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-start-pair-your-phone--before-you-start">
+    <h2>Before you start</h2>
+    <ul>
+      <li>The <a href="#p-start-install-the-app">ZeroStick app is installed</a>.</li>
+      <li>The EXO has power: its CONSOLE cable goes to a console or PC that's switched on. Wire-up is steps 1 to 4 of <a href="#p-platforms-ps5">PS5</a>, <a href="#p-platforms-xbox">Xbox</a> or <a href="#p-platforms-pc">PC</a>.</li>
+      <li>Bluetooth is on in your phone's settings.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-start-pair-your-phone--connect">
+    <h2>1. Connect</h2>
+    <ol class="m2-steps">
+      <li>Open the ZeroStick app.</li>
+      <li>Tap <b>Connect</b> (A).</li>
+      <li>In your phone's list, choose <b>ZeroStick EXO</b>.</li>
+      <li>Wait while the app shows <b>Connecting to your EXO…</b>. It takes a few seconds.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-connect-m2.webp' | asset_url }}" width="786" height="720" loading="lazy"
+        alt="The app's Connect to your ZeroStick screen. It says make sure the adapter is powered on, then choose ZeroStick EXO. A marks the Connect button.">
+      <figcaption>Figure PAIR.1 — Connect to your ZeroStick, first launch</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Connect</b></td><td>Starts the search. Your phone then asks which device to pair with.</td></tr>
+    </tbody></table>
+    <div class="m2-shot-todo"><b>Screenshot needed</b> — the phone's own Bluetooth pairing list showing ZeroStick EXO (iPhone and Android), capture on a live EXO.</div>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>If a <b>Welcome to ZeroStick</b> sheet appears after you connect, tap <b>Skip for now</b>.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-start-pair-your-phone--home">
+    <h2>2. Meet HOME</h2>
+    <p>The app opens on <b>HOME</b>. The EXO card shows <b>Connected</b> and the console mode.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-home-m2.webp' | asset_url }}" width="786" height="1560" loading="lazy"
+        alt="HOME with the EXO connected. A: device pictures. B: config name MW4 Ranked. C: Settings. D: EXO card reading Connected, PS5 Mode, Joystick plus Mouse, Bluetooth. E: Active weapon card. F: the three-dot More button.">
+      <figcaption>Figure PAIR.2 — HOME, EXO connected</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Your devices</b></td><td>What's plugged into the EXO right now.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Config name</b></td><td>The config that's playing, and its game.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Settings</b></td><td>Opens this config's settings.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td><b>EXO card</b></td><td>Shows <b>Connected</b> and the mode, like <b>PS5 Mode</b>.</td></tr>
+      <tr><td><span class="m2-letter">E</span></td><td><b>Active weapon</b></td><td>The gun the EXO sees on screen (with HDMI).</td></tr>
+      <tr><td><span class="m2-letter">F</span></td><td><b>⋮</b> (More)</td><td>Your devices, Your configs and Global Settings.</td></tr>
+    </tbody></table>
+    <p>Next time you open the app, it reconnects by itself. Settings you change while the EXO is offline sync when it reconnects.</p>
+  </section>
+
+  <section class="m2-sec" id="p-start-pair-your-phone--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>App:</b> the EXO card on HOME says <b>Connected</b>.</li><li><b>EXO:</b> the logo is lit.</li></ul>
+      <p>Not seeing one? <a href="#p-help-app-connection--cant-find-exo">The app can't find my EXO</a></p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== Updates (journey 6) ===================== {%- endcomment -%}
+<article class="m2-page" id="p-start-updates" data-group="Get Started" data-title="Keep EXO up to date" data-time="1 min" data-journey="6"
+  data-keywords="update updates firmware version new version app update">
+  <header class="m2-head">
+    <p class="m2-crumb">Get Started</p>
+    <h1>Keep EXO up to date</h1>
+    <p class="m2-get">Keep the ZeroStick app current. EXO updates come through the ZeroStick app.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">iPhone</span><span class="x2-badge x2-badge--plain">Android</span><span class="m2-time">1 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-start-updates--app">
+    <h2>1. Update the app</h2>
+    <ol class="m2-steps">
+      <li>Open the <a href="#app-store">App Store</a> or <a href="#play-store">Google Play</a>.</li>
+      <li>Search for <b>ZeroStick</b>.</li>
+      <li>If the button says <b>Update</b>, tap it.</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-start-updates--exo">
+    <h2>2. EXO updates</h2>
+    <p>EXO updates come through the ZeroStick app. <span class="m2-confirm">[CONFIRM: how an EXO update is offered in the app, what the player taps, how long it takes, and what to do if one stops]</span></p>
+    <p>To see your EXO's software version, tap the EXO card on HOME. The <b>Your board</b> sheet lists it as <b>Board app</b>.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-health.webp' | asset_url }}" width="786" height="1298" loading="lazy"
+        alt="The Your board sheet. A: Connection, Connected. B: Adapter is sending inputs, On. C: Board app version.">
+      <figcaption>Figure UPD.1 — HOME, tap the EXO card: Your board</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Connection</b></td><td>Shows <b>Connected</b> when the app can reach the EXO.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Adapter is sending inputs</b></td><td>Should say <b>On</b> while you play.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Board app</b></td><td>Your EXO's software version. Support may ask for it.</td></tr>
+    </tbody></table>
+    <div class="m2-shot-todo"><b>Screenshot needed</b> — the EXO update screen in the app (offer, progress, done), capture on a live EXO once the update flow ships.</div>
+  </section>
+
+  <section class="m2-sec" id="p-start-updates--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>App store:</b> the ZeroStick app shows <b>Open</b>, not <b>Update</b>.</li><li><b>App:</b> the EXO card on HOME says <b>Connected</b>.</li></ul>
+      <p>Next, <a href="#p-app-new-config">make your first config</a>.</p></aside>
+  </section>
+</article>

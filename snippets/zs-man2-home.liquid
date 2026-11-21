@@ -1,0 +1,107 @@
+{% comment %}
+  Manual v2: HOME page (the first thing people see).
+  Shell + rules: sections/zs-manual-v2.liquid and C:\zsg\overhaul\MANUAL-CONTRACT.md.
+  Four big doors (Set up, Tune your aim, Scripts and smart features, Fix a
+  problem), a search box, the "New here?" banner and the platform tiles.
+  Links point at page ids (#p-...). Pages that another agent writes (Aim,
+  Scripts, Smart Features, Games) may not exist yet: the shell then shows a
+  short "still being written" message instead of a broken jump.
+{% endcomment %}
+<article class="m2-page m2-home" id="p-home" data-group="Start here" data-title="Manual home" data-time="1 min"
+  data-keywords="manual home start index contents">
+  <header class="m2-head">
+    <p class="m2-crumb">Start here</p>
+    <h1>ZeroStick EXO Manual</h1>
+  </header>
+
+  <div class="m2-hero">
+    <div>
+      <p class="m2-hero-kicker">ZeroStick EXO Manual</p>
+      <h1 class="x2-grad">Set it up. Tune it. Fix it fast.</h1>
+      <p class="m2-get">Everything you need for your ZeroStick EXO, written for the phone in your hand.</p>
+      <button type="button" class="m2-homesearch" data-m2-open="search" aria-label="Search the manual">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+        <span>Search: pair, sens, turbo, PS5…</span>
+        <kbd class="m2-kbd">/</kbd>
+      </button>
+      <p class="m2-popular"><span>Popular:</span>
+        <a href="#p-start-pair-your-phone">Pair your phone</a>
+        <a href="#p-app-passthrough">Pass-through</a>
+        <a href="#p-app-new-config">New config</a>
+        <a href="#p-help-preorder">Pre-order</a>
+      </p>
+    </div>
+    <div class="m2-hero-art">{% render 'zs-exo2-visual', view: 'hero', loading: 'eager' %}</div>
+  </div>
+
+  <a class="m2-banner" href="#p-start-quick-start">
+    <span class="m2-banner-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+    <span><b>New here? Start the 10-minute setup</b><span>Twelve short steps from the box to your first match. No PC needed.</span></span>
+    <span class="m2-banner-go" aria-hidden="true">Start &rarr;</span>
+  </a>
+
+  <div class="m2-doors">
+    <div class="m2-door m2-door--set">
+      <span class="m2-door-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="3"/><path d="M7 12h2M15 12h2M12 4v3"/></svg></span>
+      <h2><a href="#p-start-quick-start">Set up</a></h2>
+      <p>Unbox, plug in, pair your phone and play on PS5, Xbox or PC.</p>
+      <ul>
+        <li><a href="#p-start-whats-in-the-box">What's in the box</a></li>
+        <li><a href="#p-start-ports-and-buttons">The ports</a></li>
+        <li><a href="#p-platforms-ps5">Playing on PS5</a></li>
+        <li><a href="#p-platforms-xbox">Playing on Xbox</a></li>
+      </ul>
+    </div>
+    <div class="m2-door m2-door--aim">
+      <span class="m2-door-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>
+      <h2><a href="#p-aim-mouse">Tune your aim</a></h2>
+      <p>Get mouse speed, hip fire and aim down sights feeling right.</p>
+      <ul>
+        <li><a href="#p-aim-game-settings">Set your in-game settings</a></li>
+        <li><a href="#p-aim-mouse">Mouse aim settings</a></li>
+        <li><a href="#p-help-aim-feels-wrong">Aim feels off</a></li>
+      </ul>
+    </div>
+    <div class="m2-door m2-door--scripts">
+      <span class="m2-door-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 6 3 12l5 6M16 6l5 6-5 6M14 4l-4 16"/></svg></span>
+      <h2><a href="#p-auto-gun-detection">Scripts &amp; smart features</a></h2>
+      <p>Remap buttons, add Scripts, and let the EXO switch them by gun.</p>
+      <ul>
+        <li><a href="#p-controls-mappings">Remap buttons and keys</a></li>
+        <li><a href="#p-scripts-library">Ready-made Scripts</a></li>
+        <li><a href="#p-auto-gun-detection">Automatic gun detection</a></li>
+      </ul>
+    </div>
+    <div class="m2-door m2-door--fix">
+      <span class="m2-door-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span>
+      <h2><a href="#p-help">Fix a problem</a></h2>
+      <p>Find your problem in your own words and fix it step by step.</p>
+      <ul>
+        <li><a href="#p-help-app-connection">The app can't find my EXO</a></li>
+        <li><a href="#p-help-ps5">PS5 problems</a></li>
+        <li><a href="#p-help-get-support">Get help from ZeroStick</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="m2-sec" id="p-home--platform">
+    <h2>Pick your platform</h2>
+    <p>Every platform guide has the same numbered steps, so step 5 is the same step for everyone.</p>
+    <div class="m2-plats">
+      <a class="m2-plat" href="#p-platforms-ps5"><b>PS5</b><span>Uses the included PS5 auth dongle.</span></a>
+      <a class="m2-plat" href="#p-platforms-xbox"><b>Xbox</b><span>Series X|S and Xbox One. Uses your own genuine Xbox controller.</span></a>
+      <a class="m2-plat" href="#p-platforms-pc"><b>PC</b><span>Plug in and play. No sign-in device needed.</span></a>
+    </div>
+  </section>
+
+  <section class="m2-sec" id="p-home--help">
+    <h2>Still need a hand?</h2>
+    <div class="m2-help-strip">
+      <p>Email <a href="#support-email"><span data-m2-email>caleb@zerostickgaming.com</span></a> or ask in the ZeroStick Discord. A real person answers.</p>
+      <div class="x2-btns">
+        <a class="x2-btn x2-btn--discord" href="#discord">Join the Discord</a>
+        <a class="x2-btn" href="#p-help-get-support">What to send us</a>
+      </div>
+    </div>
+  </section>
+</article>

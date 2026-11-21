@@ -1,0 +1,804 @@
+{% comment %}
+  Manual v2: HELP pages (symptom-first troubleshooting, support, pre-order FAQ).
+  Every symptom is one H2 in the player's own words, with the same four parts:
+  Likely cause / Fix / Fixed when / Still stuck?  (Template TS, MANUAL-CONTRACT.md)
+  Anchor = page id + "--" + symptom slug, so Discord can deep-link one problem,
+  e.g. #p-help-ps5--controller-not-working
+  Support: caleb@zerostickgaming.com (the "#support-email" links) and the Discord
+  ("#discord" links, invite set in the section settings).
+{% endcomment %}
+
+{%- comment -%} ===================== Hub: symptom finder ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help" data-group="Help" data-title="Fix a problem" data-time="1 min"
+  data-keywords="help troubleshooting problem not working broken issue fix symptom finder">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>Fix a problem</h1>
+    <p class="m2-get">Find what's happening in your own words, then follow the fix.</p>
+    <div class="m2-badges"><span class="m2-time">1 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-help--wont-connect">
+    <h2>It won't connect</h2>
+    <ul class="m2-cards">
+      <li><a class="m2-card" href="#p-help-app-connection--cant-find-exo"><b>The app can't find my EXO</b><span>Pairing or Bluetooth trouble.</span></a></li>
+      <li><a class="m2-card" href="#p-help-ps5--controller-not-working"><b>Nothing happens on my PS5</b><span>The PS5 ignores your controls.</span></a></li>
+      <li><a class="m2-card" href="#p-help-xbox--controller-not-working"><b>Nothing happens on my Xbox</b><span>The Xbox ignores your controls.</span></a></li>
+      <li><a class="m2-card" href="#p-help-pc--not-seen"><b>Windows doesn't see a controller</b><span>Nothing reacts on the PC.</span></a></li>
+      <li><a class="m2-card" href="#p-help-ps5--wrong-mode"><b>HOME shows the wrong mode</b><span>PS5 Mode, Xbox Mode or PC Mode is wrong.</span></a></li>
+      <li><a class="m2-card" href="#p-help-ps5--no-picture"><b>No picture on my TV</b><span>After connecting HDMI.</span></a></li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-help--aim">
+    <h2>My aim feels wrong</h2>
+    <ul class="m2-cards">
+      <li><a class="m2-card" href="#p-help-aim-feels-wrong--too-fast-or-slow"><b>Too fast or too slow</b><span>Turning doesn't match your hand.</span></a></li>
+      <li><a class="m2-card" href="#p-help-aim-feels-wrong--aim-feels-floaty"><b>Floaty or laggy</b><span>The view keeps moving after you stop.</span></a></li>
+      <li><a class="m2-card" href="#p-help-aim-feels-wrong--small-moves-ignored"><b>Small moves are ignored</b><span>Tiny adjustments do nothing.</span></a></li>
+      <li><a class="m2-card" href="#p-help-aim-feels-wrong--ads-feels-different"><b>ADS feels different</b><span>Aiming down sights doesn't match hip fire.</span></a></li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-help--controls">
+    <h2>My mouse, keyboard or controller misbehaves</h2>
+    <ul class="m2-cards">
+      <li><a class="m2-card" href="#p-help-mouse-and-keyboard--not-detected"><b>Not detected</b><span>A device doesn't show on HOME.</span></a></li>
+      <li><a class="m2-card" href="#p-help-mouse-and-keyboard--mouse-skips"><b>Mouse skips or feels laggy</b><span>Wireless or polling rate trouble.</span></a></li>
+      <li><a class="m2-card" href="#p-help-mouse-and-keyboard--passthrough-not-switching"><b>I can't type in chat</b><span>Pass-through doesn't switch.</span></a></li>
+      <li><a class="m2-card" href="#p-help-power-and-usb--devices-cut-out"><b>Devices cut out</b><span>Things disconnect and reconnect.</span></a></li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-help--scripts">
+    <h2>Scripts and gun detection</h2>
+    <ul class="m2-cards">
+      <li><a class="m2-card" href="#p-help-scripts--script-wont-fire"><b>A Script won't fire</b><span>Nothing happens when you press it.</span></a></li>
+      <li><a class="m2-card" href="#p-help-scripts--script-wont-stop"><b>A Script won't stop</b><span>It keeps running.</span></a></li>
+      <li><a class="m2-card" href="#p-help-gun-detection--no-gun-detected"><b>No gun detected</b><span>The Active weapon card stays empty.</span></a></li>
+      <li><a class="m2-card" href="#p-help-gun-detection--wrong-gun"><b>The wrong gun is detected</b><span>Scripts switch to the wrong gun.</span></a></li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-help--other">
+    <h2>Something else</h2>
+    <ul class="m2-cards">
+      <li><a class="m2-card" href="#p-help-ps5--headset-no-sound"><b>No sound in my headset</b><span>PS5 headset through a DualSense.</span></a></li>
+      <li><a class="m2-card" href="#p-help-app-connection--exo-restarted"><b>"Your EXO restarted unexpectedly"</b><span>What the message means.</span></a></li>
+      <li><a class="m2-card" href="#p-help-reset"><b>Restart or reset</b><span>Start fresh.</span></a></li>
+      <li><a class="m2-card" href="#p-help-get-support"><b>Contact ZeroStick</b><span>What to send us.</span></a></li>
+    </ul>
+  </section>
+</article>
+
+{%- comment -%} ===================== App connection ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help-app-connection" data-group="Help" data-title="App can't find or keep EXO" data-time="4 min"
+  data-keywords="app bluetooth pair find exo offline disconnect phone connect no device connected">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>App can't find or keep EXO</h1>
+    <p class="m2-get">Fix pairing and Bluetooth problems between your phone and EXO.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">iPhone</span><span class="x2-badge x2-badge--plain">Android</span><span class="m2-time">4 min</span></div>
+  </header>
+  <p>Start here: is your app up to date? See <a href="#p-start-updates">Keep EXO up to date</a>.</p>
+
+  <section class="m2-sec m2-symptom" id="p-help-app-connection--cant-find-exo">
+    <h2>The app can't find my EXO</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The EXO has no power, Bluetooth is off, or the phone didn't get to pick ZeroStick EXO.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Check the EXO logo is lit. If not, make sure the CONSOLE cable goes to a console or PC that's switched on.</li>
+        <li>Turn on Bluetooth on your phone.</li>
+        <li>Allow the ZeroStick app to use Bluetooth in your phone's settings.</li>
+        <li>Move your phone close to the EXO.</li>
+        <li>In the app, tap <b>Connect</b> and choose <b>ZeroStick EXO</b> in the list.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The EXO card on HOME says <b>Connected</b>.</dd>
+      <dt>Still stuck?</dt><dd>Try <a href="#p-help-reset--forget-and-repair">forget and pair again</a>, then <a href="#p-help-get-support">contact us</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-app-connection--app-says-offline">
+    <h2>The app says Offline</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The phone lost its Bluetooth link: it's too far away, Bluetooth is off, or the EXO lost power.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Check the EXO logo is lit.</li>
+        <li>Check Bluetooth is on.</li>
+        <li>Bring your phone closer to the EXO.</li>
+        <li>Close the app fully and open it again.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>HOME's EXO card changes from <b>Offline</b> to <b>Connected</b>.</dd>
+      <dt>Still stuck?</dt><dd>See <a href="#p-help-app-connection--cant-find-exo">The app can't find my EXO</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-app-connection--changes-didnt-save">
+    <h2>My changes didn't save</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The EXO was offline when you made the change. Changes wait in the app and sync when it reconnects.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Reconnect the app (HOME should say <b>Connected</b>).</li>
+        <li>Wait a few seconds for the sync.</li>
+        <li>Open the setting again to check it.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The setting shows your new value, and the game feels the change.</dd>
+      <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with a screenshot of the setting.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-app-connection--exo-restarted">
+    <h2>HOME says "Your EXO restarted unexpectedly"</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The EXO restarted by itself, often from a power dip.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Tap the yellow <b>!</b> chip, if there is one, and read the warning.</li>
+        <li>If it's a power warning, add power on <a href="#p-platforms-power--aux">AUX/POWER</a>.</li>
+        <li>Tap <b>Send report</b> to copy a report, and email it to us.</li>
+        <li>Tap <b>Dismiss</b>.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The message doesn't come back while you play.</dd>
+      <dt>Still stuck?</dt><dd>Send the report to <a href="#support-email"><span data-m2-email>caleb@zerostickgaming.com</span></a>.</dd>
+    </dl>
+  </section>
+</article>
+
+{%- comment -%} ===================== PS5 ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help-ps5" data-group="Help" data-title="PS5 problems" data-time="4 min"
+  data-keywords="ps5 problems not working controller does nothing auth dongle wrong mode headset no sound no picture hdmi">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>PS5 problems</h1>
+    <p class="m2-get">Fix the most common problems on PS5, quickest fix first.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">PS5</span><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec m2-symptom" id="p-help-ps5--controller-not-working">
+    <h2>Nothing happens on my PS5</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The config is set to another console, the auth dongle isn't in AUTH, or a cable is loose.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Check HOME's EXO card says <b>PS5 Mode</b>. If not, see <a href="#p-help-ps5--wrong-mode">the wrong mode</a>.</li>
+        <li>Check the PS5 auth dongle is in <b>AUTH</b>.</li>
+        <li>Check the CONSOLE cable is firmly in the EXO and the PS5.</li>
+        <li>Check your controls are in the front ports and show at the top of HOME.</li>
+        <li>Unplug the CONSOLE cable, wait 5 seconds, and plug it back in.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>Your controls move around the PS5 menus.</dd>
+      <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> and send a screenshot of HOME.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-ps5--wrong-mode">
+    <h2>HOME shows the wrong mode</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The playing config's Connection Method is set to another console.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>On HOME, tap <b>Settings</b>, then <b>Device</b>.</li>
+        <li>Tap the <b>Connection Method</b> row.</li>
+        <li>Tap your console.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>HOME shows <b>PS5 Mode</b>, <b>Xbox Mode</b> or <b>PC Mode</b> to match your console.</dd>
+      <dt>Still stuck?</dt><dd>Check you changed the config that's <b>PLAYING</b> in <a href="#p-app-configs--switch">Your configs</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-ps5--dongle-not-seen">
+    <h2>The PS5 doesn't accept the EXO</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The PS5 auth dongle is missing, loose or in the wrong port.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Unplug the dongle.</li>
+        <li>Plug it firmly into <b>AUTH</b> (the USB-A port on the back), not a front port.</li>
+        <li>Unplug the CONSOLE cable, wait 5 seconds, and plug it back in.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>Your controls move around the PS5 menus.</dd>
+      <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a>. Tell us you're on PS5 and what HOME shows.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-ps5--headset-no-sound">
+    <h2>No sound in my headset</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The headset is in the wrong place, or the PS5's volume or mute is set low.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Plug your headset into your DualSense, not into the EXO.</li>
+        <li>Check the DualSense is plugged into a front port with a USB cable.</li>
+        <li>Check the PS5's volume and mute in its sound controls.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>You hear the game, and friends hear you in party chat.</dd>
+      <dt>Still stuck?</dt><dd>Headset support is in final validation on first units. Please <a href="#p-help-get-support">tell us</a> your headset model.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-ps5--no-picture">
+    <h2>No picture on my TV</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The HDMI cables are swapped or loose.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Check the cable from your console goes into <b>HDMI IN</b>.</li>
+        <li>Check the cable to your TV goes into <b>HDMI OUT</b>.</li>
+        <li>Push both cables in firmly at each end.</li>
+        <li>Check your TV is on the right input.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>Your console's picture shows on the TV.</dd>
+      <dt>Still stuck?</dt><dd>Plug the console straight into the TV to test the cable, then <a href="#p-help-get-support">contact us</a>.</dd>
+    </dl>
+  </section>
+</article>
+
+{%- comment -%} ===================== Xbox ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help-xbox" data-group="Help" data-title="Xbox problems" data-time="3 min"
+  data-keywords="xbox problems not working controller auth wrong mode update">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>Xbox problems</h1>
+    <p class="m2-get">Fix the most common problems on Xbox, quickest fix first.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Xbox</span><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec m2-symptom" id="p-help-xbox--controller-not-working">
+    <h2>Nothing happens on my Xbox</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The config is set to another console, the controller in AUTH isn't connected, or a cable is loose.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Check HOME's EXO card says <b>Xbox Mode</b>. If not, see <a href="#p-help-xbox--wrong-mode">the wrong mode</a>.</li>
+        <li>Check your genuine Xbox controller is in <b>AUTH</b> with its USB cable.</li>
+        <li>Check the CONSOLE cable is firmly in the EXO and the Xbox.</li>
+        <li>Unplug the CONSOLE cable, wait 5 seconds, and plug it back in.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>Your controls move around the Xbox menus.</dd>
+      <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> and tell us your Xbox controller model. <span class="m2-confirm">[CONFIRM: how long the first sign-in check can take]</span></dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-xbox--wrong-mode">
+    <h2>HOME shows the wrong mode</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The playing config's Connection Method is set to another console.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>On HOME, tap <b>Settings</b>, then <b>Device</b>.</li>
+        <li>Tap the <b>Connection Method</b> row.</li>
+        <li>Tap <b>Xbox</b>.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>HOME shows <b>Xbox Mode</b>.</dd>
+      <dt>Still stuck?</dt><dd>Check you changed the config that's <b>PLAYING</b> in <a href="#p-app-configs--switch">Your configs</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-xbox--controller-update">
+    <h2>My controller in AUTH wants an update</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The Xbox offers controller updates now and then.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Don't accept the update while the controller is in AUTH.</li>
+        <li>Unplug the controller from the EXO.</li>
+        <li>Update it straight on the Xbox, then plug it back into AUTH.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The controller is up to date and your controls work again.</dd>
+      <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-xbox--no-picture">
+    <h2>No picture on my TV</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The HDMI cables are swapped or loose.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Check the cable from your Xbox goes into <b>HDMI IN</b>.</li>
+        <li>Check the cable to your TV goes into <b>HDMI OUT</b>.</li>
+        <li>Push both cables in firmly, and check the TV input.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>Your Xbox's picture shows on the TV.</dd>
+      <dt>Still stuck?</dt><dd>Plug the Xbox straight into the TV to test the cable, then <a href="#p-help-get-support">contact us</a>.</dd>
+    </dl>
+  </section>
+</article>
+
+{%- comment -%} ===================== PC ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help-pc" data-group="Help" data-title="PC problems" data-time="2 min"
+  data-keywords="pc windows problems controller not detected not seen wrong mode steam">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>PC problems</h1>
+    <p class="m2-get">Fix the most common problems on a Windows PC.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">PC</span><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec m2-symptom" id="p-help-pc--not-seen">
+    <h2>Windows doesn't see a controller</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The play cable is in AUX/POWER instead of CONSOLE, or the config is set to another console.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Move the PC cable into <b>CONSOLE</b> on the EXO.</li>
+        <li>Check HOME says <b>PC Mode</b>. If not, see <a href="#p-help-pc--wrong-mode">the wrong mode</a>.</li>
+        <li>Try another USB port on the PC.</li>
+        <li>Check your game is set to use a controller.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>Your game or Steam reacts to the EXO like a controller.</dd>
+      <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with your Windows version.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-pc--wrong-mode">
+    <h2>HOME shows the wrong mode</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The playing config's Connection Method is set to a console.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>On HOME, tap <b>Settings</b>, then <b>Device</b>.</li>
+        <li>Tap the <b>Connection Method</b> row.</li>
+        <li>Tap <b>PC</b>.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>HOME shows <b>PC Mode</b>.</dd>
+      <dt>Still stuck?</dt><dd>Check you changed the config that's <b>PLAYING</b> in <a href="#p-app-configs--switch">Your configs</a>.</dd>
+    </dl>
+  </section>
+</article>
+
+{%- comment -%} ===================== Aim feels wrong ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help-aim-feels-wrong" data-group="Help" data-title="Aim feels off" data-time="5 min"
+  data-keywords="aim feels wrong off sens sensitivity too fast too slow floaty laggy jitter small moves ignored ads different vertical">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>Aim feels off</h1>
+    <p class="m2-get">Match the feeling to a fix. Change one setting at a time.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="m2-time">5 min</span></div>
+  </header>
+  <p>Start here: are your <a href="#p-aim-game-settings">in-game settings</a> set the way the app asks? Most aim problems start there.</p>
+
+  <section class="m2-sec m2-symptom" id="p-help-aim-feels-wrong--too-fast-or-slow">
+    <h2>My aim is too fast or too slow</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The game's sensitivity doesn't match the app's list, the mouse DPI in the app is wrong, or Speed needs a change.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Set your in-game settings exactly as the app lists them.</li>
+        <li>Check <b>Mouse DPI</b> on the Device page matches your mouse. Tap <b>Measure my DPI</b> if unsure.</li>
+        <li>In <b>Aim</b>, raise <b>Speed</b> if turning feels slow, or lower it if you overshoot.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>A comfortable mouse swipe turns you the amount you expect.</dd>
+      <dt>Still stuck?</dt><dd>See <a href="#p-aim-mouse">Mouse aim settings</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-aim-feels-wrong--aim-feels-floaty">
+    <h2>My aim feels floaty</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>Too much smoothing, or Sync to game doesn't match the game's frame rate.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>In <b>Aim</b>, set <b>Smoothing</b> to <b>Disabled</b> or <b>Light</b>.</li>
+        <li>In <b>Advanced</b> › <b>Translation</b>, set <b>Sync to game</b> to the frame rate you play at.</li>
+        <li>In Aim's Advanced settings, check <b>Feel</b> is <b>Snappy</b>.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The view stops the moment your hand stops.</dd>
+      <dt>Still stuck?</dt><dd>See <a href="#p-reference-settings--aim">every aim setting</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-aim-feels-wrong--small-moves-ignored">
+    <h2>Small mouse moves are ignored</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd><b>Ignore tiny movement</b> is set too high, or the game's deadzone setting doesn't match.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>In Aim's Advanced settings, set <b>Ignore tiny movement</b> to 0.</li>
+        <li>Set the game's deadzone to the value on the app's list.</li>
+        <li>Try raising <b>Fine aim</b> a little.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>Tiny hand movements nudge your crosshair.</dd>
+      <dt>Still stuck?</dt><dd>See <a href="#p-aim-mouse">Mouse aim settings</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-aim-feels-wrong--ads-feels-different">
+    <h2>Aiming down sights feels different from hip fire</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>ADS has its own Speed, or the switch from hip to ADS happens too early.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>In <b>Aim</b>, tap <b>ADS aim</b>.</li>
+        <li>Set ADS <b>Speed</b> to <b>Same as hip</b>, or adjust it.</li>
+        <li>Open <b>Activation</b> and set <b>Activate</b> to match how long your game takes to zoom in.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>Aiming in feels as steady as hip fire.</dd>
+      <dt>Still stuck?</dt><dd>See <a href="#p-aim-hip-and-ads">Hip fire and ADS</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-aim-feels-wrong--vertical-different">
+    <h2>Up and down feels different from left and right</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd><b>Y Scale</b> isn't 100, or the game's vertical sensitivity is changed.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Set the game's vertical sensitivity as the app lists it.</li>
+        <li>In Aim's Advanced settings, set <b>Y Scale</b> to 100.</li>
+        <li>Then adjust Y Scale in small steps if you still want a change.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>Looking up and down feels as fast as turning.</dd>
+      <dt>Still stuck?</dt><dd>See <a href="#p-reference-settings--aim">every aim setting</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-aim-feels-wrong--aim-jitters">
+    <h2>My aim jitters</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The mouse sensor is dirty, the surface is shiny, or the wireless signal is weak.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Clean the mouse sensor and use a mouse pad.</li>
+        <li>Move a wireless dongle closer to the mouse, or use a hub on your desk.</li>
+        <li>Run <b>Check rate (Hz)</b> on the Device page.</li>
+        <li>Add a little <b>Smoothing</b> if it still jitters.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>A still mouse gives a still crosshair.</dd>
+      <dt>Still stuck?</dt><dd>See <a href="#p-help-mouse-and-keyboard--mouse-skips">Mouse skips or feels laggy</a>.</dd>
+    </dl>
+  </section>
+</article>
+
+{%- comment -%} ===================== Mouse and keyboard ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help-mouse-and-keyboard" data-group="Help" data-title="Mouse or keyboard problems" data-time="4 min"
+  data-keywords="mouse keyboard not detected wireless dongle polling rate lag skip wrong keys chat typing pass-through">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>Mouse or keyboard problems</h1>
+    <p class="m2-get">Fix devices that don't show up, skip, or do the wrong thing.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec m2-symptom" id="p-help-mouse-and-keyboard--not-detected">
+    <h2>My mouse or keyboard isn't detected</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>A loose plug, a hub that can't keep up, or not enough power.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Unplug the device and plug it into another front port.</li>
+        <li>If you use a hub, plug the device straight into the EXO to test.</li>
+        <li>Add power on <a href="#p-platforms-power--aux">AUX/POWER</a>.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The device's picture shows at the top of HOME.</dd>
+      <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with the device's make and model.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-mouse-and-keyboard--mouse-skips">
+    <h2>My mouse skips or feels laggy</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>A weak wireless signal, or the mouse's polling rate is set low.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Move the wireless dongle closer to your mouse.</li>
+        <li>On the Device page, tap <b>Check rate (Hz)</b> and follow the steps.</li>
+        <li>Set your mouse to 1000 Hz in its own software, if it can.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The rate check shows about 1000 Hz and the crosshair moves smoothly.</dd>
+      <dt>Still stuck?</dt><dd>Try the mouse with a cable, then <a href="#p-help-get-support">contact us</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-mouse-and-keyboard--wrong-keys">
+    <h2>Keys or clicks do the wrong thing</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>A mapping changed, or you're on a different config than you think.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Check HOME shows the config you meant.</li>
+        <li>Open <b>Settings</b> › <b>Mappings</b> and check the key.</li>
+        <li>Change it back. See <a href="#p-controls-mappings">Remap buttons and keys</a>.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The key does what you expect in the game.</dd>
+      <dt>Still stuck?</dt><dd>Check no Script uses that key: see <a href="#p-help-scripts--script-wont-stop">A Script won't stop</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-mouse-and-keyboard--passthrough-not-switching">
+    <h2>I can't type in chat (Pass-through doesn't switch)</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd><b>Shortcut buttons</b> is off, or the shortcut was changed.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Open <b>⋮</b> › <b>Global Settings</b> › <b>General</b>.</li>
+        <li>Check <b>Shortcut buttons</b> is on.</li>
+        <li>Check the shortcut on the Pass-through card. The default is <span class="m2-key">1</span> + <span class="m2-key">5</span>.</li>
+        <li>Press both keys at the same time.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>HOME shows <b>Passthrough mode active</b> and you can type.</dd>
+      <dt>Still stuck?</dt><dd>Tap <b>Turn on</b> on the Pass-through card instead, then <a href="#p-help-get-support">contact us</a>.</dd>
+    </dl>
+  </section>
+</article>
+
+{%- comment -%} ===================== Gun detection ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help-gun-detection" data-group="Help" data-title="Gun detection problems" data-time="4 min"
+  data-keywords="gun detection ai scripts no gun detected wrong gun weapon active weapon hdmi frame hud">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>Gun detection problems</h1>
+    <p class="m2-get">Fix automatic gun detection when it sees nothing, or the wrong gun.</p>
+    <div class="m2-badges"><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec m2-symptom" id="p-help-gun-detection--no-gun-detected">
+    <h2>No gun is detected</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>HDMI isn't looped through the EXO, the game doesn't have gun detection, or the gun reader frame is in the wrong place.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Check the console's HDMI goes into <b>HDMI IN</b> and <b>HDMI OUT</b> goes to the TV.</li>
+        <li>Check your game has gun detection in the <a href="#games">supported games list</a>.</li>
+        <li>Check you're in a match with a gun out. Menus pause detection.</li>
+        <li>Open <b>AI Scripts</b> and set the <b>Gun reader frame</b> around your HUD's gun name.</li>
+        <li>Check Tournament Mode is off.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>HOME's <b>Active weapon</b> card shows the gun in your hands.</dd>
+      <dt>Still stuck?</dt><dd>See <a href="#p-auto-gun-detection">Automatic gun detection</a>, then <a href="#p-help-get-support">contact us</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-gun-detection--wrong-gun">
+    <h2>The wrong gun is detected</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The gun reader frame catches other text, or your HUD layout changed.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Open <b>AI Scripts</b> › <b>Gun reader frame</b>.</li>
+        <li>Make the frame fit just around the gun name.</li>
+        <li>Check your in-game HUD settings match the app's list.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The Active weapon card changes to the right gun when you swap.</dd>
+      <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with the game and gun names.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-gun-detection--paused-in-menus">
+    <h2>Detection stops in menus</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>That's normal. With no gun on screen, gun Scripts pause so they can't fire by mistake.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps"><li>Go back into a match and take out a gun.</li></ol></dd>
+      <dt>Fixed when</dt><dd>The Active weapon card shows your gun again.</dd>
+      <dt>Still stuck?</dt><dd>See <a href="#p-help-gun-detection--no-gun-detected">No gun is detected</a>.</dd>
+    </dl>
+  </section>
+</article>
+
+{%- comment -%} ===================== Scripts ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help-scripts" data-group="Help" data-title="Script problems" data-time="3 min"
+  data-keywords="script wont fire not working wont stop stuck tournament mode turbo rapid fire anti recoil">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>Script problems</h1>
+    <p class="m2-get">Fix Scripts that won't start, or won't stop.</p>
+    <div class="m2-badges"><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec m2-symptom" id="p-help-scripts--script-wont-fire">
+    <h2>A Script won't fire</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>Tournament Mode is on, the Script's switch is off, or it only runs while aiming down sights.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Check Tournament Mode is off: <b>⋮</b> › <b>Global Settings</b> › <b>General</b>.</li>
+        <li>Check the Script's switch is on.</li>
+        <li>Check what starts it (its <b>WHEN</b> part) in the Advanced Script Maker.</li>
+        <li>For a per-gun Script, check the Active weapon card shows that gun.</li>
+        <li>Tap the EXO card on HOME and check <b>Adapter is sending inputs</b> says <b>On</b>.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The Script does its job when you press its trigger.</dd>
+      <dt>Still stuck?</dt><dd>See <a href="#p-scripts-library">Scripts</a>, or <a href="#p-help-get-support">contact us</a> with the Script's share code.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-scripts--script-wont-stop">
+    <h2>A Script won't stop</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>It's set to toggle, so it runs until you press its trigger again.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Press the Script's trigger again.</li>
+        <li>To stop everything at once, turn on <b>Tournament Mode</b>.</li>
+        <li>Turn the Script's switch off, then check its <b>WHEN</b> part.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The Script stops, and only runs when you want it.</dd>
+      <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with the Script's share code.</dd>
+    </dl>
+  </section>
+</article>
+
+{%- comment -%} ===================== Power and USB ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help-power-and-usb" data-group="Help" data-title="Power and USB problems" data-time="3 min"
+  data-keywords="power usb devices cut out disconnect hub charging no light warning aux">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>Power and USB problems</h1>
+    <p class="m2-get">Fix devices that cut out, power warnings and a dark logo.</p>
+    <div class="m2-badges"><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec m2-symptom" id="p-help-power-and-usb--devices-cut-out">
+    <h2>My devices cut out</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>Your devices need more power than the console's USB port gives.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Plug the power cable into <b>AUX/POWER</b>.</li>
+        <li>Plug its other end into a USB charger or a PC USB port.</li>
+        <li>Unplug any device you don't need.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>Your devices stay connected through a whole match.</dd>
+      <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with a list of what's plugged in.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-power-and-usb--power-warning">
+    <h2>HOME shows a power warning</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The EXO is running short of power.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Tap the yellow <b>!</b> chip and read the warning.</li>
+        <li>Add power on <b>AUX/POWER</b>.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The <b>!</b> chip goes away.</dd>
+      <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with a screenshot of the warning.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-power-and-usb--no-light">
+    <h2>The EXO doesn't light up</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>No power on the CONSOLE cable, or the config's light is set very dim.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Turn on your console or PC.</li>
+        <li>Check the CONSOLE cable is firmly in at both ends.</li>
+        <li>Try another USB port on the console or PC.</li>
+        <li>In the app, check the config's <b>Brightness</b> on the Device page.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>The logo glows in your config's colour.</dd>
+      <dt>Still stuck?</dt><dd>Try a USB charger on <b>AUX/POWER</b>, then <a href="#p-help-get-support">contact us</a>.</dd>
+    </dl>
+  </section>
+
+  <section class="m2-sec m2-symptom" id="p-help-power-and-usb--hub">
+    <h2>A USB hub doesn't work</h2>
+    <dl class="m2-fix">
+      <dt>Likely cause</dt><dd>The hub needs its own power, or it's a type the EXO can't use.</dd>
+      <dt>Fix</dt><dd><ol class="m2-steps">
+        <li>Use a USB 2.0 hub.</li>
+        <li>Give the hub its own power, if it has a power input.</li>
+        <li>Add power on <b>AUX/POWER</b>.</li>
+      </ol></dd>
+      <dt>Fixed when</dt><dd>Devices on the hub show at the top of HOME.</dd>
+      <dt>Still stuck?</dt><dd>Plug your devices straight into the EXO's front ports.</dd>
+    </dl>
+  </section>
+</article>
+
+{%- comment -%} ===================== Reset ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help-reset" data-group="Help" data-title="Restart, reset and recover" data-time="3 min"
+  data-keywords="reset restart reboot factory reset forget re-pair recover start fresh">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>Restart, reset and recover</h1>
+    <p class="m2-get">Start fresh, from a quick restart to pairing your phone again.</p>
+    <div class="m2-badges"><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-help-reset--restart">
+    <h2>1. Restart the EXO</h2>
+    <ol class="m2-steps">
+      <li>Unplug the CONSOLE cable (and AUX/POWER, if used).</li>
+      <li>Wait 5 seconds.</li>
+      <li>Plug them back in.</li>
+    </ol>
+    <p>Your configs stay saved on the EXO. The app also has a <b>Restart adapter</b> button at the bottom of <b>Global Settings</b> › <b>General</b>. <span class="m2-confirm">[CONFIRM: Restart adapter is customer-facing and what it does]</span></p>
+  </section>
+
+  <section class="m2-sec" id="p-help-reset--forget-and-repair">
+    <h2>2. Forget and pair again</h2>
+    <ol class="m2-steps">
+      <li>Close the ZeroStick app.</li>
+      <li>In your phone's Bluetooth settings, find <b>ZeroStick EXO</b> and tap <b>Forget</b>. <span class="m2-confirm">[CONFIRM: whether the EXO appears in the phone's Bluetooth list]</span></li>
+      <li>Open the app and tap <b>Connect</b>.</li>
+      <li>Choose <b>ZeroStick EXO</b>.</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-help-reset--config">
+    <h2>3. Reset a config</h2>
+    <p>The safest way to start a config again is to make a new one: <a href="#p-app-new-config">Make a new config</a>. <span class="m2-confirm">[CONFIRM: whether the app has a reset-config option and its path]</span></p>
+  </section>
+
+  <section class="m2-sec" id="p-help-reset--factory">
+    <h2>4. Factory reset</h2>
+    <p><span class="m2-confirm">[CONFIRM: whether a factory reset exists, how to do it, and what it erases]</span></p>
+    <aside class="m2-call m2-call--warning"><p class="m2-call-label">Warning</p><p>A factory reset would erase your configs. Copy any config you want to keep first, with <b>Copy</b> on the Device page.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-help-reset--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>EXO:</b> the logo lights up again.</li><li><b>App:</b> HOME says <b>Connected</b>.</li><li><b>Console:</b> your controls work.</li></ul>
+      <p>Still not right? <a href="#p-help-get-support">Get help from ZeroStick</a></p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== Get support ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help-get-support" data-group="Help" data-title="Get help from ZeroStick" data-time="2 min"
+  data-keywords="support contact email discord help warranty what to send report">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>Get help from ZeroStick</h1>
+    <p class="m2-get">Send us the right details, and we can help on the first reply.</p>
+    <div class="m2-badges"><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-help-get-support--contact">
+    <h2>How to reach us</h2>
+    <ul class="m2-cards">
+      <li><a class="m2-card" href="#support-email"><b>Email</b><span data-m2-email>caleb@zerostickgaming.com</span></a></li>
+      <li><a class="m2-card" href="#discord"><b>ZeroStick Discord</b><span>Ask the team and other players.</span></a></li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-help-get-support--what-to-send">
+    <h2>What to send</h2>
+    <div class="m2-table"><table>
+      <thead><tr><th>Send</th><th>Where to find it</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Send"><b>Your platform</b></td><td data-label="Where">PS5, Xbox Series X|S / Xbox One, or PC.</td></tr>
+        <tr><td data-label="Send"><b>Your game</b></td><td data-label="Where">Under the config name on HOME.</td></tr>
+        <tr><td data-label="Send"><b>EXO software version</b></td><td data-label="Where">HOME › tap the EXO card › <b>Board app</b>.</td></tr>
+        <tr><td data-label="Send"><b>App version</b></td><td data-label="Where"><span class="m2-confirm">[CONFIRM: where the app shows its version]</span></td></tr>
+        <tr><td data-label="Send"><b>A screenshot of HOME</b></td><td data-label="Where">Take it on your phone.</td></tr>
+        <tr><td data-label="Send"><b>The health report</b></td><td data-label="Where">If HOME says your EXO restarted, tap <b>Send report</b> and paste it in.</td></tr>
+        <tr><td data-label="Send"><b>What happened</b></td><td data-label="Where">What you did, what you expected, and what you saw.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="m2-sec" id="p-help-get-support--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>Message:</b> it has every row from the table above.</li><li><b>Sent:</b> by email or in the Discord.</li></ul></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== Pre-order and shipping FAQ ===================== {%- endcomment -%}
+<article class="m2-page" id="p-help-preorder" data-group="Help" data-title="Pre-order and shipping" data-time="2 min"
+  data-keywords="pre-order preorder order shipping ships date price cost refund cancel subscription account charge payment january">
+  <header class="m2-head">
+    <p class="m2-crumb">Help</p>
+    <h1>Pre-order and shipping</h1>
+    <p class="m2-get">Price, shipping date and what happens if the date changes.</p>
+    <div class="m2-badges"><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-help-preorder--price">
+    <h2>How much does it cost?</h2>
+    <div class="m2-table"><table>
+      <thead><tr><th>Version</th><th>Price</th><th>Includes</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Version"><b>Xbox version</b></td><td data-label="Price">$149.99</td><td data-label="Includes">ZeroStick EXO and cables. Use your own genuine Xbox controller in AUTH.</td></tr>
+        <tr><td data-label="Version"><b>PS5 version</b></td><td data-label="Price">$169.99</td><td data-label="Includes">ZeroStick EXO, cables and the PS5 auth dongle.</td></tr>
+      </tbody>
+    </table></div>
+    <p>It's a one-time purchase. There's no subscription and no account.</p>
+  </section>
+
+  <section class="m2-sec" id="p-help-preorder--when-charged">
+    <h2>When am I charged?</h2>
+    <p>You're charged at checkout, when you place your pre-order.</p>
+  </section>
+
+  <section class="m2-sec" id="p-help-preorder--when-ships">
+    <h2>When does it ship?</h2>
+    <p>Ships January 1, 2027. If that date changes, we'll email you, and you can cancel for a full refund.</p>
+  </section>
+
+  <section class="m2-sec" id="p-help-preorder--which-version">
+    <h2>Which version should I get?</h2>
+    <p>Get the version for the console you play on. The PS5 version includes the PS5 auth dongle. The Xbox version uses your own genuine Xbox controller to sign in. <span class="m2-confirm">[CONFIRM: whether both versions play on PC]</span></p>
+  </section>
+
+  <section class="m2-sec" id="p-help-preorder--subscription">
+    <h2>Is there a subscription or an account?</h2>
+    <p>No. You pay once. The ZeroStick app is free and needs no account.</p>
+  </section>
+
+  <section class="m2-sec" id="p-help-preorder--order">
+    <h2>Ready to order?</h2>
+    <div class="x2-btns">
+      <a class="x2-btn x2-btn--primary" href="#preorder">Pre-order ZeroStick EXO</a>
+      <a class="x2-btn" href="#games">See supported games</a>
+    </div>
+    <p class="x2-fine" style="margin-top:1.2rem">Ships January 1, 2027. If that date changes we'll email you, and you can cancel for a full refund.</p>
+  </section>
+</article>

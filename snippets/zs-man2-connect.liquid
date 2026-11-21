@@ -1,0 +1,502 @@
+{% comment %}
+  Manual v2: CONNECT pages (platform guides + hardware connection pages).
+  The three platform guides use "Template P" (C:\zsg\overhaul\XIM-FRAMEWORK.md 4.1.1): the SAME
+  H2s with the SAME numbers and anchors on PS5, Xbox and PC, so support can say "step 5" to
+  anyone. PC keeps step 2 with a one-line "skip" body on purpose.
+  Anchor pattern: #p-platforms-<ps5|xbox|pc>--<step slug>, e.g. #p-platforms-xbox--5-choose-the-platform
+  Copy rules: BRIEF.md (say "to the console" for Pass-through; only 1 + 5; Xbox: no claims beyond
+  "plug your own genuine Xbox controller into AUTH"; never name the PS5 dongle's maker).
+{% endcomment %}
+
+{%- comment -%} ===================== PS5 (journey 4) ===================== {%- endcomment -%}
+<article class="m2-page" id="p-platforms-ps5" data-group="Connect" data-title="Playing on PS5" data-time="6 min" data-journey="4"
+  data-keywords="ps5 playstation 5 setup connect wire auth dongle console">
+  <header class="m2-head">
+    <p class="m2-crumb">Connect</p>
+    <h1>Playing on PS5</h1>
+    <p class="m2-get">Wire up your EXO, choose PS5 in the app and check it works.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">PS5</span><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">6 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-platforms-ps5--before-you-start">
+    <h2>Before you start</h2>
+    <ul>
+      <li>The PS5 auth dongle (in the PS5 version box).</li>
+      <li>The cables from the box, plus a second HDMI cable if you want the HDMI loop (you can reuse your PS5's own).</li>
+      <li>The <a href="#p-start-install-the-app">ZeroStick app installed</a> on your phone.</li>
+      <li>Your mouse, keyboard or controller, with its USB cable or wireless dongle.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-ps5--1-plug-in-your-controls">
+    <h2>1. Plug in your controls</h2>
+    <ol class="m2-steps">
+      <li>Plug your mouse (or its wireless dongle) into a front port.</li>
+      <li>Plug your keyboard into another front port.</li>
+      <li>Plug in a controller with a USB cable, if you use one.</li>
+    </ol>
+    <p>Any front port works for any device: 1 USB-C and 3 USB-A. Need more ports? A USB hub works.</p>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Bluetooth controllers aren't supported at launch. Connect your controller with a USB cable.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-ps5--2-connect-authentication">
+    <h2>2. Connect authentication</h2>
+    <ol class="m2-steps">
+      <li>Plug the included PS5 auth dongle into <b>AUTH</b> on the back.</li>
+    </ol>
+    <p>The PS5 checks that a controller is genuine. The dongle answers that check. Leave it plugged in whenever you play on PS5.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-ps5--3-connect-to-the-console">
+    <h2>3. Connect to the console</h2>
+    <ol class="m2-steps">
+      <li>Turn on your PS5.</li>
+      <li>Plug a USB-C to USB-A cable into <b>CONSOLE</b> on the EXO. <span class="m2-confirm">[CONFIRM: which included cable to use for CONSOLE]</span></li>
+      <li>Plug the other end into a USB port on your PS5.</li>
+    </ol>
+    <p>The EXO turns on by itself and the logo lights up. It gets its power from this cable.</p>
+    <figure class="m2-media">{% render 'zs-exo2-visual', view: 'ports-back' %}<figcaption>Figure PS5.1 — Back of the EXO: AUTH takes the dongle, CONSOLE goes to the PS5.</figcaption></figure>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-ps5--4-connect-hdmi">
+    <h2>4. Connect HDMI (optional)</h2>
+    <p>Skip this step if you don't need automatic gun detection yet.</p>
+    <ol class="m2-steps">
+      <li>Unplug the HDMI cable from your TV and plug it into <b>HDMI IN</b> on the EXO.</li>
+      <li>Plug a second HDMI cable into <b>HDMI OUT</b>.</li>
+      <li>Plug the other end into your TV or monitor.</li>
+    </ol>
+    <p>More detail: <a href="#p-platforms-hdmi">Connect HDMI</a>.</p>
+    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>First time setting up? Wiring is done. Now <a href="#p-start-pair-your-phone">pair your phone</a> (step 5 of 12), then come back for step 5 below.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-ps5--5-choose-the-platform">
+    <h2>5. Choose the platform in the app</h2>
+    <p>New configs ask where they play. If you picked <b>PlayStation 5</b> there, just check it here.</p>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>Settings</b> under the game picture.</li>
+      <li>Tap <b>Device</b>.</li>
+      <li>Scroll to <b>Connection Method</b> and tap the console row (B).</li>
+      <li>Tap <b>PlayStation 5</b>.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-platform-3-m2.webp' | asset_url }}" width="786" height="935" loading="lazy"
+        alt="Device page. A: Connection Method. B: the console row reading PlayStation 5, Joystick plus Mouse. C: What you play with: Auto, Mouse plus Keyboard, Controller, Joystick plus Mouse.">
+      <figcaption>Figure PS5.2 — Settings › Device › Connection Method</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Connection Method</b></td><td>The console this config plays on.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>PlayStation 5</b></td><td>Tap to change the console.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>What you play with</b></td><td>Leave it on <b>Auto</b> unless you have a reason.</td></tr>
+    </tbody></table>
+    <p>It saves the moment you tap it. If this is the config that's playing, the console connection restarts in about a second. The PS5 sees the controller unplug and plug back in. The EXO itself doesn't restart.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-ps5--6-set-your-in-game-settings">
+    <h2>6. Set your in-game settings</h2>
+    <p>Your aim feels right only when your game's own settings match what the EXO expects. The app lists them for each game.</p>
+    <p>Follow <a href="#p-aim-game-settings">Set your in-game settings</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-ps5--7-check-it-worked">
+    <h2>7. Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>EXO:</b> the logo is lit in your config's colour.</li>
+        <li><b>App:</b> the EXO card on HOME shows <b>Connected</b> and <b>PS5 Mode</b>.</li>
+        <li><b>PS5:</b> your mouse, keyboard or controller moves around the PS5 menus.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-ps5--controller-not-working">PS5 problems</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-ps5--8-use-menus-with-pass-through">
+    <h2>8. Use menus with Pass-through</h2>
+    <p>Press <span class="m2-key">1</span> + <span class="m2-key">5</span> on your keyboard to pause your config for menus, chat and typing. Press it again, or tap <b>Turn off Passthrough</b> on HOME, to come back.</p>
+    <p>More: <a href="#p-app-passthrough">Pass-through</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-ps5--9-if-it-didnt-work">
+    <h2>9. If it didn't work</h2>
+    <ul class="m2-cards">
+      <li><a class="m2-card" href="#p-help-ps5--controller-not-working"><b>Nothing happens on the PS5</b><span>The PS5 doesn't respond to your controls.</span></a></li>
+      <li><a class="m2-card" href="#p-help-ps5--wrong-mode"><b>HOME shows the wrong mode</b><span>It says Xbox Mode or PC Mode.</span></a></li>
+      <li><a class="m2-card" href="#p-help-app-connection--cant-find-exo"><b>The app can't find the EXO</b><span>Pairing or Bluetooth trouble.</span></a></li>
+    </ul>
+  </section>
+</article>
+
+{%- comment -%} ===================== Xbox (journey 4) ===================== {%- endcomment -%}
+<article class="m2-page" id="p-platforms-xbox" data-group="Connect" data-title="Playing on Xbox" data-time="6 min" data-journey="4"
+  data-keywords="xbox series x series s xbox one setup connect auth controller genuine">
+  <header class="m2-head">
+    <p class="m2-crumb">Connect</p>
+    <h1>Playing on Xbox</h1>
+    <p class="m2-get">Wire up your EXO for Xbox Series X|S or Xbox One, choose Xbox in the app and check it works.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Xbox</span><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">6 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-platforms-xbox--before-you-start">
+    <h2>Before you start</h2>
+    <ul>
+      <li>Your own genuine Xbox controller and a USB cable for it. <span class="m2-confirm">[CONFIRM: cable type and controller models to list]</span></li>
+      <li>The cables from the box, plus a second HDMI cable if you want the HDMI loop (you can reuse your Xbox's own).</li>
+      <li>The <a href="#p-start-install-the-app">ZeroStick app installed</a> on your phone.</li>
+      <li>Your mouse, keyboard or controller, with its USB cable or wireless dongle.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-xbox--1-plug-in-your-controls">
+    <h2>1. Plug in your controls</h2>
+    <ol class="m2-steps">
+      <li>Plug your mouse (or its wireless dongle) into a front port.</li>
+      <li>Plug your keyboard into another front port.</li>
+      <li>Plug in a controller with a USB cable, if you play with one.</li>
+    </ol>
+    <p>Any front port works for any device: 1 USB-C and 3 USB-A. Need more ports? A USB hub works.</p>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Bluetooth controllers aren't supported at launch. Connect your controller with a USB cable.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-xbox--2-connect-authentication">
+    <h2>2. Connect authentication</h2>
+    <ol class="m2-steps">
+      <li>Plug your own genuine Xbox controller into <b>AUTH</b> on the back, with its USB cable.</li>
+    </ol>
+    <p>The Xbox checks that a controller is genuine. Your controller in AUTH answers that check. Leave it plugged in whenever you play on Xbox. <span class="m2-confirm">[CONFIRM: batteries out / controller off, and how long the first check takes]</span></p>
+    <aside class="m2-call m2-call--warning"><p class="m2-call-label">Warning</p><p>Don't accept a controller update while that controller is plugged into AUTH. Unplug it and update it straight on the Xbox instead.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-xbox--3-connect-to-the-console">
+    <h2>3. Connect to the console</h2>
+    <ol class="m2-steps">
+      <li>Turn on your Xbox.</li>
+      <li>Plug a USB-C to USB-A cable into <b>CONSOLE</b> on the EXO. <span class="m2-confirm">[CONFIRM: which included cable to use for CONSOLE]</span></li>
+      <li>Plug the other end into a USB port on your Xbox.</li>
+    </ol>
+    <p>The EXO turns on by itself and the logo lights up. It gets its power from this cable.</p>
+    <figure class="m2-media">{% render 'zs-exo2-visual', view: 'ports-back' %}<figcaption>Figure XBOX.1 — Back of the EXO: AUTH takes your Xbox controller, CONSOLE goes to the Xbox.</figcaption></figure>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-xbox--4-connect-hdmi">
+    <h2>4. Connect HDMI (optional)</h2>
+    <p>Skip this step if you don't need automatic gun detection yet.</p>
+    <ol class="m2-steps">
+      <li>Unplug the HDMI cable from your TV and plug it into <b>HDMI IN</b> on the EXO.</li>
+      <li>Plug a second HDMI cable into <b>HDMI OUT</b>.</li>
+      <li>Plug the other end into your TV or monitor.</li>
+    </ol>
+    <p>More detail: <a href="#p-platforms-hdmi">Connect HDMI</a>.</p>
+    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>First time setting up? Wiring is done. Now <a href="#p-start-pair-your-phone">pair your phone</a> (step 5 of 12), then come back for step 5 below.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-xbox--5-choose-the-platform">
+    <h2>5. Choose the platform in the app</h2>
+    <p>New configs ask where they play. If you picked <b>Xbox</b> there, just check it here.</p>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>Settings</b> under the game picture.</li>
+      <li>Tap <b>Device</b>.</li>
+      <li>Scroll to <b>Connection Method</b> and tap the console row.</li>
+      <li>Tap <b>Xbox</b>.</li>
+    </ol>
+    <p>It saves the moment you tap it. If this is the config that's playing, the console connection restarts in about a second. The EXO itself doesn't restart. See <a href="#p-platforms-ps5--5-choose-the-platform">the PS5 guide's step 5</a> for a labelled picture of this screen.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-xbox--6-set-your-in-game-settings">
+    <h2>6. Set your in-game settings</h2>
+    <p>Your aim feels right only when your game's own settings match what the EXO expects. The app lists them for each game.</p>
+    <p>Follow <a href="#p-aim-game-settings">Set your in-game settings</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-xbox--7-check-it-worked">
+    <h2>7. Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>EXO:</b> the logo is lit in your config's colour.</li>
+        <li><b>App:</b> the EXO card on HOME shows <b>Connected</b> and <b>Xbox Mode</b>.</li>
+        <li><b>Xbox:</b> your mouse, keyboard or controller moves around the Xbox menus.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-xbox--controller-not-working">Xbox problems</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-xbox--8-use-menus-with-pass-through">
+    <h2>8. Use menus with Pass-through</h2>
+    <p>Press <span class="m2-key">1</span> + <span class="m2-key">5</span> on your keyboard to pause your config for menus, chat and typing. Press it again, or tap <b>Turn off Passthrough</b> on HOME, to come back.</p>
+    <p>More: <a href="#p-app-passthrough">Pass-through</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-xbox--9-if-it-didnt-work">
+    <h2>9. If it didn't work</h2>
+    <ul class="m2-cards">
+      <li><a class="m2-card" href="#p-help-xbox--controller-not-working"><b>Nothing happens on the Xbox</b><span>The Xbox doesn't respond to your controls.</span></a></li>
+      <li><a class="m2-card" href="#p-help-xbox--wrong-mode"><b>HOME shows the wrong mode</b><span>It says PS5 Mode or PC Mode.</span></a></li>
+      <li><a class="m2-card" href="#p-help-app-connection--cant-find-exo"><b>The app can't find the EXO</b><span>Pairing or Bluetooth trouble.</span></a></li>
+    </ul>
+  </section>
+</article>
+
+{%- comment -%} ===================== PC (journey 4) ===================== {%- endcomment -%}
+<article class="m2-page" id="p-platforms-pc" data-group="Connect" data-title="Playing on PC" data-time="5 min" data-journey="4"
+  data-keywords="pc windows computer setup connect controller laptop">
+  <header class="m2-head">
+    <p class="m2-crumb">Connect</p>
+    <h1>Playing on PC</h1>
+    <p class="m2-get">Plug your EXO into a Windows PC, choose PC in the app and check it works.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">PC</span><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">5 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-platforms-pc--before-you-start">
+    <h2>Before you start</h2>
+    <ul>
+      <li>A free USB port on your PC.</li>
+      <li>The <a href="#p-start-install-the-app">ZeroStick app installed</a> on your phone.</li>
+      <li>Your mouse, keyboard or controller, with its USB cable or wireless dongle.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-pc--1-plug-in-your-controls">
+    <h2>1. Plug in your controls</h2>
+    <ol class="m2-steps">
+      <li>Plug your mouse (or its wireless dongle) into a front port.</li>
+      <li>Plug your keyboard into another front port.</li>
+      <li>Plug in a controller with a USB cable, if you play with one.</li>
+    </ol>
+    <p>Any front port works for any device: 1 USB-C and 3 USB-A. Need more ports? A USB hub works.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-pc--2-connect-authentication">
+    <h2>2. Connect authentication</h2>
+    <p>PC needs no authentication. Leave <b>AUTH</b> empty and skip to step 3.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-pc--3-connect-to-the-console">
+    <h2>3. Connect to the PC</h2>
+    <ol class="m2-steps">
+      <li>Turn on your PC.</li>
+      <li>Plug a USB-C to USB-A cable into <b>CONSOLE</b> on the EXO. <span class="m2-confirm">[CONFIRM: which included cable to use for CONSOLE]</span></li>
+      <li>Plug the other end into a USB port on your PC.</li>
+    </ol>
+    <p>The EXO turns on by itself and the logo lights up. Windows sees it as a standard Xbox-style controller. No driver is needed.</p>
+    <aside class="m2-call m2-call--important"><p class="m2-call-label">Important</p><p>On PC, the play cable still goes into <b>CONSOLE</b>, not AUX/POWER.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-pc--4-connect-hdmi">
+    <h2>4. Connect HDMI (optional)</h2>
+    <p>Most PC players skip this step. You only need it for automatic gun detection: run your PC's HDMI through <b>HDMI IN</b> and <b>HDMI OUT</b>, the same way as on a console. <span class="m2-confirm">[CONFIRM: recommended PC HDMI set-up for gun detection]</span></p>
+    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>First time setting up? Wiring is done. Now <a href="#p-start-pair-your-phone">pair your phone</a> (step 5 of 12), then come back for step 5 below.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-pc--5-choose-the-platform">
+    <h2>5. Choose the platform in the app</h2>
+    <p>New configs ask where they play. If you picked <b>PC</b> there, just check it here.</p>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>Settings</b> under the game picture.</li>
+      <li>Tap <b>Device</b>.</li>
+      <li>Scroll to <b>Connection Method</b> and tap the console row.</li>
+      <li>Tap <b>PC</b>.</li>
+    </ol>
+    <p>It saves the moment you tap it. See <a href="#p-platforms-ps5--5-choose-the-platform">the PS5 guide's step 5</a> for a labelled picture of this screen.</p>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Native Mouse &amp; Keyboard configs, for PC players, are in final testing. A normal PC config works as a controller today.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-pc--6-set-your-in-game-settings">
+    <h2>6. Set your in-game settings</h2>
+    <p>Set your game to use a controller, then match its settings to the app's list.</p>
+    <p>Follow <a href="#p-aim-game-settings">Set your in-game settings</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-pc--7-check-it-worked">
+    <h2>7. Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>EXO:</b> the logo is lit in your config's colour.</li>
+        <li><b>App:</b> the EXO card on HOME shows <b>Connected</b> and <b>PC Mode</b>.</li>
+        <li><b>PC:</b> your game or Steam reacts to the EXO like a controller. <span class="m2-confirm">[CONFIRM: the controller name Windows shows]</span></li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-pc--not-seen">PC problems</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-pc--8-use-menus-with-pass-through">
+    <h2>8. Use menus with Pass-through</h2>
+    <p>Press <span class="m2-key">1</span> + <span class="m2-key">5</span> on your keyboard to pause your config for menus, chat and typing. Press it again, or tap <b>Turn off Passthrough</b> on HOME, to come back.</p>
+    <p>More: <a href="#p-app-passthrough">Pass-through</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-pc--9-if-it-didnt-work">
+    <h2>9. If it didn't work</h2>
+    <ul class="m2-cards">
+      <li><a class="m2-card" href="#p-help-pc--not-seen"><b>Windows doesn't see a controller</b><span>Nothing reacts on the PC.</span></a></li>
+      <li><a class="m2-card" href="#p-help-pc--wrong-mode"><b>HOME shows the wrong mode</b><span>It says PS5 Mode or Xbox Mode.</span></a></li>
+      <li><a class="m2-card" href="#p-help-app-connection--cant-find-exo"><b>The app can't find the EXO</b><span>Pairing or Bluetooth trouble.</span></a></li>
+    </ul>
+  </section>
+</article>
+
+{%- comment -%} ===================== Compatibility ===================== {%- endcomment -%}
+<article class="m2-page" id="p-platforms-compatibility" data-group="Connect" data-title="What works with EXO" data-time="3 min"
+  data-keywords="compatibility compatible supported controllers mouse keyboard dualsense hub wireless dongle bluetooth controller">
+  <header class="m2-head">
+    <p class="m2-crumb">Connect</p>
+    <h1>What works with EXO</h1>
+    <p class="m2-get">Which consoles, controllers, mice and keyboards you can use.</p>
+    <div class="m2-badges"><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-platforms-compatibility--platforms">
+    <h2>Platforms</h2>
+    <p>Works with PS5, Xbox Series X|S / Xbox One and PC.</p>
+    <div class="m2-table"><table>
+      <thead><tr><th>Platform</th><th>EXO version</th><th>In AUTH</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Platform"><b>PS5</b></td><td data-label="EXO version">PS5 version</td><td data-label="In AUTH">The included PS5 auth dongle</td></tr>
+        <tr><td data-label="Platform"><b>Xbox Series X|S / Xbox One</b></td><td data-label="EXO version">Xbox version</td><td data-label="In AUTH">Your own genuine Xbox controller</td></tr>
+        <tr><td data-label="Platform"><b>PC</b> (Windows)</td><td data-label="EXO version">Either <span class="m2-confirm">[CONFIRM]</span></td><td data-label="In AUTH">Nothing</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-compatibility--controllers">
+    <h2>Controllers</h2>
+    <p>Use the controller you already have, plugged into a front port with a USB cable. The EXO rebuilds its signal for the console you chose.</p>
+    <ul>
+      <li><b>PlayStation:</b> DualSense, DualSense Edge (its back buttons can be mapped), DualShock 4.</li>
+      <li><b>Xbox:</b> Xbox Series and Xbox One controllers, wired.</li>
+      <li><b>Others:</b> 8BitDo and most wired USB controllers.</li>
+    </ul>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Bluetooth controllers aren't supported at launch. Use a USB cable. You can use up to 2 Xbox Series or Xbox One controllers at once.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-compatibility--mouse-keyboard">
+    <h2>Mice and keyboards</h2>
+    <ul>
+      <li>Wired gaming mice and keyboards work. So do their wireless USB dongles, like Logitech Lightspeed and Unifying.</li>
+      <li>The EXO reads your mouse up to 1000 Hz. A faster mouse works too, and is read at 1000 Hz.</li>
+      <li>Mice with up to 16 buttons are fully read.</li>
+      <li>Analog keyboards work as normal keys.</li>
+      <li>A USB 2.0 hub works if you need more ports.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-compatibility--audio">
+    <h2>Headsets</h2>
+    <p>On PS5, plug your headset into your DualSense as normal. See <a href="#p-platforms-ps5-headset">Headset on PS5</a>. USB headsets plugged into the EXO aren't supported.</p>
+  </section>
+</article>
+
+{%- comment -%} ===================== HDMI ===================== {%- endcomment -%}
+<article class="m2-page" id="p-platforms-hdmi" data-group="Connect" data-title="Connect HDMI" data-time="3 min"
+  data-keywords="hdmi tv monitor picture loop hdmi in hdmi out gun detection capture">
+  <header class="m2-head">
+    <p class="m2-crumb">Connect</p>
+    <h1>Connect HDMI</h1>
+    <p class="m2-get">Run your console's picture through the EXO, so it can see the game.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">PS5</span><span class="x2-badge x2-badge--plain">Xbox</span><span class="x2-badge x2-badge--plain">PC</span><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-platforms-hdmi--why">
+    <h2>Why connect HDMI</h2>
+    <p>HDMI is optional. You need it for features that read the game picture:</p>
+    <ul>
+      <li><a href="#p-auto-gun-detection">Automatic gun detection</a> (AI Scripts).</li>
+      <li>Auto green in NBA 2K27, which helps with shot timing.</li>
+    </ul>
+    <p>Your TV still gets the same picture. The EXO passes it straight through.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-hdmi--connect">
+    <h2>1. Make the HDMI loop</h2>
+    <ol class="m2-steps">
+      <li>Unplug the HDMI cable from your TV. Leave the other end in your console.</li>
+      <li>Plug that cable into <b>HDMI IN</b> on the EXO.</li>
+      <li>Plug a second HDMI cable into <b>HDMI OUT</b>.</li>
+      <li>Plug the other end into your TV or monitor.</li>
+    </ol>
+    <figure class="m2-media">{% render 'zs-exo2-visual', view: 'ports-back' %}<figcaption>Figure HDMI.1 — HDMI IN comes from the console. HDMI OUT goes to the TV.</figcaption></figure>
+    <p>Console video settings: <span class="m2-confirm">[CONFIRM: recommended console video output setting for gun detection]</span></p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-hdmi--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>TV:</b> you see your console's picture as normal.</li><li><b>App:</b> in a supported game, HOME's <b>Active weapon</b> card shows your gun.</li></ul>
+      <p>Not seeing one? <a href="#p-help-ps5--no-picture">No picture on my TV</a> or <a href="#p-help-gun-detection--no-gun-detected">No gun detected</a></p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== PS5 headset ===================== {%- endcomment -%}
+<article class="m2-page" id="p-platforms-ps5-headset" data-group="Connect" data-title="Headset on PS5" data-time="1 min"
+  data-keywords="headset headphones mic microphone audio sound chat ps5 dualsense">
+  <header class="m2-head">
+    <p class="m2-crumb">Connect</p>
+    <h1>Headset on PS5</h1>
+    <p class="m2-get">Hear the game and use your mic through your controller, as normal.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">PS5</span><span class="x2-badge x2-badge--progress">Supported; final validation on first units</span><span class="m2-time">1 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-platforms-ps5-headset--plug-in">
+    <h2>1. Plug in your headset</h2>
+    <ol class="m2-steps">
+      <li>Plug your DualSense into a front port on the EXO with a USB cable.</li>
+      <li>Plug your headset into the DualSense's headset jack.</li>
+    </ol>
+    <p>Game sound and your mic run through the EXO. Use the PS5's own volume and mute controls.</p>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>USB headsets plugged straight into the EXO aren't supported. There's no audio screen in the app.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-ps5-headset--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>Headset:</b> you hear the game.</li><li><b>Party chat:</b> your friends hear you.</li></ul>
+      <p>Not working? <a href="#p-help-ps5--headset-no-sound">No sound in my headset</a></p></aside>
+  </section>
+</article>
+
+{%- comment -%} ===================== Power and AUX ===================== {%- endcomment -%}
+<article class="m2-page" id="p-platforms-power" data-group="Connect" data-title="Power and the AUX port" data-time="2 min"
+  data-keywords="power aux charger charging usb power extra power devices cut out">
+  <header class="m2-head">
+    <p class="m2-crumb">Connect</p>
+    <h1>Power and the AUX port</h1>
+    <p class="m2-get">When to add extra power, and how.</p>
+    <div class="m2-badges"><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-platforms-power--normal">
+    <h2>Normal power</h2>
+    <p>The EXO runs from the <b>CONSOLE</b> cable alone. For most set-ups, that's all you need.</p>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-power--aux">
+    <h2>When to use AUX/POWER</h2>
+    <p><b>AUX/POWER</b> adds optional extra power. It's never required. Use it when you:</p>
+    <ul>
+      <li>charge a controller through the EXO, or</li>
+      <li>run several powered devices, like an RGB keyboard plus a hub.</li>
+    </ul>
+    <ol class="m2-steps">
+      <li>Plug the included USB-C to USB-A power cable into <b>AUX/POWER</b>.</li>
+      <li>Plug the other end into a USB charger or a PC USB port.</li>
+    </ol>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>AUX/POWER is for power only. Your game connection always uses CONSOLE, even on PC.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-platforms-power--warnings">
+    <h2>Power warnings in the app</h2>
+    <p>If the EXO runs short of power, HOME can show a yellow <b>!</b> chip. Tap it to read the warning. Adding AUX power usually fixes it.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-health-3.webp' | asset_url }}" width="786" height="603" loading="lazy"
+        alt="Part of HOME. A: Your EXO restarted unexpectedly. B: Send report. C: Dismiss. D: a yellow exclamation chip for a warning.">
+      <figcaption>Figure PWR.1 — HOME, with a warning chip</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Your EXO restarted unexpectedly.</b></td><td>Shows after an unexpected restart.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Send report</b></td><td>Copies a report you can send to support.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Dismiss</b></td><td>Hides the message.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td><b>!</b> chip</td><td>Tap to read the warning (power or memory).</td></tr>
+    </tbody></table>
+    <p>More help: <a href="#p-help-power-and-usb">Power and USB problems</a>.</p>
+  </section>
+</article>

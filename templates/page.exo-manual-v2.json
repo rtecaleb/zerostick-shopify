@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "zs-manual-v2",
+      "settings": {
+        "discord_url": "#discord-invite-placeholder",
+        "app_store_url": "#app-store-placeholder",
+        "play_store_url": "#play-store-placeholder",
+        "support_email": "caleb@zerostickgaming.com",
+        "preorder_url": "/products/zerostick-exo",
+        "games_url": "/pages/supported-games"
+      }
+    }
+  },
+  "order": ["main"]
+}
