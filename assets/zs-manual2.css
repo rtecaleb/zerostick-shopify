@@ -348,6 +348,7 @@
   border:1px solid var(--x-line2); background:rgba(255,255,255,.05); color:var(--x-mute); font:inherit; font-size:1.6rem; cursor:text; text-align:left;
   box-shadow:0 1.6rem 4rem -2rem rgba(0,0,0,.8); transition:border-color .2s, box-shadow .3s; }
 .m2-homesearch:hover{ border-color:rgba(98,184,255,.5); box-shadow:0 1.6rem 4rem -2rem rgba(41,141,223,.5); }
+.m2-homesearch > span{ flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .m2-homesearch svg{ width:2.2rem; height:2.2rem; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; }
 .m2-homesearch .m2-kbd{ margin-left:auto; }
 .m2-popular{ display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin:1.4rem 0 0; font-size:1.3rem; color:var(--x-mute); }
