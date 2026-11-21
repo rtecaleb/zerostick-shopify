@@ -132,11 +132,16 @@ body:has(.x2l) .site-header{ position:relative; }
   .x2l-hero-copy .x2-lede{ margin-left:auto; margin-right:auto; }
   .x2l-hero-copy .x2-btns, .x2l-trust, .x2l-price{ justify-content:center; }
   .x2l-hero .x2-notice{ margin-left:auto; margin-right:auto; text-align:left; }
+  /* phones/tablets: show the product first, then the words (Apple-style) */
+  .x2l-hero-vis{ order:-1; max-width:56rem; width:100%; margin:0 auto; }
   .x2l-scrollcue{ display:none; }
 }
 @media (max-width:599px){
   .x2l-hero .x2-h1{ font-size:clamp(4rem,12vw,5.6rem); }
-  .x2l-hero .x2-btns .x2-btn{ flex:1 1 100%; }
+  .x2l-hero{ padding-top:2.4rem; }
+  .x2l-hero .x2-btns .x2-btn{ flex:1 1 0; padding:0 1.6rem; }
+  .x2 .x2-card{ padding:2.2rem; }
+  .x2l-crop{ margin:2.4rem -2.2rem -2.2rem; }
   .x2l-chip{ font-size:1.15rem; padding:.7rem 1rem; }
   .x2l-chip--a{ left:0; top:6%; }
   .x2l-chip--b{ right:0; top:auto; bottom:22%; }
@@ -227,7 +232,7 @@ body:has(.x2l) .site-header{ position:relative; }
 .x2l-rail li.is-on{ background:var(--x-blue2); transform:scaleY(1.5); box-shadow:0 0 1rem var(--x-blue2); }
 .x2l-story .x2-step .x2-h2{ font-size:clamp(3rem,3.6vw,4.8rem); }
 .x2l-story .x2-step p.x2-soft{ margin:0; font-size:1.7rem; }
-.x2l-story .x2-step-shot .x2-phone{ width:min(25rem,64vw); }
+.x2l-story .x2-step-shot .x2-phone{ width:min(24rem,60vw); }
 .x2l-applinks{ display:flex; flex-wrap:wrap; gap:1rem; margin:2rem 0 0; }
 
 /* ---------- 4. gun detection spotlight ---------- */
@@ -361,8 +366,9 @@ body:has(.x2l) .site-header{ position:relative; }
    Show/hide them on data-visible instead (reported to the shared-CSS owner). */
 .x2l .x2-hot:not([visible]){ opacity:1; pointer-events:auto; }
 .x2l .x2-hot:not([data-visible]){ opacity:0; pointer-events:none; }
-/* the shared port poster has dark label text, so give it a light backdrop until the 3D loads */
-.x2l .x2-stage--ports{ border-radius:2.4rem; background:radial-gradient(circle at 50% 45%,#e9edf3,#b7c0cc 70%,#8c97a6); }
+/* a soft spotlight "stage" behind the port viewer */
+.x2l .x2-stage--ports{ border-radius:2.4rem; border:1px solid var(--x-line);
+  background:radial-gradient(circle at 50% 42%,#22324d,#0e1524 62%,#080c16); }
 .x2l .x2-stage--ports::before{ display:none; }
 
 /* ---------- 10. pre-order band ---------- */
