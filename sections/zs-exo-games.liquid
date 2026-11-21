@@ -61,6 +61,18 @@
   }
   .zg .x2-sec{ overflow:clip; }
 
+  /* Why this is here: assets/zerostick-custom.css sets
+     "html, body { overflow-x: hidden }" for the whole store. "hidden" turns
+     <body> into its own scroll box, and that silently stops position:sticky
+     from working anywhere inside it (our filter bar would never stick).
+     "clip" cuts off sideways overflow exactly the same way but does not make
+     a scroll box, so sticky works. This <style> only loads on this page, so
+     no other page changes. Browsers too old for "clip" ignore it and keep the
+     old behaviour (the bar just doesn't stick). */
+  @supports (overflow:clip){
+    html, body{ overflow-x:clip; }
+  }
+
   /* ---------- 1. hero ---------- */
   .zg-hero{ padding:11rem 0 9rem; }
   .zg-hero .x2-h1{ margin-bottom:2.4rem; }
@@ -688,18 +700,22 @@
     });
 
     /* ---------- 4. stronger shadow while the filter bar is stuck ---------- */
-    if (hasIO) {
-      // A 1px marker just above the bar: once it has scrolled off the top,
-      // the bar is stuck.
-      var marker = document.createElement('div');
-      marker.setAttribute('aria-hidden', 'true');
-      marker.style.height = '1px';
-      bar.parentNode.insertBefore(marker, bar);
-      new IntersectionObserver(function (entries) {
-        var e = entries[0];
-        bar.classList.toggle('is-stuck', !e.isIntersecting && e.boundingClientRect.top < 0);
-      }, { threshold: 0 }).observe(marker);
+    // A 1px marker just above the bar: once it has scrolled off the top, the
+    // bar is stuck. Checked at most once per frame while scrolling (cheap).
+    var marker = document.createElement('div');
+    marker.setAttribute('aria-hidden', 'true');
+    marker.style.height = '1px';
+    bar.parentNode.insertBefore(marker, bar);
+    var stuckTick = false;
+    function checkStuck() {
+      stuckTick = false;
+      var gridEnd = grid.getBoundingClientRect().bottom;
+      bar.classList.toggle('is-stuck', marker.getBoundingClientRect().top < 0 && gridEnd > bar.offsetHeight);
     }
+    window.addEventListener('scroll', function () {
+      if (!stuckTick) { stuckTick = true; requestAnimationFrame(checkStuck); }
+    }, { passive: true });
+    checkStuck();
   })();
 </script>
 
