@@ -20,8 +20,32 @@
    Reduced motion: at the bottom of this file, everything is shown still.
    ========================================================================== */
 
+/* STICKY FIX: the theme sets "html, body { overflow-x: hidden }" for the whole
+   store. "hidden" quietly turns <body> into its own scroll box, and then
+   position:sticky (our nav, the phone story, the exploded sequence) never
+   sticks. "clip" hides sideways overflow exactly the same way without that
+   side effect. This file only loads on this page, so the rest of the store
+   is untouched. (Same fix as the games page, sections/zs-exo-games.liquid.) */
+@supports (overflow:clip){
+  html, body{ overflow-x:clip; }
+}
+/* With sticky working again, the store header would suddenly stick on this
+   page only (it scrolls away everywhere else today, and it is ~17 rem tall on
+   phones). Keep it scrolling away like the rest of the store; our slim page
+   nav sticks instead. */
+body:has(.x2l) .site-header{ position:relative; }
+
+/* The theme writes headings in CAPITALS; this page uses sentence case,
+   which reads better for long, Apple-style headlines. */
+.x2l h1, .x2l h2, .x2l h3, .x2l .x2-h1, .x2l .x2-h2, .x2l .x2-h3{ text-transform:none; }
+
+/* Button text colour: the shared rule ".x2 a" (link blue) is more specific
+   than ".x2-btn--primary" (white), so link-buttons came out blue on blue. */
+.x2l a.x2-btn{ color:var(--x-ink); }
+.x2l a.x2-btn--primary, .x2l a.x2-btn--discord{ color:#fff; }
+
 .x2l{
-  --x2l-head:0px;                       /* set by the JS (store header height) */
+  --x2l-head:0px;                      /* set by the JS (store header height) */
   --x2l-nav:5.2rem;                     /* height of our page nav bar */
   --x2l-top:calc(var(--x2l-head) + var(--x2l-nav));
   --x2l-app:#1b1d20;                    /* the app's own background colour */
@@ -52,9 +76,10 @@
 .x2l-hero-grid{ display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:2rem; align-items:center; }
 .x2l-hero .x2-h1{ font-size:clamp(4.6rem,7vw,9.6rem); }
 .x2l-hero .x2-lede{ max-width:52rem; }
-.x2l-price{ margin:0 0 2.8rem; font-size:1.5rem; font-weight:600; color:var(--x-soft); letter-spacing:.01em; }
+.x2l-price{ display:flex; flex-wrap:wrap; align-items:baseline; gap:.2rem 0; margin:0 0 2.8rem; font-size:1.5rem; font-weight:600; color:var(--x-soft); letter-spacing:.01em; }
 .x2l-price b{ color:var(--x-ink); font-size:1.8rem; }
-.x2l-price i{ font-style:normal; color:var(--x-mute); margin:0 .6rem; }
+.x2l-price i{ font-style:normal; color:var(--x-mute); margin:0 .8rem; }
+.x2l-price span{ white-space:nowrap; }
 .x2l-trust{ display:flex; flex-wrap:wrap; gap:.6rem 1.8rem; margin:2.4rem 0 0; padding:0; list-style:none;
   font-size:1.3rem; font-weight:600; color:var(--x-mute); }
 .x2l-trust li{ display:flex; align-items:center; gap:.7rem; }
@@ -105,7 +130,7 @@
   .x2l-hero-grid{ grid-template-columns:1fr; gap:1rem; }
   .x2l-hero-copy{ text-align:center; }
   .x2l-hero-copy .x2-lede{ margin-left:auto; margin-right:auto; }
-  .x2l-hero-copy .x2-btns, .x2l-trust{ justify-content:center; }
+  .x2l-hero-copy .x2-btns, .x2l-trust, .x2l-price{ justify-content:center; }
   .x2l-hero .x2-notice{ margin-left:auto; margin-right:auto; text-align:left; }
   .x2l-scrollcue{ display:none; }
 }
@@ -125,7 +150,7 @@
 .x2l-stat:first-child{ border-left:0; }
 .x2l-stat b{ display:block; font-size:clamp(4rem,4.6vw,5.6rem); line-height:1; font-weight:800; letter-spacing:-.03em;
   font-variant-numeric:tabular-nums; }
-.x2l-stat span{ display:block; margin-top:1rem; font-size:1.4rem; line-height:1.45; color:var(--x-soft); }
+.x2l-stat > span{ display:block; margin-top:1rem; font-size:1.4rem; line-height:1.45; color:var(--x-soft); }
 @media (max-width:989px){
   .x2l-stats{ grid-template-columns:repeat(2,minmax(0,1fr)); }
   .x2l-stat:nth-child(3){ border-left:0; }
@@ -137,11 +162,11 @@
 .x2l-flow{ position:relative; margin:5.6rem 0 4rem; padding:3.2rem; border-radius:3rem; border:1px solid var(--x-line);
   background:radial-gradient(70rem 30rem at 50% 50%,rgba(41,141,223,.14),transparent 70%),linear-gradient(180deg,var(--x-card2),var(--x-bg2)); }
 .x2l-flow svg{ display:block; width:100%; height:auto; overflow:visible; }
-.x2l-flow--m{ display:none; }
+.x2l-flow .x2l-flow--m{ display:none; }
 @media (max-width:767px){
   .x2l-flow{ padding:1.6rem .8rem; }
-  .x2l-flow--d{ display:none; }
-  .x2l-flow--m{ display:block; }
+  .x2l-flow .x2l-flow--d{ display:none; }
+  .x2l-flow .x2l-flow--m{ display:block; }
 }
 /* SVG pieces. Each line has pathLength="1", so a dash of 1 = the whole line.
    Hidden: dash pushed fully off (offset 1). When the diagram scrolls into
@@ -202,7 +227,7 @@
 .x2l-rail li.is-on{ background:var(--x-blue2); transform:scaleY(1.5); box-shadow:0 0 1rem var(--x-blue2); }
 .x2l-story .x2-step .x2-h2{ font-size:clamp(3rem,3.6vw,4.8rem); }
 .x2l-story .x2-step p.x2-soft{ margin:0; font-size:1.7rem; }
-.x2l-story .x2-step-shot .x2-phone{ width:min(28rem,72vw); }
+.x2l-story .x2-step-shot .x2-phone{ width:min(25rem,64vw); }
 .x2l-applinks{ display:flex; flex-wrap:wrap; gap:1rem; margin:2rem 0 0; }
 
 /* ---------- 4. gun detection spotlight ---------- */
@@ -246,10 +271,13 @@
 .x2l-bento .x2-card{ display:flex; flex-direction:column; }
 .x2l-big{ display:block; margin:0 0 .4rem; font-size:clamp(3.6rem,4vw,5.2rem); line-height:1; font-weight:800; letter-spacing:-.03em; }
 /* a cropped window onto a real screenshot (object-position picks the part) */
-.x2l-crop{ position:relative; margin:2.4rem -2.8rem -2.8rem; flex:1 1 auto; min-height:24rem; overflow:hidden;
-  border-top:1px solid var(--x-line); background:var(--x2l-app); }
-.x2l-crop img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:var(--op,50% 0); }
-.x2l-crop::after{ content:""; position:absolute; inset:auto 0 0; height:30%; background:linear-gradient(transparent,var(--x-card)); pointer-events:none; }
+.x2l-crop{ position:relative; margin:2.8rem -2.8rem -2.8rem; flex:1 1 auto; min-height:28rem; overflow:hidden; }
+/* the screenshot is shown at phone width, centred, slid up by --oy percent of
+   its own height so the interesting part sits in the window */
+.x2l-crop img{ position:absolute; left:50%; top:0; width:min(calc(100% - 4.8rem),38rem); height:auto;
+  border-radius:2.2rem 2.2rem 0 0; border:1px solid var(--x-line2); border-bottom:0;
+  transform:translate3d(-50%,calc(var(--oy,0) * -1%),0); box-shadow:0 -2rem 6rem -2rem rgba(41,141,223,.35); }
+.x2l-crop::after{ content:""; position:absolute; inset:auto 0 0; height:40%; background:linear-gradient(transparent,var(--x-card)); pointer-events:none; }
 .x2l-segs{ display:flex; flex-wrap:wrap; gap:.6rem; margin:1.6rem 0 0; padding:0; list-style:none; }
 .x2l-segs li{ padding:.6rem 1.2rem; border-radius:99rem; font-size:1.3rem; font-weight:700; border:1px solid var(--x-line2); color:var(--x-soft); }
 .x2l-segs li.is-on{ background:var(--x-blue); border-color:var(--x-blue); color:#fff; }
@@ -262,6 +290,7 @@
 .x2l-phones .p-back{ left:4%; top:2rem; transform:translate3d(0,calc((var(--p,.5) - .5) * 6rem),0) rotate(-6deg); opacity:.85; }
 .x2l-phones .p-front{ right:4%; top:6rem; transform:translate3d(0,calc((var(--p,.5) - .5) * -10rem),0) rotate(4deg); z-index:2; }
 .x2l-phones .x2-phone-screen img{ opacity:1; transform:none; }
+@media (max-width:989px){ .x2l-phones{ order:2; } }
 @media (max-width:599px){
   .x2l-phones{ height:48rem; }
   .x2l-phones .x2-phone{ width:min(21rem,56vw); }
