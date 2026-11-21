@@ -1,0 +1,167 @@
+﻿{% comment %}
+  ==========================================================================
+  ZeroStick EXO product visuals â€” THE ONE SWAP POINT
+  --------------------------------------------------------------------------
+  Every staged EXO page (landing v2, pre-order product page, games page,
+  manual v2) draws the product through this snippet, so when the official
+  marketing renders / GLB arrive (ZS CORE\Enclosure\REV 2 v3 ...\MARKETING\)
+  you only change the file names in the "asset names" block below.
+
+  Current files (2026-11-21, from ...\REV 2 v3 (final board 562dc5fb)\MARKETING\:
+  white tub #E9E9E5, black cap lid #1D1E22, logo shown lit in neutral white):
+    exo2-case.glb          ZS-EXO-marketing.glb, Draco-compressed (~145 KB)
+    exo2-hero-34.webp      renders/07-three-quarter-front
+    exo2-top.webp          renders/05-top
+    exo2-front.webp        renders/01-front (unlabelled front ports)
+    exo2-exploded.webp     renders/09-exploded
+    exo2-lid-off.webp      renders/10-lid-off
+    exo2-board-top.webp    rev 2 board render, top (final-pack renders)
+    exo2-board-bottom.webp rev 2 board render, bottom
+  If the owner switches to the rev 2.1 case, the MARKETING folder is
+  regenerated with the same names: re-export these files, nothing else changes.
+
+  NOTE: no image here carries port callouts. Port-labelled images are on
+  hold until the verified MARKETING set (PORTS.md) arrives.
+
+  Usage:
+    {% render 'zs-exo2-visual', view: 'viewer' %}             interactive 3D
+    {% render 'zs-exo2-visual', view: 'hero', loading: 'eager' %}
+    {% render 'zs-exo2-visual', view: 'top' %}  'front' 'exploded' 'lid-off' 'board-top' 'board-bottom'
+  Optional: class: 'my-class', alt: 'custom alt text'
+  ==========================================================================
+{% endcomment %}
+
+{%- liquid
+  # ----- asset names (change these when the MARKETING set lands) -----
+  assign f_glb = 'exo2-case.glb'
+  assign f_hero = 'exo2-hero-34.webp'
+  assign f_top = 'exo2-top.webp'
+  assign f_front = 'exo2-front.webp'
+  assign f_ports_back = 'exo2-ports-back.webp'
+  assign f_ports_front = 'exo2-ports-front.webp'
+  assign f_exploded = 'exo2-exploded.webp'
+  assign f_lid_off = 'exo2-lid-off.webp'
+  assign f_board_top = 'exo2-board-top.webp'
+  assign f_board_bottom = 'exo2-board-bottom.webp'
+  # pixel sizes of the files above (lets the browser reserve space: no jumping)
+  assign hero_w = 1800
+  assign hero_h = 1050
+  # -------------------------------------------------------------------
+
+  assign v = view | default: 'hero'
+  assign lazy = loading | default: 'lazy'
+  case v
+    when 'top'
+      assign file = f_top
+      assign w = 1500
+      assign h = 963
+      assign default_alt = 'ZeroStick EXO seen from above: black lid with the ZS EXO logo'
+    when 'front'
+      assign file = f_front
+      assign w = 1500
+      assign h = 263
+      assign default_alt = 'ZeroStick EXO front: one USB-C port and three USB-A ports'
+    when 'exploded'
+      assign file = f_exploded
+      assign w = 1600
+      assign h = 1399
+      assign default_alt = 'ZeroStick EXO exploded view: black lid, clear logo, circuit board and white body'
+    when 'lid-off'
+      assign file = f_lid_off
+      assign w = 1600
+      assign h = 1092
+      assign default_alt = 'ZeroStick EXO with the lid off, showing the board inside the white body'
+    when 'board-top'
+      assign file = f_board_top
+      assign w = 1400
+      assign h = 870
+      assign default_alt = 'The ZeroStick EXO circuit board, top side (render)'
+    when 'board-bottom'
+      assign file = f_board_bottom
+      assign w = 1400
+      assign h = 870
+      assign default_alt = 'The ZeroStick EXO circuit board, bottom side (render)'
+    else
+      assign file = f_hero
+      assign w = hero_w
+      assign h = hero_h
+      assign default_alt = 'ZeroStick EXO: white body, black lid with the lit ZS EXO logo'
+  endcase
+-%}
+
+{%- if v == 'viewer' -%}
+  {%- comment -%}
+    Interactive 3D. The poster still shows instantly; assets/zs-exo2.js only
+    downloads the model-viewer library and the model when this scrolls near
+    the screen, then cross-fades to the live model (drag to spin, pinch/scroll
+    to zoom). Reduced-motion users get no auto-rotate.
+  {%- endcomment -%}
+  <div class="x2-stage {{ class }}" data-x2-model>
+    <img class="x2-stage-poster" src="{{ f_hero | asset_url }}" width="{{ hero_w }}" height="{{ hero_h }}"
+         alt="{{ alt | default: 'ZeroStick EXO, 3D view' | escape }}" loading="{{ lazy }}" decoding="async">
+    <model-viewer data-src="{{ f_glb | asset_url }}" alt="{{ alt | default: 'Interactive 3D model of the ZeroStick EXO. Drag to rotate.' | escape }}"
+      camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="0" rotation-per-second="14deg"
+      interaction-prompt="none" camera-orbit="-32deg 64deg auto" min-camera-orbit="auto 10deg auto" max-camera-orbit="auto 95deg auto"
+      field-of-view="20deg" min-field-of-view="12deg" max-field-of-view="26deg"
+      exposure="0.95" shadow-intensity="1.2" shadow-softness="0.9" environment-image="neutral" tone-mapping="aces"
+      disable-pan></model-viewer>
+    <p class="x2-stage-hint" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+      Drag to rotate
+    </p>
+  </div>
+{%- elsif v == 'ports' -%}
+  {%- comment -%}
+    Hover/tap-to-explain 3D PORT VIEWER (owner-approved 2026-11-21).
+    Each hotspot sits on a port of the marketing GLB. The positions are the
+    centres of the GLB's named port nodes (metres, from the model file):
+    move a dot by editing its data-position. data-normal points out of the
+    face the port is on (back = 0 0 -1, front = 0 0 1).
+    The explanation panel and the Front/Back buttons are driven by
+    assets/zs-exo2.js ("port viewer" block).
+    Port facts: verified by MAIN EXO CHAT against the moulded labels + board.
+  {%- endcomment -%}
+  <div class="x2-ports {{ class }}" data-x2-ports>
+    <div class="x2-stage x2-stage--ports" data-x2-model>
+      <img class="x2-stage-poster" src="{{ f_ports_back | asset_url }}" width="1600" height="1440"
+           alt="ZeroStick EXO back panel with each port named: CONSOLE, AUX/POWER, AUTH, HDMI IN and HDMI OUT" loading="lazy" decoding="async">
+      <model-viewer data-src="{{ f_glb | asset_url }}" alt="3D model of the ZeroStick EXO with a marker on every port"
+        camera-controls touch-action="pan-y" interaction-prompt="none" disable-pan disable-zoom
+        camera-orbit="180deg 72deg auto" field-of-view="21deg" interpolation-decay="120"
+        exposure="0.95" shadow-intensity="1" environment-image="neutral" tone-mapping="aces">
+        <button slot="hotspot-console" class="x2-hot" data-port="console" data-position="0.0909m 0.0066m -0.0015m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="CONSOLE port"><span>1</span></button>
+        <button slot="hotspot-aux" class="x2-hot" data-port="aux" data-position="0.0769m 0.0066m -0.0015m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="AUX/POWER port"><span>2</span></button>
+        <button slot="hotspot-auth" class="x2-hot" data-port="auth" data-position="0.0593m 0.0085m -0.0015m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="AUTH port"><span>3</span></button>
+        <button slot="hotspot-hdmi-in" class="x2-hot" data-port="hdmi-in" data-position="0.0385m 0.0082m -0.0015m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="HDMI IN port"><span>4</span></button>
+        <button slot="hotspot-hdmi-out" class="x2-hot" data-port="hdmi-out" data-position="0.015m 0.0082m -0.0015m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="HDMI OUT port"><span>5</span></button>
+        <button slot="hotspot-front-1" class="x2-hot" data-port="front" data-position="0.0145m 0.0066m 0.0635m" data-normal="0m 0m 1m" data-visibility-attribute="visible" aria-label="Front USB-C port"><span>6</span></button>
+        <button slot="hotspot-front-2" class="x2-hot" data-port="front" data-position="0.0381m 0.0085m 0.0635m" data-normal="0m 0m 1m" data-visibility-attribute="visible" aria-label="Front USB-A port"><span>7</span></button>
+        <button slot="hotspot-front-3" class="x2-hot" data-port="front" data-position="0.0616m 0.0085m 0.0635m" data-normal="0m 0m 1m" data-visibility-attribute="visible" aria-label="Front USB-A port"><span>8</span></button>
+        <button slot="hotspot-front-4" class="x2-hot" data-port="front" data-position="0.0852m 0.0085m 0.0635m" data-normal="0m 0m 1m" data-visibility-attribute="visible" aria-label="Front USB-A port"><span>9</span></button>
+      </model-viewer>
+    </div>
+    <div class="x2-ports-side">
+      <div class="x2-ports-flip" role="group" aria-label="Show side">
+        <button type="button" data-face="back" aria-pressed="true">Back</button>
+        <button type="button" data-face="front" aria-pressed="false">Front</button>
+      </div>
+      <ol class="x2-ports-list">
+        <li data-port="console" data-face="back"><b><i>1</i>CONSOLE <small>USB-C</small></b><p>The play cable, always. It goes to your PS5 or Xbox, or to your PC when you play on PC. The EXO powers itself from it.</p></li>
+        <li data-port="aux" data-face="back"><b><i>2</i>AUX/POWER <small>USB-C</small></b><p>Optional extra power from any USB charger or PC USB port. Never required. Handy when you charge controllers through the EXO or run several powered devices.</p></li>
+        <li data-port="auth" data-face="back"><b><i>3</i>AUTH <small>USB-A</small></b><p>PS5 version: the included PS5 auth dongle. Xbox version: your own genuine Xbox controller.</p></li>
+        <li data-port="hdmi-in" data-face="back"><b><i>4</i>HDMI IN</b><p>From your console. This is how the EXO sees the game for automatic gun detection.</p></li>
+        <li data-port="hdmi-out" data-face="back"><b><i>5</i>HDMI OUT</b><p>To your TV or monitor. Your picture passes straight through.</p></li>
+        <li data-port="front" data-face="front"><b><i>6–9</i>Front ports <small>1 × USB-C + 3 × USB-A</small></b><p>Plug in controllers, a mouse, a keyboard or a USB hub. Any front port works for any of them.</p></li>
+      </ol>
+    </div>
+  </div>
+{%- elsif v == 'ports-back' or v == 'ports-front' -%}
+  {%- if v == 'ports-back' -%}{%- assign pf = f_ports_back -%}{%- else -%}{%- assign pf = f_ports_front -%}{%- endif -%}
+  <img class="{{ class }}" src="{{ pf | asset_url }}" width="1600" height="1440"
+       alt="{% if v == 'ports-back' %}ZeroStick EXO back, left to right: CONSOLE (USB-C), AUX/POWER (USB-C), AUTH (USB-A), HDMI IN, HDMI OUT{% else %}ZeroStick EXO front: one USB-C port on the left and three USB-A ports{% endif %}"
+       loading="{{ lazy }}" decoding="async">
+{%- else -%}
+  <img class="{{ class }}" src="{{ file | asset_url }}" width="{{ w }}" height="{{ h }}"
+       alt="{{ alt | default: default_alt | escape }}" loading="{{ lazy }}" decoding="async"
+       {% if lazy == 'eager' %}fetchpriority="high"{% endif %}>
+{%- endif -%}
