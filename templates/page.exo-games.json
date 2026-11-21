@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "zs-exo-games",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

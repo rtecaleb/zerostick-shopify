@@ -225,6 +225,14 @@
 .x2-feats li.is-key{ color:#dff0ff; background:rgba(98,184,255,.12); border-color:rgba(98,184,255,.3); }
 .x2-feats li.is-soon{ color:var(--x-mute); border-style:dashed; }
 .x2-game--hot{ border-color:rgba(246,185,76,.4); background:radial-gradient(40rem 20rem at 100% 0,rgba(246,185,76,.14),transparent 60%),linear-gradient(180deg,var(--x-card2),var(--x-card)); }
+/* fix (games page agent, 2026-11-21): every card has data-reveal, and the
+   reveal rule ".x2 [data-reveal].is-in{transform:none}" is more specific than
+   ".x2-game:hover", so the hover lift never showed and the reveal transition
+   replaced the card's own. The lift now uses the separate "translate"
+   property, which the reveal rule doesn't touch. */
+.x2 .x2-game[data-reveal]{ transition:opacity .9s var(--x-ease) var(--d,0s), transform 1s var(--x-ease) var(--d,0s),
+  translate .4s var(--x-ease), border-color .3s, box-shadow .4s; }
+.x2 .x2-game[data-reveal]:hover{ translate:0 -4px; }
 
 /* ---------- marquee ---------- */
 .x2-marquee{ display:flex; overflow:hidden; mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
