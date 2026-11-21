@@ -104,6 +104,8 @@
 
   {%- comment -%}
     ===== 1. HERO =====
+    Hero items use data-x2l-in (a short rise-in animation as the page loads)
+    instead of data-reveal, so the Pre-order button never waits for a scroll.
     data-x2l-hero: the landing JS writes --hp (0 at the top, 1 once the hero
     has scrolled away). The CSS uses it to lift/fade the text and to grow and
     tilt the 3D stage, so the product "comes towards you" as you scroll.
@@ -114,26 +116,26 @@
     <div class="x2-wrap">
       <div class="x2l-hero-grid">
         <div class="x2l-hero-copy">
-          <p class="x2-eyebrow" data-reveal>ZeroStick EXO · Pre-order</p>
-          <h1 class="x2-h1" data-reveal style="--d:.08s">Your setup.<br><span class="x2-grad">Any console.</span></h1>
-          <p class="x2-lede" data-reveal style="--d:.16s">Mouse &amp; keyboard or any controller, on PS5, Xbox and PC. Set up from your phone.</p>
-          <p class="x2l-price" data-reveal style="--d:.22s"><b>From $149.99</b><i>·</i><span>Pre-order</span><i>·</i><span>Ships January 1, 2027</span></p>
-          <div class="x2-btns" data-reveal style="--d:.28s">
+          <p class="x2-eyebrow" data-x2l-in>ZeroStick EXO · Pre-order</p>
+          <h1 class="x2-h1" data-x2l-in style="--d:.08s">Your setup.<br><span class="x2-grad">Any console.</span></h1>
+          <p class="x2-lede" data-x2l-in style="--d:.16s">Mouse &amp; keyboard or any controller, on PS5, Xbox and PC. Set up from your phone.</p>
+          <p class="x2l-price" data-x2l-in style="--d:.22s"><b>From $149.99</b><i>·</i><span>Pre-order</span><i>·</i><span>Ships January 1, 2027</span></p>
+          <div class="x2-btns" data-x2l-in style="--d:.28s">
             <a class="x2-btn x2-btn--primary x2-btn--lg" href="{{ preorder_url }}">Pre-order</a>
             <a class="x2-btn x2-btn--lg" href="#how">See how it works</a>
           </div>
-          <ul class="x2l-trust" data-reveal style="--d:.34s">
+          <ul class="x2l-trust" data-x2l-in style="--d:.34s">
             <li><svg aria-hidden="true"><use href="#x2l-i-check"/></svg>One-time purchase</li>
             <li><svg aria-hidden="true"><use href="#x2l-i-check"/></svg>No subscription</li>
             <li><svg aria-hidden="true"><use href="#x2l-i-check"/></svg>No account</li>
             <li><a class="x2-link" href="#games">See supported games</a></li>
           </ul>
           {%- if section.settings.show_fcc_notice -%}
-            <p class="x2-notice" data-reveal style="--d:.4s"><svg aria-hidden="true"><use href="#x2l-i-info"/></svg><span>{{ fcc_text }}</span></p>
+            <p class="x2-notice" data-x2l-in style="--d:.4s"><svg aria-hidden="true"><use href="#x2l-i-info"/></svg><span>{{ fcc_text }}</span></p>
           {%- endif -%}
         </div>
 
-        <div class="x2l-hero-vis" data-reveal="zoom" style="--d:.1s">
+        <div class="x2l-hero-vis" data-x2l-in style="--d:.1s">
           <div class="x2l-hero-move">
             <div class="x2l-floor" aria-hidden="true"></div>
             <div class="x2l-orbit" aria-hidden="true">

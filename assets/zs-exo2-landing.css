@@ -86,6 +86,10 @@ body:has(.x2l) .site-header{ position:relative; }
 .x2l-trust svg{ width:1.6rem; height:1.6rem; color:var(--x-green); }
 .x2l-hero .x2-notice{ margin:2.4rem 0 0; max-width:56rem; }
 
+/* hero items rise in once as the page loads (--d = delay). Reduced motion:
+   the shared CSS switches all animations off, so they simply show. */
+.x2l [data-x2l-in]{ animation:x2l-rise 1s var(--x-ease) var(--d,0s) both; }
+@keyframes x2l-rise{ from{ opacity:0; transform:translate3d(0,2.4rem,0); } to{ opacity:1; transform:none; } }
 /* the text block drifts up and fades as you scroll away (--hp) */
 .x2l-hero-copy{ position:relative; z-index:2;
   transform:translate3d(0,calc(var(--hp,0) * -8rem),0); opacity:calc(1 - var(--hp,0) * 1.3); }
