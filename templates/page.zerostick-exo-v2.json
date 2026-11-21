@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "zerostick-exo-v2",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

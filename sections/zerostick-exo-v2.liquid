@@ -1,0 +1,860 @@
+{% comment %}
+  ==========================================================================
+  ZeroStick EXO: landing page v2 (staged, not live until Caleb assigns it)
+  --------------------------------------------------------------------------
+  Template: templates/page.zerostick-exo-v2.json
+  Preview:  https://zerostickgaming.com/pages/zerostick-exo?view=zerostick-exo-v2
+
+  What this file loads
+    assets/zs-exo2.css          shared EXO design system (colours, buttons, cards,
+                                sticky phone story, FAQ, port viewer...). Shared with
+                                other EXO pages, so do NOT edit it for this page.
+    assets/zs-exo2-landing.css  styles only this page uses (all start with x2l-)
+    assets/zs-exo2.js           shared behaviour (reveal on scroll, sticky story,
+                                lazy 3D model, port viewer, games list)
+    assets/zs-exo2-landing.js   this page's extras (scroll motion, page nav,
+                                number count-up, exploded-view sequence)
+
+  Product pictures and the 3D model ALWAYS come through
+  snippets/zs-exo2-visual.liquid (the one swap point). App screenshots are
+  real phone captures, copied from C:\zsg\overhaul\app-shots\clean as
+  assets/exo2-app-<key>.webp. Never replace them with drawn/mocked UI.
+
+  The page, top to bottom
+    0. page nav        1. hero (3D)        1b. numbers
+    2. what it does (animated signal-flow diagram)
+    3. the app (sticky phone story)        4. automatic gun detection
+    5. aim             6. Scripts          7. everything you play with
+    8. hardware (exploded sequence, 3D port viewer, specs, in the box)
+    9. supported games 10. pre-order       11. FAQ + fine print
+
+  Copy rules (from C:\zsg\overhaul\BRIEF.md): product name "ZeroStick EXO";
+  prices $149.99 Xbox / $169.99 PS5; ships January 1, 2027; no subscription,
+  no account; "Measured aim curve" only for Black Ops II, MW4 and Warzone;
+  check BRIEF.md before adding any new claim.
+  ==========================================================================
+{% endcomment %}
+
+{%- liquid
+  # ---- links (edit them in the theme editor: Customize > this section) ----
+  assign preorder_url = section.settings.preorder_url | default: '/products/zerostick-exo'
+  assign games_url = section.settings.games_url | default: '/pages/supported-games'
+  assign manual_url = section.settings.manual_url | default: '/pages/exo-manual'
+  # The Discord invite isn't known yet: the default is a placeholder anchor.
+  assign discord_url = section.settings.discord_url | default: '#discord-invite-placeholder'
+  # App store links aren't known yet. While a link still starts with "#"
+  # (a placeholder) its button is hidden, so customers never hit a dead link.
+  assign app_store_url = section.settings.app_store_url | default: '#app-store-placeholder'
+  assign play_store_url = section.settings.play_store_url | default: '#play-store-placeholder'
+  assign app_store_ready = true
+  assign app_first = app_store_url | slice: 0
+  if app_first == '#'
+    assign app_store_ready = false
+  endif
+  assign play_store_ready = true
+  assign play_first = play_store_url | slice: 0
+  if play_first == '#'
+    assign play_store_ready = false
+  endif
+
+  # FCC notice: OFF by default. When ticked it shows (word for word) next to
+  # the price / pre-order buttons and again in the fine print.
+  assign fcc_text = 'This device has not been authorized as required by the rules of the Federal Communications Commission. This device is not, and may not be, offered for sale or lease, or sold or leased, until authorization is obtained.'
+
+  # The pre-order promise, used beside every pre-order button.
+  assign ship_line = "Ships January 1, 2027. If that date changes we'll email you, and you can cancel for a full refund."
+-%}
+
+{{ 'zs-exo2.css' | asset_url | stylesheet_tag }}
+{{ 'zs-exo2-landing.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'zs-exo2.js' | asset_url }}" defer></script>
+<script src="{{ 'zs-exo2-landing.js' | asset_url }}" defer></script>
+
+{%- comment -%} Small icons reused below, drawn once (hidden) and referenced with <use>. {%- endcomment -%}
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="x2l-i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="x2l-i-pad" viewBox="0 0 24 24"><path d="M6.5 8.5h11a4.2 4.2 0 0 1 4.1 5.1l-.9 3.9a2.3 2.3 0 0 1-3.9 1.1L14.6 16.5H9.4l-2.2 2.1a2.3 2.3 0 0 1-3.9-1.1l-.9-3.9a4.2 4.2 0 0 1 4.1-5.1z"/><path d="M8 11v3M6.5 12.5h3"/><circle cx="15.5" cy="11.5" r=".6"/><circle cx="17.5" cy="13.5" r=".6"/></symbol>
+  <symbol id="x2l-i-mouse" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="5.5"/><path d="M12 2.5v6"/></symbol>
+  <symbol id="x2l-i-kb" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2.5"/><path d="M6 10h.01M9.5 10h.01M13 10h.01M16.5 10h.01M7 14h10"/></symbol>
+  <symbol id="x2l-i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2" width="11" height="20" rx="2.5"/><path d="M10.5 18.5h3"/></symbol>
+  <symbol id="x2l-i-console" viewBox="0 0 24 24"><rect x="4" y="2.5" width="8" height="19" rx="2"/><rect x="14.5" y="8" width="5.5" height="13.5" rx="1.5"/><path d="M8 6v3"/></symbol>
+  <symbol id="x2l-i-tv" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="x2l-i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 7.5v.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+</svg>
+
+<div class="x2 x2l" id="x2l-top">
+
+  {%- comment -%} ===== 0. PAGE NAV: sticks under the store header ===== {%- endcomment -%}
+  <nav class="x2l-nav" aria-label="ZeroStick EXO page sections">
+    <div class="x2-wrap">
+      <p class="x2l-nav-name">ZeroStick EXO</p>
+      <ul class="x2l-nav-links" data-x2l-navlinks>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#app">App</a></li>
+        <li><a href="#gun">Gun detection</a></li>
+        <li><a href="#aim">Aim</a></li>
+        <li><a href="#scripts">Scripts</a></li>
+        <li><a href="#hardware">Hardware</a></li>
+        <li><a href="#games">Games</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a class="x2-btn x2-btn--primary" href="{{ preorder_url }}">Pre-order</a>
+    </div>
+  </nav>
+
+  {%- comment -%}
+    ===== 1. HERO =====
+    data-x2l-hero: the landing JS writes --hp (0 at the top, 1 once the hero
+    has scrolled away). The CSS uses it to lift/fade the text and to grow and
+    tilt the 3D stage, so the product "comes towards you" as you scroll.
+  {%- endcomment -%}
+  <section class="x2l-hero" data-x2l-hero aria-label="ZeroStick EXO">
+    <div class="x2-aura" aria-hidden="true"></div>
+    <div class="x2-gridlines" aria-hidden="true"></div>
+    <div class="x2-wrap">
+      <div class="x2l-hero-grid">
+        <div class="x2l-hero-copy">
+          <p class="x2-eyebrow" data-reveal>ZeroStick EXO · Pre-order</p>
+          <h1 class="x2-h1" data-reveal style="--d:.08s">Your setup.<br><span class="x2-grad">Any console.</span></h1>
+          <p class="x2-lede" data-reveal style="--d:.16s">Mouse &amp; keyboard or any controller, on PS5, Xbox and PC. Set up from your phone.</p>
+          <p class="x2l-price" data-reveal style="--d:.22s"><b>From $149.99</b><i>·</i>Pre-order<i>·</i>Ships January 1, 2027</p>
+          <div class="x2-btns" data-reveal style="--d:.28s">
+            <a class="x2-btn x2-btn--primary x2-btn--lg" href="{{ preorder_url }}">Pre-order</a>
+            <a class="x2-btn x2-btn--lg" href="#how">See how it works</a>
+          </div>
+          <ul class="x2l-trust" data-reveal style="--d:.34s">
+            <li><svg aria-hidden="true"><use href="#x2l-i-check"/></svg>One-time purchase</li>
+            <li><svg aria-hidden="true"><use href="#x2l-i-check"/></svg>No subscription</li>
+            <li><svg aria-hidden="true"><use href="#x2l-i-check"/></svg>No account</li>
+            <li><a class="x2-link" href="#games">See supported games</a></li>
+          </ul>
+          {%- if section.settings.show_fcc_notice -%}
+            <p class="x2-notice" data-reveal style="--d:.4s"><svg aria-hidden="true"><use href="#x2l-i-info"/></svg><span>{{ fcc_text }}</span></p>
+          {%- endif -%}
+        </div>
+
+        <div class="x2l-hero-vis" data-reveal="zoom" style="--d:.1s">
+          <div class="x2l-hero-move">
+            <div class="x2l-floor" aria-hidden="true"></div>
+            <div class="x2l-orbit" aria-hidden="true">
+              <svg viewBox="0 0 600 600" fill="none">
+                <g class="r1"><circle cx="300" cy="300" r="290" stroke="rgba(98,184,255,.18)" stroke-dasharray="2 10"/><circle cx="300" cy="10" r="4" fill="#62b8ff"/></g>
+                <g class="r2"><circle cx="300" cy="300" r="230" stroke="rgba(94,231,255,.12)"/><circle cx="530" cy="300" r="3" fill="#5ee7ff"/></g>
+              </svg>
+            </div>
+            {% render 'zs-exo2-visual', view: 'viewer', loading: 'eager' %}
+          </div>
+          <p class="x2l-chip x2l-chip--a" aria-hidden="true"><i></i>PS5 · Xbox · PC</p>
+          <p class="x2l-chip x2l-chip--b" aria-hidden="true"><i></i>Set up from your phone</p>
+          <p class="x2l-chip x2l-chip--c" aria-hidden="true"><i></i>Any controller or mouse &amp; keyboard</p>
+        </div>
+      </div>
+    </div>
+    <span class="x2l-scrollcue" aria-hidden="true"></span>
+  </section>
+
+  {%- comment -%}
+    ===== 1b. NUMBERS =====
+    The real number is in the HTML (so it is right without JavaScript);
+    data-x2l-count makes the landing JS count up to it when it scrolls in.
+  {%- endcomment -%}
+  <section class="x2-sec x2-sec--tight" aria-label="ZeroStick EXO in numbers">
+    <div class="x2-wrap">
+      <div class="x2l-stats" data-reveal>
+        <div class="x2l-stat"><b><span data-x2l-count="29">29</span></b><span>game packs with a ready-made config for each</span></div>
+        <div class="x2l-stat"><b><span data-x2l-count="33">33</span></b><span>ready-made Scripts, added in one tap</span></div>
+        <div class="x2l-stat"><b><span data-x2l-count="9">9</span></b><span>games with automatic gun detection (2 Ready, 7 In progress)</span></div>
+        <div class="x2l-stat"><b>$<span data-x2l-count="0">0</span></b><span>a month. One-time purchase, no account.</span></div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%}
+    ===== 2. WHAT IT DOES: signal-flow diagram =====
+    Two drawings of the same diagram: a wide one for computers and a tall
+    one for phones (CSS shows one or the other). Every line has
+    pathLength="1" so the CSS can "draw" it when the box scrolls in
+    (data-reveal adds .is-in). --ld delays each line, --nd each box.
+    Blue = USB (your controls in, controller out), violet = HDMI (the game
+    picture), cyan dashed = Bluetooth (the phone app).
+  {%- endcomment -%}
+  <section class="x2-sec" id="how">
+    <div class="x2-wrap">
+      <div class="x2-center">
+        <p class="x2-eyebrow" data-reveal>What it does</p>
+        <h2 class="x2-h2" data-reveal style="--d:.06s">Plug in what you love.<br><span class="x2-grad">Play where you want.</span></h2>
+        <p class="x2-lede" data-reveal style="--d:.12s">The EXO sits between your controls and your console. It turns whatever you plug in into the controller your console expects, runs your Scripts, and watches the game picture so it knows which gun you're holding.</p>
+      </div>
+
+      <div class="x2l-flow" data-reveal>
+        {%- comment -%} --- wide diagram (computers / tablets) --- {%- endcomment -%}
+        <svg class="x2l-flow--d" viewBox="0 0 1120 600" role="img" aria-labelledby="x2l-flow-t x2l-flow-d">
+          <title id="x2l-flow-t">How the ZeroStick EXO connects</title>
+          <desc id="x2l-flow-d">Your controller, mouse and keyboard plug into the EXO over USB. The EXO plugs into your PS5, Xbox or PC as a controller. Your console's HDMI goes into the EXO and out to your TV, so the EXO can see the game. The ZeroStick phone app talks to the EXO over Bluetooth.</desc>
+          <defs>
+            <linearGradient id="x2l-exo-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b3a63"/><stop offset="1" stop-color="#0b1730"/></linearGradient>
+          </defs>
+          <path class="ln ln--usb" pathLength="1" style="--ld:.2s" d="M280 108 C360 108 370 230 440 232"/>
+          <path class="ln ln--usb" pathLength="1" style="--ld:.3s" d="M280 260 L440 260"/>
+          <path class="ln ln--usb" pathLength="1" style="--ld:.4s" d="M280 412 C360 412 370 290 440 288"/>
+          <path class="ln ln--usb" pathLength="1" style="--ld:.9s" d="M680 260 L840 260"/>
+          <path class="ln ln--bt" pathLength="1" style="--ld:1.2s" stroke-dasharray=".04 .03" d="M560 96 L560 180"/>
+          <path class="ln ln--hdmi" pathLength="1" style="--ld:1.4s" d="M960 308 C960 400 700 400 620 340"/>
+          <path class="ln ln--hdmi" pathLength="1" style="--ld:1.7s" d="M520 340 C520 520 700 518 840 518"/>
+          <path class="pl pl--usb" pathLength="1" style="--ld:.2s" d="M280 108 C360 108 370 230 440 232"/>
+          <path class="pl pl--usb" pathLength="1" style="--ld:.5s" d="M280 260 L440 260"/>
+          <path class="pl pl--usb" pathLength="1" style="--ld:.8s" d="M280 412 C360 412 370 290 440 288"/>
+          <path class="pl pl--usb" pathLength="1" style="--ld:.9s" d="M680 260 L840 260"/>
+          <path class="pl pl--bt" pathLength="1" style="--ld:1.2s" d="M560 96 L560 180"/>
+          <path class="pl pl--hdmi" pathLength="1" style="--ld:1.4s" d="M960 308 C960 400 700 400 620 340"/>
+          <path class="pl pl--hdmi" pathLength="1" style="--ld:1.7s" d="M520 340 C520 520 700 518 840 518"/>
+          <text class="tag tag--usb" x="360" y="248" text-anchor="middle">USB</text>
+          <text class="tag tag--usb" x="760" y="248" text-anchor="middle">USB · PLAYS AS A CONTROLLER</text>
+          <text class="tag tag--bt" x="576" y="143">BLUETOOTH</text>
+          <text class="tag tag--hdmi" x="830" y="368" text-anchor="middle">HDMI IN</text>
+          <text class="tag tag--hdmi" x="700" y="548" text-anchor="middle">HDMI OUT</text>
+
+          <g class="node" style="--nd:0s"><rect x="40" y="60" width="240" height="96" rx="20"/>
+            <use href="#x2l-i-pad" class="ic" x="62" y="88" width="40" height="40"/>
+            <text x="118" y="102" font-size="19">Controller</text><text class="sub" x="118" y="126" font-size="14">PlayStation, Xbox, 8BitDo…</text></g>
+          <g class="node" style="--nd:.1s"><rect x="40" y="212" width="240" height="96" rx="20"/>
+            <use href="#x2l-i-mouse" class="ic" x="62" y="240" width="40" height="40"/>
+            <text x="118" y="254" font-size="19">Mouse</text><text class="sub" x="118" y="278" font-size="14">Wired or wireless dongle</text></g>
+          <g class="node" style="--nd:.2s"><rect x="40" y="364" width="240" height="96" rx="20"/>
+            <use href="#x2l-i-kb" class="ic" x="62" y="392" width="40" height="40"/>
+            <text x="118" y="406" font-size="19">Keyboard</text><text class="sub" x="118" y="430" font-size="14">Any USB keyboard</text></g>
+          <g class="node exo" style="--nd:.5s">
+            <rect class="halo" x="440" y="180" width="240" height="160" rx="30"/>
+            <rect class="body" x="440" y="180" width="240" height="160" rx="30" fill="url(#x2l-exo-grad)"/>
+            <text x="560" y="252" font-size="40" text-anchor="middle" letter-spacing="2">EXO</text>
+            <text class="sub" x="560" y="284" font-size="14" text-anchor="middle">Translates · runs Scripts</text>
+            <text class="sub" x="560" y="304" font-size="14" text-anchor="middle">sees your gun</text></g>
+          <g class="node" style="--nd:1s"><rect x="470" y="12" width="180" height="84" rx="20"/>
+            <use href="#x2l-i-phone" class="ic" x="486" y="34" width="38" height="38"/>
+            <text x="530" y="50" font-size="17">ZeroStick app</text><text class="sub" x="530" y="72" font-size="13">iPhone + Android</text></g>
+          <g class="node" style="--nd:.8s"><rect x="840" y="212" width="240" height="96" rx="20"/>
+            <use href="#x2l-i-console" class="ic" x="862" y="240" width="40" height="40"/>
+            <text x="918" y="254" font-size="19">PS5 · Xbox · PC</text><text class="sub" x="918" y="278" font-size="14">Your console or PC</text></g>
+          <g class="node" style="--nd:1.6s"><rect x="840" y="470" width="240" height="96" rx="20"/>
+            <use href="#x2l-i-tv" class="ic" x="862" y="498" width="40" height="40"/>
+            <text x="918" y="512" font-size="19">TV or monitor</text><text class="sub" x="918" y="536" font-size="14">Picture passes through</text></g>
+        </svg>
+
+        {%- comment -%} --- tall diagram (phones) --- {%- endcomment -%}
+        <svg class="x2l-flow--m" viewBox="0 0 360 610" role="img" aria-labelledby="x2l-flowm-t">
+          <title id="x2l-flowm-t">How the ZeroStick EXO connects: controller, mouse and keyboard over USB into the EXO; the EXO plays into your PS5, Xbox or PC; HDMI from the console goes through the EXO to your TV; the phone app connects over Bluetooth.</title>
+          <defs>
+            <linearGradient id="x2l-exo-grad-m" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b3a63"/><stop offset="1" stop-color="#0b1730"/></linearGradient>
+          </defs>
+          <path class="ln ln--usb" pathLength="1" style="--ld:.2s" d="M62 84 C62 124 150 124 150 164"/>
+          <path class="ln ln--usb" pathLength="1" style="--ld:.3s" d="M180 84 L180 164"/>
+          <path class="ln ln--usb" pathLength="1" style="--ld:.4s" d="M298 84 C298 124 210 124 210 164"/>
+          <path class="ln ln--usb" pathLength="1" style="--ld:.9s" d="M150 274 L150 368"/>
+          <path class="ln ln--bt" pathLength="1" style="--ld:1.2s" stroke-dasharray=".12 .08" d="M78 219 L100 219"/>
+          <path class="ln ln--hdmi" pathLength="1" style="--ld:1.4s" d="M212 368 L212 274"/>
+          <path class="ln ln--hdmi" pathLength="1" style="--ld:1.7s" d="M260 250 C336 250 336 560 260 560"/>
+          <path class="pl pl--usb" pathLength="1" style="--ld:.2s" d="M62 84 C62 124 150 124 150 164"/>
+          <path class="pl pl--usb" pathLength="1" style="--ld:.5s" d="M180 84 L180 164"/>
+          <path class="pl pl--usb" pathLength="1" style="--ld:.8s" d="M298 84 C298 124 210 124 210 164"/>
+          <path class="pl pl--usb" pathLength="1" style="--ld:.9s" d="M150 274 L150 368"/>
+          <path class="pl pl--hdmi" pathLength="1" style="--ld:1.4s" d="M212 368 L212 274"/>
+          <path class="pl pl--hdmi" pathLength="1" style="--ld:1.7s" d="M260 250 C336 250 336 560 260 560"/>
+          <text class="tag tag--usb" x="142" y="326" text-anchor="end">USB</text>
+          <text class="tag tag--hdmi" x="220" y="326">HDMI IN</text>
+          <text class="tag tag--hdmi" x="296" y="470" text-anchor="end">HDMI OUT</text>
+          <text class="tag tag--bt" x="44" y="180" text-anchor="middle" font-size="11">BLUETOOTH</text>
+
+          <g class="node" style="--nd:0s"><rect x="8" y="16" width="108" height="68" rx="16"/>
+            <use href="#x2l-i-pad" class="ic" x="48" y="24" width="28" height="28"/><text x="62" y="72" font-size="14" text-anchor="middle">Controller</text></g>
+          <g class="node" style="--nd:.1s"><rect x="126" y="16" width="108" height="68" rx="16"/>
+            <use href="#x2l-i-mouse" class="ic" x="166" y="24" width="28" height="28"/><text x="180" y="72" font-size="14" text-anchor="middle">Mouse</text></g>
+          <g class="node" style="--nd:.2s"><rect x="244" y="16" width="108" height="68" rx="16"/>
+            <use href="#x2l-i-kb" class="ic" x="284" y="24" width="28" height="28"/><text x="298" y="72" font-size="14" text-anchor="middle">Keyboard</text></g>
+          <g class="node exo" style="--nd:.5s">
+            <rect class="halo" x="100" y="164" width="160" height="110" rx="24"/>
+            <rect class="body" x="100" y="164" width="160" height="110" rx="24" fill="url(#x2l-exo-grad-m)"/>
+            <text x="180" y="218" font-size="30" text-anchor="middle" letter-spacing="2">EXO</text>
+            <text class="sub" x="180" y="244" font-size="12" text-anchor="middle">Translates · runs Scripts</text></g>
+          <g class="node" style="--nd:1s"><rect x="8" y="190" width="70" height="60" rx="14"/>
+            <use href="#x2l-i-phone" class="ic" x="31" y="196" width="24" height="24"/><text x="43" y="238" font-size="12" text-anchor="middle">App</text></g>
+          <g class="node" style="--nd:.8s"><rect x="100" y="368" width="160" height="64" rx="16"/>
+            <use href="#x2l-i-console" class="ic" x="112" y="386" width="28" height="28"/><text x="148" y="405" font-size="14">PS5 · Xbox · PC</text></g>
+          <g class="node" style="--nd:1.6s"><rect x="100" y="528" width="160" height="64" rx="16"/>
+            <use href="#x2l-i-tv" class="ic" x="112" y="546" width="28" height="28"/><text x="148" y="565" font-size="14">TV or monitor</text></g>
+        </svg>
+      </div>
+
+      <ul class="x2l-legend" aria-hidden="true">
+        <li style="--c:var(--x-blue2)"><i></i>USB: your controls in, a controller out</li>
+        <li style="--c:var(--x-violet)"><i></i>HDMI: the game picture passes through</li>
+        <li class="bt" style="--c:var(--x-cyan)"><i></i>Bluetooth: the phone app</li>
+      </ul>
+
+      <div class="x2-grid x2-grid--4" style="margin-top:4.8rem">
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal>
+          <div class="x2-icon" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#x2l-i-pad"/></svg></div>
+          <h3 class="x2-h3">In: what you play with</h3>
+          <p>Your controller, or your own gaming mouse and keyboard. Wired, or with their wireless dongle. A USB hub works too.</p>
+        </article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.08s">
+          <div class="x2-icon" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#x2l-i-console"/></svg></div>
+          <h3 class="x2-h3">Out: your console</h3>
+          <p>Works with PS5, Xbox Series X|S / Xbox One and PC. On PC it shows up as a controller Windows already knows, with no driver.</p>
+        </article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.16s">
+          <div class="x2-icon" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#x2l-i-phone"/></svg></div>
+          <h3 class="x2-h3">Set up from your phone</h3>
+          <p>The free ZeroStick app for iPhone and Android connects over Bluetooth. No account, no Wi-Fi and no PC needed.</p>
+        </article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.24s">
+          <div class="x2-icon" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><use href="#x2l-i-tv"/></svg></div>
+          <h3 class="x2-h3">HDMI through: game aware</h3>
+          <p>Your console's picture goes through the EXO to your TV, so the EXO can see the game and switch your Scripts for the gun in your hands.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%}
+    ===== 3. THE APP: sticky phone story =====
+    Shared behaviour (assets/zs-exo2.js, "sticky story"): as each [data-step]
+    reaches the middle of the screen, the matching [data-shot] image in the
+    pinned phone fades in. Shots load just before they are needed (data-src).
+    On phones and tablets the pinned phone is hidden and every step shows its
+    own screenshot inline (.x2-step-shot) instead.
+    The landing JS also writes data-active (0-6) on .x2l-story so the glow
+    colour and the little progress rail follow along.
+    Shots marked x2l-short are app crops shorter than a full screen: they are
+    shown full width and fade out at the bottom.
+  {%- endcomment -%}
+  <section class="x2-sec" id="app">
+    <div class="x2-wrap">
+      <div class="x2-center">
+        <p class="x2-eyebrow" data-reveal>The ZeroStick app</p>
+        <h2 class="x2-h2" data-reveal style="--d:.06s">Your whole setup.<br><span class="x2-grad">In your pocket.</span></h2>
+        <p class="x2-lede" data-reveal style="--d:.12s">Every screen below is the real ZeroStick app.</p>
+      </div>
+
+      <div class="x2-story x2l-story" data-x2-story data-active="0">
+        <div class="x2-story-steps">
+
+          <article class="x2-step" data-step>
+            <p class="x2-step-num">01 · CONNECT</p>
+            <h3 class="x2-h2">Pair once. Done.</h3>
+            <p class="x2-soft">Open the free ZeroStick app and tap Connect. That's the whole setup.</p>
+            <ul>
+              <li>iPhone and Android, over Bluetooth</li>
+              <li>No account, no Wi-Fi and no PC needed</li>
+              <li>Changes made while you're away sync when the EXO reconnects</li>
+            </ul>
+            {%- if app_store_ready or play_store_ready -%}
+              <div class="x2l-applinks">
+                {%- if app_store_ready -%}<a class="x2-btn" href="{{ app_store_url }}" rel="noopener">Get it for iPhone</a>{%- endif -%}
+                {%- if play_store_ready -%}<a class="x2-btn" href="{{ play_store_url }}" rel="noopener">Get it for Android</a>{%- endif -%}
+              </div>
+            {%- endif -%}
+            <div class="x2-step-shot"><div class="x2-phone"><div class="x2-phone-screen">
+              <img class="is-on" src="{{ 'exo2-app-connect.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="ZeroStick app: Connect to your ZeroStick screen with a Connect button">
+            </div></div></div>
+          </article>
+
+          <article class="x2-step" data-step>
+            <p class="x2-step-num">02 · PICK YOUR GAME</p>
+            <h3 class="x2-h2">Start from your game.</h3>
+            <p class="x2-soft">Pick the game and get a config made for it.</p>
+            <ul>
+              <li>29 game packs: aim model, recommended in-game settings and Scripts tuned for each</li>
+              <li>See exactly what will change before you apply it</li>
+              <li>As many configs as you like: no slot limit</li>
+            </ul>
+            <div class="x2-step-shot"><div class="x2-phone"><div class="x2-phone-screen">
+              <img class="is-on" src="{{ 'exo2-app-game-config.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="ZeroStick app: Match Your Game, listing what Apply will change in the config">
+            </div></div></div>
+          </article>
+
+          <article class="x2-step" data-step>
+            <p class="x2-step-num">03 · AIM</p>
+            <h3 class="x2-h2">Speed in real cm/360.</h3>
+            <p class="x2-soft">Set your mouse speed the way PC players think about it.</p>
+            <ul>
+              <li>Separate hip-fire and ADS speed and smoothing</li>
+              <li>Smoothing presets from Disabled to Heavy, or your own</li>
+              <li>Per-game aim curves you can edit point by point</li>
+            </ul>
+            <div class="x2-step-shot"><div class="x2-phone"><div class="x2-phone-screen">
+              <img class="is-on" src="{{ 'exo2-app-aim-basic.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="ZeroStick app: Hip aim with Speed 64.2, about 12.2 cm/360, and Smoothing">
+            </div></div></div>
+          </article>
+
+          <article class="x2-step" data-step>
+            <p class="x2-step-num">04 · AUTOMATIC GUN DETECTION</p>
+            <h3 class="x2-h2">It sees your gun.</h3>
+            <p class="x2-soft">The EXO reads which gun you're holding from the game picture.</p>
+            <ul>
+              <li>Your Scripts and recoil settings switch for each gun, by themselves</li>
+              <li>Ready in Black Ops II and MW4; 7 more games in progress</li>
+              <li>Runs on the EXO, not on your phone</li>
+            </ul>
+            <div class="x2-step-shot"><div class="x2-phone"><div class="x2-phone-screen">
+              <img class="is-on x2l-short" src="{{ 'exo2-app-gun-detect.webp' | asset_url }}" width="786" height="1590" loading="lazy" decoding="async" alt="ZeroStick app: Gun out now, Kastov 762, above the weapon categories">
+            </div></div></div>
+          </article>
+
+          <article class="x2-step" data-step>
+            <p class="x2-step-num">05 · PER-GUN SCRIPTS</p>
+            <h3 class="x2-h2">Every gun, its own Scripts.</h3>
+            <p class="x2-soft">Give each gun the Scripts it needs. They switch on when it's out.</p>
+            <ul>
+              <li>Anti-recoil, rapid fire and more, per gun</li>
+              <li>Anti-Recoil Lab and Record script right on the gun's page</li>
+              <li>Scripts pause when no weapon is out</li>
+            </ul>
+            <div class="x2-step-shot"><div class="x2-phone"><div class="x2-phone-screen">
+              <img class="is-on" src="{{ 'exo2-app-smart-actions.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="ZeroStick app: the Kastov 762 page with Anti-Recoil Lab, Record script and its Scripts">
+            </div></div></div>
+          </article>
+
+          <article class="x2-step" data-step>
+            <p class="x2-step-num">06 · NBA 2K27</p>
+            <h3 class="x2-h2">Auto green.</h3>
+            <p class="x2-soft">On an NBA 2K27 config, the EXO watches your shot meter and lets go of shoot in the green. It helps with shot timing.</p>
+            <ul>
+              <li>Learns your timing, then re-learns if your setup changes</li>
+              <li>Button shooting or Pro stick shooting</li>
+              <li>Saved per player build</li>
+            </ul>
+            <div class="x2-step-shot"><div class="x2-phone"><div class="x2-phone-screen">
+              <img class="is-on x2l-short" src="{{ 'exo2-app-nba-shot-2.webp' | asset_url }}" width="786" height="1289" loading="lazy" decoding="async" alt="ZeroStick app: Auto green switched on, learning your timing">
+            </div></div></div>
+          </article>
+
+          <article class="x2-step" data-step>
+            <p class="x2-step-num">07 · PASS-THROUGH</p>
+            <h3 class="x2-h2">Menus, chat, typing.</h3>
+            <p class="x2-soft">One shortcut pauses your config and passes your keyboard and mouse straight to the console or PC.</p>
+            <ul>
+              <li>The same shortcut brings you back</li>
+              <li>The EXO's logo breathes cyan while it's on</li>
+              <li>Separate shortcuts for console and PC</li>
+            </ul>
+            <div class="x2-step-shot"><div class="x2-phone"><div class="x2-phone-screen">
+              <img class="is-on" src="{{ 'exo2-app-passthrough-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="ZeroStick app: Passthrough mode active, with a Turn off Passthrough button">
+            </div></div></div>
+          </article>
+        </div>
+
+        {%- comment -%} The pinned phone (computers only). The first shot has a real src; the rest load on demand. {%- endcomment -%}
+        <div class="x2-story-pin" aria-hidden="true">
+          <div class="x2l-pinphone">
+            <span class="x2l-pinglow"></span>
+            <div class="x2-phone"><div class="x2-phone-screen">
+              <img data-shot src="{{ 'exo2-app-connect.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="">
+              <img data-shot data-src="{{ 'exo2-app-game-config.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="">
+              <img data-shot data-src="{{ 'exo2-app-aim-basic.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="">
+              <img data-shot class="x2l-short" data-src="{{ 'exo2-app-gun-detect.webp' | asset_url }}" width="786" height="1590" loading="lazy" decoding="async" alt="">
+              <img data-shot data-src="{{ 'exo2-app-smart-actions.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="">
+              <img data-shot class="x2l-short" data-src="{{ 'exo2-app-nba-shot-2.webp' | asset_url }}" width="786" height="1289" loading="lazy" decoding="async" alt="">
+              <img data-shot data-src="{{ 'exo2-app-passthrough-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="">
+            </div></div>
+            <ol class="x2l-rail"><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%}
+    ===== 4. AUTOMATIC GUN DETECTION spotlight =====
+    Statuses straight from the launch feature list: Ready = BO2 + MW4,
+    In progress = the other 7. Warzone plating hold is In progress; fast
+    swap/pickup detection is MW4. Never mention rarity (not a launch feature).
+  {%- endcomment -%}
+  <section class="x2-sec x2l-gun" id="gun">
+    <div class="x2-wrap">
+      <div class="x2-split">
+        <div>
+          <p class="x2-eyebrow" data-reveal>Automatic gun detection</p>
+          <h2 class="x2-h2" data-reveal style="--d:.06s">Swap guns.<br><span class="x2-grad">Your Scripts follow.</span></h2>
+          <p class="x2-lede" data-reveal style="--d:.12s">With your console's HDMI running through it, the EXO reads the gun in your hands and switches that gun's Scripts and recoil settings on for you. Nothing to press.</p>
+          <ul class="x2l-gamelist" data-reveal style="--d:.18s" aria-label="Games with automatic gun detection">
+            <li class="is-ready">Call of Duty: Black Ops II <span class="x2-badge x2-badge--ready">Ready</span></li>
+            <li class="is-ready">Call of Duty: Modern Warfare 4 <span class="x2-badge x2-badge--ready">Ready</span></li>
+            <li>Call of Duty: Warzone <span class="x2-badge x2-badge--progress">In progress</span></li>
+            <li>Call of Duty: Black Ops 7 <span class="x2-badge x2-badge--progress">In progress</span></li>
+            <li>Apex Legends <span class="x2-badge x2-badge--progress">In progress</span></li>
+            <li>Fortnite <span class="x2-badge x2-badge--progress">In progress</span></li>
+            <li>Rust <span class="x2-badge x2-badge--progress">In progress</span></li>
+            <li>Battlefield 6 <span class="x2-badge x2-badge--progress">In progress</span></li>
+            <li>Counter-Strike 2 <span class="x2-badge x2-badge--progress">In progress</span></li>
+          </ul>
+        </div>
+        <div data-reveal="right">
+          <figure class="x2l-scan" style="margin:0 auto">
+            <img class="x2l-short" src="{{ 'exo2-app-gun-detect-3.webp' | asset_url }}" width="786" height="796" loading="lazy" decoding="async"
+                 alt="ZeroStick app: previous weapon M4, expected next weapon M4, and what the reader is doing: holding your Kastov 762, swap pair learned">
+            <figcaption class="x2l-scan-cap"><b>LIVE READER</b><span>Real app screen · MW4</span></figcaption>
+          </figure>
+          <div class="x2l-mini">
+            <article class="x2-card" data-reveal style="--d:.1s">
+              <h3 class="x2-h3">Fast swap and pickup <span class="x2-badge x2-badge--ready">MW4</span></h3>
+              <p>Swaps and pickups are caught the moment they happen, so the right Script is ready when you fire. The EXO even learns your swap pair.</p>
+            </article>
+            <article class="x2-card" data-reveal style="--d:.16s">
+              <h3 class="x2-h3">Holds your gun while you plate <span class="x2-badge x2-badge--progress">Warzone · In progress</span></h3>
+              <p>Warzone hides the gun name while you plate up. The EXO keeps your gun, so your Scripts don't drop out.</p>
+            </article>
+            <article class="x2-card" data-reveal style="--d:.22s">
+              <h3 class="x2-h3">Gun memory</h3>
+              <p>A brief HUD fade doesn't drop your gun, and Scripts pause on their own when no weapon is out.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%}
+    ===== 5. AIM (bento grid) =====
+    .x2l-crop is a window onto a real screenshot; --op (object-position)
+    picks which part of the screen shows.
+  {%- endcomment -%}
+  <section class="x2-sec" id="aim">
+    <div class="x2-aura" aria-hidden="true"></div>
+    <div class="x2-wrap">
+      <div class="x2-center">
+        <p class="x2-eyebrow" data-reveal>Aim</p>
+        <h2 class="x2-h2" data-reveal style="--d:.06s">Mouse aim that feels<br><span class="x2-grad">like the game.</span></h2>
+        <p class="x2-lede" data-reveal style="--d:.12s">The EXO turns mouse movement into stick movement using a model of each game's own stick curve, so your speed setting means the same thing in game.</p>
+      </div>
+      <div class="x2l-bento">
+        <article class="x2-card x2-card--glow b-wide b-tall" data-x2-glow data-reveal>
+          <h3 class="x2-h3">Per-game aim curves</h3>
+          <p>Every game pack carries the game's stick curve. For Black Ops II, MW4 and Warzone it's a <b style="color:var(--x-ink)">measured aim curve</b>, measured in-game by the ZeroStick team. Other games start from a solid estimate, and you can measure any game yourself with Calibrate in about eight minutes.</p>
+          <div class="x2l-crop" style="--op:50% 22%">
+            <img src="{{ 'exo2-app-aim-advanced.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="ZeroStick app: the hip aim curve editor, turn speed against hand speed">
+          </div>
+        </article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.08s">
+          <span class="x2l-big x2-grad">cm/360</span>
+          <h3 class="x2-h3">Real units</h3>
+          <p>Speed shown in cm/360, with separate hip-fire and ADS settings and a timed ADS switch.</p>
+        </article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.12s">
+          <h3 class="x2-h3">Anti-deadzone</h3>
+          <p>Small mouse movements still turn your view: the EXO steps over the game's stick deadzone for you. Controller players get an Anti slider.</p>
+        </article>
+        <article class="x2-card x2-card--glow b-half" data-x2-glow data-reveal>
+          <h3 class="x2-h3">Sync to game</h3>
+          <p>Matches the EXO's aim updates to your game's frame rate for steadier tracking.</p>
+          <ul class="x2l-segs" aria-label="Sync to game options"><li class="is-on">60</li><li>120</li><li>Custom</li><li>Off</li></ul>
+          <div class="x2l-crop" style="--op:50% 14%;min-height:20rem">
+            <img src="{{ 'exo2-app-aim-advanced-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="ZeroStick app: Sync to game, this game 120, with 60, 120, Custom and Off">
+          </div>
+        </article>
+        <article class="x2-card x2-card--glow b-half" data-x2-glow data-reveal style="--d:.08s">
+          <h3 class="x2-h3">Smoothing and mouse setup</h3>
+          <p>Disabled, Light, Balanced, Heavy or Custom smoothing. The app finds your mouse's DPI and checks its polling rate, so your aim feels right from the first match.</p>
+          <ul class="x2l-segs" aria-label="Smoothing options"><li>Disabled</li><li>Light</li><li class="is-on">Balanced</li><li>Heavy</li><li>Custom</li></ul>
+          <p class="x2l-note">Controller player? Tune each stick's response curve, deadzones and hair triggers, or leave the pad untouched.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%}
+    ===== 6. SCRIPTS =====
+    Two real screenshots on tilted phones; data-x2-progress gives them the
+    shared --p so the front phone drifts faster than the back one (depth).
+    The marquee names come word for word from the app's ready-made library.
+  {%- endcomment -%}
+  <section class="x2-sec" id="scripts">
+    <div class="x2-wrap">
+      <div class="x2-split">
+        <div class="x2l-phones" data-x2-progress aria-hidden="true">
+          <div class="x2-phone p-back"><div class="x2-phone-screen">
+            <img src="{{ 'exo2-app-recoil.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="">
+          </div></div>
+          <div class="x2-phone p-front"><div class="x2-phone-screen">
+            <img src="{{ 'exo2-app-smart-actions-3.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="">
+          </div></div>
+        </div>
+        <div>
+          <p class="x2-eyebrow" data-reveal>Scripts</p>
+          <h2 class="x2-h2" data-reveal style="--d:.06s">Build it once.<br><span class="x2-grad">No code.</span></h2>
+          <p class="x2-lede" data-reveal style="--d:.12s">Turbo, combos, timed presses and toggles, built in plain English in the Advanced Script Maker. Scripts run on the EXO itself, every millisecond.</p>
+          <div class="x2-grid x2-grid--2">
+            <div class="x2-card" data-reveal><h3 class="x2-h3">33 ready-made</h3><p>Auto sprint, slide cancel, rapid fire and more, added in one tap.</p></div>
+            <div class="x2-card" data-reveal style="--d:.06s"><h3 class="x2-h3">Record script</h3><p>Press record, play the move once, and the EXO turns it into a Script.</p></div>
+            <div class="x2-card" data-reveal style="--d:.12s"><h3 class="x2-h3">Anti-Recoil Lab</h3><p>Tune recoil per gun. Controller players fire at a wall and adjust live; mouse players trace the bullet marks.</p></div>
+            <div class="x2-card" data-reveal style="--d:.18s"><h3 class="x2-h3">Share codes</h3><p>Copy a Script as a code. Whoever pastes it gets it scaled to their own game settings.</p></div>
+          </div>
+          <p class="x2-notice x2-notice--blue x2l-fair" data-reveal><svg aria-hidden="true"><use href="#x2l-i-info"/></svg><span><b>Fair play.</b> Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap; your remaps and stick settings stay.</span></p>
+        </div>
+      </div>
+
+      <div class="x2l-scriptmarq">
+        <div class="x2-marquee"><div class="x2-marquee-track"><span>Auto sprint</span><span>Slide cancel</span><span>Rapid fire (turbo)</span><span>Burst fire</span><span>Drop shot</span><span>Jump shot</span><span>Bunny hop</span><span>Crouch without holding it</span><span>Aim without holding it</span><span>Cook and throw a grenade</span><span>Easy melee</span></div><div class="x2-marquee-track" aria-hidden="true"><span>Auto sprint</span><span>Slide cancel</span><span>Rapid fire (turbo)</span><span>Burst fire</span><span>Drop shot</span><span>Jump shot</span><span>Bunny hop</span><span>Crouch without holding it</span><span>Aim without holding it</span><span>Cook and throw a grenade</span><span>Easy melee</span></div></div>
+        <div class="x2-marquee" aria-hidden="true"><div class="x2-marquee-track"><span>Anti-recoil</span><span>Recoil pattern</span><span>Steady aim</span><span>Quick 180° turn</span><span>Reload and back off</span><span>Cancel a reload</span><span>Swap and get back on target</span><span>Ping your team</span><span>Menu skip</span><span>Looting</span><span>Two-button combo</span><span>Switch to my next config</span></div><div class="x2-marquee-track"><span>Anti-recoil</span><span>Recoil pattern</span><span>Steady aim</span><span>Quick 180° turn</span><span>Reload and back off</span><span>Cancel a reload</span><span>Swap and get back on target</span><span>Ping your team</span><span>Menu skip</span><span>Looting</span><span>Two-button combo</span><span>Switch to my next config</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ===== 7. EVERYTHING YOU PLAY WITH ===== {%- endcomment -%}
+  <section class="x2-sec x2l-plays" id="plays">
+    <div class="x2-wrap">
+      <div class="x2-center">
+        <p class="x2-eyebrow" data-reveal>Plays well with everything</p>
+        <h2 class="x2-h2" data-reveal style="--d:.06s">Your controller. Your mouse.<br><span class="x2-grad">Your headset.</span></h2>
+      </div>
+      <div class="x2-grid x2-grid--3" style="margin-top:4rem">
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal>
+          <span class="x2l-pill x2l-pill--blue">Controllers</span>
+          <h3 class="x2-h3">Use the pad you already have</h3>
+          <p>Plug it in with a USB cable and play on any supported console. A DualSense on Xbox, or an Xbox pad on PS5.</p>
+          <ul class="x2l-pads"><li>DualSense</li><li>DualSense Edge</li><li>DualShock 4</li><li>Xbox Series / One</li><li>Switch Pro</li><li>8BitDo</li><li>Most USB pads</li></ul>
+        </article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.08s">
+          <span class="x2l-pill">For PC players</span>
+          <h3 class="x2-h3">Native Mouse &amp; Keyboard</h3>
+          <p>Your real mouse and keyboard reach the game as themselves, 1:1, with automatic gun detection and Scripts running on top.</p>
+          <div class="x2l-crop" style="--op:50% 12%;min-height:22rem">
+            <img src="{{ 'exo2-app-native-kbm-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="ZeroStick app: Native, the game handles your sensitivity">
+          </div>
+        </article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.16s">
+          <span class="x2l-pill x2l-pill--cyan">Pass-through</span>
+          <h3 class="x2-h3">Type, chat, browse</h3>
+          <p>One shortcut hands your keyboard and mouse straight to the console or PC for menus and chat, then brings your config back.</p>
+        </article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal>
+          <span class="x2l-pill x2l-pill--blue">PS5 headset</span>
+          <h3 class="x2-h3">Plug in where you always do</h3>
+          <p>On PS5, plug your headset into your DualSense as normal. Game sound and your mic run through the EXO.</p>
+        </article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.08s">
+          <span class="x2l-pill x2l-pill--blue">Configs</span>
+          <h3 class="x2-h3">Switch without your phone</h3>
+          <p>No slot limit. Hold Home and press Share/View (or L3) on your controller to jump to your next config.</p>
+        </article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.16s">
+          <span class="x2l-pill x2l-pill--blue">Light</span>
+          <h3 class="x2-h3">Always know what's on</h3>
+          <p>Each config has a colour that lights the EXO's logo and your PlayStation controller's light bar.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%}
+    ===== 8. HARDWARE =====
+    a) Pinned sequence: three renders cross-fade (assembled > lid off >
+       exploded) while you scroll through a tall track. The landing JS writes
+       --sp (0..1) on .x2l-xp and turns on the matching caption. With reduced
+       motion it's just the exploded render and all three captions.
+    b) The owner-approved 3D port viewer (hover or tap a dot).
+    c) Specs and in the box.
+  {%- endcomment -%}
+  <section class="x2-sec" id="hardware" style="padding-bottom:0">
+    <div class="x2-wrap x2-center">
+      <p class="x2-eyebrow" data-reveal>Hardware</p>
+      <h2 class="x2-h2" data-reveal style="--d:.06s">Small box.<br><span class="x2-grad">Serious inside.</span></h2>
+    </div>
+  </section>
+  <div class="x2l-xp" data-x2l-xp>
+    <div class="x2l-xp-stage x2-wrap">
+      <div class="x2l-xp-caps">
+        <ol class="x2l-xp-bar" aria-hidden="true"><li></li><li></li><li></li></ol>
+        <div class="x2l-xp-cap is-on" data-cap="0">
+          <p class="x2-eyebrow">Palm-sized</p>
+          <h3 class="x2-h2">105 × 66 × 15 mm.</h3>
+          <p class="x2-lede">A white body and a black lid, with the ZS EXO logo lit in your config's colour. Honeycomb vents keep it cool.</p>
+        </div>
+        <div class="x2l-xp-cap" data-cap="1">
+          <p class="x2-eyebrow">Lid off</p>
+          <h3 class="x2-h2">One board. Every port.</h3>
+          <p class="x2-lede">Five ports on the back for your console, power, auth and HDMI. Four on the front for everything you play with.</p>
+        </div>
+        <div class="x2l-xp-cap" data-cap="2">
+          <p class="x2-eyebrow">Exploded</p>
+          <h3 class="x2-h2">Lid, logo, board, body.</h3>
+          <p class="x2-lede">Your Scripts, aim and gun reading all run right here on the EXO. Your phone only sets things up.</p>
+        </div>
+      </div>
+      <div class="x2l-xp-art">
+        {% render 'zs-exo2-visual', view: 'hero', class: 'l1' %}
+        {% render 'zs-exo2-visual', view: 'lid-off', class: 'l2' %}
+        {% render 'zs-exo2-visual', view: 'exploded', class: 'l3' %}
+      </div>
+    </div>
+  </div>
+
+  <section class="x2-sec">
+    <div class="x2-wrap">
+      <div class="x2l-ports-wrap">
+        <div class="x2-center">
+          <p class="x2-eyebrow" data-reveal>Ports</p>
+          <h2 class="x2-h2" data-reveal style="--d:.06s">What plugs in where.</h2>
+          <p class="x2-lede" data-reveal style="--d:.12s">Hover or tap a dot (or a row) to see what each port does. Drag to turn the EXO.</p>
+        </div>
+        <div data-reveal>
+          {% render 'zs-exo2-visual', view: 'ports' %}
+        </div>
+      </div>
+
+      <h3 class="x2-h3" style="margin:8rem 0 2rem" data-reveal>Tech specs</h3>
+      <dl class="x2l-specs" data-reveal>
+        <div><dt>Size</dt><dd>105.1 × 66.3 × 15.45 mm</dd></div>
+        <div><dt>Colours</dt><dd>White body, black lid, lit ZS EXO logo</dd></div>
+        <div><dt>Works with</dt><dd>PS5, Xbox Series X|S / Xbox One and PC</dd></div>
+        <div><dt>Set-up</dt><dd>Free ZeroStick app, iPhone and Android, over Bluetooth</dd></div>
+        <div><dt>Back</dt><dd>CONSOLE (USB-C) · AUX/POWER (USB-C) · AUTH (USB-A) · HDMI IN · HDMI OUT</dd></div>
+        <div><dt>Front</dt><dd>1 × USB-C and 3 × USB-A for controllers, mouse, keyboard or a USB hub</dd></div>
+        <div><dt>Power</dt><dd>From your console's USB. Optional extra power through AUX/POWER.</dd></div>
+        <div><dt>Price</dt><dd>One-time purchase. No subscription, no account.</dd></div>
+      </dl>
+
+      <div class="x2-grid x2-grid--2 x2l-box" style="margin-top:4rem">
+        <div class="x2-card" data-reveal>
+          <h3 class="x2-h3">In the box</h3>
+          <ul>
+            <li>ZeroStick EXO</li>
+            <li>1 × HDMI cable</li>
+            <li>1 × USB-C to USB-A power cable</li>
+            <li>1 × braided USB-C to USB-A controller cable</li>
+            <li>PS5 version: the PS5 auth dongle</li>
+          </ul>
+        </div>
+        <div class="x2-card need" data-reveal style="--d:.08s">
+          <h3 class="x2-h3">You'll also need</h3>
+          <ul>
+            <li>A second HDMI cable from the EXO to your TV (or reuse your console's)</li>
+            <li>Xbox version: your own genuine Xbox controller, plugged into AUTH</li>
+            <li>The free ZeroStick app on your iPhone or Android phone</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ===== 9. SUPPORTED GAMES (teaser from the one shared list) ===== {%- endcomment -%}
+  <section class="x2-sec" id="games">
+    <div class="x2-wrap">
+      <div class="x2-center">
+        <p class="x2-eyebrow" data-reveal>Supported games</p>
+        <h2 class="x2-h2" data-reveal style="--d:.06s">29 game packs.<br><span class="x2-grad">Every game works.</span></h2>
+        <p class="x2-lede" data-reveal style="--d:.12s">Controller and mouse &amp; keyboard play, remaps, Scripts, Pass-through and Tournament Mode work in every game. Game packs add the extras.</p>
+      </div>
+      {% render 'zs-exo2-games', mode: 'teaser' %}
+      <p class="x2-center" style="margin:4rem 0 0"><a class="x2-btn x2-btn--lg" href="{{ games_url }}">See all supported games</a></p>
+    </div>
+  </section>
+
+  {%- comment -%} ===== 10. PRE-ORDER ===== {%- endcomment -%}
+  <section class="x2-sec" id="preorder">
+    <div class="x2-wrap">
+      <div class="x2l-buy x2-center" data-reveal="zoom">
+        <p class="x2-eyebrow">Pre-order</p>
+        <h2 class="x2-h2">Reserve yours.</h2>
+        <p class="x2-lede">Pick your console. One-time purchase: no subscription, no account.</p>
+        <div class="x2l-versions">
+          <div class="x2l-ver">
+            <h3>Xbox version</h3>
+            <p class="amt">$149.99</p>
+            <ul>
+              <li>Works with Xbox Series X|S / Xbox One and PC</li>
+              <li>Plug your own genuine Xbox controller into AUTH</li>
+              <li>HDMI cable, power cable and braided controller cable</li>
+            </ul>
+            <a class="x2-btn x2-btn--primary x2-btn--lg" href="{{ preorder_url }}">Pre-order Xbox version</a>
+          </div>
+          <div class="x2l-ver">
+            <h3>PS5 version</h3>
+            <p class="amt">$169.99</p>
+            <ul>
+              <li>Works with PS5 and PC</li>
+              <li>Includes the PS5 auth dongle</li>
+              <li>HDMI cable, power cable and braided controller cable</li>
+            </ul>
+            <a class="x2-btn x2-btn--primary x2-btn--lg" href="{{ preorder_url }}">Pre-order PS5 version</a>
+          </div>
+        </div>
+        <p class="x2l-ship">{{ ship_line }}</p>
+        {%- if section.settings.show_fcc_notice -%}
+          <p class="x2-notice"><svg aria-hidden="true"><use href="#x2l-i-info"/></svg><span>{{ fcc_text }}</span></p>
+        {%- endif -%}
+        <div class="x2l-help">
+          {%- comment -%} discord_url defaults to a placeholder until the real invite link is set in the theme editor. {%- endcomment -%}
+          <a class="x2-btn x2-btn--discord" href="{{ discord_url }}" rel="noopener">Join the ZeroStick Discord</a>
+          <a class="x2-link" href="mailto:caleb@zerostickgaming.com">Questions? caleb@zerostickgaming.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ===== 11. FAQ + FINE PRINT (uses the shared .x2-faq accordion) ===== {%- endcomment -%}
+  <section class="x2-sec" id="faq" style="padding-top:2rem">
+    <div class="x2-wrap x2-narrow">
+      <div class="x2-center">
+        <p class="x2-eyebrow" data-reveal>FAQ</p>
+        <h2 class="x2-h2" data-reveal style="--d:.06s">Good questions.</h2>
+      </div>
+      <div class="x2-faq" style="margin-top:3.2rem">
+        <details data-reveal><summary>Which consoles does it work with?</summary>
+          <div class="x2-faq-a"><p>PS5, Xbox Series X|S / Xbox One and PC. Pick the version for your console: the PS5 version includes the PS5 auth dongle; for the Xbox version you plug your own genuine Xbox controller into the AUTH port.</p></div></details>
+        <details data-reveal><summary>Is there a subscription or an account?</summary>
+          <div class="x2-faq-a"><p>No. It's a one-time purchase. The ZeroStick app is free and needs no account.</p></div></details>
+        <details data-reveal><summary>Do I need a PC to set it up?</summary>
+          <div class="x2-faq-a"><p>No. Everything is set up from the free ZeroStick app on your iPhone or Android phone, over Bluetooth. No Wi-Fi needed either.</p></div></details>
+        <details data-reveal><summary>Which controllers can I use?</summary>
+          <div class="x2-faq-a"><p>Plug in a DualSense, DualSense Edge, DualShock 4, Xbox Series or One controller, Switch Pro, 8BitDo or most USB pads, with a USB cable. Bluetooth controllers aren't supported at launch.</p></div></details>
+        <details data-reveal><summary>Can I use my own mouse and keyboard?</summary>
+          <div class="x2-faq-a"><p>Yes: your own gaming mouse and keyboard, wired or with their wireless dongle, in the front ports. A USB hub works if you need more ports.</p></div></details>
+        <details data-reveal><summary>Does automatic gun detection work in every game?</summary>
+          <div class="x2-faq-a"><p>It's Ready in Call of Duty: Black Ops II and Modern Warfare 4, and in progress in Warzone, Black Ops 7, Apex Legends, Fortnite, Rust, Battlefield 6 and Counter-Strike 2. It needs your console's HDMI to run through the EXO. Everything else (aim, remaps, Scripts, Pass-through) works in every game.</p></div></details>
+        <details data-reveal><summary>Will my headset work?</summary>
+          <div class="x2-faq-a"><p>On PS5, plug your headset into your DualSense as normal: game sound and your mic run through the EXO. USB headsets plugged into the EXO aren't supported.</p></div></details>
+        <details data-reveal><summary>Can I use it at tournaments?</summary>
+          <div class="x2-faq-a"><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap, and keeps your remaps and stick settings.</p></div></details>
+        <details data-reveal><summary>When does it ship, and can I cancel?</summary>
+          <div class="x2-faq-a"><p>{{ ship_line }}</p></div></details>
+        <details data-reveal><summary>Where can I get help?</summary>
+          <div class="x2-faq-a"><p>Read the <a href="{{ manual_url }}">ZeroStick EXO manual</a>, join the <a href="{{ discord_url }}" rel="noopener">ZeroStick Discord</a>, or email <a href="mailto:caleb@zerostickgaming.com">caleb@zerostickgaming.com</a>.</p></div></details>
+      </div>
+
+      <div class="x2-fine x2l-fine">
+        <p><b>Pre-orders.</b> {{ ship_line }} Prices: Xbox version $149.99, PS5 version $169.99 (includes the PS5 auth dongle). One-time purchase, no subscription.</p>
+        <p><b>Fair play.</b> Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p>
+        <p><b>Game support.</b> "Ready" features are finished. "In progress" features work and are still being improved. Automatic gun detection and Auto green need your console's HDMI to run through the EXO. Auto green helps with shot timing; results depend on you and the game.</p>
+        <p><b>Pictures.</b> Product images and the 3D model are renders of the final design; the logo lights in your config's colour (renders show neutral white). App screens are real captures of the ZeroStick app and may change before launch.</p>
+        <p>Game titles are trademarks of their owners. PlayStation, PS5 and DualSense are trademarks of Sony Interactive Entertainment; Xbox is a trademark of Microsoft. ZeroStick is not affiliated with or endorsed by them.</p>
+        {%- if section.settings.show_fcc_notice -%}
+          <p><b>FCC.</b> {{ fcc_text }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "ZeroStick EXO landing v2",
+  "tag": "section",
+  "class": "zs-exo2-landing-section",
+  "settings": [
+    { "type": "header", "content": "Links" },
+    { "type": "text", "id": "preorder_url", "label": "Pre-order link", "default": "/products/zerostick-exo",
+      "info": "Every Pre-order button goes here." },
+    { "type": "text", "id": "games_url", "label": "Supported games page link", "default": "/pages/supported-games" },
+    { "type": "text", "id": "manual_url", "label": "Manual page link", "default": "/pages/exo-manual" },
+    { "type": "text", "id": "discord_url", "label": "Discord invite link", "default": "#discord-invite-placeholder",
+      "info": "Placeholder until the real invite link is known. Paste the full https://discord.gg/... link here." },
+    { "type": "text", "id": "app_store_url", "label": "App Store link (iPhone)", "default": "#app-store-placeholder",
+      "info": "The 'Get it for iPhone' button stays hidden while this starts with #." },
+    { "type": "text", "id": "play_store_url", "label": "Google Play link (Android)", "default": "#play-store-placeholder",
+      "info": "The 'Get it for Android' button stays hidden while this starts with #." },
+    { "type": "header", "content": "Legal" },
+    { "type": "checkbox", "id": "show_fcc_notice", "label": "Show FCC pre-authorization notice", "default": false,
+      "info": "Shows the FCC notice word for word next to the price and pre-order buttons, and in the fine print." }
+  ]
+}
+{% endschema %}
