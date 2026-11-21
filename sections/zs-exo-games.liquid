@@ -72,6 +72,14 @@
   @supports (overflow:clip){
     html, body{ overflow-x:clip; }
   }
+  /* The theme's base.css hides every empty <div> ("div:empty{display:none}").
+     The glow backdrop and the faint grid lines are empty <div>s on purpose,
+     so switch them back on here. */
+  .zg .x2-aura, .zg .x2-gridlines{ display:block; }
+  /* ".x2 a" (link colour) is more specific than ".x2-btn--primary", so link
+     buttons came out blue-on-blue. Put the button text colours back. */
+  .zg a.x2-btn{ color:var(--x-ink); }
+  .zg a.x2-btn--primary, .zg a.x2-btn--discord{ color:#fff; }
 
   /* ---------- 1. hero ---------- */
   .zg-hero{ padding:11rem 0 9rem; }
@@ -185,7 +193,7 @@
   .zg-phone-wrap{ position:relative; }
   .zg-phone-wrap::before{ content:""; position:absolute; left:50%; top:45%; width:34rem; height:34rem; translate:-50% -50%;
     border-radius:50%; background:radial-gradient(circle,rgba(61,220,151,.35),transparent 65%); filter:blur(4rem); pointer-events:none; }
-  .zg-phone{ aspect-ratio:5/8; will-change:transform;
+  .zg-phone{ width:min(36rem,80vw); aspect-ratio:5/8; will-change:transform;
     -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 99%); mask-image:linear-gradient(180deg,#000 72%,transparent 99%);
     /* --p goes from 0 to 1 while the phone crosses the screen (zs-exo2.js,
        data-x2-progress). This turns it into a gentle drift and tilt. */
@@ -197,9 +205,10 @@
   .zg-every .x2-card{ display:grid; grid-template-columns:4.8rem minmax(0,1fr); gap:1.6rem; align-items:start; padding:2.4rem; }
   .zg-every .x2-icon{ margin:0; }
   .zg-every .x2-h3{ font-size:1.9rem; margin:.2rem 0 .4rem; }
-  .zg-every p{ font-size:1.45rem; line-height:1.5; }
+  .zg-every .x2-card p{ font-size:1.45rem; line-height:1.5; }
 
   /* ---------- 6. requirements + fair play ---------- */
+  .zg-notesec{ padding-top:0; }
   .zg-notes{ display:grid; gap:1.2rem; }
   .zg-notes .x2-notice{ font-size:1.5rem; padding:1.8rem 2rem; }
   .zg-notes .x2-notice b{ display:block; margin:0 0 .3rem; }
@@ -478,7 +487,7 @@
   </section>
 
   {%- comment -%} ================= 6. REQUIREMENTS + FAIR PLAY ================= {%- endcomment -%}
-  <section class="x2-sec x2-sec--tight" aria-label="Good to know">
+  <section class="x2-sec x2-sec--tight zg-notesec" aria-label="Good to know">
     <div class="x2-wrap x2-narrow">
       <div class="zg-notes">
         <div class="x2-notice x2-notice--blue" data-reveal>
@@ -702,9 +711,10 @@
     /* ---------- 4. stronger shadow while the filter bar is stuck ---------- */
     // A 1px marker just above the bar: once it has scrolled off the top, the
     // bar is stuck. Checked at most once per frame while scrolling (cheap).
-    var marker = document.createElement('div');
+    // (a <span>, not a <div>: the theme hides every empty <div>)
+    var marker = document.createElement('span');
     marker.setAttribute('aria-hidden', 'true');
-    marker.style.height = '1px';
+    marker.style.cssText = 'display:block;height:1px;';
     bar.parentNode.insertBefore(marker, bar);
     var stuckTick = false;
     function checkStuck() {
