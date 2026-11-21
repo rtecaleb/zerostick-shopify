@@ -20,6 +20,7 @@
 
    Nothing here needs editing to add a page: add an article to a snippet.
    Plain JavaScript (no libraries), written for a beginner to follow.
+   Last change: 2026-11-21 (instant page scroll, chip refresh).
    ========================================================================== */
 (function () {
   'use strict';
