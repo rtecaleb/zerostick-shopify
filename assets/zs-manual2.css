@@ -67,7 +67,8 @@
 /* three columns: sidebar | page | on this page */
 .m2-layout{ display:grid; grid-template-columns:26rem minmax(0,1fr) 22rem; gap:5.6rem; max-width:144rem; margin:0 auto; padding:0 3.2rem; }
 .m2-side, .m2-toc{ position:sticky; top:calc(var(--m2-top) + var(--m2-bar)); align-self:start;
-  max-height:calc(100vh - var(--m2-top) - var(--m2-bar)); overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; }
+  max-height:calc(100vh - var(--m2-top) - var(--m2-bar)); overflow-y:auto; overscroll-behavior:contain;
+  scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.14) transparent; }
 .m2-side-in{ padding:3.2rem 0 4rem; }
 .m2-toc-in{ padding:4.8rem 0 4rem; }
 .m2-main{ min-width:0; max-width:80rem; width:100%; padding:4rem 0 8rem; margin:0 auto; }
@@ -339,7 +340,7 @@
 .m2-hero-kicker{ margin:0 0 1.4rem; font-size:1.25rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--x-blue2); }
 .m2-hero h1{ font-size:clamp(3.8rem,5.4vw,6.4rem); line-height:1; margin:0 0 1.6rem; }
 .m2-hero-art{ position:relative; }
-.m2-hero-art img{ display:block; width:100%; height:auto; filter:drop-shadow(0 3rem 4rem rgba(0,0,0,.6)); animation:m2-float 7s ease-in-out infinite; }
+.m2-hero-art img{ position:relative; z-index:1; display:block; width:100%; height:auto; filter:drop-shadow(0 3rem 4rem rgba(0,0,0,.6)); animation:m2-float 7s ease-in-out infinite; }
 .m2-hero-art::before{ content:""; position:absolute; inset:15% 10% 5%; border-radius:50%; background:radial-gradient(closest-side,rgba(41,141,223,.45),transparent);
   filter:blur(3rem); }
 @keyframes m2-float{ 0%,100%{ transform:translate3d(0,0,0); } 50%{ transform:translate3d(0,-1rem,0); } }
@@ -594,3 +595,19 @@
 @media (prefers-reduced-motion:reduce){
   .m2 *, .m2 *::before, .m2 *::after{ animation:none !important; transition:none !important; }
 }
+
+/* ---------- theme fixes (the manual can't rely on them being in zs-exo2.css yet) ----------
+   1. The store theme sets html,body{overflow-x:hidden}. That silently breaks
+      position:sticky (the manual bar, sidebar and "On this page" would scroll
+      away). "clip" still stops sideways scrolling but lets sticky work. Only on
+      pages that contain the manual (:has), so the rest of the store is untouched.
+   2. Buttons keep their own text colour (a general ".x2 a" link colour would
+      otherwise turn button text blue on a blue button). */
+html:has(.m2), html:has(.m2) body{ overflow-x:clip; }
+.m2 a.x2-btn{ color:var(--x-ink) !important; text-decoration:none; }
+.m2 a.x2-btn--primary, .m2 a.x2-btn--discord{ color:#fff !important; }
+/* 3. The theme's base.css hides every EMPTY div (div:empty{display:none}).
+      These manual divs are empty on purpose (backdrops, the sheet's grab
+      handle, the toast before its first message), so show them again. */
+.m2 .m2-search-back:empty, .m2 .m2-sheet-back:empty, .m2 .m2-lb-back:empty,
+.m2 .m2-sheet-grip:empty, .m2 .m2-toast:empty{ display:block; }
