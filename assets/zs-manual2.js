@@ -34,6 +34,13 @@
   function $$(sel, el) { return Array.prototype.slice.call((el || root).querySelectorAll(sel)); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function text(el) { return el ? el.textContent.replace(/\s+/g, ' ').trim() : ''; }
+  // like text(), but puts a space between every piece of text, so table cells
+  // and list items don't run together ("CategoryScripts") in search snippets
+  function spacedText(el) {
+    var out = [], w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) out.push(n.nodeValue);
+    return out.join(' ').replace(/\s+/g, ' ').trim();
+  }
   // localStorage can throw (private mode, blocked storage): never let that break the page
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
   function sstore(k, v) { try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; } }
@@ -511,14 +518,14 @@
       var kw = el.getAttribute('data-keywords') || '';
       var get = text(el.querySelector('.m2-get'));
       index.push({ p: p, id: p.id, kind: 'page', head: p.title, title: norm(p.title + ' ' + kw), h2: '',
-        labels: norm(labels), body: norm(text(el)).slice(0, 4000), raw: get || text(el).slice(0, 200) });
+        labels: norm(labels), body: norm(spacedText(el)).slice(0, 4000), raw: get || spacedText(el).slice(0, 200) });
       $$('.m2-sec[id]', el).forEach(function (s) {
         var h = s.querySelector('h2');
         if (!h) return;
         var symptom = s.classList.contains('m2-symptom');
         index.push({ p: p, id: s.id, kind: symptom ? 'symptom' : 'h2', head: text(h), title: norm(p.title),
           h2: norm(text(h) + ' ' + (s.getAttribute('data-keywords') || '')), labels: norm($$('b, strong', s).map(text).join(' ')),
-          body: norm(text(s)), raw: text(s).replace(text(h), '').trim().slice(0, 400) });
+          body: norm(spacedText(s)), raw: spacedText(s).replace(text(h), '').trim().slice(0, 400) });
       });
     });
   }

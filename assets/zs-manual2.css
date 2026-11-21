@@ -205,6 +205,7 @@
 .m2-legend td{ padding:1.1rem 1.4rem; vertical-align:top; border-bottom:1px solid var(--x-line); color:var(--m2-text); }
 .m2-legend tr:last-child td{ border-bottom:0; }
 .m2-legend td:first-child{ width:5.6rem; }
+.m2-legend td:nth-child(2){ width:38%; }
 .m2-legend tbody tr{ transition:background .2s; }
 .m2-legend tbody tr:hover{ background:rgba(255,255,255,.025); }
 .m2-letter{ display:inline-grid; place-items:center; width:2.8rem; height:2.8rem; border-radius:50%; font:800 1.35rem/1 system-ui,sans-serif;
@@ -448,6 +449,8 @@
 .m2-search-field{ display:flex; align-items:center; gap:1.2rem; padding:0 1.6rem 0 2rem; border-bottom:1px solid var(--x-line); }
 .m2-search-field svg{ width:2.2rem; height:2.2rem; fill:none; stroke:var(--x-blue2); stroke-width:2; stroke-linecap:round; flex:0 0 auto; }
 .m2-search-field input{ flex:1 1 auto; min-width:0; height:6.4rem; border:0; outline:0; background:none; color:var(--x-ink); font:inherit; font-size:1.8rem; }
+.m2 .m2-search-field input{ -webkit-appearance:none; appearance:none; border:0 !important; outline:0 !important; box-shadow:none !important; padding:0; }
+.m2-search-field:focus-within{ background:rgba(41,141,223,.06); }
 .m2-search-field input::placeholder{ color:var(--x-mute); }
 .m2-search-field input::-webkit-search-cancel-button{ display:none; }
 .m2-search-esc{ flex:0 0 auto; padding:.5rem .9rem; border-radius:.7rem; border:1px solid var(--x-line2); background:none; color:var(--x-mute); font:700 1.2rem/1 system-ui,sans-serif; cursor:pointer; }
