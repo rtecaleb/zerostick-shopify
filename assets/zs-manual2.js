@@ -286,7 +286,9 @@
   }
   function stickyOffset() { return topNow + (bar ? bar.offsetHeight : 0) + 16; }
   function scrollToY(y, smooth) {
-    window.scrollTo({ top: Math.max(0, y), behavior: (smooth && !reduce) ? 'smooth' : 'auto' });
+    // 'instant' (not 'auto'): the theme sets html{scroll-behavior:smooth}, and
+    // 'auto' would follow it, so a new page would glide instead of opening at its top
+    window.scrollTo({ top: Math.max(0, y), behavior: (smooth && !reduce) ? 'smooth' : 'instant' });
   }
   function scrollToEl(el, smooth) {
     scrollToY(el.getBoundingClientRect().top + window.pageYOffset - stickyOffset() + 8, smooth);
@@ -381,6 +383,7 @@
     }).join('');
     if (tocBox) tocBox.hidden = secs.length < 2;
     if (chip) chip.hidden = secs.length < 2;
+    activeSec = -2;   // forces the next scroll check to refresh the chip and highlights
   }
   var progressHost = root;
   var activeSec = -1;
