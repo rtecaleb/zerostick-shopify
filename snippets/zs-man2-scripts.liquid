@@ -1,0 +1,1008 @@
+{% comment %}
+  ==========================================================================
+  ZeroStick EXO manual v2: BUTTONS AND SCRIPTS pages (Agent B, 2026-11-21)
+  --------------------------------------------------------------------------
+  Rendered by sections/zs-manual-v2.liquid with render zs-man2-scripts.
+  One article with class m2-page per manual page; sidebar order = order here.
+
+  Naming rules (match the app): Scripts, never Smart Actions. The editor is
+  the Advanced Script Maker. The recoil tool is the Anti-Recoil Lab.
+  Scripts have share codes; configs do not. GPC: one short coming-soon
+  note at most. Every scripting or recoil page carries the fair-play note.
+
+  Facts and numbers come from the app source (read-only):
+  C:\esp\wt-exe-build\dashboard\public\smart-actions\ (06-mappings, 08,
+  10-recorder, 11-library, 12-share-live, 14-palette, 16-buttons, 18-pills,
+  20-in-place), sections/15-modifiers.js, sections/11-kbmove-behavior.js,
+  recoil-pad.js, recoil-wall.js, recoil-workshop.js, recoil-manual.js,
+  and C:\zsg\overhaul\APP-FACTS.md (Anti-Recoil Lab section and round 2).
+  Plain-text comments only in here (no HTML tags inside Liquid comments).
+  ==========================================================================
+{% endcomment %}
+
+<article class="m2-page" id="p-controls-mappings" data-group="Buttons &amp; Scripts" data-title="Remap buttons and keys" data-time="4 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts</p>
+    <h1>Remap buttons and keys</h1>
+    <p class="m2-get">Any button, key or mouse click will send whatever you choose.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-controls-mappings--open-mappings">
+    <h2>1. Open Mappings</h2>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>Settings</b> on the game picture.</li>
+      <li>Tap <b>Mappings</b> ("Rebind any button to any button").</li>
+      <li>Tap <b>Switch ›</b> to pick what you're remapping: <b>Controller</b> or <b>Mouse &amp; Keyboard</b>.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-remap.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="Mappings for the controller. A: Showing Controller, Switch. B: the Bindings list heading. C: the Cross row, a binding you can tap. Other rows show default.">
+      <figcaption>Figure SCR-MAP.1 — Mappings, controller view</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Showing Controller</b> · <b>Switch ›</b></td><td>Swap to the mouse and keyboard view.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Bindings</b></td><td>"What each button, key and click sends."</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td>A binding row (<b>Cross</b>)</td><td>Tap to change what it sends. <b>default</b> means unchanged.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-controls-mappings--change-a-button">
+    <h2>2. Change what a button sends</h2>
+    <ol class="m2-steps">
+      <li>Tap the row of the button you want to change, for example <b>Circle</b>.</li>
+      <li>Under <b>Choose what it should send.</b>, pick a tab: <b>Pad</b>, <b>Mouse</b>, <b>A–T</b>, <b>U–0</b>, <b>Esc…</b> or <b>F-keys</b>.</li>
+      <li>Tap the button or key it should send. The <b>SENDS</b> box updates.</li>
+      <li>Optional: tap <b>Behaves</b> to change how it acts (see the table below).</li>
+      <li>Tap <b>✕</b> to close. It saves by itself.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-remap-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="Remapping Circle. A: Behaves, While I hold it. B: Sends Circle. C: the Pad tab of the picker, with Mouse, A to T, U to 0, Esc and F-keys tabs. D: Unbind, send nothing.">
+      <figcaption>Figure SCR-MAP.2 — Mappings, Circle open</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Behaves</b></td><td>How the button acts when you press it.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>SENDS</b></td><td>What this button sends now.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Pad</b> tab</td><td>Pick a controller button. Other tabs hold mouse buttons and keys.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td><b>Unbind (send nothing)</b></td><td>The button does nothing in the game.</td></tr>
+    </tbody></table>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Behaves</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Behaves"><b>While I hold it</b> (default)</td><td data-label="What happens">Sends while you hold the button, like normal.</td></tr>
+      <tr><td data-label="Behaves"><b>On, then off</b></td><td data-label="What happens">Press once to turn it on, press again to turn it off (a toggle).</td></tr>
+      <tr><td data-label="Behaves"><b>Only a quick tap</b></td><td data-label="What happens">Sends only on a quick tap. Set the time under <b>A quick tap is under</b> (1–60000 ms, step 25, default 200 ms).</td></tr>
+      <tr><td data-label="Behaves"><b>Only a long hold</b></td><td data-label="What happens">Sends only after you hold it. Set <b>Hold it for</b> (1–60000 ms, step 25, default 200 ms).</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="m2-sec" id="p-controls-mappings--keyboard-and-mouse">
+    <h2>Keyboard and mouse view</h2>
+    <p>In the <b>Mouse &amp; Keyboard</b> view, tap any key on the drawn keyboard, or a mouse button (<b>M1</b>–<b>M5</b>, <b>Wheel</b>). Colours show which keys are held, mapped, or run a Script.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-keyboard-map.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="The keyboard and mouse map. A: Showing Mouse and Keyboard, Switch. B: a full keyboard plus mouse buttons M1 to M5 and the wheel. C: Bigger keys. D: the Bindings list, with W to Left Stick Up, S to Left Stick Down and more.">
+      <figcaption>Figure SCR-MAP.3 — Mappings, mouse and keyboard view</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Showing Mouse &amp; Keyboard</b></td><td>Swap back to the controller view.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td>The keyboard</td><td>Tap a key to map it.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Bigger keys</b></td><td>Zooms the keyboard for easier tapping.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td><b>Bindings</b></td><td>Every key and click, and what it sends.</td></tr>
+    </tbody></table>
+    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Want one button to do two jobs? Use a shift layer: <b>Add a shift layer</b>, choose the button you hold, then the button you press, then what it sends.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-controls-mappings--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> the row shows your new choice instead of <b>default</b>.</li>
+        <li><b>Game:</b> pressing the button does the new action.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-scripts">A script or button won't fire</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-controls-mappings--next">
+    <h2>Next</h2>
+    <ul>
+      <li><b>Recommended:</b> <a href="#p-scripts-explained">Scripts explained</a></li>
+      <li><a href="#p-scripts-library">Ready-made Scripts</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-scripts-explained" data-group="Buttons &amp; Scripts" data-title="Scripts explained" data-time="3 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts</p>
+    <h1>Scripts explained</h1>
+    <p class="m2-get">What a Script is, where Scripts live, and when they run.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-scripts-explained--how-it-works">
+    <h2>How a Script works</h2>
+    <p>A Script is a button that presses other buttons for you. It has two parts:</p>
+    <ul>
+      <li><b>When</b>: what starts it. For example, "When I press R2" or "Over and over while I hold it".</li>
+      <li><b>Do this</b>: the steps it presses, in order. Taps, holds, waits and stick pushes.</li>
+    </ul>
+    <p>Scripts run on the EXO itself, every millisecond. Your phone can be off or away. You don't write any code.</p>
+    {%- comment -%} Script anatomy diagram, inline SVG, stacked so it reads on phones. {%- endcomment -%}
+    <figure class="m2-fig m2-fig--diagram">
+      <svg viewBox="0 0 340 300" width="340" height="300" role="img" aria-labelledby="m2-sa-t m2-sa-d" style="max-width:100%;height:auto;display:block;margin:0 auto">
+        <title id="m2-sa-t">The parts of a Script</title>
+        <desc id="m2-sa-d">A, When: you hold R2. B, Do this: tap R2 for 40 ms, wait 40 ms, repeat. C, the console sees fast, even taps.</desc>
+        <defs><marker id="m2-ah2" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#62B8FF"/></marker></defs>
+        <g font-family="inherit" font-size="15" fill="#E9EEF6">
+          <rect x="20" y="10" width="300" height="70" rx="14" fill="#11192A" stroke="#298DDF" stroke-width="2"/>
+          <circle cx="50" cy="45" r="15" fill="#298DDF"/><text x="50" y="50" text-anchor="middle" font-weight="700" fill="#fff">A</text>
+          <text x="78" y="40" font-weight="700">When</text><text x="78" y="62" fill="#9FB0C8" font-size="13">Over and over while I hold R2</text>
+          <line x1="170" y1="82" x2="170" y2="104" stroke="#62B8FF" stroke-width="2" marker-end="url(#m2-ah2)"/>
+          <rect x="20" y="112" width="300" height="70" rx="14" fill="#11192A" stroke="#298DDF" stroke-width="2"/>
+          <circle cx="50" cy="147" r="15" fill="#298DDF"/><text x="50" y="152" text-anchor="middle" font-weight="700" fill="#fff">B</text>
+          <text x="78" y="142" font-weight="700">Do this</text><text x="78" y="164" fill="#9FB0C8" font-size="13">Tap R2 for 40 ms, then wait 40 ms</text>
+          <line x1="170" y1="184" x2="170" y2="206" stroke="#62B8FF" stroke-width="2" marker-end="url(#m2-ah2)"/>
+          <rect x="20" y="214" width="300" height="70" rx="14" fill="#11192A" stroke="#298DDF" stroke-width="2"/>
+          <circle cx="50" cy="249" r="15" fill="#298DDF"/><text x="50" y="254" text-anchor="middle" font-weight="700" fill="#fff">C</text>
+          <text x="78" y="244" font-weight="700">The console sees</text><text x="78" y="266" fill="#9FB0C8" font-size="13">fast, even trigger taps</text>
+        </g>
+      </svg>
+      <figcaption>Figure SCR-X.1 — A rapid fire Script, part by part</figcaption>
+    </figure>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-explained--where-scripts-live">
+    <h2>Where Scripts live</h2>
+    <ul>
+      <li><b>For the whole config:</b> <b>Settings</b> › <b>Advanced</b> › <b>Advanced Script Maker</b>. They run in every situation.</li>
+      <li><b>For one gun:</b> <b>Settings</b> › <b>AI Scripts</b> › pick the gun. They switch on only while the EXO sees that gun. <a href="#p-auto-per-gun-scripts">Give each gun its own Scripts</a></li>
+    </ul>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-recorder.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="The Advanced Script Maker, Scripts tab: New script, Anti-Recoil Lab, Paste ready-made script, Record script, and the config's Scripts list with on and off switches. A: Record script.">
+      <figcaption>Figure SCR-X.2 — Advanced Script Maker, Scripts tab</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody><tr><td><span class="m2-letter">A</span></td><td><b>Record script</b></td><td>"Records your buttons and sticks to make your own script." <a href="#p-scripts-recorder">Record a Script</a></td></tr></tbody></table>
+    <p>From the top, the screen also has <b>New script</b> (<a href="#p-scripts-editor">build one</a>), <b>Anti-Recoil Lab</b> (<a href="#p-scripts-anti-recoil-lab">recoil</a>) and <b>Paste ready-made script</b> (<a href="#p-scripts-library">library</a>). Each Script in the list has its own on/off switch.</p>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-explained--four-ways">
+    <h2>Four ways to get a Script</h2>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Way</th><th>Best for</th><th>Page</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Way"><b>Paste ready-made script</b></td><td data-label="Best for">The common ones: rapid fire, auto sprint, drop shot. 33 to pick from.</td><td data-label="Page"><a href="#p-scripts-library">Ready-made Scripts</a></td></tr>
+      <tr><td data-label="Way"><b>Record script</b></td><td data-label="Best for">A combo you can already do with your hands.</td><td data-label="Page"><a href="#p-scripts-recorder">Record a Script</a></td></tr>
+      <tr><td data-label="Way"><b>New script</b></td><td data-label="Best for">Exact control over every step and time.</td><td data-label="Page"><a href="#p-scripts-editor">Advanced Script Maker</a></td></tr>
+      <tr><td data-label="Way"><b>Paste a code someone sent me</b></td><td data-label="Best for">A Script a friend shared.</td><td data-label="Page"><a href="#p-scripts-share">Share Scripts with a code</a></td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-explained--fair-play">
+    <h2>Fair play</h2>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
+    <p>Tournament Mode is in Global Settings. Your remaps and aim settings stay on. <a href="#p-reference-fair-play">Fair play and Tournament Mode</a></p>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-explained--related">
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#p-scripts-library">Ready-made Scripts</a></li>
+      <li><a href="#p-scripts-editor">Advanced Script Maker</a></li>
+      <li><a href="#p-help-scripts">A script won't fire or won't stop</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-scripts-editor" data-group="Buttons &amp; Scripts" data-title="Advanced Script Maker" data-time="6 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts</p>
+    <h1>Advanced Script Maker</h1>
+    <p class="m2-get">Build your own Script step by step, with no code.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="x2-badge x2-badge--plain">Advanced</span><span class="m2-time">6 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-scripts-editor--the-editor">
+    <h2>The editor</h2>
+    <p>Open <b>Settings</b> › <b>Advanced</b> › <b>Advanced Script Maker</b>, tap <b>New script</b>, and press the button that should start it. The editor opens. A sentence at the top always says what your Script does in plain words.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-smart-actions-3.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="The script editor. A: Name it. B: the When card, what starts it and how it plays, showing L2, while held, On and No tag. C: the Do this card with four steps: LT 120 ms, RT 120 ms, X 80 ms, Y 80 ms. D: Tap or Hold for the selected step, Tap for 80 ms. E: Add a button press.">
+      <figcaption>Figure SCR-ED.1 — Advanced Script Maker, New script</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Name it</b></td><td>Give the Script a name and notes.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>WHEN</b> — what starts it, and how it plays</td><td>The start button, how it plays, <b>On</b>/<b>Off</b> and a tag. <a href="#p-scripts-when-it-runs">When a Script runs</a></td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>DO THIS</b> — tap a step to change it</td><td>The steps, in order. The total time shows under them.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td><b>Tap</b> / <b>Hold</b></td><td>How the selected step presses its button, and for how long.</td></tr>
+      <tr><td><span class="m2-letter">E</span></td><td><b>Add a button press</b></td><td>Adds a step: pad buttons, triggers or a stick push.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-editor--build-one">
+    <h2>Build a Script</h2>
+    <ol class="m2-steps">
+      <li>Tap <b>New script</b>. Press (or tap) the button that should start it.</li>
+      <li>In <b>WHEN</b>, tap the behaviour chip (like <b>while held</b>) and pick how it plays.</li>
+      <li>Tap <b>Add a button press</b>. Pick a tab (<b>Pad</b>, <b>Sticks</b>, and on mouse configs <b>Mouse</b> and <b>Keys</b>), then a button.</li>
+      <li>With the step selected, pick <b>Tap</b> or <b>Hold</b> and set its time with <b>−</b> / <b>+</b>.</li>
+      <li>Add a pause or a held button from the <b>Then</b> card: <b>Wait next</b>, <b>Hold</b>, <b>Let go</b>.</li>
+      <li>Repeat until the sentence at the top reads right. Tap <b>Done</b>.</li>
+    </ol>
+    <p>Use the arrows under a step to move between steps. <b>✕</b> deletes the selected step.</p>
+    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Faster to record it? Do the combo once with <a href="#p-scripts-recorder">Record script</a>, then tidy the steps here.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-editor--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> your Script is in the <b>Scripts</b> list with its switch on.</li>
+        <li><b>Game:</b> pressing its start button plays the steps the top sentence describes.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-scripts">A script won't fire or won't stop</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-editor--related">
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#p-scripts-steps">Every Script step</a></li>
+      <li><a href="#p-scripts-timing">Script timing and human variation</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-scripts-when-it-runs" data-group="Buttons &amp; Scripts" data-title="When a Script runs" data-time="3 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts</p>
+    <h1>When a Script runs</h1>
+    <p class="m2-get">Every way a Script can start, and the timings behind them.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Advanced</span><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-scripts-when-it-runs--gestures">
+    <h2>How it starts</h2>
+    <p>In the editor, tap the behaviour chip in <b>WHEN</b>. The sheet <b>When should this happen?</b> opens.</p>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Choice</th><th>Plays</th><th>Good for</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Choice"><b>When I press it</b></td><td data-label="Plays">Once</td><td data-label="Good for">Combos, one-press moves</td></tr>
+      <tr><td data-label="Choice"><b>When I press it quickly</b></td><td data-label="Plays">Once</td><td data-label="Good for">A tap does the Script, a hold does the normal action</td></tr>
+      <tr><td data-label="Choice"><b>When I hold it down</b></td><td data-label="Plays">Once</td><td data-label="Good for">A second job on a long press</td></tr>
+      <tr><td data-label="Choice"><b>When I tap it twice</b></td><td data-label="Plays">Once</td><td data-label="Good for">A double-tap shortcut</td></tr>
+      <tr><td data-label="Choice"><b>When I let go of it</b></td><td data-label="Plays">Once</td><td data-label="Good for">Something after you release</td></tr>
+      <tr><td data-label="Choice"><b>Over and over while I hold it</b></td><td data-label="Plays">Repeats</td><td data-label="Good for">Rapid fire</td></tr>
+      <tr><td data-label="Choice"><b>Only while I hold it</b></td><td data-label="Plays">Holds</td><td data-label="Good for">Anti-recoil while firing</td></tr>
+      <tr><td data-label="Choice"><b>Until I press it again</b></td><td data-label="Plays">Stays on</td><td data-label="Good for">Toggles, like auto-run</td></tr>
+    </tbody></table></div>
+    <p>A few choices only show if your EXO supports them.</p>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-when-it-runs--timings">
+    <h2>Press timings</h2>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Setting</th><th>What it does</th><th>Range</th><th>Default</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Setting"><b>Counts as held after</b></td><td data-label="What it does">How long a press must last to count as a hold.</td><td data-label="Range">100–2000 ms, step 50</td><td data-label="Default">350 ms</td><td data-label="Start here">350 ms</td><td data-label="Raise it if…">Normal presses trigger the hold</td><td data-label="Lower it if…">Holds feel slow to start</td></tr>
+      <tr><td data-label="Setting"><b>Taps must land within</b></td><td data-label="What it does">The time allowed between the two taps of a double tap.</td><td data-label="Range">150–1000 ms, step 25</td><td data-label="Default">300 ms</td><td data-label="Start here">300 ms</td><td data-label="Raise it if…">Your double taps get missed</td><td data-label="Lower it if…">Two separate presses trigger it</td></tr>
+      <tr><td data-label="Setting"><b>Counts as quick under</b></td><td data-label="What it does">How short a press must be to count as quick.</td><td data-label="Range">80–600 ms, step 10</td><td data-label="Default">250 ms</td><td data-label="Start here">250 ms</td><td data-label="Raise it if…">Quick presses get missed</td><td data-label="Lower it if…">Short holds count as quick</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-when-it-runs--conditions">
+    <h2>On, Off, aiming and tags</h2>
+    <ul>
+      <li><b>On</b> / <b>Off</b>: switch the Script off without deleting it.</li>
+      <li><b>When is this allowed to run?</b>: <b>Any time</b> (default), <b>Only hip-fire</b>, <b>Only aiming</b> or <b>Off</b>. Great for anti-recoil that should only run while you aim. <span class="m2-confirm">[CONFIRM: where this sheet opens in the current editor]</span></li>
+      <li><b>No tag</b>: a label to keep Scripts organised (for example "Sniper"). It doesn't switch anything.</li>
+    </ul>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Tournament Mode stops every Script, whatever it's set to. Follow the rules of each game, event and platform you play on.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-when-it-runs--related">
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#p-scripts-editor">Advanced Script Maker</a></li>
+      <li><a href="#p-scripts-timing">Script timing and human variation</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-scripts-steps" data-group="Buttons &amp; Scripts" data-title="Every Script step" data-time="3 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts</p>
+    <h1>Every Script step</h1>
+    <p class="m2-get">Each kind of step you can add, with its ranges and defaults.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Advanced</span><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-scripts-steps--steps">
+    <h2>Steps</h2>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Step</th><th>What it does</th><th>Fields</th><th>Range</th><th>Default</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Step"><b>Button press</b></td><td data-label="What it does">Presses a button. <b>Tap</b> lets go after the time. <b>Hold</b> keeps it down.</td><td data-label="Fields"><b>Tap for</b></td><td data-label="Range">1–10000 ms (the slider goes to 2000)</td><td data-label="Default">80 ms</td></tr>
+      <tr><td data-label="Step"><b>Trigger pull</b> (LT / RT, L2 / R2)</td><td data-label="What it does">Pulls a trigger. <b>Pull</b> or <b>Keep pulled</b>.</td><td data-label="Fields"><b>Pull for</b></td><td data-label="Range">1–10000 ms</td><td data-label="Default">120 ms</td></tr>
+      <tr><td data-label="Step"><b>Wait</b></td><td data-label="What it does">Pauses before the next step.</td><td data-label="Fields"><b>Wait for</b></td><td data-label="Range">0–10000 ms</td><td data-label="Default">120 ms</td></tr>
+      <tr><td data-label="Step"><b>Stick push</b> (Sticks tab)</td><td data-label="What it does">Pushes a stick in a direction. Tap <b>Add this stick push</b>.</td><td data-label="Fields"><b>Left stick</b> / <b>Right stick</b>, <b>Direction</b>, <b>How far</b>, <b>How long</b></td><td data-label="Range">0–359°; 5–100 % (step 5); 20–2000 ms</td><td data-label="Default">Right stick, 90°, 50 %, 100 ms</td></tr>
+      <tr><td data-label="Step"><b>Hold</b> / <b>Let go</b> (Then card)</td><td data-label="What it does">Keeps a button down until a later <b>Let go</b>.</td><td data-label="Fields">—</td><td data-label="Range">No time setting</td><td data-label="Default">—</td></tr>
+      <tr><td data-label="Step"><b>Switch config</b> (Then card)</td><td data-label="What it does">Changes to another config. Shows when you have more than one.</td><td data-label="Fields"><b>Next</b> / <b>Before</b> / <b>Number</b></td><td data-label="Range">Config number</td><td data-label="Default">Next</td></tr>
+    </tbody></table></div>
+    <p>There's no "repeat" step. To repeat, choose <b>Over and over while I hold it</b> in <a href="#p-scripts-when-it-runs">When a Script runs</a>, or set <b>How many times</b> in <a href="#p-scripts-timing">Timing and safety</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-steps--related">
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#p-scripts-editor">Advanced Script Maker</a></li>
+      <li><a href="#p-recipes-rapid-fire">Recipe: rapid fire</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-scripts-timing" data-group="Buttons &amp; Scripts" data-title="Script timing and human variation" data-time="3 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts</p>
+    <h1>Script timing</h1>
+    <p class="m2-get">Make Scripts exact, or human, and set when they give up or can fire again.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Advanced</span><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-scripts-timing--per-script">
+    <h2>Timing and safety (one Script)</h2>
+    <p>In the editor, tap the timing banner. It reads <b>Feels human</b> or <b>Exact timing</b>. The sheet <b>Timing and safety</b> opens.</p>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Setting</th><th>What it does</th><th>Range</th><th>Default</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Setting"><b>Human timing</b> / <b>Exact timing</b></td><td data-label="What it does">Human adds small, natural changes to each run. Exact plays every step to the millisecond.</td><td data-label="Range">Human / Exact</td><td data-label="Default">Human</td><td data-label="Start here">Human</td><td data-label="Raise it if…">—</td><td data-label="Lower it if…">—</td></tr>
+      <tr><td data-label="Setting"><b>Wobble by up to</b></td><td data-label="What it does">How much each wait can change, run to run.</td><td data-label="Range">0–500 ms, step 5</td><td data-label="Default">15 ms</td><td data-label="Start here">15 ms</td><td data-label="Raise it if…">Runs feel robotic</td><td data-label="Lower it if…">A combo needs exact timing</td></tr>
+      <tr><td data-label="Setting"><b>Stick variance</b></td><td data-label="What it does">How much stick pushes change, run to run.</td><td data-label="Range">±0–10 %</td><td data-label="Default">±1 %</td><td data-label="Start here">±1 %</td><td data-label="Raise it if…">—</td><td data-label="Lower it if…">Stick moves miss their mark</td></tr>
+      <tr><td data-label="Setting"><b>Give up after</b></td><td data-label="What it does">Stops a running Script after this long.</td><td data-label="Range">100–30000 ms, step 500</td><td data-label="Default">10000 ms</td><td data-label="Start here">10000 ms</td><td data-label="Raise it if…">A long Script gets cut short</td><td data-label="Lower it if…">A stuck Script runs too long</td></tr>
+      <tr><td data-label="Setting"><b>Never give up</b></td><td data-label="What it does">Lets a repeating Script run as long as you hold it.</td><td data-label="Range">On / Off</td><td data-label="Default">Off</td><td data-label="Start here">Off</td><td data-label="Raise it if…">—</td><td data-label="Lower it if…">—</td></tr>
+      <tr><td data-label="Setting"><b>Wait before it can fire again</b></td><td data-label="What it does">A cool-down between runs.</td><td data-label="Range">0–60000 ms, step 50</td><td data-label="Default">200 ms</td><td data-label="Start here">200 ms</td><td data-label="Raise it if…">It fires twice by accident</td><td data-label="Lower it if…">It ignores fast repeat presses</td></tr>
+      <tr><td data-label="Setting"><b>How many times</b></td><td data-label="What it does">Plays a play-once Script this many times in a row.</td><td data-label="Range">1–10</td><td data-label="Default">1</td><td data-label="Start here">1</td><td data-label="Raise it if…">You want it repeated</td><td data-label="Lower it if…">—</td></tr>
+      <tr><td data-label="Setting"><b>Always finish</b></td><td data-label="What it does">Plays to the end even if you let go early.</td><td data-label="Range">On / Off</td><td data-label="Default">Off</td><td data-label="Start here">Off</td><td data-label="Raise it if…">Combos break when you let go</td><td data-label="Lower it if…">—</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-timing--per-config">
+    <h2>Script timings (whole config)</h2>
+    <p>Where: <b>Settings</b> › <b>Advanced</b> › <b>Translation</b> › <b>Script timings</b> ("Natural timing for your scripts, so no two runs are identical").</p>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Setting</th><th>What it does</th><th>Range</th><th>Default</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Setting"><b>Wait variation</b></td><td data-label="What it does">Changes every wait by up to this share.</td><td data-label="Range">0–50 %</td><td data-label="Default">0 %</td><td data-label="Start here">0 %</td><td data-label="Raise it if…">You want more natural timing</td><td data-label="Lower it if…">Combos need exact timing</td></tr>
+      <tr><td data-label="Setting"><b>Aim actions</b> (Advanced)</td><td data-label="What it does">"Magnitude: how much each push varies."</td><td data-label="Range">0.5–10 %, step 0.5</td><td data-label="Default">1 %</td><td data-label="Start here">1 %</td><td data-label="Raise it if…">—</td><td data-label="Lower it if…">Aim Scripts feel uneven</td></tr>
+      <tr><td data-label="Setting"><b>Aim angle</b> (Advanced)</td><td data-label="What it does">How much each push's direction varies.</td><td data-label="Range">0–15°, step 0.5</td><td data-label="Default">0°</td><td data-label="Start here">0°</td><td data-label="Raise it if…">—</td><td data-label="Lower it if…">Pushes drift sideways</td></tr>
+      <tr><td data-label="Setting"><b>Recoil strength wobble</b> (Advanced)</td><td data-label="What it does">How much anti-recoil strength varies.</td><td data-label="Range">0–100 %, step 5</td><td data-label="Default">0 %</td><td data-label="Start here">0 %</td><td data-label="Raise it if…">—</td><td data-label="Lower it if…">Recoil control feels uneven</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-timing--related">
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#p-scripts-when-it-runs">When a Script runs</a></li>
+      <li><a href="#p-aim-smoothing-and-sync--sync-to-game">Sync to game</a> (same Translation screen)</li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-scripts-recorder" data-group="Buttons &amp; Scripts" data-title="Record a Script" data-time="4 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts</p>
+    <h1>Record a Script</h1>
+    <p class="m2-get">Do a move once, and the EXO turns it into a Script you can replay with one button.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-scripts-recorder--before-you-start">
+    <h2>Before you start</h2>
+    <ul>
+      <li>The EXO is connected to the app (the recorder checks first: "Checking your Core…").</li>
+      <li>You can do the move on your controller, mouse or keyboard.</li>
+      <li>The game is somewhere safe to practise, like a private match.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-recorder--choose-buttons">
+    <h2>1. Choose start and stop buttons</h2>
+    <ol class="m2-steps">
+      <li>Open <b>Settings</b> › <b>Advanced</b> › <b>Advanced Script Maker</b>. Tap <b>Record script</b>.</li>
+      <li>"Which button should <b>start</b> recording?" Press it on your device, or tap it under <b>Pad</b>, <b>Keyboard</b> or <b>Mouse</b>.</li>
+      <li>"Which button should <b>stop</b> recording?" Tap <b>Same button</b>, or choose a different one.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-recorder-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="Record a script: Which button should start recording? A: Pad, Keyboard and Mouse tabs. B: Press the button you want on your keyboard, mouse or controller, or tap it below; that press is not sent to the game. C: Cancel.">
+      <figcaption>Figure SCR-REC.1 — Record a script, choose the start button</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Pad</b> / <b>Keyboard</b> / <b>Mouse</b></td><td>Tap a button here instead of pressing it.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Press the button you want</b></td><td>That press isn't recorded and the console won't see it.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Cancel</b></td><td>Leave without recording.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-recorder--record">
+    <h2>2. Record the move</h2>
+    <ol class="m2-steps">
+      <li>Press your start button. The app shows "Recording… press X to finish."</li>
+      <li>Do the move once. Buttons, triggers and both sticks are recorded.</li>
+      <li>Press your stop button. Recording also stops by itself after 60 seconds.</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-recorder--save">
+    <h2>3. Check it and pick the button that runs it</h2>
+    <ol class="m2-steps">
+      <li>Read "Here's what you did." Not right? Tap <b>Record again</b>.</li>
+      <li>Tap <b>Next — choose the button that runs it</b>.</li>
+      <li>Tap <b>Use</b> for the start button, or <b>Choose a different button</b>.</li>
+    </ol>
+    <p>It's saved as "Recorded" plus the time. Open it in the Script list to rename it or tidy the steps.</p>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-recorder--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> a Script named "Recorded …" is in the Scripts list, switched on.</li>
+        <li><b>Game:</b> pressing its button replays your move.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-scripts">A script won't fire or won't stop</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-recorder--next">
+    <h2>Next</h2>
+    <ul>
+      <li><b>Recommended:</b> <a href="#p-recipes-one-key-combo">Recipe: put a combo on one key</a></li>
+      <li><a href="#p-scripts-editor">Advanced Script Maker</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-scripts-library" data-group="Buttons &amp; Scripts" data-title="Ready-made Scripts" data-time="4 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts</p>
+    <h1>Ready-made Scripts</h1>
+    <p class="m2-get">Add one of 33 ready-made Scripts in a few taps, then tune it.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-scripts-library--add-one">
+    <h2>1. Add a ready-made Script</h2>
+    <ol class="m2-steps">
+      <li>Open <b>Settings</b> › <b>Advanced</b> › <b>Advanced Script Maker</b>.</li>
+      <li>Tap <b>Paste ready-made script</b> ("Pick one that is already built"), or the <b>Ready-made</b> tab.</li>
+      <li>Pick a category chip, or start with <b>Featured</b>.</li>
+      <li>Tap a Script, then choose which button starts it.</li>
+      <li>Set its values, then tap <b>Add to this config</b>.</li>
+    </ol>
+    <p>You can change anything about it afterwards in the editor. Nothing fits? Tap <b>Nothing fits? Record your own</b>.</p>
+    <div class="m2-shot-todo"><b>Screenshot needed</b> — Ready-made library (Featured cards, category chips, a Script card with Add to this config), capture on a live EXO.</div>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-library--the-list">
+    <h2>All 33 ready-made Scripts</h2>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Category</th><th>Scripts</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Category"><b>Movement &amp; access</b> (11)</td><td data-label="Scripts">Auto sprint · Auto walk forward · Crouch without holding it · Aim without holding it · Hold any button for me · Cook and throw a grenade · Easy melee · Slide cancel · Bunny hop · Reload and back off · Turn assist</td></tr>
+      <tr><td data-label="Category"><b>Aim</b> (8)</td><td data-label="Scripts">Aim assist booster · Anti-recoil · Anti-recoil, aiming only · Recoil pattern · Steady aim · Snap-to-target nudge · Quick 180° turn · Vehicles and parachutes</td></tr>
+      <tr><td data-label="Category"><b>Firing</b> (6)</td><td data-label="Scripts">Rapid fire (turbo) · Burst fire · Fire without holding · Hair trigger fire · Drop shot · Jump shot</td></tr>
+      <tr><td data-label="Category"><b>Quality of life</b> (8)</td><td data-label="Scripts">Swap and get back on target · Cancel a reload · Auto ping (Warzone only) · Ping your team · Menu skip · Looting · Two-button combo · Switch to my next config</td></tr>
+    </tbody></table></div>
+    <p><b>Featured</b> holds the three most people want: Aim assist booster, Rapid fire and Turn assist. Your own stick always wins: aim Scripts blend into your stick, they don't fight it.</p>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>GPC scripts: coming soon.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-library--fair-play">
+    <h2>Fair play</h2>
+    <p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-library--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> the Script shows in the <b>Scripts</b> list with its switch on.</li>
+        <li><b>Game:</b> its button does the job, for example Auto sprint keeps you running after one click.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-scripts">A script won't fire or won't stop</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-library--next">
+    <h2>Next</h2>
+    <ul>
+      <li><b>Recommended:</b> <a href="#p-scripts-share">Share Scripts with a code</a></li>
+      <li><a href="#p-recipes-rapid-fire">Recipes</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-scripts-share" data-group="Buttons &amp; Scripts" data-title="Share Scripts with a code" data-time="2 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts</p>
+    <h1>Share Scripts with a code</h1>
+    <p class="m2-get">Send a Script to a friend as a code, or paste one they sent you.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-scripts-share--copy">
+    <h2>1. Copy a Script's code</h2>
+    <ol class="m2-steps">
+      <li>Open the Script in the Advanced Script Maker.</li>
+      <li>Scroll to the bottom and tap <b>Copy</b>.</li>
+      <li>Paste the code into a message to your friend. Codes start with <b>ZSA2.</b></li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-share--paste">
+    <h2>2. Paste a code someone sent you</h2>
+    <ol class="m2-steps">
+      <li>Copy the code on your phone.</li>
+      <li>In the Advanced Script Maker (or a gun's page), tap <b>Paste a code someone sent me</b>.</li>
+      <li>Read the toast, for example "Pasted onto R2, scaled from the maker's game settings to yours".</li>
+      <li>Open the Script, check it over, then save it.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-smart-actions-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="A gun's Scripts list. A: Rapid fire with its switch on. B: Paste a code someone sent me. C: New script, advanced.">
+      <figcaption>Figure SCR-SH.1 — A gun's Scripts list</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">A</span></td><td>A Script's switch</td><td>Turns that Script on or off.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Paste a code someone sent me</b></td><td>Adds a shared Script from a code.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>New script (advanced)</b></td><td>Opens the editor.</td></tr>
+    </tbody></table>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Only Scripts have share codes. Configs don't. To pass a whole config on, use Copy and Paste on the Device page. <a href="#p-app-configs">Configs</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-share--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> the toast says "Pasted onto …" and the Script is in your list.</li>
+        <li><b>Game:</b> the Script runs on the button the toast named.</li>
+      </ul>
+      <p>"That does not look like a ZeroStick button code"? Copy the whole code again. <a href="#p-help-scripts">Script problems</a></p></aside>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-scripts-anti-recoil-lab" data-group="Buttons &amp; Scripts" data-title="Anti-Recoil Lab" data-time="8 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts</p>
+    <h1>Anti-Recoil Lab</h1>
+    <p class="m2-get">You'll make a Script that pulls against your gun's recoil, so it stays on target.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">8 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-scripts-anti-recoil-lab--before-you-start">
+    <h2>Before you start</h2>
+    <ul>
+      <li>Your in-game settings match the app's list. <a href="#p-aim-game-settings">Set your in-game settings</a></li>
+      <li>You can fire at a wall in the game (a firing range or private match).</li>
+      <li>For one gun only, open the Lab from that gun's page in <b>AI Scripts</b>. <a href="#p-auto-per-gun-scripts">Per-gun Scripts</a></li>
+    </ul>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-anti-recoil-lab--pick-a-way">
+    <h2>1. Pick a way to make it</h2>
+    <ol class="m2-steps">
+      <li>Open <b>Settings</b> › <b>Advanced</b> › <b>Advanced Script Maker</b>, or a gun's page.</li>
+      <li>Tap <b>Anti-Recoil Lab</b> ("Trace a gun's recoil and cancel it out").</li>
+      <li>Under <b>How do you want to make it?</b>, pick one of the three below.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-recoil.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="Anti-Recoil Lab, How do you want to make it? A: Automatic, Recommended. B: Manual. C: Pull down. Below: Trace with your mouse's reticle instead, and Cancel.">
+      <figcaption>Figure SCR-LAB.1 — Anti-Recoil Lab, first page</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Automatic</b></td><td>"Your Core finds your gun's fire rate and builds your recoil curve for you." Warzone and MW4 only.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Manual</b></td><td>"Set the fire rate, fire at a wall, then trace each shot mark in your game."</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Pull down</b></td><td>"The regular anti-recoil: pulls straight down at the speed you set. No wall needed."</td></tr>
+    </tbody></table>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Way</th><th>Works in</th><th>Best for</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Way"><b>Pull down</b></td><td data-label="Works in">Every game</td><td data-label="Best for">Controller players. No setup: tune it while you fire.</td></tr>
+      <tr><td data-label="Way"><b>Automatic</b></td><td data-label="Works in">Warzone and Modern Warfare 4 only. Greyed out in other games.</td><td data-label="Best for">An exact recoil curve with the least work.</td></tr>
+      <tr><td data-label="Way"><b>Manual</b></td><td data-label="Works in">Every game</td><td data-label="Best for">An exact curve in games without Automatic.</td></tr>
+    </tbody></table></div>
+    <p><b>Black Ops II</b> has random recoil, so it offers only <b>Standard pull-down</b>: "A steady pull down while you hold Fire."</p>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-anti-recoil-lab--pull-down">
+    <h2>2a. Pull down (controller)</h2>
+    <ol class="m2-steps">
+      <li>Tap <b>Pull down</b>, then <b>Start</b>.</li>
+      <li>In the game, hold Fire at any surface where you can see your shots.</li>
+      <li>Shots still climb? Tap <b>+</b> on <b>Pull down</b>. Dipping? Tap <b>−</b>.</li>
+      <li>Drifting sideways? Adjust <b>Pull sideways</b>: minus pulls left, plus pulls right.</li>
+      <li>Fire again until the gun stays still. Tap <b>Accept</b>.</li>
+    </ol>
+    <p>While this page is open, the D-pad tunes it: up / down changes Pull down, left / right changes Pull sideways. The D-pad does nothing in the game meanwhile.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-recoil-pull-down.webp' | asset_url }}" width="786" height="1640" loading="lazy" alt="Anti-Recoil Lab Pull down tune page. 1: Hold Fire to test it. 2: Pull down at 25 percent, more if your shots still climb. 3: Pull sideways at 0 percent, minus pulls left, plus pulls right. 4: Start delay at 0 ms. Below: Strength over the magazine, with Start and Middle at 100 percent.">
+      <figcaption>Figure SCR-LAB.2 — Anti-Recoil Lab, Pull down live-tune (EXO connected)</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Number</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">1</span></td><td><b>Hold Fire to test it</b></td><td>Fire at a wall. This line shows the EXO pulling while you shoot.</td></tr>
+      <tr><td><span class="m2-letter">2</span></td><td><b>Pull down</b></td><td>Tap + if your shots still climb, − if they now dip.</td></tr>
+      <tr><td><span class="m2-letter">3</span></td><td><b>Pull sideways</b></td><td>Minus pulls left, plus pulls right.</td></tr>
+      <tr><td><span class="m2-letter">4</span></td><td><b>Start delay</b></td><td>Waits this long after you start firing before pulling.</td></tr>
+    </tbody></table>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Setting</th><th>What it does</th><th>Range</th><th>Default</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Setting"><b>Pull down</b></td><td data-label="What it does">How hard it pulls down while you fire.</td><td data-label="Range">0–100 %</td><td data-label="Default">25 %</td><td data-label="Start here">25 %</td><td data-label="Raise it if…">Shots still climb</td><td data-label="Lower it if…">Shots dip below the target</td></tr>
+      <tr><td data-label="Setting"><b>Pull sideways</b></td><td data-label="What it does">Minus pulls left, plus pulls right.</td><td data-label="Range">−100 to 100 %</td><td data-label="Default">0 %</td><td data-label="Start here">0 %</td><td data-label="Raise it if…">Shots drift left</td><td data-label="Lower it if…">Shots drift right</td></tr>
+      <tr><td data-label="Setting"><b>Start delay</b></td><td data-label="What it does">Wait after you start firing before pulling.</td><td data-label="Range">0–2000 ms</td><td data-label="Default">0 ms</td><td data-label="Start here">0 ms</td><td data-label="Raise it if…">The first shots dip</td><td data-label="Lower it if…">The first shots climb</td></tr>
+      <tr><td data-label="Setting"><b>Start</b> / <b>Middle</b> / <b>End</b> (Strength over the magazine)</td><td data-label="What it does">Pull strength for the first shots, half way, and the last shots.</td><td data-label="Range">0–200 % each</td><td data-label="Default">100 % each</td><td data-label="Start here">100 %</td><td data-label="Raise it if…">That part of the spray climbs</td><td data-label="Lower it if…">That part dips</td></tr>
+      <tr><td data-label="Setting"><b>Spray lasts</b></td><td data-label="What it does">How long a full spray takes, for the Start-Middle-End shape.</td><td data-label="Range">0.5–10 s</td><td data-label="Default">3 s</td><td data-label="Start here">Your magazine's length</td><td data-label="Raise it if…">—</td><td data-label="Lower it if…">—</td></tr>
+      <tr><td data-label="Setting"><b>Only while aiming down sights</b></td><td data-label="What it does">Pulls only while you aim.</td><td data-label="Range">On / Off</td><td data-label="Default">Off</td><td data-label="Start here">Off</td><td data-label="Raise it if…">Turn on if hip-fire gets pulled too</td><td data-label="Lower it if…">—</td></tr>
+    </tbody></table></div>
+    <p><b>Accept</b> saves a Script named "Anti-recoil" that runs while Fire is held.</p>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-anti-recoil-lab--automatic">
+    <h2>2b. Automatic (Warzone and MW4)</h2>
+    <p>The Lab walks you through 5 steps: <b>1 Check</b> · <b>2 Fire rate</b> · <b>3 Fire</b> · <b>4 Confirm</b> · <b>5 Tune</b>. Your HDMI must go through the EXO.</p>
+    <ol class="m2-steps">
+      <li><b>Check:</b> confirm your game settings and switch on <b>I've checked my game settings</b>.</li>
+      <li><b>Fire rate:</b> type the gun's fire rate (60–3000 RPM), or measure it by firing a full magazine.</li>
+      <li><b>Fire:</b> tap <b>Start</b> and fire one magazine at the wall. "Your Core only watches."</li>
+      <li><b>Confirm:</b> check the line the EXO traced. Drag a tick to fix a shot. Tap <b>Make the Script</b>.</li>
+      <li><b>Tune:</b> adjust <b>Scale Y</b> and <b>Scale X</b> (0–400 %, default 100 %), then <b>Test it with the gun</b>. Tap <b>Done</b>.</li>
+    </ol>
+    <p><b>MW4:</b> do this in the Firing Range, where the EXO reads the ammo counter. Face a lit wall with a door, a sign or lane numbers on it. Keep the moving targets out of view.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-recoil-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="Anti-Recoil Lab step 4, Confirm. A: the step tabs 1 Check, 2 Fire rate, 3 Fire, 4 Confirm, 5 Tune. B: Traced your magazine, 26 shots along the line; drag a tick to move it, or tap it for the arrows. C: the traced shot pattern drawn over the game picture.">
+      <figcaption>Figure SCR-LAB.3 — Anti-Recoil Lab, Automatic, step 4 Confirm</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">A</span></td><td>Step tabs</td><td>Where you are in the 5 steps.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Traced your magazine</b></td><td>How many shots the EXO found along the line.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td>The trace</td><td>Each numbered tick is one shot. Drag one to move it.</td></tr>
+    </tbody></table>
+    <aside class="m2-call m2-call--important"><p class="m2-call-label">Important</p><p>Automatic for MW4 is new. Always run <b>Test it with the gun</b> before you rely on it. If the trace looks wrong, tap <b>Use Manual instead</b>.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-anti-recoil-lab--manual">
+    <h2>2c. Manual (any game)</h2>
+    <ol class="m2-steps">
+      <li>Tap <b>Manual</b>. Steps: <b>Check</b> · <b>Fire rate</b> · <b>Fire pattern</b> · <b>Model</b>.</li>
+      <li>Set the fire rate, then fire a magazine at a wall.</li>
+      <li>Trace each shot mark you see in the game.</li>
+      <li>On <b>Your recoil model</b>, adjust <b>Scale X</b>, <b>Scale Y</b> and <b>Optimization level</b> (0–10).</li>
+      <li>Tap <b>Accept</b>. Manual saves only when you press Accept.</li>
+    </ol>
+    <p>On a mouse config, the first page also offers <b>Trace with your mouse's reticle instead</b>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-anti-recoil-lab--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> a recoil Script (like "Anti-recoil") is in the Scripts list, switched on.</li>
+        <li><b>Game:</b> hold Fire at a wall for a full magazine: the shots stay in a tight group.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-scripts">A script won't fire or won't stop</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-scripts-anti-recoil-lab--related">
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#p-recipes-simple-anti-recoil">Recipe: simple anti-recoil</a></li>
+      <li><a href="#p-auto-per-gun-scripts">Give each gun its own Scripts</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-recipes-rapid-fire" data-group="Buttons &amp; Scripts" data-title="Recipe: rapid fire" data-time="3 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts · Recipe</p>
+    <h1>Rapid fire for semi-auto guns</h1>
+    <p class="m2-get">Hold Fire and the EXO taps it for you, over and over.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="x2-badge x2-badge--plain">PS5 · Xbox · PC</span><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-recipes-rapid-fire--what-you-need">
+    <h2>What you need</h2>
+    <ul>
+      <li>A config for your game. Fire on R2 / RT (or your mouse's left click mapped to it).</li>
+      <li>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-rapid-fire--add-it">
+    <h2>Add it</h2>
+    <p><b>Option A, ready-made (fastest):</b></p>
+    <ol class="m2-steps">
+      <li>In the Advanced Script Maker, tap <b>Paste ready-made script</b>.</li>
+      <li>Under <b>Firing</b>, tap <b>Rapid fire (turbo)</b>.</li>
+      <li>Keep Fire as the start button. Tap <b>Add to this config</b>.</li>
+    </ol>
+    <p><b>Option B, build it:</b> <b>New script</b> on Fire, set <b>Over and over while I hold it</b>, then add a Fire <b>Tap</b> for 40 ms and a <b>Wait</b> of 40 ms. <a href="#p-scripts-editor">Advanced Script Maker</a></p>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-rapid-fire--values-to-tune">
+    <h2>Values to tune</h2>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Value</th><th>Range</th><th>Start here</th><th>Shorter</th><th>Longer</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Value"><b>Time between taps</b></td><td data-label="Range">15–300 ms, step 5</td><td data-label="Start here">40 ms</td><td data-label="Shorter">Faster shots. Too fast and games drop shots.</td><td data-label="Longer">Slower, steadier shots</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-rapid-fire--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> Rapid fire is in the Scripts list, switched on.</li>
+        <li><b>Game:</b> in a firing range, hold Fire with a semi-auto gun for 3 seconds: it keeps firing.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-scripts">A script won't fire or won't stop</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-rapid-fire--variations">
+    <h2>Variations</h2>
+    <ul>
+      <li>Only on one gun: add it from that gun's page in AI Scripts. <a href="#p-auto-per-gun-scripts">Per-gun Scripts</a></li>
+      <li>A fixed number of shots per press: use <b>Burst fire</b> instead.</li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-recipes-simple-anti-recoil" data-group="Buttons &amp; Scripts" data-title="Recipe: simple anti-recoil" data-time="3 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts · Recipe</p>
+    <h1>Simple anti-recoil</h1>
+    <p class="m2-get">A steady pull down while you fire, tuned live with no setup.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Controller</span><span class="x2-badge x2-badge--plain">PS5 · Xbox · PC</span><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-recipes-simple-anti-recoil--what-you-need">
+    <h2>What you need</h2>
+    <ul>
+      <li>A config for your game and a wall to shoot at.</li>
+      <li>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-simple-anti-recoil--add-it">
+    <h2>Add it</h2>
+    <ol class="m2-steps">
+      <li>Open <b>Anti-Recoil Lab</b> (Advanced Script Maker, or a gun's page).</li>
+      <li>Tap <b>Pull down</b>, then <b>Start</b>.</li>
+      <li>Hold Fire at a wall. Tap <b>+</b> on <b>Pull down</b> until the shots stop climbing.</li>
+      <li>Tap <b>Accept</b>.</li>
+    </ol>
+    <p>Full details: <a href="#p-scripts-anti-recoil-lab--pull-down">Pull down in the Anti-Recoil Lab</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-simple-anti-recoil--values-to-tune">
+    <h2>Values to tune</h2>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Value</th><th>Range</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Value"><b>Pull down</b></td><td data-label="Range">0–100 %</td><td data-label="Start here">25 %</td><td data-label="Raise it if…">Shots still climb</td><td data-label="Lower it if…">Shots dip</td></tr>
+      <tr><td data-label="Value"><b>Pull sideways</b></td><td data-label="Range">−100 to 100 %</td><td data-label="Start here">0 %</td><td data-label="Raise it if…">Shots drift left</td><td data-label="Lower it if…">Shots drift right</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-simple-anti-recoil--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> "Anti-recoil" is in the Scripts list, switched on.</li>
+        <li><b>Game:</b> a full magazine at a wall lands in a tight group, not a line climbing up.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-scripts">A script won't fire or won't stop</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-simple-anti-recoil--variations">
+    <h2>Variations</h2>
+    <ul>
+      <li>Only while aiming: switch on <b>Only while aiming down sights</b>.</li>
+      <li>Per gun: open the Lab from each gun's page. <a href="#p-auto-per-gun-scripts">Per-gun Scripts</a></li>
+      <li>Exact pattern in Warzone or MW4: use <b>Automatic</b>. <a href="#p-scripts-anti-recoil-lab--automatic">Automatic</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-recipes-toggle-aim" data-group="Buttons &amp; Scripts" data-title="Recipe: tap to aim" data-time="2 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts · Recipe</p>
+    <h1>Tap to aim (instead of hold)</h1>
+    <p class="m2-get">Press aim once to stay aimed, with nothing held down.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-recipes-toggle-aim--what-you-need">
+    <h2>What you need</h2>
+    <p>A config for your game. Many game packs already include <b>Aim hold</b> (the ready-made Aim without holding it), switched off. Look for it in the Scripts list first.</p>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-toggle-aim--add-it">
+    <h2>Add it</h2>
+    <p><b>Option A, a true toggle:</b></p>
+    <ol class="m2-steps">
+      <li>Open <b>Mappings</b> and tap your aim button's row (for example <b>L2</b>, or <b>Right click</b>).</li>
+      <li>Tap <b>Behaves</b> and choose <b>On, then off</b>.</li>
+    </ol>
+    <p><b>Option B, ready-made:</b> add <b>Aim without holding it</b> from <b>Movement &amp; access</b>. One pull keeps you aimed for a set time.</p>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-toggle-aim--values-to-tune">
+    <h2>Values to tune</h2>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Value</th><th>Range</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Value"><b>Stay aimed for</b> (Option B)</td><td data-label="Range">1000–29000 ms, step 500</td><td data-label="Start here">6000 ms</td><td data-label="Raise it if…">You drop out of aim too soon</td><td data-label="Lower it if…">You stay aimed too long</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-toggle-aim--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> the aim row shows <b>On, then off</b> (or the Script is switched on).</li>
+        <li><b>Game:</b> tap aim once and let go: you stay aimed down sights.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-scripts">A script won't fire or won't stop</a></p></aside>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-recipes-auto-sprint" data-group="Buttons &amp; Scripts" data-title="Recipe: always sprint" data-time="2 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts · Recipe</p>
+    <h1>Always sprint</h1>
+    <p class="m2-get">Click sprint once and keep running without holding the stick forward.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Controller</span><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-recipes-auto-sprint--what-you-need">
+    <h2>What you need</h2>
+    <p>A config for your game, with sprint on L3 (or your sprint key).</p>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-auto-sprint--add-it">
+    <h2>Add it</h2>
+    <ol class="m2-steps">
+      <li>In the Advanced Script Maker, tap <b>Paste ready-made script</b>.</li>
+      <li>Under <b>Movement &amp; access</b>, tap <b>Auto sprint</b>.</li>
+      <li>Keep L3 as the start button, or pick your sprint button. Tap <b>Add to this config</b>.</li>
+    </ol>
+    <p>Your own sprint press still goes through. The Script only supplies the forward stick.</p>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-auto-sprint--values-to-tune">
+    <h2>Values to tune</h2>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Value</th><th>Range</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Value"><b>Keep running for</b></td><td data-label="Range">1000–29000 ms, step 500</td><td data-label="Start here">8000 ms</td><td data-label="Raise it if…">You stop before you get there</td><td data-label="Lower it if…">You run past where you meant to stop</td></tr>
+    </tbody></table></div>
+    <p>It stops on its own at the end. Move the stick any time to take over.</p>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-auto-sprint--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> Auto sprint is in the Scripts list, switched on.</li>
+        <li><b>Game:</b> click sprint once and let go of the stick: you keep running forward.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-scripts">A script won't fire or won't stop</a></p></aside>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-recipes-drop-shot" data-group="Buttons &amp; Scripts" data-title="Recipe: drop shot" data-time="2 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts · Recipe</p>
+    <h1>Drop shot</h1>
+    <p class="m2-get">Go to ground the moment you open fire. Your trigger keeps working.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Controller</span><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-recipes-drop-shot--what-you-need">
+    <h2>What you need</h2>
+    <ul>
+      <li>A config for your game. Know which button makes you crouch or go prone.</li>
+      <li>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-drop-shot--add-it">
+    <h2>Add it</h2>
+    <ol class="m2-steps">
+      <li>In the Advanced Script Maker, tap <b>Paste ready-made script</b>.</li>
+      <li>Under <b>Firing</b>, tap <b>Drop shot</b>.</li>
+      <li>Set <b>Crouch / prone button</b> to your game's button. Tap <b>Add to this config</b>.</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-drop-shot--values-to-tune">
+    <h2>Values to tune</h2>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Value</th><th>Range</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Value"><b>How soon after you fire</b></td><td data-label="Range">0–800 ms, step 10</td><td data-label="Start here">40 ms</td><td data-label="Raise it if…">You drop before your first shot</td><td data-label="Lower it if…">You drop too late</td></tr>
+    </tbody></table></div>
+    <p>Prefer to jump? <b>Jump shot</b> works the same way.</p>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-drop-shot--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> Drop shot is in the Scripts list, switched on.</li>
+        <li><b>Game:</b> press Fire while standing: you go down and keep firing.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-scripts">A script won't fire or won't stop</a></p></aside>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-recipes-one-key-combo" data-group="Buttons &amp; Scripts" data-title="Recipe: a combo on one key" data-time="4 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Buttons &amp; Scripts · Recipe</p>
+    <h1>Put a combo on one key</h1>
+    <p class="m2-get">Record a move once, then play it back with one button.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-recipes-one-key-combo--what-you-need">
+    <h2>What you need</h2>
+    <ul>
+      <li>A spare button or key to run the combo.</li>
+      <li>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-one-key-combo--add-it">
+    <h2>Add it</h2>
+    <ol class="m2-steps">
+      <li>Tap <b>Record script</b> in the Advanced Script Maker.</li>
+      <li>Choose a start button and a stop button that the combo doesn't use.</li>
+      <li>Press start, do the combo once, press stop.</li>
+      <li>Check "Here's what you did.", then tap <b>Next — choose the button that runs it</b>.</li>
+      <li>Pick your spare button.</li>
+    </ol>
+    <p>Full walkthrough: <a href="#p-scripts-recorder">Record a Script</a>. For just two buttons at once, the ready-made <b>Two-button combo</b> is quicker.</p>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-one-key-combo--values-to-tune">
+    <h2>Values to tune</h2>
+    <p>Open the recorded Script in the editor. Tap any step to change its time, or use <b>Exact timing</b> in <a href="#p-scripts-timing">Timing and safety</a> for a precise combo.</p>
+  </section>
+
+  <section class="m2-sec" id="p-recipes-one-key-combo--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> a "Recorded …" Script is in the list, on your spare button.</li>
+        <li><b>Game:</b> one press plays the whole combo.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-scripts">A script won't fire or won't stop</a></p></aside>
+  </section>
+</article>

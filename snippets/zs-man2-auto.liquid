@@ -1,0 +1,359 @@
+{% comment %}
+  ==========================================================================
+  ZeroStick EXO manual v2: SMART FEATURES pages (Agent B, 2026-11-21)
+  --------------------------------------------------------------------------
+  Rendered by sections/zs-manual-v2.liquid with render zs-man2-auto.
+  Pages: automatic gun detection (the AI Scripts screen), per-gun Scripts,
+  and NBA 2K27 Auto green.
+
+  Rules baked in (from C:\zsg\overhaul\BRIEF.md and APP-FACTS.md):
+  - In our own words say "automatic gun detection". Say "AI Scripts" only
+    when pointing at the screen or row with that label.
+  - Ready: Black Ops II and MW4. In progress: Warzone, Black Ops 7, Apex
+    Legends, Fortnite, Rust, Battlefield 6, Counter-Strike 2.
+  - No rarity page, no hero or operator detection, no accuracy numbers.
+  - Auto green "helps with shot timing". Never quote a green rate.
+  Facts: app source (read-only) auto-actions.js, weapon-live.js,
+  gun-frame.js, gun-teach.js, shell/09-home.js, sections/23b-autogreen.js.
+  Plain-text comments only in here (no HTML tags inside Liquid comments).
+  ==========================================================================
+{% endcomment %}
+
+<article class="m2-page" id="p-auto-gun-detection" data-group="Smart Features" data-title="Automatic gun detection" data-time="8 min" data-journey="12">
+  <header class="m2-head">
+    <p class="m2-crumb">Smart Features</p>
+    <h1>Automatic gun detection</h1>
+    <p class="m2-get">The EXO sees which gun you're holding and switches that gun's Scripts on for you.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--ready">Ready: Black Ops II, MW4</span><span class="x2-badge x2-badge--progress">In progress: 7 more games</span><span class="m2-time">8 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-auto-gun-detection--how-it-works">
+    <h2>How it works</h2>
+    <ul>
+      <li>Your console's picture goes through the EXO on its way to the TV.</li>
+      <li>The EXO reads the held gun's name from the game's HUD. In Fortnite, Rust and Counter-Strike 2 it reads the gun's icon.</li>
+      <li>Each gun can have its own Scripts. They switch on when that gun is out, and pause when no gun is out.</li>
+      <li>It all runs on the EXO, not on your phone.</li>
+    </ul>
+    <p>In the app this screen is called <b>AI Scripts</b>. It's in the config's settings menu, in the Essentials group.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-settings-menu-ai.webp' | asset_url }}" width="786" height="793" loading="lazy" alt="A config's settings menu. 1: Device, Name, photo, PC output. 2: Aim. 3: Mappings, Rebind any button to any button. 4: AI Scripts, Scripts for each weapon.">
+      <figcaption>Figure AUTO-GD.1 — Settings menu, Essentials group (EXO connected)</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Number</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">1</span></td><td><b>Device</b></td><td>Console connection, mouse DPI, light, copy and paste the config.</td></tr>
+      <tr><td><span class="m2-letter">2</span></td><td><b>Aim</b></td><td>Mouse speed, hip and ADS, or your controller's sticks.</td></tr>
+      <tr><td><span class="m2-letter">3</span></td><td><b>Mappings</b></td><td>Rebind any button to any button.</td></tr>
+      <tr><td><span class="m2-letter">4</span></td><td><b>AI Scripts</b> · "Scripts for each weapon"</td><td>Scripts that switch on by themselves for the gun you're holding.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-auto-gun-detection--which-games">
+    <h2>Which games</h2>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Game</th><th>Status</th><th>Reads</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Game">Call of Duty: Black Ops II</td><td data-label="Status"><span class="x2-badge x2-badge--ready">Ready</span></td><td data-label="Reads">Gun name</td></tr>
+      <tr><td data-label="Game">Call of Duty: Modern Warfare 4</td><td data-label="Status"><span class="x2-badge x2-badge--ready">Ready</span></td><td data-label="Reads">Gun name, plus instant swap and pickup detection</td></tr>
+      <tr><td data-label="Game">Call of Duty: Warzone</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Reads">Gun name; holds your gun while you plate up</td></tr>
+      <tr><td data-label="Game">Call of Duty: Black Ops 7</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Reads">Gun name</td></tr>
+      <tr><td data-label="Game">Apex Legends</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Reads">Gun name</td></tr>
+      <tr><td data-label="Game">Battlefield 6</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Reads">Gun name (after a swap)</td></tr>
+      <tr><td data-label="Game">Fortnite</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Reads">Gun icon</td></tr>
+      <tr><td data-label="Game">Rust</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Reads">Gun icon</td></tr>
+      <tr><td data-label="Game">Counter-Strike 2</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Reads">Gun icon</td></tr>
+    </tbody></table></div>
+    <p>Other games don't have gun detection. Their Scripts still work: switch them on and off yourself. <a href="#p-games">Game support</a></p>
+  </section>
+
+  <section class="m2-sec" id="p-auto-gun-detection--before-you-start">
+    <h2>Before you start</h2>
+    <ul>
+      <li>HDMI goes through the EXO: console › <b>HDMI IN</b>, <b>HDMI OUT</b> › TV. <a href="#p-platforms-hdmi">Connect HDMI</a></li>
+      <li>Your console outputs <b>1080p or 1440p, at 60 Hz</b>. The app asks for this if it can't see a picture.</li>
+      <li>Your config is for a game in the table above.</li>
+      <li>The game's HUD is on (the gun name or icon shows on screen).</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-auto-gun-detection--game-settings">
+    <h2>1. Enter your game settings</h2>
+    <p>AI Scripts asks for your in-game sensitivity first, so your Scripts can be scaled to it.</p>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>Settings</b>, then <b>AI Scripts</b>.</li>
+      <li>Under <b>One-time setup</b>, tap <b>Game settings</b>.</li>
+      <li>Type the values from your game's menu: <b>Horizontal sensitivity</b>, <b>Vertical sensitivity</b>, <b>Aim (ADS) sensitivity</b>, <b>Deadzone min</b>, and <b>Deadzone max</b> if it's not 100.</li>
+      <li>Save. The row now shows a summary, like "Sens 6 · ADS 1 · Deadzone 5".</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-gun-detect.webp' | asset_url }}" width="786" height="1590" loading="lazy" alt="The top of the AI Scripts screen for MW4. A: Gun out now, Kastov 762. B: Gun reader frame, crop where your HUD shows the gun's name. C: Game settings, Sens 6, ADS 1, Deadzone 5. D: Assault Rifles, 9 weapons, 2 set up. Also a weapon search box and Quick scripts.">
+      <figcaption>Figure AUTO-GD.2 — AI Scripts, MW4 config</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Gun out now</b></td><td>The gun the EXO reads right now. Tap to open its Scripts.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Gun reader frame</b></td><td>Where on screen the gun name is read. One-time setup.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Game settings</b></td><td>Your in-game settings, used to scale Scripts.</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td>A weapon class (<b>Assault Rifles</b>)</td><td>Open it to find a gun. Shows how many are set up.</td></tr>
+    </tbody></table>
+    <aside class="m2-call m2-call--important"><p class="m2-call-label">Important</p><p>Nothing in AI Scripts switches on until you enter your game settings. The app shows "Your … settings first" until then.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-auto-gun-detection--frame">
+    <h2>2. Check the gun reader frame</h2>
+    <p>The EXO reads the gun name from a small box on screen. A built-in box is ready to use. Set your own if your gun name sits somewhere else, for example because of HUD size or TV settings.</p>
+    <ol class="m2-steps">
+      <li>Have the game on screen with a gun out.</li>
+      <li>In AI Scripts, tap <b>Gun reader frame</b>. It captures your screen (or tap <b>Start frame capture</b>).</li>
+      <li><b>Match the box:</b> drag the box, or its edges, so it covers the gun's name like the example.</li>
+      <li>Fine-tune with <b>Move the frame one pixel</b> and <b>Change its size</b>. Tap <b>Next: check it</b>.</li>
+      <li><b>Confirm:</b> under <b>Which screen is this?</b>, pick <b>Match</b>, <b>Firing range</b> or <b>Another HUD position</b>.</li>
+      <li>Answer the pickup button question if the app asks. Tap <b>Looks right, save</b>.</li>
+    </ol>
+    <div class="m2-shot-todo"><b>Screenshot needed</b> — Gun reader frame, Match the box step (game picture with the box around the gun name), capture on a live EXO with HDMI.</div>
+    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Apex Legends: frame only the left gun name; the EXO checks the right one itself. MW4's firing range shows the name lower and further right, so save it as <b>Firing range</b>.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-auto-gun-detection--home-card">
+    <h2>3. Watch the Active weapon card</h2>
+    <p>Back on HOME, the <b>Active weapon</b> card shows what the EXO sees. Tap it for the live view.</p>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Card shows</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Card shows">The gun's name · "N AI Scripts on"</td><td data-label="What it means">Gun found. Its Scripts are running. "Profile loaded" means it has none switched on.</td></tr>
+      <tr><td data-label="Card shows">"In match · …" / "Firing range · …"</td><td data-label="What it means">Call of Duty games also say which screen you're on.</td></tr>
+      <tr><td data-label="Card shows">"Looking for your weapon…" · "Reading the screen"</td><td data-label="What it means">The EXO is reading. Wait a moment.</td></tr>
+      <tr><td data-label="Card shows">"No weapon out" · "AI Scripts paused"</td><td data-label="What it means">No gun in your hands. Gun Scripts pause.</td></tr>
+      <tr><td data-label="Card shows">"Menu or paused"</td><td data-label="What it means">You're in a menu. Gun Scripts pause.</td></tr>
+      <tr><td data-label="Card shows">"No game picture" · "Set your console to 1080p or 1440p, at 60 Hz"</td><td data-label="What it means">The EXO can't see the game. Check HDMI and the console's video output.</td></tr>
+      <tr><td data-label="Card shows">"Detection not set up"</td><td data-label="What it means">This config's game has no gun reader.</td></tr>
+      <tr><td data-label="Card shows">"Weapon detection unavailable" · "Last detected: …"</td><td data-label="What it means">The app isn't connected to the EXO right now.</td></tr>
+    </tbody></table></div>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-gun-detect-2.webp' | asset_url }}" width="786" height="552" loading="lazy" alt="The live gun view. A: In your hands, showing the Kastov 762, Assault Rifles, Modern Warfare 4.">
+      <figcaption>Figure AUTO-GD.3 — Live gun view, top</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody><tr><td><span class="m2-letter">A</span></td><td><b>In your hands</b></td><td>The gun the EXO is reading right now.</td></tr></tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-auto-gun-detection--gun-memory">
+    <h2>Gun memory, swaps and pickups</h2>
+    <ul>
+      <li><b>Gun memory:</b> if the gun name fades for a moment, the EXO keeps your gun. It forgets after the HUD is gone for 3 seconds (for example, you died).</li>
+      <li><b>Swaps (MW4):</b> the EXO watches the weapon slots, so a swap is caught the moment it happens. After three swaps between the same two guns, it learns your swap pair.</li>
+      <li><b>Pickups (MW4):</b> when you press your pickup button, the next clear read is your new gun.</li>
+      <li><b>Plating (Warzone):</b> Warzone hides the gun name while you plate up. The EXO holds your gun, so your Scripts don't drop out.</li>
+    </ul>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-gun-detect-3.webp' | asset_url }}" width="786" height="796" loading="lazy" alt="The live gun view, lower part. A: Previous, M4, before this one. B: Expected next weapon, M4, your swap pair. C: What the reader is doing: holding your Kastov 762 (gun memory), swap pair learned Kastov 762 and M4, last clear read just now, reader Call of Duty Modern Warfare 4.">
+      <figcaption>Figure AUTO-GD.4 — Live gun view, swaps and reader status</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Previous</b></td><td>The gun you had before this one.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Expected next weapon</b></td><td>Your learned swap pair, so the swap is read sooner.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>What the reader is doing</b></td><td>Live lines, like "Swap pair learned" or "Pickup pressed".</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-auto-gun-detection--limits">
+    <h2>Limits and fair play</h2>
+    <ul>
+      <li>Gun Scripts pause in menus and when no gun is out.</li>
+      <li>The EXO reads gun names (or icons), never attachments.</li>
+      <li>A gun missing from the list? Tap <b>Add a gun not on this list</b> at the bottom of a class: take the gun out, type its name, and the EXO learns it.</li>
+      <li>Tournament Mode switches every Script off, gun Scripts too.</li>
+    </ul>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-auto-gun-detection--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> the HOME Active weapon card shows the name of the gun in your hands.</li>
+        <li><b>Game:</b> swap guns: within a moment the card follows your new gun.</li>
+        <li><b>App:</b> put the gun away or open a menu: the card says Scripts are paused.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-gun-detection">Wrong gun or no gun detected</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-auto-gun-detection--next">
+    <h2>Next</h2>
+    <ul>
+      <li><b>Recommended:</b> <a href="#p-auto-per-gun-scripts">Give each gun its own Scripts</a></li>
+      <li><a href="#p-scripts-anti-recoil-lab">Anti-Recoil Lab</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-auto-per-gun-scripts" data-group="Smart Features" data-title="Give each gun its own Scripts" data-time="5 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Smart Features</p>
+    <h1>Give each gun its own Scripts</h1>
+    <p class="m2-get">Each gun gets its own anti-recoil, rapid fire or other Scripts, switched on by itself when you pull that gun out.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">5 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-auto-per-gun-scripts--before-you-start">
+    <h2>Before you start</h2>
+    <ul>
+      <li>Gun detection is set up. <a href="#p-auto-gun-detection">Automatic gun detection</a></li>
+      <li>Your game settings are entered in AI Scripts.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-auto-per-gun-scripts--open-a-gun">
+    <h2>1. Open a gun's page</h2>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>Settings</b>, then <b>AI Scripts</b>.</li>
+      <li>Tap <b>Gun out now</b> to open the gun in your hands. Or open a class (like <b>Assault Rifles</b>) and tap a gun.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-smart-actions.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="One gun's page, Kastov 762, Assault Rifles, MW4. A: Scripts and Ready-made tabs. B: Anti-Recoil Lab, trace a gun's recoil and cancel it out. C: Quick scripts. D: Record script. E: Rapid fire with its switch on, a script tied to this gun.">
+      <figcaption>Figure AUTO-PG.1 — AI Scripts, one gun's page</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Scripts</b> / <b>Ready-made</b></td><td>This gun's Scripts, or ready-made ones to add.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Anti-Recoil Lab</b></td><td>Make anti-recoil for this gun. <a href="#p-scripts-anti-recoil-lab">Anti-Recoil Lab</a></td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Quick scripts</b></td><td>One-tap Scripts: Rapid fire, Aim assist, Anti-recoil (and Auto ping in Warzone).</td></tr>
+      <tr><td><span class="m2-letter">D</span></td><td><b>Record script</b></td><td>Record a move for this gun.</td></tr>
+      <tr><td><span class="m2-letter">E</span></td><td>A Script with its switch</td><td>Runs only while this gun is out.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-auto-per-gun-scripts--add-scripts">
+    <h2>2. Add Scripts to the gun</h2>
+    <ol class="m2-steps">
+      <li>Pick one way: <b>Anti-Recoil Lab</b>, <b>Quick scripts</b>, <b>Record script</b>, or <b>New script (advanced)</b> at the bottom.</li>
+      <li>Finish that Script. It's saved to this gun only.</li>
+      <li>Check its switch is on in the gun's <b>Scripts</b> list.</li>
+    </ol>
+    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Same Script on many guns? In <b>Quick scripts</b>, pick the Script, tap <b>Next: pick the guns</b>, choose <b>Every gun</b> or a whole class, then <b>Add to N guns</b>.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-auto-per-gun-scripts--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> in AI Scripts, the gun's row shows "1 AI Script" (or more).</li>
+        <li><b>App:</b> with that gun out, HOME's Active weapon card says the Scripts are on.</li>
+        <li><b>Game:</b> the Script works with this gun, and stops when you swap to a gun without it.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help-gun-detection">Wrong gun or no gun detected</a></p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-auto-per-gun-scripts--related">
+    <h2>Related</h2>
+    <ul>
+      <li><a href="#p-recipes-rapid-fire">Recipe: rapid fire</a></li>
+      <li><a href="#p-recipes-simple-anti-recoil">Recipe: simple anti-recoil</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-auto-nba2k27-auto-green" data-group="Smart Features" data-title="NBA 2K27 Auto green" data-time="5 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Smart Features</p>
+    <h1>NBA 2K27 Auto green</h1>
+    <p class="m2-get">Auto green watches your shot meter and lets go of shoot for you. It helps with shot timing.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--progress">In progress</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">5 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-auto-nba2k27-auto-green--how-it-works">
+    <h2>How it works</h2>
+    <ul>
+      <li>On an NBA 2K27 config, the EXO reads 2K's shot meter from the HDMI picture.</li>
+      <li>You hold shoot as normal. The EXO lets go at the right moment.</li>
+      <li>It learns your timing over your first shots, and re-learns if your setup changes.</li>
+      <li>It works with button shooting and Pro stick shooting.</li>
+    </ul>
+    <p>On NBA configs, <b>Auto green</b> takes the place of the AI Scripts row in Settings, and of the weapon card on HOME.</p>
+  </section>
+
+  <section class="m2-sec" id="p-auto-nba2k27-auto-green--before-you-start">
+    <h2>Before you start</h2>
+    <ul>
+      <li>HDMI goes through the EXO: console › <b>HDMI IN</b>, <b>HDMI OUT</b> › TV. <a href="#p-platforms-hdmi">Connect HDMI</a></li>
+      <li>You have a config made for <b>NBA 2K27</b>. <a href="#p-app-new-config">Make a new config</a></li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-auto-nba2k27-auto-green--turn-it-on">
+    <h2>1. Turn it on</h2>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>Settings</b>, then <b>Auto green</b>.</li>
+      <li>Switch on <b>Auto green</b> ("Lets go of shoot in the green").</li>
+      <li>Read the <b>Auto green is on</b> sheet and tap <b>Got it</b>.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-nba-menu.webp' | asset_url }}" width="786" height="792" loading="lazy" alt="An NBA 2K27 config's settings menu: Device, Aim, Mappings and A: Auto green, On, lets go of shoot in the green.">
+      <figcaption>Figure AUTO-NBA.1 — Settings menu, NBA 2K27 config</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody><tr><td><span class="m2-letter">A</span></td><td><b>Auto green</b></td><td>Opens Auto green. Says <b>On</b> when it's switched on.</td></tr></tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-auto-nba2k27-auto-green--set-it-up">
+    <h2>2. Tell it how you shoot</h2>
+    <ol class="m2-steps">
+      <li>Under <b>Shooting with</b>, switch on the ways you shoot: <b>Square / button shooting</b> ("Hold shoot, your Core lets go") and / or <b>Pro stick shooting</b> ("Pull the right stick down and hold").</li>
+      <li>Under <b>Your meter</b>, pick <b>NBA 2K27 (white meter)</b>.</li>
+      <li>Under <b>Your build</b>, tap the slot for the player build you're using. Tap <b>Rename</b> to name it.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-nba-shot-2.webp' | asset_url }}" width="786" height="1289" loading="lazy" alt="The Auto green screen. A: the Auto green switch, lets go of shoot in the green, switched on. B: Learning your timing, 3 of 8 shots, just shoot normally. C: Last shot, Green. Below: Shooting with, Square or button shooting and Pro stick shooting, both on.">
+      <figcaption>Figure AUTO-NBA.2 — Auto green, learning</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><span class="m2-letter">A</span></td><td><b>Auto green</b></td><td>Turns it on or off.</td></tr>
+      <tr><td><span class="m2-letter">B</span></td><td><b>Learning your timing</b></td><td>How far it is through learning. Just shoot normally.</td></tr>
+      <tr><td><span class="m2-letter">C</span></td><td><b>Last shot</b></td><td>How your last shot was timed: Green, early or late.</td></tr>
+    </tbody></table>
+    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Each build keeps its own learning. If the app asks, save the config once so the EXO keeps that build's learning.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-auto-nba2k27-auto-green--let-it-learn">
+    <h2>3. Let it learn</h2>
+    <ol class="m2-steps">
+      <li>Play and shoot as you normally do.</li>
+      <li>Watch the status: "Learning your timing: N of M shots - just shoot normally".</li>
+      <li>When it says <b>Ready</b>, it's using your timing.</li>
+    </ol>
+    <p>If your setup changes, it says "Your setup changed, re-learning". Just keep shooting.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-nba-home-card.webp' | asset_url }}" width="786" height="485" loading="lazy" alt="HOME on an NBA 2K27 config. Above: the EXO Core card, Connected, PS5 Mode. A: the Auto green card, On, Learning your timing, 3 of 8 shots, just shoot normally.">
+      <figcaption>Figure AUTO-NBA.3 — HOME, Auto green card</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
+    <tbody><tr><td><span class="m2-letter">A</span></td><td><b>Auto green</b> card</td><td>Shows the status on HOME. Tap it to open Auto green.</td></tr></tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-auto-nba2k27-auto-green--fair-play">
+    <h2>Limits and fair play</h2>
+    <ul>
+      <li>Auto green needs the game picture. With no picture it says "No game picture: connect your console through your Core".</li>
+      <li>If both shooting ways are off, it can't help: turn one on.</li>
+      <li>It helps with shot timing. Your shot selection and defence still matter.</li>
+    </ul>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-auto-nba2k27-auto-green--check-it-worked">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul>
+        <li><b>App:</b> the HOME Auto green card says <b>ON</b> and "Learning your timing" or "Ready".</li>
+        <li><b>App:</b> after a shot, Auto green shows a <b>Last shot</b> line.</li>
+        <li><b>Game:</b> when you hold shoot, the shot is released for you.</li>
+      </ul>
+      <p>Not seeing one? <a href="#p-help">Fix a problem</a></p></aside>
+  </section>
+</article>

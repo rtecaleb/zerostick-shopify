@@ -1,0 +1,323 @@
+{% comment %}
+  ==========================================================================
+  ZeroStick EXO manual v2: GAMES pages (Agent B, 2026-11-21)
+  --------------------------------------------------------------------------
+  Rendered by sections/zs-manual-v2.liquid with render zs-man2-games.
+  Pages: the game support table, Black Ops II, Modern Warfare 4, Warzone,
+  NBA 2K27, and one page for the other In progress games.
+
+  Sources (never invent a value):
+  - Status, gun detection and aim curve: EXO-LAUNCH-FEATURES.md section 2
+    (per-game table) and the shared list snippets/zs-exo2-games.liquid.
+  - Required in-game settings: the game packs' aimModel.gameSettings in
+    C:\esp\wt-exe-build\dashboard\public\game-packs\cod-bo2.json,
+    cod-mw4.json and cod-warzone.json (copied word for word).
+  - "Starter values" sections are left out on purpose: no game pack ships
+    measured starter numbers, and the manual never invents them.
+  Rules: game names as text only (no logos), "Measured aim curve" only for
+  Black Ops II, MW4 and Warzone, never imply Black Ops II runs on PS5.
+  Plain-text comments only in here (no HTML tags inside Liquid comments).
+  ==========================================================================
+{% endcomment %}
+
+<article class="m2-page" id="p-games" data-group="Games" data-title="Game support" data-time="3 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Games</p>
+    <h1>Game support</h1>
+    <p class="m2-get">Which games are Ready, which are In progress, and what works in each.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">All platforms</span><span class="m2-time">3 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-games--what-the-badges-mean">
+    <h2>What the badges mean</h2>
+    <ul>
+      <li><span class="x2-badge x2-badge--ready">Ready</span> The game's settings are finished and tested.</li>
+      <li><span class="x2-badge x2-badge--progress">In progress</span> You can play it today. Its settings are still being tuned.</li>
+      <li><span class="x2-badge x2-badge--planned">Planned</span> You can make a config for it. It starts from basic settings.</li>
+    </ul>
+    <p>These match the sections you see when you make a new config. Nothing is locked: you can pick any game.</p>
+  </section>
+
+  <section class="m2-sec" id="p-games--every-game">
+    <h2>Every game</h2>
+    {% render 'zs-exo2-games', mode: 'full' %}
+  </section>
+
+  <section class="m2-sec" id="p-games--table">
+    <h2>The table</h2>
+    <p><b>Aim curve:</b> "Measured" was measured in the game by ZeroStick. "Starter" is a starting estimate; you can measure it yourself with <a href="#p-aim-speed-match">Aim Speed Match</a>.</p>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Game</th><th>Status</th><th>Gun detection</th><th>Aim curve</th><th>Guide</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Game">Call of Duty: Black Ops II</td><td data-label="Status"><span class="x2-badge x2-badge--ready">Ready</span></td><td data-label="Gun detection">Yes</td><td data-label="Aim curve">Measured</td><td data-label="Guide"><a href="#p-games-black-ops-2">Black Ops II</a></td></tr>
+      <tr><td data-label="Game">Call of Duty: Modern Warfare 4</td><td data-label="Status"><span class="x2-badge x2-badge--ready">Ready</span></td><td data-label="Gun detection">Yes</td><td data-label="Aim curve">Measured</td><td data-label="Guide"><a href="#p-games-mw4">Modern Warfare 4</a></td></tr>
+      <tr><td data-label="Game">Call of Duty: Warzone</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">Yes</td><td data-label="Aim curve">Measured (shared with MW4)</td><td data-label="Guide"><a href="#p-games-warzone">Warzone</a></td></tr>
+      <tr><td data-label="Game">NBA 2K27</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">— (Auto green)</td><td data-label="Aim curve">—</td><td data-label="Guide"><a href="#p-games-nba-2k27">NBA 2K27</a></td></tr>
+      <tr><td data-label="Game">Call of Duty: Black Ops 7</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">Yes</td><td data-label="Aim curve">Starter</td><td data-label="Guide"><a href="#p-games-in-progress">Other games</a></td></tr>
+      <tr><td data-label="Game">Apex Legends</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">Yes</td><td data-label="Aim curve">Starter</td><td data-label="Guide"><a href="#p-games-in-progress">Other games</a></td></tr>
+      <tr><td data-label="Game">Fortnite</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">Yes</td><td data-label="Aim curve">Starter</td><td data-label="Guide"><a href="#p-games-in-progress">Other games</a></td></tr>
+      <tr><td data-label="Game">Rust</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">Yes</td><td data-label="Aim curve">Starter</td><td data-label="Guide"><a href="#p-games-in-progress">Other games</a></td></tr>
+      <tr><td data-label="Game">Battlefield 6</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">Yes</td><td data-label="Aim curve">Starter</td><td data-label="Guide"><a href="#p-games-in-progress">Other games</a></td></tr>
+      <tr><td data-label="Game">Counter-Strike 2</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">Yes</td><td data-label="Aim curve">— (PC game)</td><td data-label="Guide"><a href="#p-games-in-progress">Other games</a></td></tr>
+      <tr><td data-label="Game">ARC Raiders</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">—</td><td data-label="Aim curve">Starter</td><td data-label="Guide"><a href="#p-games-in-progress">Other games</a></td></tr>
+      <tr><td data-label="Game">PUBG: Battlegrounds</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">—</td><td data-label="Aim curve">Starter</td><td data-label="Guide"><a href="#p-games-in-progress">Other games</a></td></tr>
+      <tr><td data-label="Game">VALORANT</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">—</td><td data-label="Aim curve">Starter</td><td data-label="Guide"><a href="#p-games-in-progress">Other games</a></td></tr>
+      <tr><td data-label="Game">Tom Clancy's Rainbow Six Siege</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">—</td><td data-label="Aim curve">Starter</td><td data-label="Guide"><a href="#p-games-in-progress">Other games</a></td></tr>
+      <tr><td data-label="Game">Marvel Rivals</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">—</td><td data-label="Aim curve">Starter</td><td data-label="Guide"><a href="#p-games-in-progress">Other games</a></td></tr>
+      <tr><td data-label="Game">Overwatch</td><td data-label="Status"><span class="x2-badge x2-badge--progress">In progress</span></td><td data-label="Gun detection">—</td><td data-label="Aim curve">Starter</td><td data-label="Guide"><a href="#p-games-in-progress">Other games</a></td></tr>
+      <tr><td data-label="Game">Call of Duty: Black Ops 6, Modern Warfare III, The Finals, Marathon, Halo Infinite, Destiny 2, Grand Theft Auto V, HELLDIVERS 2, Cyberpunk 2077, Warhammer 40,000: Space Marine 2</td><td data-label="Status"><span class="x2-badge x2-badge--planned">Planned</span></td><td data-label="Gun detection">—</td><td data-label="Aim curve">Starter</td><td data-label="Guide">—</td></tr>
+      <tr><td data-label="Game">EA SPORTS FC 27, MLB The Show 25, Rocket League</td><td data-label="Status"><span class="x2-badge x2-badge--planned">Planned</span></td><td data-label="Gun detection">—</td><td data-label="Aim curve">— (remaps, Scripts and lighting)</td><td data-label="Guide">—</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="m2-sec" id="p-games--works-everywhere">
+    <h2>Works in every game</h2>
+    <p>Whatever its badge, every game gets: controller and mouse &amp; keyboard play, Mappings, Scripts and the 33 ready-made Scripts, Record script, the Anti-Recoil Lab (switched on by hand where there's no gun detection), Pass-through, Tournament Mode, lighting, and Aim Speed Match.</p>
+    <p>My game isn't listed? Pick <b>My game isn't here: start from scratch</b> when you make a config. <a href="#p-app-new-config">Make a new config</a></p>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-games-black-ops-2" data-group="Games" data-title="Call of Duty: Black Ops II" data-time="4 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Games</p>
+    <h1>Call of Duty: Black Ops II</h1>
+    <p class="m2-get">Set up Black Ops II with a measured aim curve, gun detection and the right Scripts.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--ready">Ready</span><span class="x2-badge x2-badge--plain">Measured aim curve</span><span class="x2-badge x2-badge--plain">Gun detection</span><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-games-black-ops-2--required-settings">
+    <h2>Required in-game settings</h2>
+    <p>Set these in the game before you tune your aim. The app shows the same list on the <b>Your game settings</b> sheet. <a href="#p-aim-game-settings">How to set them</a></p>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Setting (in the game)</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Setting">Look sensitivity</td><td data-label="Value">Highest</td></tr>
+      <tr><td data-label="Setting">Look inversion</td><td data-label="Value">Off</td></tr>
+      <tr><td data-label="Setting">Target assist (aim assist)</td><td data-label="Value">Your choice — the EXO works either way</td></tr>
+      <tr><td data-label="Setting">Field of view</td><td data-label="Value">Unchanged (121° across the screen, as measured); turn rates don't depend on it</td></tr>
+      <tr><td data-label="Setting">Plutonium (PC): Gamepad</td><td data-label="Value">Enabled</td></tr>
+      <tr><td data-label="Setting">Plutonium (PC): frame rate</td><td data-label="Value">120 (com_maxfps 120), vsync off</td></tr>
+    </tbody></table></div>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>The two Plutonium rows are for the PC version only. Black Ops II isn't a PS5 game.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-games-black-ops-2--aim">
+    <h2>Aim</h2>
+    <ul>
+      <li>The aim curve was measured in Black Ops II itself, so your Speed and cm/360 mean what they say.</li>
+      <li><b>Sync to game:</b> the app suggests <b>this game: 60</b>. <a href="#p-aim-smoothing-and-sync--sync-to-game">Sync to game</a></li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-games-black-ops-2--gun-detection">
+    <h2>Gun detection</h2>
+    <ul>
+      <li>The EXO reads the held gun's name from the HUD. Needs HDMI through the EXO.</li>
+      <li>The built-in gun reader frame was set for Black Ops II, so most players don't need to move it.</li>
+      <li>Give each gun its own Scripts in <b>AI Scripts</b>. <a href="#p-auto-per-gun-scripts">Per-gun Scripts</a></li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-games-black-ops-2--recommended-scripts">
+    <h2>Recommended Scripts</h2>
+    <ul>
+      <li><b>Aim hold</b> (the ready-made Aim without holding it) comes with the game pack, switched off. Switch it on if you prefer tap to aim. <a href="#p-recipes-toggle-aim">Tap to aim</a></li>
+      <li><b>Anti-recoil:</b> Black Ops II has random recoil, so the Anti-Recoil Lab offers <b>Standard pull-down</b> only. <a href="#p-recipes-simple-anti-recoil">Simple anti-recoil</a></li>
+      <li><b>Rapid fire</b> for semi-auto guns. <a href="#p-recipes-rapid-fire">Rapid fire</a></li>
+    </ul>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-games-black-ops-2--help">
+    <h2>If something's off</h2>
+    <ul>
+      <li><a href="#p-help-aim-feels-wrong">Aim feels off</a></li>
+      <li><a href="#p-help-gun-detection">Wrong gun or no gun detected</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-games-mw4" data-group="Games" data-title="Call of Duty: Modern Warfare 4" data-time="5 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Games</p>
+    <h1>Call of Duty: Modern Warfare 4</h1>
+    <p class="m2-get">Set up MW4 with a measured aim curve, fast gun detection and recoil help.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--ready">Ready</span><span class="x2-badge x2-badge--plain">Measured aim curve</span><span class="x2-badge x2-badge--plain">Gun detection</span><span class="m2-time">5 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-games-mw4--required-settings">
+    <h2>Required in-game settings</h2>
+    <p>Set these in the game, then confirm them on the app's <b>Your game settings</b> sheet. <a href="#p-aim-game-settings">How to set them</a></p>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Setting (in the game)</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Setting">Horizontal Stick Sensitivity</td><td data-label="Value">4.00 recommended. Any value works: type yours into the app.</td></tr>
+      <tr><td data-label="Setting">Vertical Stick Sensitivity</td><td data-label="Value">4.00 recommended. Any value works: type yours into the app.</td></tr>
+      <tr><td data-label="Setting">Right Stick Min</td><td data-label="Value">10</td></tr>
+      <tr><td data-label="Setting">Right Stick Max</td><td data-label="Value">100</td></tr>
+      <tr><td data-label="Setting">Aim Response Curve Type</td><td data-label="Value">Standard</td></tr>
+      <tr><td data-label="Setting">ADS Sens. Multiplier (Low Zoom)</td><td data-label="Value">1.00</td></tr>
+      <tr><td data-label="Setting">Aim Assist</td><td data-label="Value">Off</td></tr>
+      <tr><td data-label="Setting">Field of View</td><td data-label="Value">Your choice. Type it into <b>Your in-game FOV</b> (the curve was measured at 120).</td></tr>
+    </tbody></table></div>
+    <aside class="m2-call m2-call--warning"><p class="m2-call-label">Warning</p><p>FOV changes how fast MW4 turns. If the app's FOV doesn't match the game's, every turn is off. Change both together.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-games-mw4--aim">
+    <h2>Aim</h2>
+    <ul>
+      <li>The aim curve was measured in MW4 itself. Warzone uses the same measurement.</li>
+      <li><b>Sync to game:</b> the app suggests <b>this game: 120</b>. <a href="#p-aim-smoothing-and-sync--sync-to-game">Sync to game</a></li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-games-mw4--gun-detection">
+    <h2>Gun detection</h2>
+    <ul>
+      <li>The EXO reads the held gun's name from the HUD. Needs HDMI through the EXO.</li>
+      <li><b>Swaps:</b> the EXO watches the weapon slots, so a swap is caught the moment it happens. It learns your swap pair.</li>
+      <li><b>Pickups:</b> tell the gun reader frame which button you pick guns up with (and if you hold or tap it). After a pickup, the next clear read is your new gun.</li>
+      <li><b>Firing Range:</b> the gun name sits lower and further right there. Save a second frame as <b>Firing range</b>.</li>
+    </ul>
+    <p>Set it up: <a href="#p-auto-gun-detection">Automatic gun detection</a></p>
+  </section>
+
+  <section class="m2-sec" id="p-games-mw4--recommended-scripts">
+    <h2>Recommended Scripts</h2>
+    <ul>
+      <li><b>Slide cancel</b> and <b>Aim hold</b> (tap to aim) come with the game pack, switched off. Switch them on in the Scripts list if you want them.</li>
+      <li><b>Anti-Recoil Lab, Automatic:</b> marked Recommended in MW4. Do it in the Firing Range: face a lit wall with a door, a sign or lane numbers on it, and keep the moving targets out of view. <a href="#p-scripts-anti-recoil-lab--automatic">Automatic</a></li>
+      <li><b>Pull down</b> works too, with no setup. <a href="#p-recipes-simple-anti-recoil">Simple anti-recoil</a></li>
+    </ul>
+    <aside class="m2-call m2-call--important"><p class="m2-call-label">Important</p><p>Automatic and Manual recoil are new in MW4. Check the result with <b>Test it with the gun</b> before you rely on it. Follow each game's and event's rules; Tournament Mode switches every script off in one tap.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-games-mw4--help">
+    <h2>If something's off</h2>
+    <ul>
+      <li><a href="#p-help-aim-feels-wrong">Aim feels off</a></li>
+      <li><a href="#p-help-gun-detection">Wrong gun or no gun detected</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-games-warzone" data-group="Games" data-title="Call of Duty: Warzone" data-time="4 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Games</p>
+    <h1>Call of Duty: Warzone</h1>
+    <p class="m2-get">What works in Warzone today, and how to set it up.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--progress">In progress</span><span class="x2-badge x2-badge--plain">Measured aim curve</span><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-games-warzone--required-settings">
+    <h2>Required in-game settings</h2>
+    <p>Warzone uses MW4's measured aim curve, so the settings are the same. <a href="#p-aim-game-settings">How to set them</a></p>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Setting (in the game)</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Setting">Horizontal Stick Sensitivity</td><td data-label="Value">4.00 recommended. Any value works: type yours into the app.</td></tr>
+      <tr><td data-label="Setting">Vertical Stick Sensitivity</td><td data-label="Value">4.00 recommended. Any value works: type yours into the app.</td></tr>
+      <tr><td data-label="Setting">Right Stick Min</td><td data-label="Value">10</td></tr>
+      <tr><td data-label="Setting">Right Stick Max</td><td data-label="Value">100</td></tr>
+      <tr><td data-label="Setting">Aim Response Curve Type</td><td data-label="Value">Standard</td></tr>
+      <tr><td data-label="Setting">ADS Sens. Multiplier (Low Zoom)</td><td data-label="Value">1.00</td></tr>
+      <tr><td data-label="Setting">Aim Assist</td><td data-label="Value">Off</td></tr>
+      <tr><td data-label="Setting">Field of View</td><td data-label="Value">Your choice. Type it into <b>Your in-game FOV</b> (measured at 120).</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="m2-sec" id="p-games-warzone--what-works">
+    <h2>What works today</h2>
+    <ul>
+      <li><b>Aim:</b> measured curve (shared with MW4). The app suggests <b>Sync to game</b> 120.</li>
+      <li><b>Gun detection</b> <span class="x2-badge x2-badge--progress">In progress</span>: reads the held gun's name. <a href="#p-auto-gun-detection">Set it up</a></li>
+      <li><b>Plating:</b> the EXO keeps your gun while you plate up, so your Scripts don't drop out. Nothing to set.</li>
+      <li><b>Anti-Recoil Lab, Automatic:</b> available in Warzone. <a href="#p-scripts-anti-recoil-lab--automatic">Automatic</a></li>
+      <li><b>Auto ping:</b> a Warzone-only ready-made Script. Every time you shoot, it pings what you're aiming at.</li>
+      <li><b>Slide cancel</b> and <b>Aim hold</b> (tap to aim) come with the game pack, switched off.</li>
+    </ul>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-games-warzone--help">
+    <h2>If something's off</h2>
+    <ul>
+      <li><a href="#p-help-aim-feels-wrong">Aim feels off</a></li>
+      <li><a href="#p-help-gun-detection">Wrong gun or no gun detected</a></li>
+    </ul>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-games-nba-2k27" data-group="Games" data-title="NBA 2K27" data-time="2 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Games</p>
+    <h1>NBA 2K27</h1>
+    <p class="m2-get">Play NBA 2K27 with Auto green, which helps with shot timing.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--progress">In progress</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">2 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-games-nba-2k27--what-works">
+    <h2>What works today</h2>
+    <ul>
+      <li><b>Auto green:</b> the EXO reads your shot meter and lets go of shoot for you. It learns your timing and keeps learning per player build. <a href="#p-auto-nba2k27-auto-green">Set up Auto green</a></li>
+      <li>Button shooting and Pro stick shooting.</li>
+      <li>Mappings, Scripts and lighting, like every game.</li>
+    </ul>
+    <p>On NBA configs, <b>Auto green</b> replaces the AI Scripts row. Needs HDMI through the EXO.</p>
+  </section>
+
+  <section class="m2-sec" id="p-games-nba-2k27--settings">
+    <h2>In-game settings</h2>
+    <p>On <b>Settings</b> › <b>Device</b> › <b>In-game settings</b>, the app asks how you shoot in NBA 2K27. It's optional.</p>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
+  </section>
+</article>
+
+
+<article class="m2-page" id="p-games-in-progress" data-group="Games" data-title="Other In progress games" data-time="4 min">
+  <header class="m2-head">
+    <p class="m2-crumb">Games</p>
+    <h1>Other In progress games</h1>
+    <p class="m2-get">What works today in each game that's still being tuned.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--progress">In progress</span><span class="m2-time">4 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-games-in-progress--every-game">
+    <h2>What every one of these gets</h2>
+    <ul>
+      <li>A starter aim curve from published turn-speed data, and a <b>Set these in the game</b> list in the app (Counter-Strike 2 aside).</li>
+      <li>Mappings, Scripts, the 33 ready-made Scripts, Record script and Pull down anti-recoil.</li>
+      <li><a href="#p-aim-speed-match">Aim Speed Match</a> to measure the game's turn speed yourself.</li>
+    </ul>
+    <p>Set your in-game settings first, from the app's list. <a href="#p-aim-game-settings">How to set them</a></p>
+  </section>
+
+  <section class="m2-sec" id="p-games-in-progress--with-gun-detection">
+    <h2>With gun detection</h2>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Game</th><th>Gun detection reads</th><th>Also</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Game">Call of Duty: Black Ops 7</td><td data-label="Reads">Gun name</td><td data-label="Also">Slide cancel and Aim hold Scripts in the pack (off by default)</td></tr>
+      <tr><td data-label="Game">Apex Legends</td><td data-label="Reads">Gun name (frame the left name only)</td><td data-label="Also">Aim hold (tap to aim) Script in the pack (off by default)</td></tr>
+      <tr><td data-label="Game">Fortnite</td><td data-label="Reads">Hotbar icon</td><td data-label="Also">Aim hold (tap to aim) Script in the pack (off by default)</td></tr>
+      <tr><td data-label="Game">Rust</td><td data-label="Reads">Hotbar icon</td><td data-label="Also">Aim hold (tap to aim) Script in the pack (off by default)</td></tr>
+      <tr><td data-label="Game">Battlefield 6</td><td data-label="Reads">Gun name, after a swap</td><td data-label="Also">—</td></tr>
+      <tr><td data-label="Game">Counter-Strike 2</td><td data-label="Reads">Weapon panel icon</td><td data-label="Also">A PC game. Its config uses Native Mouse &amp; Keyboard, which is in final testing. <a href="#p-aim-native-kbm">Native Mouse &amp; Keyboard</a></td></tr>
+    </tbody></table></div>
+    <p><a href="#p-auto-gun-detection">Set up gun detection</a></p>
+  </section>
+
+  <section class="m2-sec" id="p-games-in-progress--without-gun-detection">
+    <h2>Without gun detection (yet)</h2>
+    <p>These games have aim, Mappings and Scripts. Switch your Scripts on and off yourself.</p>
+    <div class="m2-table"><table class="m2-settings"><thead><tr><th>Game</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td data-label="Game">ARC Raiders</td><td data-label="Notes">Weapon list to organise Scripts</td></tr>
+      <tr><td data-label="Game">PUBG: Battlegrounds</td><td data-label="Notes">Weapon list; Aim hold (tap to aim) Script in the pack</td></tr>
+      <tr><td data-label="Game">VALORANT</td><td data-label="Notes">Agent list to organise Scripts</td></tr>
+      <tr><td data-label="Game">Tom Clancy's Rainbow Six Siege</td><td data-label="Notes">Operator and gun lists to organise Scripts; Aim hold (tap to aim) Script in the pack</td></tr>
+      <tr><td data-label="Game">Marvel Rivals</td><td data-label="Notes">Hero list to organise Scripts</td></tr>
+      <tr><td data-label="Game">Overwatch</td><td data-label="Notes">Hero list to organise Scripts</td></tr>
+    </tbody></table></div>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Hero, agent and operator lists only help you organise Scripts. Nothing detects which one you're playing.</p></aside>
+  </section>
+</article>
