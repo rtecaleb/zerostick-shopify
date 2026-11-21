@@ -126,12 +126,18 @@
   if (hasIO && links.length) {
     var byId = {};
     links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    // "inView" holds the sections crossing a thin line near the middle of the
+    // screen. The link of that section lights up; between sections (e.g. the
+    // pre-order band, which has no link) nothing is lit.
+    var inView = {};
     var navIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        links.forEach(function (a) { a.classList.remove('is-on'); a.removeAttribute('aria-current'); });
-        var a = byId[e.target.id];
-        if (a) { a.classList.add('is-on'); a.setAttribute('aria-current', 'true'); }
+        if (e.isIntersecting) inView[e.target.id] = true; else delete inView[e.target.id];
+      });
+      links.forEach(function (a) {
+        var on = !!inView[a.getAttribute('href').slice(1)];
+        a.classList.toggle('is-on', on);
+        if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
       });
     }, { rootMargin: '-40% 0px -55% 0px' });
     Object.keys(byId).forEach(function (id) {
@@ -171,6 +177,27 @@
     }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
     steps.forEach(function (s) { storyIO.observe(s); });
   }
+
+  /* ---------- 4b. 3D model colour fix ---------- */
+  // The current exo2-case.glb stores its colours as screen (sRGB) values,
+  // but 3D files are supposed to store them "linear". Result: the black lid
+  // (#1D1E22) shows up mid-grey. Until the GLB is re-exported, we convert the
+  // colours once the model has loaded. Safety check: only if the lid is still
+  // too light (a fixed GLB has a lid value near 0.012, so this then does
+  // nothing and can be deleted).
+  function toLinear(c) { return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+  root.querySelectorAll('model-viewer').forEach(function (mv) {
+    mv.addEventListener('load', function () {
+      var mats = mv.model && mv.model.materials;
+      if (!mats) return;
+      var lid = mats.filter(function (m) { return m.name === 'lid_mat'; })[0];
+      if (!lid || lid.pbrMetallicRoughness.baseColorFactor[0] < 0.05) return;
+      mats.forEach(function (m) {
+        var f = m.pbrMetallicRoughness.baseColorFactor;
+        m.pbrMetallicRoughness.setBaseColorFactor([toLinear(f[0]), toLinear(f[1]), toLinear(f[2]), f[3]]);
+      });
+    }, { once: true });
+  });
 
   /* ---------- 5. numbers count up ---------- */
   // The final number is already in the HTML; we only animate towards it.

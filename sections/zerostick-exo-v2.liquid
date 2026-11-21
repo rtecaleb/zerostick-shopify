@@ -209,20 +209,20 @@
           <path class="pl pl--hdmi" pathLength="1" style="--ld:1.4s" d="M960 308 C960 400 700 400 620 340"/>
           <path class="pl pl--hdmi" pathLength="1" style="--ld:1.7s" d="M520 340 C520 520 700 518 840 518"/>
           <text class="tag tag--usb" x="360" y="248" text-anchor="middle">USB</text>
-          <text class="tag tag--usb" x="760" y="248" text-anchor="middle">USB · PLAYS AS A CONTROLLER</text>
+          <text class="tag tag--usb" x="760" y="248" text-anchor="middle">USB</text>
           <text class="tag tag--bt" x="576" y="143">BLUETOOTH</text>
           <text class="tag tag--hdmi" x="830" y="368" text-anchor="middle">HDMI IN</text>
           <text class="tag tag--hdmi" x="700" y="548" text-anchor="middle">HDMI OUT</text>
 
           <g class="node" style="--nd:0s"><rect x="40" y="60" width="240" height="96" rx="20"/>
             <use href="#x2l-i-pad" class="ic" x="62" y="88" width="40" height="40"/>
-            <text x="118" y="102" font-size="19">Controller</text><text class="sub" x="118" y="126" font-size="14">PlayStation, Xbox, 8BitDo…</text></g>
+            <text x="118" y="102" font-size="19">Controller</text><text class="sub" x="118" y="126" font-size="13">PlayStation, Xbox and more</text></g>
           <g class="node" style="--nd:.1s"><rect x="40" y="212" width="240" height="96" rx="20"/>
             <use href="#x2l-i-mouse" class="ic" x="62" y="240" width="40" height="40"/>
-            <text x="118" y="254" font-size="19">Mouse</text><text class="sub" x="118" y="278" font-size="14">Wired or wireless dongle</text></g>
+            <text x="118" y="254" font-size="19">Mouse</text><text class="sub" x="118" y="278" font-size="13">Wired or wireless dongle</text></g>
           <g class="node" style="--nd:.2s"><rect x="40" y="364" width="240" height="96" rx="20"/>
             <use href="#x2l-i-kb" class="ic" x="62" y="392" width="40" height="40"/>
-            <text x="118" y="406" font-size="19">Keyboard</text><text class="sub" x="118" y="430" font-size="14">Any USB keyboard</text></g>
+            <text x="118" y="406" font-size="19">Keyboard</text><text class="sub" x="118" y="430" font-size="13">Any USB keyboard</text></g>
           <g class="node exo" style="--nd:.5s">
             <rect class="halo" x="440" y="180" width="240" height="160" rx="30"/>
             <rect class="body" x="440" y="180" width="240" height="160" rx="30" fill="url(#x2l-exo-grad)"/>
@@ -234,10 +234,10 @@
             <text x="530" y="50" font-size="17">ZeroStick app</text><text class="sub" x="530" y="72" font-size="13">iPhone + Android</text></g>
           <g class="node" style="--nd:.8s"><rect x="840" y="212" width="240" height="96" rx="20"/>
             <use href="#x2l-i-console" class="ic" x="862" y="240" width="40" height="40"/>
-            <text x="918" y="254" font-size="19">PS5 · Xbox · PC</text><text class="sub" x="918" y="278" font-size="14">Your console or PC</text></g>
+            <text x="918" y="254" font-size="19">PS5 · Xbox · PC</text><text class="sub" x="918" y="278" font-size="13">Plays as a controller</text></g>
           <g class="node" style="--nd:1.6s"><rect x="840" y="470" width="240" height="96" rx="20"/>
             <use href="#x2l-i-tv" class="ic" x="862" y="498" width="40" height="40"/>
-            <text x="918" y="512" font-size="19">TV or monitor</text><text class="sub" x="918" y="536" font-size="14">Picture passes through</text></g>
+            <text x="918" y="512" font-size="19">TV or monitor</text><text class="sub" x="918" y="536" font-size="13">Picture passes through</text></g>
         </svg>
 
         {%- comment -%} --- tall diagram (phones) --- {%- endcomment -%}
@@ -530,7 +530,7 @@
         <article class="x2-card x2-card--glow b-wide b-tall" data-x2-glow data-reveal>
           <h3 class="x2-h3">Per-game aim curves</h3>
           <p>Every game pack carries the game's stick curve. For Black Ops II, MW4 and Warzone it's a <b style="color:var(--x-ink)">measured aim curve</b>, measured in-game by the ZeroStick team. Other games start from a solid estimate, and you can measure any game yourself with Calibrate in about eight minutes.</p>
-          <div class="x2l-crop" style="--oy:15">
+          <div class="x2l-crop" style="--oy:21;--cw:34rem">
             <img src="{{ 'exo2-app-aim-advanced.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="ZeroStick app: the hip aim curve editor, turn speed against hand speed">
           </div>
         </article>
@@ -546,7 +546,6 @@
         <article class="x2-card x2-card--glow b-half" data-x2-glow data-reveal>
           <h3 class="x2-h3">Sync to game</h3>
           <p>Matches the EXO's aim updates to your game's frame rate for steadier tracking.</p>
-          <ul class="x2l-segs" aria-label="Sync to game options"><li class="is-on">60</li><li>120</li><li>Custom</li><li>Off</li></ul>
           <div class="x2l-crop" style="--oy:21;min-height:22rem">
             <img src="{{ 'exo2-app-aim-advanced-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="ZeroStick app: Sync to game, this game 120, with 60, 120, Custom and Off">
           </div>
@@ -554,8 +553,10 @@
         <article class="x2-card x2-card--glow b-half" data-x2-glow data-reveal style="--d:.08s">
           <h3 class="x2-h3">Smoothing and mouse setup</h3>
           <p>Disabled, Light, Balanced, Heavy or Custom smoothing. The app finds your mouse's DPI and checks its polling rate, so your aim feels right from the first match.</p>
-          <ul class="x2l-segs" aria-label="Smoothing options"><li>Disabled</li><li>Light</li><li class="is-on">Balanced</li><li>Heavy</li><li>Custom</li></ul>
           <p class="x2l-note">Controller player? Tune each stick's response curve, deadzones and hair triggers, or leave the pad untouched.</p>
+          <div class="x2l-crop" style="--oy:24;min-height:22rem">
+            <img src="{{ 'exo2-app-aim-basic.webp' | asset_url }}" width="786" height="1704" loading="lazy" decoding="async" alt="ZeroStick app: mouse Speed with its cm/360 and the Smoothing setting">
+          </div>
         </article>
       </div>
     </div>
@@ -654,7 +655,8 @@
     b) The owner-approved 3D port viewer (hover or tap a dot).
     c) Specs and in the box.
   {%- endcomment -%}
-  <section class="x2-sec" id="hardware" style="padding-bottom:0">
+  <div id="hardware">
+  <section class="x2-sec" style="padding-bottom:0">
     <div class="x2-wrap x2-center">
       <p class="x2-eyebrow" data-reveal>Hardware</p>
       <h2 class="x2-h2" data-reveal style="--d:.06s">Small box.<br><span class="x2-grad">Serious inside.</span></h2>
@@ -735,6 +737,8 @@
       </div>
     </div>
   </section>
+
+  </div>{%- comment -%} /#hardware {%- endcomment -%}
 
   {%- comment -%} ===== 9. SUPPORTED GAMES (teaser from the one shared list) ===== {%- endcomment -%}
   <section class="x2-sec" id="games">

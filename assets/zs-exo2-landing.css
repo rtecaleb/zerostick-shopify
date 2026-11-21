@@ -71,8 +71,8 @@ body:has(.x2l) .site-header{ position:relative; }
 }
 
 /* ---------- 1. hero ---------- */
-.x2l-hero{ position:relative; overflow:clip; padding:7rem 0 4rem;
-  min-height:calc(100vh - var(--x2l-top)); display:flex; align-items:center; }
+.x2l-hero{ position:relative; overflow:clip; padding:4.8rem 0 6.4rem;
+  min-height:max(56rem,calc(100vh - 21rem)); display:flex; align-items:center; }
 .x2l-hero-grid{ display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:2rem; align-items:center; }
 .x2l-hero .x2-h1{ font-size:clamp(4.6rem,7vw,9.6rem); }
 .x2l-hero .x2-lede{ max-width:52rem; }
@@ -118,7 +118,7 @@ body:has(.x2l) .site-header{ position:relative; }
 .x2l-chip i{ width:.8rem; height:.8rem; border-radius:50%; background:var(--c,var(--x-blue2)); box-shadow:0 0 1rem var(--c,var(--x-blue2)); }
 .x2l-chip--a{ left:2%; top:14%; }
 .x2l-chip--b{ right:0; top:24%; --fd:-2.3s; --c:var(--x-cyan); }
-.x2l-chip--c{ left:8%; bottom:16%; --fd:-4.1s; --c:var(--x-green); }
+.x2l-chip--c{ left:4%; bottom:4%; --fd:-4.1s; --c:var(--x-green); }
 @keyframes x2l-float{ 0%,100%{ transform:translate3d(0,0,0); } 50%{ transform:translate3d(0,-1.2rem,0); } }
 .x2l-scrollcue{ position:absolute; left:50%; bottom:2.4rem; translate:-50% 0; z-index:2; width:2.6rem; height:4.2rem;
   border-radius:99rem; border:2px solid var(--x-line2); opacity:calc(1 - var(--hp,0) * 4); }
@@ -212,7 +212,7 @@ body:has(.x2l) .site-header{ position:relative; }
 .x2l .x2-story-pin .x2-phone{ width:min(32rem,calc((100vh - var(--x2l-top) - 9rem) * .4613)); }
 .x2l .x2-phone-screen{ background:var(--x2l-app); }
 /* shots shorter than a full screen: show the whole width, fade the bottom */
-.x2l .x2-phone-screen img.x2l-short, .x2l img.x2l-short{ object-fit:contain; object-position:top;
+.x2l .x2-phone-screen img.x2l-short, .x2l img.x2l-short{ object-fit:contain; object-position:50% 4.6rem;
   -webkit-mask-image:linear-gradient(#000 82%,transparent); mask-image:linear-gradient(#000 82%,transparent); }
 /* coloured glow behind the phone; colour follows the active step (data-active) */
 .x2l-pinglow{ position:absolute; left:50%; top:50%; width:60rem; height:60rem; translate:-50% -50%; border-radius:50%;
@@ -234,16 +234,17 @@ body:has(.x2l) .site-header{ position:relative; }
 .x2l-gun{ background:radial-gradient(80rem 40rem at 85% 30%,rgba(246,185,76,.10),transparent 60%),
   radial-gradient(60rem 40rem at 10% 90%,rgba(255,93,108,.07),transparent 60%); }
 .x2l-gun .x2-eyebrow{ color:var(--x-amber); }
-.x2l-gamelist{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; margin:0 0 3.2rem; padding:0; list-style:none; }
+.x2l-gamelist{ display:grid; grid-template-columns:1fr; gap:.8rem; margin:0 0 3.2rem; padding:0; list-style:none; }
 .x2l-gamelist li{ display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:1.1rem 1.4rem;
   border-radius:1.4rem; border:1px solid var(--x-line); background:rgba(255,255,255,.025); font-size:1.4rem; font-weight:700; }
 .x2l-gamelist li.is-ready{ border-color:rgba(61,220,151,.3); background:rgba(61,220,151,.06); }
 .x2l-gamelist .x2-badge{ font-size:1.1rem; padding:.2rem .8rem; }
-@media (max-width:599px){ .x2l-gamelist{ grid-template-columns:1fr; } }
+@media (min-width:1200px){ .x2l-gamelist{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
 /* the swap screenshot on a "scanner" card */
 .x2l-scan{ position:relative; max-width:44rem; margin:0 auto; padding:1.2rem; border-radius:3rem;
   border:1px solid rgba(246,185,76,.3); background:linear-gradient(180deg,rgba(246,185,76,.08),rgba(255,255,255,.02));
   box-shadow:0 4rem 10rem -3rem rgba(0,0,0,.9), 0 0 8rem -3rem rgba(246,185,76,.4); overflow:hidden; }
+.x2l-scan img.x2l-short{ object-position:top; }
 .x2l-scan img{ display:block; width:100%; height:auto; border-radius:2rem; }
 .x2l-scan::after{ content:""; position:absolute; left:0; right:0; top:0; height:30%; pointer-events:none;
   background:linear-gradient(180deg,transparent,rgba(246,185,76,.16) 85%,rgba(255,214,140,.7) 100%);
@@ -274,20 +275,20 @@ body:has(.x2l) .site-header{ position:relative; }
 .x2l-crop{ position:relative; margin:2.8rem -2.8rem -2.8rem; flex:1 1 auto; min-height:28rem; overflow:hidden; }
 /* the screenshot is shown at phone width, centred, slid up by --oy percent of
    its own height so the interesting part sits in the window */
-.x2l-crop img{ position:absolute; left:50%; top:0; width:min(calc(100% - 4.8rem),38rem); height:auto;
+.x2l-crop img{ position:absolute; left:50%; top:0; width:min(calc(100% - 4.8rem),var(--cw,38rem)); height:auto;
   border-radius:2.2rem 2.2rem 0 0; border:1px solid var(--x-line2); border-bottom:0;
   transform:translate3d(-50%,calc(var(--oy,0) * -1%),0); box-shadow:0 -2rem 6rem -2rem rgba(41,141,223,.35); }
-.x2l-crop::after{ content:""; position:absolute; inset:auto 0 0; height:40%; background:linear-gradient(transparent,var(--x-card)); pointer-events:none; }
+.x2l-crop::after{ content:""; position:absolute; inset:auto 0 0; height:28%; background:linear-gradient(transparent,var(--x-card)); pointer-events:none; }
 .x2l-segs{ display:flex; flex-wrap:wrap; gap:.6rem; margin:1.6rem 0 0; padding:0; list-style:none; }
-.x2l-segs li{ padding:.6rem 1.2rem; border-radius:99rem; font-size:1.3rem; font-weight:700; border:1px solid var(--x-line2); color:var(--x-soft); }
-.x2l-segs li.is-on{ background:var(--x-blue); border-color:var(--x-blue); color:#fff; }
+.x2l-segs li{ padding:.4rem 1rem; border-radius:.8rem; font-size:1.25rem; font-weight:600; background:rgba(255,255,255,.05);
+  border:1px solid var(--x-line); color:var(--x-soft); }
 .x2l-note{ margin:1.6rem 0 0 !important; font-size:1.3rem; color:var(--x-mute) !important; }
 
 /* ---------- 6. scripts ---------- */
 .x2l-phones{ position:relative; height:62rem; }
-.x2l-phones .x2-phone{ position:absolute; width:min(27rem,46vw); margin:0; }
+.x2l-phones .x2-phone{ position:absolute; width:min(26rem,40vw); margin:0; }
 /* back phone drifts slower than the front one = depth (driven by shared --p) */
-.x2l-phones .p-back{ left:4%; top:2rem; transform:translate3d(0,calc((var(--p,.5) - .5) * 6rem),0) rotate(-6deg); opacity:.85; }
+.x2l-phones .p-back{ left:6%; top:2rem; transform:translate3d(0,calc((var(--p,.5) - .5) * 6rem),0) rotate(-6deg); opacity:.85; }
 .x2l-phones .p-front{ right:4%; top:6rem; transform:translate3d(0,calc((var(--p,.5) - .5) * -10rem),0) rotate(4deg); z-index:2; }
 .x2l-phones .x2-phone-screen img{ opacity:1; transform:none; }
 @media (max-width:989px){ .x2l-phones{ order:2; } }
@@ -354,6 +355,12 @@ body:has(.x2l) .site-header{ position:relative; }
   border-bottom:2px solid var(--x-green); transform:rotate(-45deg); }
 .x2l-box .need li::before{ width:1.2rem; height:1.2rem; border:2px solid var(--x-amber); border-radius:50%; transform:none; top:.35em; }
 .x2l-ports-wrap{ margin:6.4rem 0 0; }
+/* PORT DOTS FIX: model-viewer marks a dot that faces the camera with the
+   attribute data-visible. The shared CSS hides dots until they have
+   "visible" (no data-), which never happens, so every dot stayed invisible.
+   Show/hide them on data-visible instead (reported to the shared-CSS owner). */
+.x2l .x2-hot:not([visible]){ opacity:1; pointer-events:auto; }
+.x2l .x2-hot:not([data-visible]){ opacity:0; pointer-events:none; }
 /* the shared port poster has dark label text, so give it a light backdrop until the 3D loads */
 .x2l .x2-stage--ports{ border-radius:2.4rem; background:radial-gradient(circle at 50% 45%,#e9edf3,#b7c0cc 70%,#8c97a6); }
 .x2l .x2-stage--ports::before{ display:none; }
