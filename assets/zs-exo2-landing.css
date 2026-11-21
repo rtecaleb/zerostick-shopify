@@ -140,7 +140,7 @@ body:has(.x2l) .site-header{ position:relative; }
   .x2l-hero .x2-h1{ font-size:clamp(4rem,12vw,5.6rem); }
   .x2l-hero{ padding-top:2.4rem; }
   .x2l-hero .x2-btns .x2-btn{ flex:1 1 0; padding:0 1.6rem; }
-  .x2 .x2-card{ padding:2.2rem; }
+  .x2l .x2-card{ padding:2.2rem; }
   .x2l-crop{ margin:2.4rem -2.2rem -2.2rem; }
   .x2l-chip{ font-size:1.15rem; padding:.7rem 1rem; }
   .x2l-chip--a{ left:0; top:6%; }
