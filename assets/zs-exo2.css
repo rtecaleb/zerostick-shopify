@@ -339,7 +339,7 @@ html:has(.x2), html:has(.x2) body{ overflow-x:clip; }
 }
 /* Phones: words don't fit in the bar next to the name and Pre-order, so the
    quick links become three round 40px icon buttons (screen readers still
-   read the word). The hero right below repeats them with full labels. */
+   read the word). The hero just below repeats them with full labels. */
 @media (max-width:479px){
   .x2l .x2l-nav .x2-wrap{ gap:.8rem; }
   .x2l .x2l-nav-name{ font-size:1.4rem; }
