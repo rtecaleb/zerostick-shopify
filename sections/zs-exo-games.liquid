@@ -43,6 +43,16 @@
   # The Discord invite link is not known yet. Until Caleb pastes the real
   # invite into the section setting, this placeholder anchor is used.
   assign discord_url = section.settings.discord_url | default: '#discord-invite-placeholder'
+  # Discord: only a permanent invite (https://discord.gg/... or
+  # https://discord.com/invite/...) counts. Until one is pasted in, every
+  # Discord button/link on this page is hidden so nobody hits a dead link.
+  assign discord_ready = false
+  assign discord_start = discord_url | slice: 0, 8
+  if discord_start == 'https://'
+    if discord_url contains 'discord.gg/' or discord_url contains 'discord.com/invite/'
+      assign discord_ready = true
+    endif
+  endif
   assign manual_url = section.settings.manual_url
   assign sid = section.id
 -%}
@@ -532,7 +542,7 @@
           <p>Tell us what you play. Requests help us decide which games get worked on next.</p>
           <div class="x2-btns">
             {%- comment -%} discord_url: paste the real Discord invite in the section settings {%- endcomment -%}
-            <a class="x2-btn x2-btn--discord" href="{{ discord_url | escape }}"{% unless discord_url contains '#' %} target="_blank" rel="noopener"{% endunless %}>Ask on Discord</a>
+            {%- if discord_ready -%}<a class="x2-btn x2-btn--discord" href="{{ discord_url | escape }}" target="_blank" rel="noopener">Ask on Discord</a>{%- endif -%}
             <a class="x2-btn" href="mailto:caleb@zerostickgaming.com?subject=Game%20request">Email us</a>
           </div>
           <p class="x2-fine">Or write to <a href="mailto:caleb@zerostickgaming.com">caleb@zerostickgaming.com</a>.</p>

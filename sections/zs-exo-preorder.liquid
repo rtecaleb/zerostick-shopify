@@ -29,6 +29,17 @@
 
 {%- liquid
   assign current = product.selected_or_first_available_variant
+  assign discord_url = section.settings.discord_url | default: '#discord-invite-placeholder'
+  # Discord: only a permanent invite (https://discord.gg/... or
+  # https://discord.com/invite/...) counts. Until one is pasted in, every
+  # Discord button/link on this page is hidden so nobody hits a dead link.
+  assign discord_ready = false
+  assign discord_start = discord_url | slice: 0, 8
+  if discord_start == 'https://'
+    if discord_url contains 'discord.gg/' or discord_url contains 'discord.com/invite/'
+      assign discord_ready = true
+    endif
+  endif
   assign ship_date = section.settings.ship_date
   assign ship_line = 'Ships ' | append: ship_date | append: '. If that date changes, we’ll email you and you can cancel for a full refund.'
   assign fcc_text = 'This device has not been authorized as required by the rules of the Federal Communications Commission. This device is not, and may not be, offered for sale or lease, or sold or leased, until authorization is obtained.'
@@ -208,9 +219,11 @@
       <div class="xp-ask">
         <div class="xp-ask-top">
           <p>Questions before you pre-order?<small>We answer every message. Email {{ section.settings.support_email }}</small></p>
+          {%- if discord_ready -%}
           <div class="x2-btns">
-            <a class="x2-btn x2-btn--discord" href="{{ section.settings.discord_url }}" target="_blank" rel="noopener">Join the ZeroStick Discord</a>
+            <a class="x2-btn x2-btn--discord" href="{{ discord_url }}" target="_blank" rel="noopener">Join the ZeroStick Discord</a>
           </div>
+          {%- endif -%}
         </div>
         {%- form 'contact', id: 'xp-contact', class: 'xp-form-wrap' -%}
           {%- assign open_form = false -%}

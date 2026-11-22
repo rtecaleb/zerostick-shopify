@@ -32,6 +32,17 @@
   if p == blank
     assign p = all_products[section.settings.product_handle]
   endif
+  # Discord: only a permanent invite (https://discord.gg/... or
+  # https://discord.com/invite/...) counts. Until one is pasted in, the
+  # Join Discord button is hidden so nobody hits a dead link.
+  assign discord_url = section.settings.discord_url | default: '#discord-invite-placeholder'
+  assign discord_ready = false
+  assign discord_start = discord_url | slice: 0, 8
+  if discord_start == 'https://'
+    if discord_url contains 'discord.gg/' or discord_url contains 'discord.com/invite/'
+      assign discord_ready = true
+    endif
+  endif
 -%}
 
 {{ 'zs-exo2.css' | asset_url | stylesheet_tag }}
@@ -114,7 +125,7 @@
       <div class="x2-btns x2-quick">
         <a class="x2-btn x2-btn--primary x2-btn--sm" href="{{ section.settings.preorder_url | default: '#buy' }}">Pre-order</a>
         <a class="x2-btn x2-btn--sm" href="{{ section.settings.contact_url | default: '/pages/contact' }}"><svg aria-hidden="true"><use href="#h3d-i-mail"/></svg>Contact</a>
-        <a class="x2-btn x2-btn--sm" href="{{ section.settings.discord_url | default: '#discord-invite-placeholder' }}" rel="noopener"><svg aria-hidden="true"><use href="#h3d-i-chat"/></svg>Join Discord</a>
+        {%- if discord_ready -%}<a class="x2-btn x2-btn--sm" href="{{ discord_url }}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#h3d-i-chat"/></svg>Join Discord</a>{%- endif -%}
         <a class="x2-btn x2-btn--sm" href="{{ section.settings.manual_url | default: '/pages/exo-manual' }}"><svg aria-hidden="true"><use href="#h3d-i-book"/></svg>Manual</a>
       </div>
     </div>

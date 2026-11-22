@@ -43,6 +43,31 @@
   assign contact_url = section.settings.contact_url | default: '/pages/contact'
   # The Discord invite isn't known yet: the default is a placeholder anchor.
   assign discord_url = section.settings.discord_url | default: '#discord-invite-placeholder'
+  # Discord: only a permanent invite (https://discord.gg/... or
+  # https://discord.com/invite/...) counts. Until one is pasted in, every
+  # Discord button/link on this page is hidden so nobody hits a dead link.
+  assign discord_ready = false
+  assign discord_start = discord_url | slice: 0, 8
+  if discord_start == 'https://'
+    if discord_url contains 'discord.gg/' or discord_url contains 'discord.com/invite/'
+      assign discord_ready = true
+    endif
+  endif
+  # Per-version pre-order links: open the product page with that version
+  # already picked (?variant=id), so "PS5 version" really adds the PS5 one.
+  assign preorder_xbox_url = preorder_url
+  assign preorder_ps5_url = preorder_url
+  assign exo_product = all_products['zerostick-exo']
+  unless preorder_url contains '?' or preorder_url contains '#'
+    for v in exo_product.variants
+      assign vt = v.title | downcase
+      if vt contains 'ps5' or vt contains 'playstation'
+        assign preorder_ps5_url = preorder_url | append: '?variant=' | append: v.id
+      elsif vt contains 'xbox'
+        assign preorder_xbox_url = preorder_url | append: '?variant=' | append: v.id
+      endif
+    endfor
+  endunless
   # App store links aren't known yet. While a link still starts with "#"
   # (a placeholder) its button is hidden, so customers never hit a dead link.
   assign app_store_url = section.settings.app_store_url | default: '#app-store-placeholder'
@@ -111,7 +136,7 @@
       {%- endcomment -%}
       <ul class="x2-navq" aria-label="Help links">
         <li><a href="{{ contact_url }}" title="Contact"><svg aria-hidden="true"><use href="#x2l-i-mail"/></svg><span>Contact</span></a></li>
-        <li><a href="{{ discord_url }}" rel="noopener" title="Join Discord"><svg aria-hidden="true"><use href="#x2l-i-chat"/></svg><span>Discord</span></a></li>
+        {%- if discord_ready -%}<li><a href="{{ discord_url }}" target="_blank" rel="noopener" title="Join Discord"><svg aria-hidden="true"><use href="#x2l-i-chat"/></svg><span>Discord</span></a></li>{%- endif -%}
         <li><a href="{{ manual_url }}" title="Manual"><svg aria-hidden="true"><use href="#x2l-i-book"/></svg><span>Manual</span></a></li>
       </ul>
       <a class="x2-btn x2-btn--primary" href="{{ preorder_url }}">Pre-order</a>
@@ -143,7 +168,7 @@
           {%- comment -%} Second row: help links (secondary style). Discord reads the discord_url setting. {%- endcomment -%}
           <div class="x2-btns x2-quick" data-x2l-in style="--d:.31s">
             <a class="x2-btn x2-btn--sm" href="{{ contact_url }}"><svg aria-hidden="true"><use href="#x2l-i-mail"/></svg>Contact</a>
-            <a class="x2-btn x2-btn--sm" href="{{ discord_url }}" rel="noopener"><svg aria-hidden="true"><use href="#x2l-i-chat"/></svg>Join Discord</a>
+            {%- if discord_ready -%}<a class="x2-btn x2-btn--sm" href="{{ discord_url }}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#x2l-i-chat"/></svg>Join Discord</a>{%- endif -%}
             <a class="x2-btn x2-btn--sm" href="{{ manual_url }}"><svg aria-hidden="true"><use href="#x2l-i-book"/></svg>Manual</a>
           </div>
           <ul class="x2l-trust" data-x2l-in style="--d:.34s">
@@ -825,7 +850,7 @@
               <li>Plug your own genuine Xbox controller into AUTH</li>
               <li>HDMI cable, power cable and braided controller cable</li>
             </ul>
-            <a class="x2-btn x2-btn--primary x2-btn--lg" href="{{ preorder_url }}">Pre-order Xbox version</a>
+            <a class="x2-btn x2-btn--primary x2-btn--lg" href="{{ preorder_xbox_url }}">Pre-order Xbox version</a>
           </div>
           <div class="x2l-ver">
             <h3>PS5 version</h3>
@@ -835,7 +860,7 @@
               <li>Includes the PS5 auth dongle</li>
               <li>HDMI cable, power cable and braided controller cable</li>
             </ul>
-            <a class="x2-btn x2-btn--primary x2-btn--lg" href="{{ preorder_url }}">Pre-order PS5 version</a>
+            <a class="x2-btn x2-btn--primary x2-btn--lg" href="{{ preorder_ps5_url }}">Pre-order PS5 version</a>
           </div>
         </div>
         <p class="x2l-ship">{{ ship_line }}</p>
@@ -844,7 +869,7 @@
         {%- endif -%}
         <div class="x2l-help">
           {%- comment -%} discord_url defaults to a placeholder until the real invite link is set in the theme editor. {%- endcomment -%}
-          <a class="x2-btn x2-btn--discord" href="{{ discord_url }}" rel="noopener">Join the ZeroStick Discord</a>
+          {%- if discord_ready -%}<a class="x2-btn x2-btn--discord" href="{{ discord_url }}" target="_blank" rel="noopener">Join the ZeroStick Discord</a>{%- endif -%}
           <a class="x2-link" href="mailto:caleb@zerostickgaming.com">Questions? caleb@zerostickgaming.com</a>
         </div>
       </div>
@@ -878,7 +903,7 @@
         <details data-reveal><summary>When does it ship, and can I cancel?</summary>
           <div class="x2-faq-a"><p>{{ ship_line }}</p></div></details>
         <details data-reveal><summary>Where can I get help?</summary>
-          <div class="x2-faq-a"><p>Read the <a href="{{ manual_url }}">ZeroStick EXO manual</a>, join the <a href="{{ discord_url }}" rel="noopener">ZeroStick Discord</a>, or email <a href="mailto:caleb@zerostickgaming.com">caleb@zerostickgaming.com</a>.</p></div></details>
+          <div class="x2-faq-a"><p>Read the <a href="{{ manual_url }}">ZeroStick EXO manual</a>,{% if discord_ready %} join the <a href="{{ discord_url }}" target="_blank" rel="noopener">ZeroStick Discord</a>,{% endif %} or email <a href="mailto:caleb@zerostickgaming.com">caleb@zerostickgaming.com</a>.</p></div></details>
       </div>
 
       <div class="x2-fine x2l-fine">
