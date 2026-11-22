@@ -14,29 +14,9 @@
     <h1>ZeroStick EXO Manual</h1>
   </header>
 
-  <div class="m2-hero">
-    <div>
-      <p class="m2-hero-kicker">ZeroStick EXO Manual</p>
-      <h1 class="x2-grad">Set it up. Tune it. Fix it fast.</h1>
-      <p class="m2-get">Everything you need for your ZeroStick EXO, written for the phone in your hand.</p>
-      <button type="button" class="m2-homesearch" data-m2-open="search" aria-label="Search the manual">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
-        <span>Search: pair, sens, turbo, PS5…</span>
-        <kbd class="m2-kbd">/</kbd>
-      </button>
-      <p class="m2-popular"><span>Popular:</span>
-        <a href="#p-start-pair-your-phone">Pair your phone</a>
-        <a href="#p-app-passthrough">Pass-through</a>
-        <a href="#p-app-new-config">New config</a>
-        <a href="#p-help-preorder">Pre-order</a>
-      </p>
-    </div>
-    <div class="m2-hero-art">{% render 'zs-exo2-visual', view: 'hero', loading: 'eager' %}</div>
-  </div>
-
   <section class="m2-sec m2-pop" id="p-home--guides" aria-labelledby="m2-pop-h">
     <div class="m2-pop-head">
-      <h2 id="m2-pop-h">Popular guides</h2>
+      <div><p class="m2-hero-kicker">ZeroStick EXO Manual</p><h2 id="m2-pop-h">Popular guides</h2></div>
       <label class="m2-pop-filter"><span class="m2-vh">Filter the guides</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
         <input type="search" placeholder="Filter guides: recoil, pair, sync…" data-m2-popfilter autocomplete="off"></label>
@@ -61,6 +41,26 @@
     </div>
     <p class="m2-pop-none" data-m2-popnone hidden>No guide matches. Try the full <button type="button" class="m2-linkbtn" data-m2-open="search">manual search</button>.</p>
   </section>
+
+  <div class="m2-hero">
+    <div>
+      <p class="m2-hero-kicker">ZeroStick EXO Manual</p>
+      <h1 class="x2-grad">Set it up. Tune it. Fix it fast.</h1>
+      <p class="m2-get">Everything you need for your ZeroStick EXO, written for the phone in your hand.</p>
+      <button type="button" class="m2-homesearch" data-m2-open="search" aria-label="Search the manual">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+        <span>Search: pair, sens, turbo, PS5…</span>
+        <kbd class="m2-kbd">/</kbd>
+      </button>
+      <p class="m2-popular"><span>Popular:</span>
+        <a href="#p-start-pair-your-phone">Pair your phone</a>
+        <a href="#p-app-passthrough">Pass-through</a>
+        <a href="#p-app-new-config">New config</a>
+        <a href="#p-help-preorder">Pre-order</a>
+      </p>
+    </div>
+    <div class="m2-hero-art">{% render 'zs-exo2-visual', view: 'hero', loading: 'eager' %}</div>
+  </div>
 
   <a class="m2-banner" href="#p-start-quick-start">
     <span class="m2-banner-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
