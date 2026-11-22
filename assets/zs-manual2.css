@@ -618,3 +618,15 @@ html:has(.m2), html:has(.m2) body{ overflow-x:clip; }
       handle, the toast before its first message), so show them again. */
 .m2 .m2-search-back:empty, .m2 .m2-sheet-back:empty, .m2 .m2-lb-back:empty,
 .m2 .m2-sheet-grip:empty, .m2 .m2-toast:empty{ display:block; }
+
+/* 4. Added 2026-11-22: "one picture per step".
+      Xbox is not confirmed for launch, so every Xbox-only step carries a small
+      "Xbox support: coming later" badge (m2-later). m2-later-row is the line
+      that holds it under a heading. Pictures inside a troubleshooting "Fix"
+      box get a little less space so the box stays compact. */
+.m2-later{ margin-left:.6rem; white-space:normal; vertical-align:middle; font-size:1.15rem; }
+.m2-later-row{ margin:-.4rem 0 1.6rem; }
+.m2-later-row .m2-later{ margin-left:0; }
+.m2-plat .m2-later, .m2-card .m2-later{ display:inline-flex; margin:.8rem 0 0; align-self:flex-start; }
+.m2-fix dd .m2-fig{ margin:2rem 0 .4rem; }
+.m2-fix dd .m2-legend{ margin-bottom:.4rem; }
