@@ -346,5 +346,5 @@ html:has(.x2), html:has(.x2) body{ overflow-x:clip; }
   .x2-navq{ gap:.4rem; -webkit-mask-image:none; mask-image:none; }
   .x2 .x2-navq a{ width:4rem; padding:0; }
   .x2-navq a span{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
-  .x2l .x2l-nav .x2-btn{ padding:0 1.4rem; }
+  .x2l .x2l-nav .x2-btn{ min-height:4rem; padding:0 1.4rem; }
 }
