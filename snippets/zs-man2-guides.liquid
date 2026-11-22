@@ -1,0 +1,460 @@
+{% comment %}
+  Manual v2: STEP-BY-STEP GUIDES (one article per guide, group "Guides").
+  Facts: C:\zsg\overhaul\APP-FACTS.md beats the screenshots.
+  Pictures: assets/exo2-g-*.webp (600 px wide, cropped from the app screenshot
+  library; the PS5 dongle brand is covered, chip names and draft legal lines
+  are cropped out). Hardware pictures reuse man2-hw-* and zs-exo2-visual.
+  Every guide starts with the sticky guide tabs (snippets/zs-man2-guidetabs).
+{% endcomment %}
+
+{%- comment -%} ===================== 1. SET UP ===================== {%- endcomment -%}
+<article class="m2-page m2-guide" id="p-guide-setup" data-group="Guides" data-title="Guide: set up your EXO" data-time="10 min"
+  data-keywords="setup set up start unbox box ports wiring wire plug cables app install pair bluetooth connect first config ps5 pc xbox tutorial guide">
+  {% render 'zs-man2-guidetabs', current: 'setup' %}
+  <header class="m2-head">
+    <p class="m2-crumb">Guides</p>
+    <h1>Set up your EXO</h1>
+    <p class="m2-get">From the box to your first config in six steps: unbox, ports, wiring, app, pair, first config.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">PS5</span><span class="x2-badge x2-badge--plain">PC</span><span class="x2-badge x2-badge--planned m2-later">Xbox: coming later</span><span class="m2-time">10 min</span></div>
+  </header>
+
+  <nav class="m2-gjump" aria-label="Steps in this guide">
+    <a href="#p-guide-setup--unbox">1 Unbox</a><a href="#p-guide-setup--ports">2 Ports</a><a href="#p-guide-setup--wiring">3 Wiring</a><a href="#p-guide-setup--app">4 App</a><a href="#p-guide-setup--pair">5 Pair</a><a href="#p-guide-setup--first-config">6 First config</a>
+  </nav>
+
+  <section class="m2-sec" id="p-guide-setup--unbox">
+    <h2>1. Unbox</h2>
+    <ol class="m2-steps">
+      <li>Take out the ZeroStick EXO and the cables: <b>1 HDMI cable</b>, <b>1 USB-C to USB-A power cable</b> and <b>1 braided USB-C to USB-A controller cable</b>.
+        <figure class="m2-fig m2-fig--wide">{% render 'zs-exo2-visual', view: 'hero' %}<figcaption>ZeroStick EXO. The logo lights up in your config's colour.</figcaption></figure></li>
+      <li><b>PS5 version:</b> find the included PS5 auth dongle in the box. <b>PC:</b> you don't need anything extra.</li>
+      <li>Have your phone ready (iPhone or Android) and your mouse, keyboard or controller.</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-setup--ports">
+    <h2>2. Meet the ports</h2>
+    <ol class="m2-steps">
+      <li><b>Back, left to right:</b> <b>CONSOLE</b> (USB-C, the play cable to your console or PC), <b>AUX/POWER</b> (USB-C, optional extra power), <b>AUTH</b> (USB-A, the PS5 auth dongle), <b>HDMI IN</b> (from your console) and <b>HDMI OUT</b> (to your TV).
+        <figure class="m2-fig m2-fig--wide">{% render 'zs-exo2-visual', view: 'ports-back' %}<figcaption>The back of the EXO.</figcaption></figure></li>
+      <li><b>Front:</b> 1 USB-C and 3 USB-A ports, all for your controls: controllers, mouse, keyboard and headset. Any front port works for any device.
+        <figure class="m2-fig m2-fig--wide">{% render 'zs-exo2-visual', view: 'ports-front' %}<figcaption>The front of the EXO: 1 USB-C and 3 USB-A.</figcaption></figure></li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-setup--wiring">
+    <h2>3. Wire it up</h2>
+    <ol class="m2-steps">
+      <li>Plug your mouse, keyboard or controller into the front ports. Use a USB cable or the wireless dongle.
+        <figure class="m2-fig m2-fig--wide"><img src="{{ 'man2-hw-front.webp' | asset_url }}" width="700" height="265" loading="lazy" alt="The front of the EXO with one USB-C port and three USB-A ports for your controls."><figcaption>Controls go in the front.</figcaption></figure></li>
+      <li><b>PS5:</b> plug the included PS5 auth dongle into <b>AUTH</b> on the back and leave it there whenever you play on PS5. <b>PC:</b> leave AUTH empty.
+        <figure class="m2-fig m2-fig--wide"><img src="{{ 'man2-hw-auth.webp' | asset_url }}" width="700" height="436" loading="lazy" alt="Close-up of the back of the EXO with the AUTH USB-A port marked."><figcaption>AUTH: the PS5 auth dongle.</figcaption></figure></li>
+      <li>Connect <b>CONSOLE</b> on the EXO to a USB port on your PS5, or on your PC if you play on PC. The EXO powers itself from this cable and the logo lights up.
+        <figure class="m2-fig m2-fig--wide"><img src="{{ 'man2-hw-console.webp' | asset_url }}" width="700" height="436" loading="lazy" alt="Close-up of the back of the EXO with the CONSOLE USB-C port marked."><figcaption>CONSOLE: the play cable, always.</figcaption></figure></li>
+      <li>Optional, for automatic gun detection: run your console's HDMI into <b>HDMI IN</b> and connect <b>HDMI OUT</b> to your TV. You can skip this now and add it later.
+        <figure class="m2-fig m2-fig--wide"><img src="{{ 'man2-hw-hdmi.webp' | asset_url }}" width="700" height="599" loading="lazy" alt="The two HDMI ports on the back of the EXO: HDMI IN from the console and HDMI OUT to the TV."><figcaption>HDMI IN from the console, HDMI OUT to the TV.</figcaption></figure></li>
+    </ol>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Xbox</p><p>Xbox support is coming later. This guide covers PS5 and PC for now.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-guide-setup--app">
+    <h2>4. Get the app</h2>
+    <ol class="m2-steps">
+      <li>Install the free <b>ZeroStick</b> app from the App Store (iPhone) or Google Play (Android). It needs no account.</li>
+      <li>Open it. The first time, you'll see <b>Connect to your ZeroStick</b>.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-connect.webp' | asset_url }}" width="600" height="640" loading="lazy" alt="The app's first screen: Connect to your ZeroStick, with the Connect button marked 1."><figcaption>The first screen of the app.</figcaption></figure></li>
+    </ol>
+    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Updates</p><p>Firmware updates come through the ZeroStick app. Keep the app up to date.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-guide-setup--pair">
+    <h2>5. Pair your phone</h2>
+    <ol class="m2-steps">
+      <li>Make sure the EXO is plugged into CONSOLE and its logo is lit.</li>
+      <li>Tap <b>Connect</b> (1). Your phone asks which device to pair with: choose <b>ZeroStick EXO</b>.</li>
+      <li>Wait for "Connecting to your EXO…" and "Loading your EXO…". Agree to the terms the first time, then HOME opens.</li>
+    </ol>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p><p>HOME shows your EXO as connected. Next time, the app reconnects by itself.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-guide-setup--first-config">
+    <h2>6. Make your first config</h2>
+    <p>A config holds everything for one game: mappings, aim, Scripts, the game and the console. You can keep as many configs as you want, limited only by storage.</p>
+    <ol class="m2-steps">
+      <li><b>Step 1 of 4:</b> pick your game. Search (1), or pick from Ready or In progress (2).
+        <figure class="m2-fig"><img src="{{ 'exo2-g-pick-game.webp' | asset_url }}" width="600" height="1200" loading="lazy" alt="New config step 1 of 4: a search box marked 1 and the game list, with Ready games at the top and In progress games marked 2."><figcaption>New config, step 1: the game.</figcaption></figure></li>
+      <li><b>Step 2 of 4:</b> where does it play? Tap <b>PlayStation 5</b> or <b>PC</b>.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-where.webp' | asset_url }}" width="600" height="914" loading="lazy" alt="New config step 2 of 4: the PlayStation 5 tile, which uses the included PS5 auth dongle, and the PC tile."><figcaption>New config, step 2: PS5 or PC.</figcaption></figure></li>
+      <li><b>Step 3 of 4:</b> how you play: <b>Mouse</b> (1) or <b>Controller</b> (2). <b>Native Mouse &amp; Keyboard</b> (3) is for PC players and is in final testing; it can't be changed later.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-input.webp' | asset_url }}" width="600" height="1040" loading="lazy" alt="New config step 3 of 4: Mouse marked 1, Controller marked 2 and Native Mouse and Keyboard marked 3."><figcaption>New config, step 3: mouse or controller.</figcaption></figure></li>
+      <li>Mouse players also pick their mouse DPI and the game's frame rate (120 or 60 FPS). The frame rate sets <a href="#p-guide-translation--sync">Sync to game</a>.</li>
+      <li><b>Step 4 of 4:</b> type a name (1), pick a colour (2) and tap <b>Create config</b> (3). The EXO light and your controller's light bar show that colour.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-name.webp' | asset_url }}" width="600" height="1200" loading="lazy" alt="New config step 4 of 4: Config name marked 1, Colour marked 2 and Create config marked 3."><figcaption>New config, step 4: name and colour.</figcaption></figure></li>
+      <li>On HOME, tap <b>Settings</b> under the game picture to open the config's Settings: Device, Aim, Mappings, AI Scripts and Advanced.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-settings-menu.webp' | asset_url }}" width="600" height="1200" loading="lazy" alt="A config's Settings menu: Device 1, Aim 2, Mappings 3, AI Scripts 4 and Advanced 5."><figcaption>A config's Settings menu.</figcaption></figure></li>
+    </ol>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Done</p><p>Your new config is playing. Set your in-game settings when HOME asks, then tune your aim in <a href="#p-guide-settings--aim">Aim</a>.</p></aside>
+    <p class="m2-gnext">Next guide: <a href="#p-guide-recoil">Anti-Recoil Lab &rarr;</a></p>
+  </section>
+</article>
+
+{%- comment -%} ===================== 2. ANTI-RECOIL LAB ===================== {%- endcomment -%}
+<article class="m2-page m2-guide" id="p-guide-recoil" data-group="Guides" data-title="Guide: Anti-Recoil Lab" data-time="8 min"
+  data-keywords="anti-recoil anti recoil lab recoil automatic manual pull down pull sideways start delay warzone mw4 firing range black ops ii standard pull-down tutorial guide">
+  {% render 'zs-man2-guidetabs', current: 'recoil' %}
+  <header class="m2-head">
+    <p class="m2-crumb">Guides</p>
+    <h1>Anti-Recoil Lab</h1>
+    <p class="m2-get">Make a Script that pulls against your gun's recoil: Automatic, Manual or Pull down.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse</span><span class="x2-badge x2-badge--plain">Controller</span><span class="m2-time">8 min</span></div>
+  </header>
+
+  <nav class="m2-gjump" aria-label="Steps in this guide">
+    <a href="#p-guide-recoil--open">Open</a><a href="#p-guide-recoil--choose">Choose</a><a href="#p-guide-recoil--automatic">Automatic</a><a href="#p-guide-recoil--manual">Manual</a><a href="#p-guide-recoil--pull-down">Pull down</a><a href="#p-guide-recoil--bo2">Black Ops II</a>
+  </nav>
+
+  <section class="m2-sec" id="p-guide-recoil--open">
+    <h2>1. Open the Lab</h2>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>Settings</b> › <b>Advanced</b> › <b>Advanced Script Maker</b>, then tap <b>Anti-Recoil Lab</b> (1).
+        <figure class="m2-fig"><img src="{{ 'exo2-g-lab-open.webp' | asset_url }}" width="600" height="760" loading="lazy" alt="Advanced Script Maker, Scripts tab: Anti-Recoil Lab marked 1, Paste ready-made script 2, Record script 3 and Scripts 4."><figcaption>The Lab in the Advanced Script Maker.</figcaption></figure></li>
+      <li>Or, for one gun: <b>Settings</b> › <b>AI Scripts</b> › pick the weapon › <b>Anti-Recoil Lab</b>. That Script then runs only while that gun is out. See <a href="#p-guide-ai-scripts">AI Scripts</a>.</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-recoil--choose">
+    <h2>2. Choose how to make it</h2>
+    <ol class="m2-steps">
+      <li>The first page offers three ways, for every input type:
+        <ul>
+          <li><b>Automatic</b>: "Your EXO finds your gun's fire rate and builds your recoil curve for you."</li>
+          <li><b>Manual</b>: "Set the fire rate, fire at a wall, then trace each shot mark in your game."</li>
+          <li><b>Pull down</b>: "The regular anti-recoil: pulls straight down at the speed you set. No wall needed."</li>
+        </ul>
+        <figure class="m2-fig"><img src="{{ 'exo2-g-lab-choose.webp' | asset_url }}" width="600" height="979" loading="lazy" alt="Anti-Recoil Lab, How do you want to make it: Automatic, marked Recommended, then Manual and Pull down."><figcaption>Pick Automatic, Manual or Pull down.</figcaption></figure></li>
+      <li>Automatic and Manual work with a controller or a mouse. Controller players who want the quickest result pick <b>Pull down</b>.</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-recoil--automatic">
+    <h2>3. Automatic (Warzone and MW4)</h2>
+    <p><span class="x2-badge x2-badge--ready">Recommended</span> Automatic works in <b>Call of Duty: Warzone</b> and <b>Call of Duty: Modern Warfare 4</b>. In other games it's greyed out: use Manual or Pull down.</p>
+    <ol class="m2-steps">
+      <li>Connect HDMI through the EXO (HDMI IN and HDMI OUT). Automatic watches your shots through it.</li>
+      <li><b>MW4:</b> go to the <b>Firing Range</b>. Face a lit wall with a door, a sign or lane numbers on it, and keep the moving targets out of view.</li>
+      <li>Tap <b>Automatic</b>, then fire one magazine at the wall while aiming down sights.</li>
+      <li>Check the line the EXO traced. Drag a tick to move it if one is off, then go on to <b>Tune</b>.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-lab-auto-confirm.webp' | asset_url }}" width="600" height="1300" loading="lazy" alt="Anti-Recoil Lab, Automatic, Confirm step: the shot marks the EXO traced on the wall, numbered in order."><figcaption>Automatic: check the traced shots.</figcaption></figure></li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-recoil--manual">
+    <h2>4. Manual</h2>
+    <ol class="m2-steps">
+      <li>Tap <b>Manual</b>. Check your game settings, choose <b>Only while aiming down sights</b> if you want, and tap <b>Start</b>.</li>
+      <li>Set the gun's fire rate.</li>
+      <li>Fire at a wall while aiming down sights.</li>
+      <li>Trace each shot: put your reticle on the next shot mark and press your fire button. The traced shots build up your recoil model.</li>
+      <li>Fire to preview the model, fine-tune it with <b>Scale X</b> and <b>Scale Y</b>, then save it.</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-recoil--pull-down">
+    <h2>5. Pull down</h2>
+    <p>Pull down needs no setup and no tracing. Fire at any surface where you can see your shots and turn the pull up or down until the gun stays still.</p>
+    <ol class="m2-steps">
+      <li>Tap <b>Pull down</b>. Hold Fire in the game at a wall (1).</li>
+      <li><b>Pull down</b> (2): tap + if your shots still climb, − if they now dip. <b>Pull sideways</b> (3): minus pulls left, plus pulls right. <b>Start delay</b> (4): wait this long after you start firing before pulling.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-lab-pull-tune.webp' | asset_url }}" width="600" height="1300" loading="lazy" alt="Anti-Recoil Lab live tune page: Hold Fire to test it 1, Pull down 2, Pull sideways 3, Start delay 4, and Strength over the magazine below."><figcaption>Pull down: tune while you shoot.</figcaption></figure></li>
+      <li><b>Strength over the magazine</b>: set <b>Start</b>, <b>Middle</b> and <b>End</b>, and how long the <b>Spray lasts</b>. On a controller, the D-pad nudges the values while you fire.</li>
+      <li>Switch on <b>Only while aiming down sights</b> if you want it to pull only while you aim, then tap <b>Accept</b>.</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-recoil--bo2">
+    <h2>Black Ops II</h2>
+    <p>Recoil in Call of Duty: Black Ops II is random, so there's no pattern to trace. The Lab offers <b>Standard pull-down</b> there instead. Tune it the same way as Pull down.</p>
+    <p class="m2-gnext">Next guide: <a href="#p-guide-ai-scripts">AI Scripts &rarr;</a></p>
+  </section>
+</article>
+
+{%- comment -%} ===================== 3. AI SCRIPTS ===================== {%- endcomment -%}
+<article class="m2-page m2-guide" id="p-guide-ai-scripts" data-group="Guides" data-title="Guide: AI Scripts (per weapon)" data-time="8 min"
+  data-keywords="ai scripts per weapon gun detection gun reader frame quick scripts rapid fire aim assist anti-recoil active weapon tutorial guide">
+  {% render 'zs-man2-guidetabs', current: 'ai' %}
+  <header class="m2-head">
+    <p class="m2-crumb">Guides</p>
+    <h1>AI Scripts: Scripts for each weapon</h1>
+    <p class="m2-get">Give each gun its own Scripts. The EXO reads the gun on screen and switches them for you.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Needs HDMI</span><span class="m2-time">8 min</span></div>
+  </header>
+
+  <nav class="m2-gjump" aria-label="Steps in this guide">
+    <a href="#p-guide-ai-scripts--open">Open</a><a href="#p-guide-ai-scripts--setup">One-time setup</a><a href="#p-guide-ai-scripts--weapon">A weapon</a><a href="#p-guide-ai-scripts--play">Play</a>
+  </nav>
+
+  <section class="m2-sec" id="p-guide-ai-scripts--open">
+    <h2>1. Open AI Scripts</h2>
+    <ol class="m2-steps">
+      <li>Connect HDMI through the EXO (HDMI IN from the console, HDMI OUT to the TV). The EXO reads the gun's name from the picture.</li>
+      <li>On HOME, tap <b>Settings</b> › <b>AI Scripts</b> ("Scripts for each weapon").</li>
+    </ol>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">NBA 2K</p><p>On NBA 2K configs, <b>Auto green</b> takes the place of AI Scripts.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-guide-ai-scripts--setup">
+    <h2>2. One-time setup</h2>
+    <ol class="m2-steps">
+      <li>At the top, <b>Gun out now</b> (1) shows the gun the EXO sees. Under <b>One-time setup</b>, open <b>Gun reader frame</b> (2) and <b>Game settings</b> (3).
+        <figure class="m2-fig"><img src="{{ 'exo2-g-ai-list.webp' | asset_url }}" width="600" height="1200" loading="lazy" alt="AI Scripts: Gun out now 1, Gun reader frame 2, Game settings 3, Quick scripts 4, and the weapon classes such as Submachine Guns 5."><figcaption>The AI Scripts page.</figcaption></figure></li>
+      <li><b>Gun reader frame:</b> with a gun out in the game, tap <b>Start frame capture</b>. Move the box so it covers the gun's name like the example, then confirm which screen it is and pick your pick-up button.</li>
+      <li><b>Game settings:</b> enter your in-game sensitivity, ADS and deadzone, so every Script fits your settings.</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-ai-scripts--weapon">
+    <h2>3. Give a weapon its Scripts</h2>
+    <ol class="m2-steps">
+      <li>Search for a weapon or open its class (for example <b>Submachine Guns</b>) and tap the gun.</li>
+      <li>On the weapon's page you'll find <b>Anti-Recoil Lab</b> (1), <b>Quick scripts</b> (2), <b>Record script</b> (3) and its <b>Scripts</b> (4).
+        <figure class="m2-fig"><img src="{{ 'exo2-g-ai-gun.webp' | asset_url }}" width="600" height="1200" loading="lazy" alt="A weapon's page (MP7): Anti-Recoil Lab 1, Quick scripts 2, Record script 3 and Scripts 4."><figcaption>A weapon's own page.</figcaption></figure></li>
+      <li>Open <b>Quick scripts</b> for one-tap Scripts: <b>Rapid fire</b>, <b>Aim assist</b> and <b>Anti-recoil</b>.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-ai-quick.webp' | asset_url }}" width="600" height="1200" loading="lazy" alt="A weapon's Quick scripts open: Rapid fire, Aim assist and Anti-recoil, with Record script marked 1."><figcaption>Quick scripts for one gun.</figcaption></figure></li>
+      <li>For anything more, use <a href="#p-guide-recoil">Anti-Recoil Lab</a>, <b>Record script</b>, <b>Paste a code</b> or <b>New script</b> (advanced).</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-ai-scripts--play">
+    <h2>4. Play</h2>
+    <p>A weapon's Scripts run only while that gun is out. HOME's <b>Active weapon</b> card shows the gun the EXO is reading. In menus, AI Scripts pause and wait for your weapon.</p>
+    <p>Which games support gun detection: see <a href="#p-games">Game support</a>.</p>
+    <p class="m2-gnext">Next guide: <a href="#p-guide-script-maker">Scripts (Advanced Script Maker) &rarr;</a></p>
+  </section>
+</article>
+
+{%- comment -%} ===================== 4. ADVANCED SCRIPT MAKER ===================== {%- endcomment -%}
+<article class="m2-page m2-guide" id="p-guide-script-maker" data-group="Guides" data-title="Guide: Scripts (Advanced Script Maker)" data-time="10 min"
+  data-keywords="scripts script maker advanced script maker new script ready-made 33 record share code copy paste steps timing feels human macro combo tutorial guide">
+  {% render 'zs-man2-guidetabs', current: 'sm' %}
+  <header class="m2-head">
+    <p class="m2-crumb">Guides</p>
+    <h1>Scripts: the Advanced Script Maker</h1>
+    <p class="m2-get">Add one of 33 ready-made Scripts, or build your own, step by step.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--progress">Advanced</span><span class="m2-time">10 min</span></div>
+  </header>
+
+  <nav class="m2-gjump" aria-label="Steps in this guide">
+    <a href="#p-guide-script-maker--open">Open</a><a href="#p-guide-script-maker--ready">Ready-made</a><a href="#p-guide-script-maker--new">Build your own</a><a href="#p-guide-script-maker--share">Share</a>
+  </nav>
+
+  <section class="m2-sec" id="p-guide-script-maker--open">
+    <h2>1. Open the Advanced Script Maker</h2>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>Settings</b> › <b>Advanced</b> › <b>Advanced Script Maker</b>.</li>
+      <li>The <b>Scripts</b> tab has <b>New script</b>, <b>Anti-Recoil Lab</b>, <b>Paste ready-made script</b>, <b>Record script</b> and this config's Scripts, each with an on/off switch. The <b>Ready-made</b> tab has the library.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-lab-open.webp' | asset_url }}" width="600" height="760" loading="lazy" alt="Advanced Script Maker, Scripts tab: New script at the top, then Anti-Recoil Lab, Paste ready-made script, Record script and Scripts."><figcaption>The Scripts tab.</figcaption></figure></li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-script-maker--ready">
+    <h2>2. Add a ready-made Script (easiest)</h2>
+    <ol class="m2-steps">
+      <li>Tap the <b>Ready-made</b> tab. There are 33 Scripts in four families: Aim (8), Firing (6), Quality of life (8) and Movement &amp; access (11). <b>Featured</b> (1) shows the most popular; the chips (2) filter by family.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-sm-ready.webp' | asset_url }}" width="600" height="1280" loading="lazy" alt="Ready-made tab: Featured Scripts such as Aim assist booster, Rapid fire and Turn assist marked 1, and the family chips All 33, Aim 8, Firing 6, Quality of life 8 and Movement and access 11 marked 2."><figcaption>The ready-made library.</figcaption></figure></li>
+      <li>Tap a Script. Choose which button starts it (1), set its few settings (2) and tap <b>Add to this config</b> (3). You can change anything later.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-sm-ready-setup.webp' | asset_url }}" width="600" height="1280" loading="lazy" alt="Aim assist booster set-up sheet: Started by 1, How strong 2 and Add to this config 3."><figcaption>Set it up, then add it.</figcaption></figure></li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-script-maker--new">
+    <h2>3. Build your own</h2>
+    <ol class="m2-steps">
+      <li>Tap <b>New script</b>, then press the button, key or mouse button that should start it (or pick it from the list).</li>
+      <li>Name it (1). Under <b>When</b>, choose how it plays, for example <b>while held</b> (2), and switch it on (3). Under <b>Do this</b>, tap a step to change it (4) and set its <b>Tap</b> or <b>Hold</b> time (5).
+        <figure class="m2-fig"><img src="{{ 'exo2-g-sm-steps.webp' | asset_url }}" width="600" height="1200" loading="lazy" alt="The Script editor: Name it 1, while held 2, On 3, the steps under Do this 4, and the Tap for time slider 5."><figcaption>The Script editor.</figcaption></figure></li>
+      <li>Tap <b>Add a button press</b> (1) for more steps. Add a <b>Wait next</b>, a <b>Hold</b> or a <b>Switch config</b> step. <b>Feels human</b> (2) adds a little natural variation to the timing.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-sm-add.webp' | asset_url }}" width="600" height="1240" loading="lazy" alt="The lower half of the editor: Add a button press 1, Feels human 2, Copy 3 and Done 4."><figcaption>Add steps, then Done.</figcaption></figure></li>
+      <li>Tap <b>Done</b> (4). Your Script is in the list with an on/off switch.</li>
+      <li>Or tap <b>Record script</b>: pick a start and a stop button, play the move once, then pick the button that replays it.</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-script-maker--share">
+    <h2>4. Share a Script</h2>
+    <ol class="m2-steps">
+      <li>In the editor, tap <b>Copy</b>. A share code goes to your phone's clipboard to send to a friend.</li>
+      <li>To use a code you got: copy it from the message, then tap <b>Paste a code someone sent me</b> (1). Check it over, then save. If the maker had different in-game settings, it's scaled to yours.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-sm-paste.webp' | asset_url }}" width="600" height="1200" loading="lazy" alt="Advanced Script Maker: the list of Scripts with switches, and Paste a code someone sent me marked 1."><figcaption>Paste a Script code.</figcaption></figure></li>
+    </ol>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Tournament Mode</p><p>Global Settings › General › <b>Tournament Mode</b> turns every Script off in one tap. Remaps, sticks and aim stay.</p></aside>
+    <p class="m2-gnext">Next guide: <a href="#p-guide-translation">Translation &rarr;</a></p>
+  </section>
+</article>
+
+{%- comment -%} ===================== 5. TRANSLATION ===================== {%- endcomment -%}
+<article class="m2-page m2-guide" id="p-guide-translation" data-group="Guides" data-title="Guide: the Translation tab" data-time="5 min"
+  data-keywords="translation sync to game frame rate fps 60 120 keyboard movement smooth wasd walk speed stick simulation script timings wait variation tutorial guide">
+  {% render 'zs-man2-guidetabs', current: 'tr' %}
+  <header class="m2-head">
+    <p class="m2-crumb">Guides</p>
+    <h1>The Translation tab</h1>
+    <p class="m2-get">How your keys and mouse become smooth stick movement: stick simulation, keyboard movement and Sync to game.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="m2-time">5 min</span></div>
+  </header>
+
+  <nav class="m2-gjump" aria-label="Steps in this guide">
+    <a href="#p-guide-translation--open">Open</a><a href="#p-guide-translation--sticks">Stick simulation</a><a href="#p-guide-translation--keyboard">Keyboard movement</a><a href="#p-guide-translation--sync">Sync to game</a>
+  </nav>
+
+  <section class="m2-sec" id="p-guide-translation--open">
+    <h2>1. Open Translation</h2>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>Settings</b>, then <b>Advanced</b> (1) at the bottom, then <b>Translation</b>.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-tr-find.webp' | asset_url }}" width="600" height="1200" loading="lazy" alt="A config's Settings menu with Advanced marked 1 at the bottom: Translation, Script Maker and more."><figcaption>Translation is inside Advanced.</figcaption></figure></li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-translation--sticks">
+    <h2>2. Stick simulation</h2>
+    <ol class="m2-steps">
+      <li><b>Left stick movement</b> (1) smooths how your movement keys push the stick. At 0 % (off), a key jumps straight to a full push.</li>
+      <li><b>Right stick look</b> (2) smooths your mouse aim on the stick. At 0 % (off), your aim reaches the stick with no added delay.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-tr-page.webp' | asset_url }}" width="600" height="1200" loading="lazy" alt="The Translation page: Left stick movement 1, Right stick look 2, Keyboard movement 3 and Advanced 4, with Script timings below."><figcaption>The Translation page.</figcaption></figure></li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-translation--keyboard">
+    <h2>3. Keyboard movement</h2>
+    <ol class="m2-steps">
+      <li>Tap <b>Keyboard movement</b> (3) and switch on <b>Smooth keyboard movement</b> (1). Off, keys slam the stick to full instantly.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-tr-kb.webp' | asset_url }}" width="600" height="1240" loading="lazy" alt="Keyboard Movement: Smooth keyboard movement switch 1 and its help 2, then Walk speed, Time to full run, Time to stop, Diagonal speed and Turn assist."><figcaption>Keyboard movement.</figcaption></figure></li>
+      <li><b>How movement builds:</b> <b>Walk speed</b>, <b>Time to full run</b> and <b>Time to stop</b>.</li>
+      <li><b>Corners and turns:</b> <b>Diagonal speed</b> (Same as straight or Faster) and <b>Turn assist</b>. Tap <b>Save</b>.</li>
+    </ol>
+  </section>
+
+  <section class="m2-sec" id="p-guide-translation--sync">
+    <h2>4. Sync to game</h2>
+    <ol class="m2-steps">
+      <li>Open <b>Advanced</b> (1) on the Translation page. You'll also find <b>Aiming stick keys</b> and <b>Triggers</b> here.</li>
+      <li><b>Sync to game</b> (2) matches the EXO to your game's frame rate: <b>60</b> (the default), <b>120</b>, <b>Custom</b> (20–360 Hz) or <b>Off</b>. Pick the frame rate your game runs at. Tap <b>?</b> (3) for help.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-tr-sync.webp' | asset_url }}" width="600" height="880" loading="lazy" alt="Translation, Advanced open 1: Aiming stick keys, Triggers, and Sync to game 2 with 60, 120, Custom and Off, and its help 3."><figcaption>Sync to game.</figcaption></figure></li>
+      <li>New mouse configs set this for you from the frame-rate question (120 or 60 FPS).</li>
+    </ol>
+    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Script timings</p><p>At the bottom, <b>Wait variation</b> adds natural timing to your Scripts, so no two runs are identical.</p></aside>
+    <p class="m2-gnext">Next guide: <a href="#p-guide-settings">Settings reference &rarr;</a></p>
+  </section>
+</article>
+
+{%- comment -%} ===================== 6. SETTINGS REFERENCE ===================== {%- endcomment -%}
+<article class="m2-page m2-guide" id="p-guide-settings" data-group="Guides" data-title="Guide: every Settings page" data-time="8 min"
+  data-keywords="settings device aim mappings ai scripts advanced global settings general performance access connection method paste copy duplicate light update rate dpi pass-through tournament mode change config tutorial guide reference">
+  {% render 'zs-man2-guidetabs', current: 'set' %}
+  <header class="m2-head">
+    <p class="m2-crumb">Guides</p>
+    <h1>Every Settings page, briefly</h1>
+    <p class="m2-get">What each Settings page holds and what each option does.</p>
+    <div class="m2-badges"><span class="m2-time">8 min</span></div>
+  </header>
+
+  <nav class="m2-gjump" aria-label="Pages in this guide">
+    <a href="#p-guide-settings--device">Device</a><a href="#p-guide-settings--aim">Aim</a><a href="#p-guide-settings--mappings">Mappings</a><a href="#p-guide-settings--ai">AI Scripts</a><a href="#p-guide-settings--advanced">Advanced</a><a href="#p-guide-settings--global">Global Settings</a>
+  </nav>
+
+  <p>Open a config's Settings from HOME: tap <b>Settings</b> under the game picture. Global Settings is in the <b>⋮</b> menu at the top right of HOME.</p>
+
+  <section class="m2-sec" id="p-guide-settings--device">
+    <h2>Device</h2>
+    <figure class="m2-fig"><img src="{{ 'exo2-g-set-device.webp' | asset_url }}" width="600" height="1300" loading="lazy" alt="The Device page: the game picture, the config name, the EXO light colour and brightness, and the Duplicate, Copy, Paste and More buttons."><figcaption>Settings › Device.</figcaption></figure>
+    <div class="m2-table"><table>
+      <thead><tr><th>Option</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><b>Game</b></td><td data-label="What it does">Tap the game picture for aim presets made for it.</td></tr>
+        <tr><td><b>EXO light</b> and <b>Brightness</b></td><td data-label="What it does">The colour the EXO logo shows while this config plays.</td></tr>
+        <tr><td><b>Duplicate</b></td><td data-label="What it does">Makes a copy of this config.</td></tr>
+        <tr><td><b>Copy</b></td><td data-label="What it does">Copies the whole config (mappings, aim, Scripts, game and console) as text you can send.</td></tr>
+        <tr><td><b>Paste</b></td><td data-label="What it does">Makes a <b>new</b> config from a copied one, with "(copy)" added to the name. It never replaces yours. Needs the EXO connected.</td></tr>
+        <tr><td><b>More</b></td><td data-label="What it does">Name and Description; Light (EXO light: One colour, Rainbow or Off; the controller light bar: Follow the EXO, Own colour or Off); Delete this config.</td></tr>
+        <tr><td><b>Connection Method</b></td><td data-label="What it does">Where this config plays: PlayStation 5 or PC (Xbox coming later). It saves the moment you pick it. If it's the playing config, the console sees the controller unplug and plug back in; the EXO itself doesn't restart.</td></tr>
+        <tr><td><b>In-game settings</b></td><td data-label="What it does">The settings to set in your game for proper aim.</td></tr>
+        <tr><td><b>Update Rate</b></td><td data-label="What it does">How often the EXO updates the console: 125, 250, 500 or 1000 Hz.</td></tr>
+        <tr><td><b>Mouse DPI</b></td><td data-label="What it does">The DPI your mouse is set to (3,200 or higher recommended), with Measure my DPI and Check rate (Hz).</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="m2-sec" id="p-guide-settings--aim">
+    <h2>Aim</h2>
+    <div class="m2-gpair">
+      <figure class="m2-fig"><img src="{{ 'exo2-g-set-aim-mk.webp' | asset_url }}" width="600" height="940" loading="lazy" alt="Aim, mouse and keyboard view: Showing Mouse and Keyboard with Switch 1, Hip aim tab 2, Speed 64.2 marked 3 and its help 4, then Smoothing."><figcaption>Aim on a mouse config.</figcaption></figure>
+      <figure class="m2-fig"><img src="{{ 'exo2-g-set-aim-pad.webp' | asset_url }}" width="600" height="1240" loading="lazy" alt="Aim on a controller config: HIP and ADS tabs 1, Left stick and Right stick 2, the Live Stick picture, Sensitivity 3 and help 4."><figcaption>Aim on a controller config.</figcaption></figure>
+    </div>
+    <div class="m2-table"><table>
+      <thead><tr><th>Option</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><b>Switch</b></td><td data-label="What it does">On a config with a mouse and a controller, flips between mouse and stick settings.</td></tr>
+        <tr><td><b>Hip aim</b> / <b>ADS aim</b></td><td data-label="What it does">Separate settings for aiming normally and aiming down sights.</td></tr>
+        <tr><td><b>Speed</b></td><td data-label="What it does">How fast your view turns. Higher is faster.</td></tr>
+        <tr><td><b>Smoothing</b></td><td data-label="What it does">Disabled, Light, Balanced, Heavy or Custom: evens out small bumps in your aim.</td></tr>
+        <tr><td><b>Hip curve</b> (•••)</td><td data-label="What it does">Shape how speed grows as you move faster.</td></tr>
+        <tr><td><b>Activation</b> (ADS aim)</td><td data-label="What it does">Closed by default ("No delay"). Activate and Deactivate delays (0–1000 ms) and Smooth ADS Transition. All off or 0 by default.</td></tr>
+        <tr><td><b>Advanced</b></td><td data-label="What it does">Fine aim, Ignore tiny movement, Feel (Snappy, Balanced, Smooth) and Start-up feel.</td></tr>
+        <tr><td><b>Sensitivity</b> (controller)</td><td data-label="What it does">How far the stick turns your view.</td></tr>
+        <tr><td><b>Response Curve</b></td><td data-label="What it does">Native (the game's own curve), EXO Linear or Custom (draw your own).</td></tr>
+        <tr><td><b>Deadzones</b></td><td data-label="What it does">Inner, Outer and Limit, with a Round or Per-axis shape.</td></tr>
+        <tr><td><b>Triggers</b></td><td data-label="What it does">Hair trigger for L2 and R2, and the trigger Limit.</td></tr>
+        <tr><td><b>Calibration</b></td><td data-label="What it does">Re-centre and re-range the sticks of a worn PlayStation controller.</td></tr>
+      </tbody>
+    </table></div>
+    <p>More detail: <a href="#p-aim-mouse">Mouse aim settings</a> and <a href="#p-aim-controller-sticks">Controller sticks</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-guide-settings--mappings">
+    <h2>Mappings</h2>
+    <figure class="m2-fig"><img src="{{ 'exo2-g-set-mappings.webp' | asset_url }}" width="600" height="1200" loading="lazy" alt="Mappings: choose Controller 1 for your pad's buttons, or Mouse and Keyboard 2 for your keys and mouse buttons."><figcaption>Settings › Mappings.</figcaption></figure>
+    <ul>
+      <li><b>Controller</b> or <b>Mouse &amp; Keyboard</b>: pick what you're remapping.</li>
+      <li><b>Bindings</b>: each row is a button and what it sends ("default" means unchanged). Tap one, then choose what it <b>Sends</b> and <b>How it behaves</b>.</li>
+      <li><b>Delete Binding</b> puts a button back to its default. <b>Unbind</b> makes it send nothing.</li>
+      <li><b>Scripts</b>: every Script on this config, the button that starts it and an on/off switch.</li>
+    </ul>
+    <p>More detail: <a href="#p-controls-mappings">Remap buttons and keys</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-guide-settings--ai">
+    <h2>AI Scripts</h2>
+    <p>"Scripts for each weapon": the gun reader setup, Quick scripts and every weapon's own Scripts. On NBA 2K configs this row is <b>Auto green</b>. Step by step: <a href="#p-guide-ai-scripts">AI Scripts guide</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-guide-settings--advanced">
+    <h2>Advanced</h2>
+    <ul>
+      <li><b>Translation</b>: stick simulation, keyboard movement, Sync to game and Script timings. See the <a href="#p-guide-translation">Translation guide</a>.</li>
+      <li><b>Advanced Script Maker</b>: build, record, paste and manage Scripts, plus the Anti-Recoil Lab. See the <a href="#p-guide-script-maker">Scripts guide</a>.</li>
+    </ul>
+  </section>
+
+  <section class="m2-sec" id="p-guide-settings--global">
+    <h2>Global Settings</h2>
+    <p>Settings for the whole app and EXO, not one config. Open <b>⋮</b> › <b>Global Settings</b>. It has three tabs.</p>
+    <h3>General</h3>
+    <ul>
+      <li><b>ZeroStick EXO</b> card: shows the EXO's firmware version and whether the app can reach it.</li>
+      <li><b>Pass-through</b>: press <b>1 + 5</b> on your keyboard (by default) to pause your config and send your keyboard and mouse straight to the console, for menus, chat and typing. Press it again to come back, or tap <b>Turn off Passthrough</b> on HOME. You can change the shortcut, and switch shortcut buttons off. <a href="#p-app-passthrough">More</a></li>
+      <li><b>Tournament Mode</b>: turns Scripts, AI Scripts, recoil help and turbo off in one tap. Remaps, sticks and aim stay.</li>
+      <li><b>Change config from your controller</b>: switch on <b>Controller shortcut</b> (off by default), then hold your controller's home button and press <b>Share / View</b> (or <b>L3</b>) to go to the next config. It loops after the last one. Controller only; shows while the EXO is connected.
+        <figure class="m2-fig"><img src="{{ 'exo2-g-set-change-config.webp' | asset_url }}" width="600" height="480" loading="lazy" alt="Change config from your controller: Controller shortcut switch 1, Home plus Share or View 2, Home plus L3 3, and help 4."><figcaption>Change config from your controller.</figcaption></figure></li>
+      <li><b>Support</b>: <b>Copy diagnostics</b> copies the versions, config and log to paste into a message to us.</li>
+    </ul>
+    <h3>Performance</h3>
+    <p>Shows the output rate of the playing config. To change it, use <b>Update Rate</b> on the Device page.</p>
+    <h3>Access</h3>
+    <figure class="m2-fig"><img src="{{ 'exo2-g-set-access.webp' | asset_url }}" width="600" height="780" loading="lazy" alt="Global Settings, Access tab: Make everything easier to see 1, Text size 2, High contrast 3 and Reduce motion 4."><figcaption>Global Settings › Access.</figcaption></figure>
+    <ul>
+      <li><b>Make everything easier to see</b>: one tap for the easiest settings.</li>
+      <li><b>Text size</b>, <b>High contrast</b>, <b>Reduce motion</b>, <b>Bigger touch targets</b> and <b>Hold-repeat speed</b>.</li>
+      <li><b>OLED black</b>, <b>Show real units</b> (cm/360 next to Speed) and <b>Show help buttons</b>.</li>
+    </ul>
+    <p class="m2-gnext">Stuck? <a href="#p-help">Troubleshooting &rarr;</a></p>
+  </section>
+</article>

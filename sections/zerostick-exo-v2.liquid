@@ -148,7 +148,6 @@
           </div>
           <ul class="x2l-trust" data-x2l-in style="--d:.34s">
             <li><svg aria-hidden="true"><use href="#x2l-i-check"/></svg>One-time purchase</li>
-            <li><svg aria-hidden="true"><use href="#x2l-i-check"/></svg>No subscription</li>
             <li><svg aria-hidden="true"><use href="#x2l-i-check"/></svg>No account</li>
             <li><a class="x2-link" href="#games">See supported games</a></li>
           </ul>
@@ -636,7 +635,7 @@
           <span class="x2l-pill x2l-pill--blue">Controllers</span>
           <h3 class="x2-h3">Use the pad you already have</h3>
           <p>Plug it in with a USB cable and play on any supported console. A DualSense on Xbox, or an Xbox pad on PS5.</p>
-          <ul class="x2l-pads"><li>DualSense</li><li>DualSense Edge</li><li>DualShock 4</li><li>Xbox Series / One</li><li>Switch Pro</li><li>8BitDo</li><li>Most USB pads</li></ul>
+          <ul class="x2l-pads"><li>DualSense</li><li>DualSense Edge</li><li>DualShock 4</li><li>Xbox Series / One</li><li>8BitDo</li><li>Most USB pads</li></ul>
         </article>
         <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.08s">
           <span class="x2l-pill">For PC players · in final testing</span>
@@ -736,7 +735,7 @@
         <div><dt>Back</dt><dd>CONSOLE (USB-C) · AUX/POWER (USB-C) · AUTH (USB-A) · HDMI IN · HDMI OUT</dd></div>
         <div><dt>Front</dt><dd>1 × USB-C and 3 × USB-A for controllers, mouse, keyboard or a USB hub</dd></div>
         <div><dt>Power</dt><dd>From your console's USB. Optional extra power through AUX/POWER.</dd></div>
-        <div><dt>Price</dt><dd>One-time purchase. No subscription, no account.</dd></div>
+        <div><dt>Price</dt><dd>One-time purchase. No account.</dd></div>
       </dl>
 
       <div class="x2-grid x2-grid--2 x2l-box" style="margin-top:4rem">
@@ -777,13 +776,42 @@
     </div>
   </section>
 
+  {%- comment -%} ===== 9b. GUIDES STRIP: one tap to each step-by-step guide in the manual ===== {%- endcomment -%}
+  <section class="x2-sec x2l-guides" id="guides" aria-labelledby="x2l-guides-h">
+    <div class="x2-wrap">
+      <div class="x2-center">
+        <p class="x2-eyebrow" data-reveal>Guides</p>
+        <h2 class="x2-h2" id="x2l-guides-h" data-reveal style="--d:.06s">Step by step, with pictures.</h2>
+      </div>
+      <div class="x2l-guidegrid">
+        <a href="{{ manual_url }}#p-guide-setup"><b>Set up</b><span>PS5 and PC. Xbox coming later.</span></a>
+        <a href="{{ manual_url }}#p-guide-recoil"><b>Anti-Recoil Lab</b><span>Automatic, Manual, Pull down.</span></a>
+        <a href="{{ manual_url }}#p-guide-ai-scripts"><b>AI Scripts</b><span>Scripts for each weapon.</span></a>
+        <a href="{{ manual_url }}#p-guide-script-maker"><b>Scripts</b><span>Advanced Script Maker.</span></a>
+        <a href="{{ manual_url }}#p-guide-translation"><b>Translation</b><span>Sync to game, keyboard movement.</span></a>
+        <a href="{{ manual_url }}#p-guide-settings"><b>Settings</b><span>Every page, briefly.</span></a>
+        <a href="{{ manual_url }}#p-help"><b>Troubleshooting</b><span>Fix a problem.</span></a>
+      </div>
+    </div>
+  </section>
+  <style>
+    .x2l-guidegrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(20rem,1fr)); gap:1.2rem; margin-top:3.2rem; }
+    .x2l-guidegrid a{ display:flex; flex-direction:column; gap:.4rem; min-height:8.8rem; padding:1.8rem 2rem; border-radius:1.8rem; border:1px solid var(--x-line);
+      background:linear-gradient(160deg,rgba(41,141,223,.14),rgba(94,231,255,.03)),var(--x-card); color:var(--x-ink); text-decoration:none; transition:border-color .2s, transform .2s; }
+    .x2l-guidegrid a:hover, .x2l-guidegrid a:focus-visible{ border-color:rgba(98,184,255,.55); transform:translateY(-2px); }
+    .x2l-guidegrid b{ font-size:1.8rem; }
+    .x2l-guidegrid b::after{ content:" \2192"; color:var(--x-blue2); }
+    .x2l-guidegrid span{ font-size:1.4rem; color:var(--x-soft); line-height:1.4; }
+    @media (max-width:699px){ .x2l-guidegrid{ grid-template-columns:1fr 1fr; gap:.9rem; } .x2l-guidegrid a{ padding:1.4rem; } .x2l-guidegrid b{ font-size:1.6rem; } }
+  </style>
+
   {%- comment -%} ===== 10. PRE-ORDER ===== {%- endcomment -%}
   <section class="x2-sec" id="preorder">
     <div class="x2-wrap">
       <div class="x2l-buy x2-center" data-reveal="zoom">
         <p class="x2-eyebrow">Pre-order</p>
         <h2 class="x2-h2">Reserve yours.</h2>
-        <p class="x2-lede">Pick your console. One-time purchase: no subscription, no account.</p>
+        <p class="x2-lede">Pick your console. One-time purchase, no account.</p>
         <div class="x2l-versions">
           <div class="x2l-ver">
             <h3>Xbox version</h3>
@@ -829,12 +857,12 @@
       <div class="x2-faq" style="margin-top:3.2rem">
         <details data-reveal><summary>Which consoles does it work with?</summary>
           <div class="x2-faq-a"><p>PS5, Xbox Series X|S / Xbox One and PC. Pick the version for your console: the PS5 version includes the PS5 auth dongle; for the Xbox version you plug your own genuine Xbox controller into the AUTH port.</p></div></details>
-        <details data-reveal><summary>Is there a subscription or an account?</summary>
+        <details data-reveal><summary>Do I need an account?</summary>
           <div class="x2-faq-a"><p>No. It's a one-time purchase. The ZeroStick app is free and needs no account.</p></div></details>
         <details data-reveal><summary>Do I need a PC to set it up?</summary>
           <div class="x2-faq-a"><p>No. Everything is set up from the free ZeroStick app on your iPhone or Android phone, over Bluetooth. No Wi-Fi needed either.</p></div></details>
         <details data-reveal><summary>Which controllers can I use?</summary>
-          <div class="x2-faq-a"><p>Plug in a DualSense, DualSense Edge, DualShock 4, Xbox Series or One controller, Switch Pro, 8BitDo or most USB pads, with a USB cable. Bluetooth controllers aren't supported at launch.</p></div></details>
+          <div class="x2-faq-a"><p>Plug in a DualSense, DualSense Edge, DualShock 4, Xbox Series or One controller, 8BitDo or most USB pads, with a USB cable. Bluetooth controllers aren't supported at launch.</p></div></details>
         <details data-reveal><summary>Can I use my own mouse and keyboard?</summary>
           <div class="x2-faq-a"><p>Yes: your own gaming mouse and keyboard, wired or with their wireless dongle, in the front ports. A USB hub works if you need more ports.</p></div></details>
         <details data-reveal><summary>Does automatic gun detection work in every game?</summary>
@@ -850,7 +878,7 @@
       </div>
 
       <div class="x2-fine x2l-fine">
-        <p><b>Pre-orders.</b> {{ ship_line }} Prices: Xbox version $149.99, PS5 version $169.99 (includes the PS5 auth dongle). One-time purchase, no subscription.</p>
+        <p><b>Pre-orders.</b> {{ ship_line }} Prices: Xbox version $149.99, PS5 version $169.99 (includes the PS5 auth dongle). One-time purchase.</p>
         <p><b>Fair play.</b> Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p>
         <p><b>Game support.</b> "Ready" features are finished. "In progress" features work and are still being improved. Automatic gun detection and Auto green need your console's HDMI to run through the EXO. Auto green helps with shot timing; results depend on you and the game.</p>
         <p><b>Pictures.</b> Product images and the 3D model are renders of the final design; the logo lights in your config's colour (renders show neutral white). App screens are real captures of the ZeroStick app and may change before launch.</p>

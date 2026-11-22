@@ -57,7 +57,7 @@
 
   // The fixed order of sidebar groups (MANUAL-CONTRACT.md). A group that has
   // no pages yet is simply left out.
-  var GROUPS = ['Start here', 'Get Started', 'Connect', 'The App', 'Aim', 'Buttons & Scripts', 'Smart Features', 'Games', 'Help', 'Reference'];
+  var GROUPS = ['Start here', 'Guides', 'Get Started', 'Connect', 'The App', 'Aim', 'Buttons & Scripts', 'Smart Features', 'Games', 'Help', 'Reference'];
 
   // Old or guessed page ids that should open a real page instead.
   var ALIASES = {
@@ -146,6 +146,18 @@
     img.parentNode.insertBefore(b, img);
     b.appendChild(img);
   });
+  // 3a2. "Popular guides" filter on the home page: hides cards that don't match
+  var popIn = $('[data-m2-popfilter]');
+  if (popIn) {
+    popIn.addEventListener('input', function () {
+      var q = popIn.value.toLowerCase().trim(), shown = 0;
+      $$('[data-m2-popgrid] .m2-popcard').forEach(function (c) {
+        var hit = !q || (c.textContent + ' ' + (c.getAttribute('data-k') || '')).toLowerCase().indexOf(q) > -1;
+        c.hidden = !hit; if (hit) shown++;
+      });
+      var none = $('[data-m2-popnone]'); if (none) none.hidden = shown > 0;
+    });
+  }
   // 3b. a screenshot followed by its legend table sits side by side on wide screens
   $$('.m2-fig').forEach(function (fig) {
     var next = fig.nextElementSibling;

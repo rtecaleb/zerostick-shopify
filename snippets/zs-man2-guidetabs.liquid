@@ -1,0 +1,14 @@
+{%- comment -%}
+  Sticky guide tabs shown at the top of every step-by-step guide.
+  Usage: {% render 'zs-man2-guidetabs', current: 'setup' %}
+  Scrolls sideways on phones; the current guide is highlighted.
+{%- endcomment -%}
+<nav class="m2-gtabs" aria-label="Step-by-step guides">
+  <a href="#p-guide-setup"{% if current == 'setup' %} aria-current="page"{% endif %}>Set up</a>
+  <a href="#p-guide-recoil"{% if current == 'recoil' %} aria-current="page"{% endif %}>Anti-Recoil Lab</a>
+  <a href="#p-guide-ai-scripts"{% if current == 'ai' %} aria-current="page"{% endif %}>AI Scripts</a>
+  <a href="#p-guide-script-maker"{% if current == 'sm' %} aria-current="page"{% endif %}>Scripts <small>Advanced</small></a>
+  <a href="#p-guide-translation"{% if current == 'tr' %} aria-current="page"{% endif %}>Translation</a>
+  <a href="#p-guide-settings"{% if current == 'set' %} aria-current="page"{% endif %}>Settings</a>
+  <a href="#p-help">Troubleshooting</a>
+</nav>
