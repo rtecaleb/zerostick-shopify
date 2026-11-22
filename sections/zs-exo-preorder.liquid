@@ -64,7 +64,9 @@
   .xp-price .x2-badge{ transform:translateY(-.4rem); }
   .xp-once{ margin:0 0 2.8rem; color:var(--x-mute); font-size:1.35rem; }
   .xp-label{ display:block; font-size:1.3rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--x-mute); margin:0 0 1.2rem; }
-  .xp-vars{ display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin:0 0 2.4rem; border:0; padding:0; }
+  .xp-vars{ display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin:0 0 2.4rem; border:0; padding:0; min-width:0; min-inline-size:0; }
+  /* the theme upper-cases labels; keep the version cards in normal case */
+  .xp-var, .xp-var *, .xp-form label{ text-transform:none; letter-spacing:normal; }
   .xp-var{ position:relative; display:block; cursor:pointer; }
   .xp-var input{ position:absolute; opacity:0; pointer-events:none; }
   .xp-var-card{ display:block; height:100%; padding:1.8rem; border-radius:1.8rem; border:1px solid var(--x-line2); background:var(--x-card);

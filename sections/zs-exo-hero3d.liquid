@@ -52,9 +52,9 @@
   .h3d-stage.is-live img.h3d-poster{ opacity:0; pointer-events:none; }
   .h3d-load{ position:absolute; left:50%; bottom:1.6rem; translate:-50% 0; font-size:1.2rem; color:var(--x-mute); }
   .h3d-stage.is-live .h3d-load{ display:none; }
-  .h3d-3dbtn{ position:absolute; left:50%; top:50%; translate:-50% -50%; display:none; }
-  .h3d-stage.is-still .h3d-3dbtn{ display:inline-flex; }
-  .h3d-stage.is-still.is-live .h3d-3dbtn{ display:none; }
+  .h3d .h3d-3dbtn{ position:absolute; left:50%; top:50%; translate:-50% -50%; display:none; }
+  .h3d .h3d-stage.is-still .h3d-3dbtn{ display:inline-flex; }
+  .h3d .h3d-stage.is-still.is-live .h3d-3dbtn{ display:none; }
   /* port labels */
   .h3d-tag{ display:block; border:0; padding:0; background:none; cursor:pointer; opacity:0; pointer-events:none; transition:opacity .3s; }
   .h3d-stage.show-ports .h3d-tag[data-visible]{ opacity:1; pointer-events:auto; }
@@ -108,8 +108,8 @@
              alt="ZeroStick EXO: white body, black lid with the lit ZS EXO logo">
         <model-viewer data-src="{{ glb }}" alt="Interactive 3D model of the ZeroStick EXO. Drag to turn it."
           camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="1600" rotation-per-second="18deg"
-          interaction-prompt="none" camera-orbit="-35deg 62deg auto" field-of-view="26deg"
-          min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg auto" min-field-of-view="14deg" max-field-of-view="32deg"
+          interaction-prompt="none" camera-orbit="-35deg 62deg auto" field-of-view="17deg"
+          min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg auto" min-field-of-view="9deg" max-field-of-view="24deg"
           shadow-intensity="1.1" shadow-softness="0.8" exposure="1.05" environment-image="neutral" disable-pan>
           {%- comment -%} Port labels. Positions: MAIN EXO CHAT's reference viewer (metres, model space). {%- endcomment -%}
           <button class="h3d-tag" slot="hotspot-console" data-position="0.09087m 0.00658m -0.0012m" data-normal="0m 0m -1m" tabindex="-1"><i></i><span><b>CONSOLE</b>to your console or PC</span></button>
