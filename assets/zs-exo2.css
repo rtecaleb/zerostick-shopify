@@ -245,7 +245,7 @@
 
 /* ---------- 3D port viewer (snippets/zs-exo2-visual.liquid, view: 'ports') ---------- */
 .x2-ports{ display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:3.2rem; align-items:center; }
-.x2-stage--ports{ aspect-ratio:10/9; }
+.x2-stage--ports{ aspect-ratio:16/11; }
 .x2-stage--ports .x2-stage-poster{ object-fit:contain; }
 .x2-hot{ display:block; width:3rem; height:3rem; padding:0; border-radius:50%; cursor:pointer;
   border:2px solid #fff; background:var(--x-blue); color:#fff; font:700 1.25rem/1 system-ui,sans-serif;
