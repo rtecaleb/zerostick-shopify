@@ -41,6 +41,15 @@
   <section class="m2-sec" id="p-games--every-game">
     <h2>Every game</h2>
     {% render 'zs-exo2-games', mode: 'full' %}
+    <figure class="m2-fig">
+      <img src="{{ 'man2-cf-game.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="New config, step 1 of 4: pick the game. 1: Search games. 2: the In progress list, under the Ready list.">
+      <figcaption>Figure GAME.1 — New config: games grouped Ready, In progress and Planned</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Search games</b></td><td>Find your game by name.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>In progress</b></td><td>Ready games are fully tuned. In progress games carry a small tag.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-games--table">
@@ -97,6 +106,15 @@
       <tr><td data-label="Setting">Plutonium (PC): Gamepad</td><td data-label="Value">Enabled</td></tr>
       <tr><td data-label="Setting">Plutonium (PC): frame rate</td><td data-label="Value">120 (com_maxfps 120), vsync off</td></tr>
     </tbody></table></div>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-cf-sheet-bo2.webp' | asset_url }}" width="700" height="1339" loading="lazy"
+        alt="The Your game settings sheet for Black Ops II. 1: Your in-game FOV box. 2: the I've set these button.">
+      <figcaption>Figure OPS-2.1 — Your game settings sheet, Black Ops II</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Your in-game FOV</b></td><td>Type the FOV you play at.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>I've set these</b></td><td>Tap once the game matches the list.</td></tr>
+    </tbody></table>
     <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>The two Plutonium rows are for the PC version only. Black Ops II isn't a PS5 game.</p></aside>
   </section>
 
@@ -115,6 +133,11 @@
       <li>The built-in gun reader frame was set for Black Ops II, so most players don't need to move it.</li>
       <li>Give each gun its own Scripts in <b>AI Scripts</b>. <a href="#p-auto-per-gun-scripts">Per-gun Scripts</a></li>
     </ul>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-list.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="AI Scripts for Black Ops II: Gun out now PDW-57, Gun reader frame, Game settings, Quick scripts and the weapon classes.">
+      <figcaption>Figure OPS-2.2 — AI Scripts on a Black Ops II config</figcaption>
+    </figure>
   </section>
 
   <section class="m2-sec" id="p-games-black-ops-2--recommended-scripts">
@@ -124,6 +147,14 @@
       <li><b>Anti-recoil:</b> Black Ops II has random recoil, so the Anti-Recoil Lab offers <b>Standard pull-down</b> only. <a href="#p-recipes-simple-anti-recoil">Simple anti-recoil</a></li>
       <li><b>Rapid fire</b> for semi-auto guns. <a href="#p-recipes-rapid-fire">Rapid fire</a></li>
     </ul>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-bo2.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Anti-Recoil Lab in Black Ops II: Automatic isn't supported because the recoil is random. 1: Standard pull-down.">
+      <figcaption>Figure OPS-2.3 — Anti-Recoil Lab in Black Ops II</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Standard pull-down</b></td><td>A steady pull while you hold Fire.</td></tr>
+    </tbody></table>
     <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
   </section>
 
@@ -159,6 +190,16 @@
       <tr><td data-label="Setting">Aim Assist</td><td data-label="Value">Off</td></tr>
       <tr><td data-label="Setting">Field of View</td><td data-label="Value">Your choice. Type it into <b>Your in-game FOV</b> (the curve was measured at 120).</td></tr>
     </tbody></table></div>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-cf-sheet.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The Your game settings sheet, marked REQUIRED, with the rows to set in the game. 1: your stick sensitivity boxes. 2: Your in-game FOV. 3: the help button.">
+      <figcaption>Figure GAME-MW4.1 — Your game settings sheet, MW4 mouse config</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Your stick sensitivity</b></td><td>Type the sensitivity you set in the game (4.00 recommended).</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Your in-game FOV</b></td><td>Type the field of view you play at.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>?</b></td><td>Why these must match the game.</td></tr>
+    </tbody></table>
     <aside class="m2-call m2-call--warning"><p class="m2-call-label">Warning</p><p>FOV changes how fast MW4 turns. If the app's FOV doesn't match the game's, every turn is off. Change both together.</p></aside>
   </section>
 
@@ -179,6 +220,14 @@
       <li><b>Firing Range:</b> the gun name sits lower and further right there. Save a second frame as <b>Firing range</b>.</li>
     </ul>
     <p>Set it up: <a href="#p-auto-gun-detection">Automatic gun detection</a></p>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-confirm.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Gun reader frame, Confirm step. 1: Which screen is this, with Match, Firing range and Another HUD position.">
+      <figcaption>Figure GAME-MW4.2 — Gun reader frame: save the Firing range as its own screen</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Which screen is this?</b></td><td>Pick Firing range for the range's frame.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-games-mw4--recommended-scripts">
@@ -188,6 +237,15 @@
       <li><b>Anti-Recoil Lab, Automatic:</b> marked Recommended in MW4. Do it in the Firing Range: face a lit wall with a door, a sign or lane numbers on it, and keep the moving targets out of view. <a href="#p-scripts-anti-recoil-lab--automatic">Automatic</a></li>
       <li><b>Pull down</b> works too, with no setup. <a href="#p-recipes-simple-anti-recoil">Simple anti-recoil</a></li>
     </ul>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-choose.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Anti-Recoil Lab on an MW4 mouse config: how do you want to make it. 1: Automatic, Recommended. 2: Manual. Below: Pull down.">
+      <figcaption>Figure GAME-MW4.3 — Anti-Recoil Lab on MW4</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Automatic</b></td><td>The EXO watches your bullet marks on a wall.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Manual</b></td><td>You trace each shot mark yourself.</td></tr>
+    </tbody></table>
     <aside class="m2-call m2-call--important"><p class="m2-call-label">Important</p><p>Automatic and Manual recoil are new in MW4. Check the result with <b>Test it with the gun</b> before you rely on it. Follow each game's and event's rules; Tournament Mode switches every script off in one tap.</p></aside>
   </section>
 
@@ -235,6 +293,15 @@
       <li><b>Auto ping:</b> a Warzone-only ready-made Script. Every time you shoot, it pings what you're aiming at.</li>
       <li><b>Slide cancel</b> and <b>Aim hold</b> (tap to aim) come with the game pack, switched off.</li>
     </ul>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-choose.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Anti-Recoil Lab: how do you want to make it. 1: Automatic, Recommended. 2: Manual.">
+      <figcaption>Figure GAME-WARZ.1 — Anti-Recoil Lab: Automatic (Warzone and MW4)</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Automatic</b></td><td>Available in Warzone and MW4.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Manual</b></td><td>Trace each shot yourself.</td></tr>
+    </tbody></table>
     <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
   </section>
 
@@ -264,11 +331,29 @@
       <li>Mappings, Scripts and lighting, like every game.</li>
     </ul>
     <p>On NBA configs, <b>Auto green</b> replaces the AI Scripts row. Needs HDMI through the EXO.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-nba-new.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="New config, step 1: the game list. 1: NBA 2K27, In progress, starting settings, not tuned yet.">
+      <figcaption>Figure NBA-2K27.1 — New config: NBA 2K27 in the game list</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>NBA 2K27</b></td><td>Pick it to make a config with Auto green.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-games-nba-2k27--settings">
     <h2>In-game settings</h2>
     <p>On <b>Settings</b> › <b>Device</b> › <b>In-game settings</b>, the app asks how you shoot in NBA 2K27. It's optional.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-nba-shooting.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Lower on the Auto green page. 1: Square, button shooting, on. 2: Pro stick shooting, on. 3: Your game, NBA 2K27 white meter or NBA 2K26 purple arrow.">
+      <figcaption>Figure NBA-2K27.2 — Auto green › Shooting with and Your meter</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Button shooting</b></td><td>Hold shoot as normal and the EXO lets go.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Pro stick shooting</b></td><td>Pull the right stick down and hold.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Your meter</b></td><td>NBA 2K27 (white meter) or NBA 2K26 (purple arrow).</td></tr>
+    </tbody></table>
     <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
   </section>
 </article>
@@ -304,6 +389,11 @@
       <tr><td data-label="Game">Counter-Strike 2</td><td data-label="Reads">Weapon panel icon</td><td data-label="Also">A PC game. Its config uses Native Mouse &amp; Keyboard, which is in final testing. <a href="#p-aim-native-kbm">Native Mouse &amp; Keyboard</a></td></tr>
     </tbody></table></div>
     <p><a href="#p-auto-gun-detection">Set up gun detection</a></p>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-apex.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="AI Scripts on an Apex Legends config: Gun reader frame, Game settings, Quick scripts and the weapon classes Assault Rifles, SMGs, LMGs and Marksman.">
+      <figcaption>Figure IN-PROG.1 — AI Scripts on Apex Legends (In progress)</figcaption>
+    </figure>
   </section>
 
   <section class="m2-sec" id="p-games-in-progress--without-gun-detection">

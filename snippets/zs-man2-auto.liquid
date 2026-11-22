@@ -96,6 +96,18 @@
       <tr><td><span class="m2-letter">C</span></td><td><b>Game settings</b></td><td>Your in-game settings, used to scale Scripts.</td></tr>
       <tr><td><span class="m2-letter">D</span></td><td>A weapon class (<b>Assault Rifles</b>)</td><td>Open it to find a gun. Shows how many are set up.</td></tr>
     </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-list.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="AI Scripts for Black Ops II. 1: Gun out now, PDW-57. 2: Gun reader frame. 3: Game settings, Sens 6, ADS 1, Deadzone 5. 4: Quick scripts. 5: Submachine Guns, 7 weapons, 1 set up.">
+      <figcaption>Figure AUTO-GD.3 — Settings › AI Scripts</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Gun out now</b></td><td>The weapon your EXO sees right now.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Gun reader frame</b></td><td>One-time setup: where your HUD shows the gun's name.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Game settings</b></td><td>Your in-game sensitivity and deadzone, typed in once.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>Quick scripts</b></td><td>Add the same Script to many guns at once.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">5</span></td><td><b>Weapon classes</b></td><td>Open one, then tap a weapon.</td></tr>
+    </tbody></table>
     <aside class="m2-call m2-call--important"><p class="m2-call-label">Important</p><p>Nothing in AI Scripts switches on until you enter your game settings. The app shows "Your … settings first" until then.</p></aside>
   </section>
 
@@ -104,13 +116,38 @@
     <p>The EXO reads the gun name from a small box on screen. A built-in box is ready to use. Set your own if your gun name sits somewhere else, for example because of HUD size or TV settings.</p>
     <ol class="m2-steps">
       <li>Have the game on screen with a gun out.</li>
-      <li>In AI Scripts, tap <b>Gun reader frame</b>. It captures your screen (or tap <b>Start frame capture</b>).</li>
+      <li>In AI Scripts, tap <b>Gun reader frame</b>. It captures your screen (or tap <b>Start frame capture</b>, 1).</li>
       <li><b>Match the box:</b> drag the box, or its edges, so it covers the gun's name like the example.</li>
       <li>Fine-tune with <b>Move the frame one pixel</b> and <b>Change its size</b>. Tap <b>Next: check it</b>.</li>
       <li><b>Confirm:</b> under <b>Which screen is this?</b>, pick <b>Match</b>, <b>Firing range</b> or <b>Another HUD position</b>.</li>
       <li>Answer the pickup button question if the app asks. Tap <b>Looks right, save</b>.</li>
     </ol>
-    <div class="m2-shot-todo"><b>Screenshot needed</b> — Gun reader frame, Match the box step (game picture with the box around the gun name), capture on a live EXO with HDMI.</div>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-capture.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Gun reader frame, Step 1, Capture your screen: have your game on screen with a gun out. 1: Start frame capture.">
+      <figcaption>Figure AUTO-GD.4 — Gun reader frame, 1 Capture</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Start frame capture</b></td><td>The EXO takes a picture of your screen.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-match.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Gun reader frame, Step 2, Match the box: an example game picture with a box around the gun name B23R, Long Barrel, a close-up of the inside of the box, and Your screen below to drag the box.">
+      <figcaption>Figure AUTO-GD.5 — Gun reader frame, 2 Match the box</figcaption>
+    </figure>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-confirm.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Gun reader frame, Step 3, Confirm: Yours, what your EXO will read, next to the example. 1: the Which screen is this help button, above Match, Firing range and Another HUD position.">
+      <figcaption>Figure AUTO-GD.6 — Gun reader frame, 3 Confirm</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Which screen is this?</b></td><td>Pick Match, Firing range or Another HUD position. Tap ? for help.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-saved.webp' | asset_url }}" width="700" height="1128" loading="lazy"
+        alt="Saved: your EXO now reads the gun's name from this frame. Change the box and Capture a new frame buttons, and the pickup button question for Black Ops II: Square, hold.">
+      <figcaption>Figure AUTO-GD.7 — Gun reader frame, saved</figcaption>
+    </figure>
     <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Apex Legends: frame only the left gun name; the EXO checks the right one itself. MW4's firing range shows the name lower and further right, so save it as <b>Firing range</b>.</p></aside>
   </section>
 
@@ -130,10 +167,18 @@
     </tbody></table></div>
     <figure class="m2-fig">
       <img src="{{ 'exo2-ann-gun-detect-2.webp' | asset_url }}" width="786" height="552" loading="lazy" alt="The live gun view. A: In your hands, showing the Kastov 762, Assault Rifles, Modern Warfare 4.">
-      <figcaption>Figure AUTO-GD.3 — Live gun view, top</figcaption>
+      <figcaption>Figure AUTO-GD.8 — Live gun view, top</figcaption>
     </figure>
     <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody><tr><td><span class="m2-letter">A</span></td><td><b>In your hands</b></td><td>The gun the EXO is reading right now.</td></tr></tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-home-weapon.webp' | asset_url }}" width="700" height="389" loading="lazy"
+        alt="HOME, Active weapon card: PDW-57, in match, 1 AI Script on. 1: the card.">
+      <figcaption>Figure AUTO-GD.9 — HOME in a match: the gun the EXO sees</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Active weapon</b></td><td>The gun the EXO sees and how many AI Scripts are on. Tap to open AI Scripts.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-auto-gun-detection--gun-memory">
@@ -146,7 +191,7 @@
     </ul>
     <figure class="m2-fig">
       <img src="{{ 'exo2-ann-gun-detect-3.webp' | asset_url }}" width="786" height="796" loading="lazy" alt="The live gun view, lower part. A: Previous, M4, before this one. B: Expected next weapon, M4, your swap pair. C: What the reader is doing: holding your Kastov 762 (gun memory), swap pair learned Kastov 762 and M4, last clear read just now, reader Call of Duty Modern Warfare 4.">
-      <figcaption>Figure AUTO-GD.4 — Live gun view, swaps and reader status</figcaption>
+      <figcaption>Figure AUTO-GD.10 — Live gun view, swaps and reader status</figcaption>
     </figure>
     <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody>
@@ -164,6 +209,14 @@
       <li>A gun missing from the list? Tap <b>Add a gun not on this list</b> at the bottom of a class: take the gun out, type its name, and the EXO learns it.</li>
       <li>Tournament Mode switches every Script off, gun Scripts too.</li>
     </ul>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-home-menu.webp' | asset_url }}" width="700" height="389" loading="lazy"
+        alt="HOME, Active weapon card in a menu: Menu or paused, waiting for your weapon. 1: the card.">
+      <figcaption>Figure AUTO-GD.11 — HOME in a menu: AI Scripts pause</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Active weapon</b></td><td>In menus, or with no gun out, AI Scripts pause until a weapon is back.</td></tr>
+    </tbody></table>
     <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
   </section>
 
@@ -232,6 +285,25 @@
       <li>Finish that Script. It's saved to this gun only.</li>
       <li>Check its switch is on in the gun's <b>Scripts</b> list.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-gun.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="A weapon's page, MP7, Submachine Guns. 1: Anti-Recoil Lab. 2: Quick scripts. 3: Record script. 4: Scripts, none yet.">
+      <figcaption>Figure AUTO-PG.2 — AI Scripts › MP7</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Anti-Recoil Lab</b></td><td>Make anti-recoil just for this gun.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Quick scripts</b></td><td>One tap for Rapid fire, Aim assist or Anti-recoil.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Record script</b></td><td>Record a move for this gun.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>Scripts</b></td><td>This gun's Scripts.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-quick.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The MP7's Quick scripts, open: Rapid fire, Aim assist and Anti-recoil. 1: Rapid fire.">
+      <figcaption>Figure AUTO-PG.3 — A gun's Quick scripts</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Rapid fire</b></td><td>Tap one to add it to this gun.</td></tr>
+    </tbody></table>
     <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Same Script on many guns? In <b>Quick scripts</b>, pick the Script, tap <b>Next: pick the guns</b>, choose <b>Every gun</b> or a whole class, then <b>Add to N guns</b>.</p></aside>
   </section>
 
@@ -297,6 +369,16 @@
     </figure>
     <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody><tr><td><span class="m2-letter">A</span></td><td><b>Auto green</b></td><td>Opens Auto green. Says <b>On</b> when it's switched on.</td></tr></tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-nba-page.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The Auto green page. 1: the Auto green switch, on. 2: Ready, just shoot normally, with a help button. 3: the Build 1 chip under Your build.">
+      <figcaption>Figure AUTO-NBA.2 — Settings › Auto green</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Auto green</b></td><td>Switch on to let the EXO let go of shoot for you.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Status</b></td><td>Learning your timing, then Ready.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Your build</b></td><td>Pick the player build you're using.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-auto-nba2k27-auto-green--set-it-up">
@@ -308,13 +390,23 @@
     </ol>
     <figure class="m2-fig">
       <img src="{{ 'exo2-ann-nba-shot-2.webp' | asset_url }}" width="786" height="1289" loading="lazy" alt="The Auto green screen. A: the Auto green switch, lets go of shoot in the green, switched on. B: Learning your timing, 3 of 8 shots, just shoot normally. C: Last shot, Green. Below: Shooting with, Square or button shooting and Pro stick shooting, both on.">
-      <figcaption>Figure AUTO-NBA.2 — Auto green, learning</figcaption>
+      <figcaption>Figure AUTO-NBA.3 — Auto green, learning</figcaption>
     </figure>
     <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody>
       <tr><td><span class="m2-letter">A</span></td><td><b>Auto green</b></td><td>Turns it on or off.</td></tr>
       <tr><td><span class="m2-letter">B</span></td><td><b>Learning your timing</b></td><td>How far it is through learning. Just shoot normally.</td></tr>
       <tr><td><span class="m2-letter">C</span></td><td><b>Last shot</b></td><td>How your last shot was timed: Green, early or late.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-nba-builds.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Your build: Build 1 learned, Sniper learning 9 of 25, Build 3 empty. 1: the build chips. 2: Rename. 3: Start this build over.">
+      <figcaption>Figure AUTO-NBA.4 — Auto green › Your build</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Builds</b></td><td>Each build learns its own timing. Tap one to switch.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Rename</b></td><td>Rename the build.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Start this build over</b></td><td>Forget its timing and learn again.</td></tr>
     </tbody></table>
     <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Each build keeps its own learning. If the app asks, save the config once so the EXO keeps that build's learning.</p></aside>
   </section>
@@ -329,10 +421,18 @@
     <p>If your setup changes, it says "Your setup changed, re-learning". Just keep shooting.</p>
     <figure class="m2-fig">
       <img src="{{ 'exo2-ann-nba-home-card.webp' | asset_url }}" width="786" height="485" loading="lazy" alt="HOME on an NBA 2K27 config. Above: the EXO Core card, Connected, PS5 Mode. A: the Auto green card, On, Learning your timing, 3 of 8 shots, just shoot normally.">
-      <figcaption>Figure AUTO-NBA.3 — HOME, Auto green card</figcaption>
+      <figcaption>Figure AUTO-NBA.5 — HOME, Auto green card</figcaption>
     </figure>
     <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody><tr><td><span class="m2-letter">A</span></td><td><b>Auto green</b> card</td><td>Shows the status on HOME. Tap it to open Auto green.</td></tr></tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-nba-home-ready.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="HOME on an NBA 2K27 config. 1: the Auto green card, on, Ready, just shoot normally.">
+      <figcaption>Figure AUTO-NBA.6 — HOME, Auto green ready</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Auto green card</b></td><td>Ready means it's timing your shots. Just shoot normally.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-auto-nba2k27-auto-green--fair-play">

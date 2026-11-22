@@ -124,11 +124,18 @@
   <section class="m2-sec" id="p-aim-game-settings--open-the-list">
     <h2>1. Open the list in the app</h2>
     <ol class="m2-steps">
-      <li>On HOME, look under the config name. Tap <b>Set your in-game settings for proper aim</b>.</li>
+      <li>On HOME, look under the config name. Tap <b>Set your in-game settings for proper aim</b> (1).</li>
       <li>The <b>Your game settings</b> sheet opens. Find <b>Set these in the game</b> (marked <b>REQUIRED</b>).</li>
     </ol>
     <p>The sheet also opens by itself the first time you open a new mouse config's settings.</p>
-    <div class="m2-shot-todo"><b>Screenshot needed</b> — the Your game settings sheet (Set these in the game, REQUIRED rows, Your sensitivity, Your in-game FOV, I've set these), on an MW4 mouse config, capture on a live EXO.</div>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-cf-banner.webp' | asset_url }}" width="700" height="534" loading="lazy"
+        alt="HOME. 1: the amber banner, Set your in-game settings for proper aim.">
+      <figcaption>Figure GAME-SETT.1 — HOME, the in-game settings banner</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Set your in-game settings for proper aim</b></td><td>Opens the list of settings to set in your game.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-aim-game-settings--copy-them">
@@ -139,6 +146,16 @@
       <li>If the sheet shows <b>Your sensitivity</b>, pick any stick sensitivity you like in the game. Type the same number in the app.</li>
       <li>Type the field of view you play at into <b>Your in-game FOV</b>.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-cf-sheet.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The Your game settings sheet, marked REQUIRED, with the rows to set in the game. 1: your stick sensitivity boxes. 2: Your in-game FOV. 3: the help button.">
+      <figcaption>Figure GAME-SETT.2 — Your game settings sheet, a mouse config (MW4)</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Your stick sensitivity</b></td><td>Type the sensitivity you set in the game (4.00 recommended).</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Your in-game FOV</b></td><td>Type the field of view you play at.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>?</b></td><td>Why these must match the game.</td></tr>
+    </tbody></table>
     <p>The required rows for each Ready game are on its page: <a href="#p-games-black-ops-2">Black Ops II</a> and <a href="#p-games-mw4">Modern Warfare 4</a>.</p>
     <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>When the app shows <b>Recommended</b> next to a sensitivity, any value still works. The app does the math. A lower sensitivity also lowers the fastest turn the game allows.</p></aside>
   </section>
@@ -146,9 +163,18 @@
   <section class="m2-sec" id="p-aim-game-settings--confirm">
     <h2>3. Confirm in the app</h2>
     <ol class="m2-steps">
-      <li>Tap <b>I've set these</b>.</li>
+      <li>Tap <b>I've set these</b> (2).</li>
       <li>Wait for the toast that starts with <b>Saved:</b> and lists your sensitivity and FOV.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-cf-sheet-bo2.webp' | asset_url }}" width="700" height="1339" loading="lazy"
+        alt="The Your game settings sheet for Black Ops II. 1: Your in-game FOV box. 2: the I've set these button.">
+      <figcaption>Figure GAME-SETT.3 — Your game settings, bottom (Black Ops II)</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Your in-game FOV</b></td><td>Type the FOV you play at.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>I've set these</b></td><td>Tap once the game matches the list.</td></tr>
+    </tbody></table>
     <p>Tapped <b>Not now</b> by mistake? The HOME reminder stays until you confirm.</p>
   </section>
 
@@ -156,7 +182,7 @@
     <h2>Find the list again later</h2>
     <ul>
       <li><b>Settings</b> › <b>Advanced</b> › <b>Translation</b> › <b>Set these in the game</b>. Tap <b>Your sensitivity and FOV</b> to change your numbers.</li>
-      <li><b>Settings</b> › <b>Device</b> › <b>Aim Speed Match</b> (<b>Set the required in-game settings</b>).</li>
+      <li><b>Settings</b> › <b>Device</b> › <b>In-game settings</b>. It reads <b>Not set</b> until you confirm the list.</li>
     </ul>
     <aside class="m2-call m2-call--warning"><p class="m2-call-label">Warning</p><p>Changed your FOV or sensitivity in the game? Change it in the app too, or your aim will turn the wrong amount.</p></aside>
   </section>
@@ -210,16 +236,44 @@
   <section class="m2-sec" id="p-aim-mouse--speed">
     <h2>Speed</h2>
     <p>Speed is your sensitivity. Tap <b>−</b> or <b>+</b>, or tap the number and type one. The cm/360 line under it updates as you go.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-speed.webp' | asset_url }}" width="700" height="1128" loading="lazy"
+        alt="Aim, mouse and keyboard view, Hip aim tab. 1: Showing Mouse and Keyboard, Switch. 2: Hip aim. 3: Speed 64.2, with minus and plus, about 12.2 cm per 360 under it. 4: the help button.">
+      <figcaption>Figure AIM-M.2 — Settings › Aim › Hip aim, Speed</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Switch</b></td><td>On a config with a mouse and a controller, flips between the two.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Hip aim</b></td><td>Your aim when you're not aiming down sights.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Speed</b></td><td>Tap − or +, or tap the number and type. The line under it is cm per 360° turn.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>?</b></td><td>The app's own explanation.</td></tr>
+    </tbody></table>
     <div class="m2-table"><table class="m2-settings"><thead><tr><th>Setting</th><th>What it does</th><th>Range</th><th>Default</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
     <tbody>
       <tr><td data-label="Setting"><b>Speed</b> (Hip aim)</td><td data-label="What it does">How fast your view turns for a mouse move. "Higher is faster."</td><td data-label="Range">0–100, step 1 (100 ≈ 8 cm/360). Type a decimal, or up to 160.8 for faster. One step below 0 reads <b>Standard</b>.</td><td data-label="Default"><b>Standard</b> (≈ 34 cm/360)</td><td data-label="Start here">The cm/360 you like, or Standard</td><td data-label="Raise it if…">Turning around feels slow</td><td data-label="Lower it if…">You overshoot targets</td></tr>
     </tbody></table></div>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-units.webp' | asset_url }}" width="700" height="861" loading="lazy"
+        alt="Global Settings, Access tab. 1: Access. 2: the Show real units switch.">
+      <figcaption>Figure AIM-M.3 — Global Settings › Access › Show real units</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Access</b></td><td>The tab with Units.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Show real units</b></td><td>Switch on to see cm/360 next to Speed.</td></tr>
+    </tbody></table>
     <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Speed only means the same thing in every game when your in-game settings match the app's list. <a href="#p-aim-game-settings">Set your in-game settings</a></p></aside>
   </section>
 
   <section class="m2-sec" id="p-aim-mouse--smoothing">
     <h2>Smoothing</h2>
     <p>Smoothing steadies small shakes, but adds a little delay. Use <b>‹ ›</b> to pick a preset. Pick <b>Custom</b> to set the dials yourself.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-smoothing.webp' | asset_url }}" width="700" height="1128" loading="lazy"
+        alt="Hip aim, Mouse card. Smoothing shows Disabled. 1: the arrow to step through the presets.">
+      <figcaption>Figure AIM-M.4 — Settings › Aim › Hip aim, Smoothing</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Smoothing arrows</b></td><td>Step through Disabled, Light, Balanced, Heavy and Custom.</td></tr>
+    </tbody></table>
     <div class="m2-table"><table class="m2-settings"><thead><tr><th>Preset</th><th>What it feels like (from the app)</th></tr></thead>
     <tbody>
       <tr><td data-label="Preset"><b>Disabled</b> (default)</td><td data-label="What it feels like">"Mouse movement will be unprocessed and may result in aim jitter."</td></tr>
@@ -236,7 +290,7 @@
     <p>Tap <b>•••</b> under Smoothing to open <b>Mechanics</b>. Here you find the hip curve, Y Scale and Invert.</p>
     <figure class="m2-fig">
       <img src="{{ 'exo2-ann-aim-advanced.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="The Mechanics fold of Hip aim. A: the Hip curve graph, Curve Editor Mouse Hip. B: plus, minus, Straighten all and Reset view buttons. C: curve presets Linear, Ease-in, Ease-out, S-type. D: COPY and PASTE. Y Scale at 100 percent below.">
-      <figcaption>Figure AIM-M.2 — Aim, Hip aim, Mechanics open</figcaption>
+      <figcaption>Figure AIM-M.5 — Aim, Hip aim, Mechanics open</figcaption>
     </figure>
     <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody>
@@ -258,7 +312,25 @@
   <section class="m2-sec" id="p-aim-mouse--advanced">
     <h2>Advanced <span class="x2-badge x2-badge--plain">Advanced</span></h2>
     <p>Tap <b>Advanced</b> next to <b>•••</b>. These fine-tune how small and slow moves feel. Most players leave them alone.</p>
-    <div class="m2-shot-todo"><b>Screenshot needed</b> — Aim, Hip aim, Advanced card open (Fine aim, Ignore tiny movement, Feel, Start-up feel, Mouse DPI line), mouse config, capture on a live EXO.</div>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-advanced.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Hip aim with Advanced on. 1: Fine aim, 0 percent, with minus and plus. Below: Hip measured, and Up/down vs left/right.">
+      <figcaption>Figure AIM-M.6 — Settings › Aim › Hip aim › Advanced, top</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Fine aim</b></td><td>Makes small, slow moves count for more. Flicks stay the same. 0 = off.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-feel.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The bottom of Advanced. 1: Ignore tiny movement, 0 mm per second. 2: Mouse DPI 1,000, Change in Device. 3: Feel, Snappy, Balanced or Smooth. 4: Start-up feel, 0 ms.">
+      <figcaption>Figure AIM-M.7 — Settings › Aim › Hip aim › Advanced, bottom</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Ignore tiny movement</b></td><td>Hand movement slower than this is ignored. 0 = off.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Mouse DPI</b></td><td>Set on Device. Tap to go there.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Feel</b></td><td><b>Snappy</b>, <b>Balanced</b> or <b>Smooth</b>.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>Start-up feel</b></td><td>How gently a move starts after your hand was still. 0 = instant.</td></tr>
+    </tbody></table>
     <div class="m2-table"><table class="m2-settings"><thead><tr><th>Setting</th><th>What it does</th><th>Range</th><th>Default</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
     <tbody>
       <tr><td data-label="Setting"><b>Fine aim</b></td><td data-label="What it does">"Makes small, slow mouse moves count for more. Flicks stay the same."</td><td data-label="Range">0–100 %, step 5 (0 = off)</td><td data-label="Default">0 (off)</td><td data-label="Start here">0</td><td data-label="Raise it if…">Tiny corrections feel stuck</td><td data-label="Lower it if…">Small moves feel jumpy</td></tr>
@@ -399,6 +471,16 @@
       <li>To remove a dot, select it and tap <b>−</b>.</li>
       <li>Tap a small dot between two circles to make that part straight, or smooth again.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-curve.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Hip aim, Mouse card with the three-dot button open. 1: the three dots. 2: Hip curve help button. 3: the Curve Editor, with circles on the line.">
+      <figcaption>Figure AIM-C.2 — Settings › Aim › Hip aim › ••• › Hip curve</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>•••</b></td><td>Shows the mechanics, including Hip curve.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Hip curve ?</b></td><td>How the curve changes your aim.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Curve Editor</b></td><td>Drag the points to shape how turn speed builds.</td></tr>
+    </tbody></table>
     <p>Pinch to zoom in on the graph. Drag empty space to move around. <b>Reset view</b> brings back the whole graph.</p>
     <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Made a mess? Tap <b>Straighten all</b> or the <b>Linear</b> preset to get back to a straight line.</p></aside>
   </section>
@@ -410,6 +492,16 @@
       <li>Open the other config's curve editor.</li>
       <li>Tap <b>PASTE</b>.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ct-custom.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="A curve editor (controller config shown). 1: Custom. 2: the curve, with circles to drag. 3: Save. Below the curve: plus, minus, Straighten all, Reset view, COPY, PASTE and the presets Linear, Ease-in, Ease-out and S-type.">
+      <figcaption>Figure AIM-C.3 — A curve editor, with COPY and PASTE under the curve</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Custom</b></td><td>Shape the curve yourself.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Curve</b></td><td>Drag the points.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Save</b></td><td>Keeps the change on your EXO.</td></tr>
+    </tbody></table>
     <p>On the ADS aim tab, the <b>ADS curve</b> is <b>Same as hip</b> by default, so your new hip curve is used there too.</p>
   </section>
 
@@ -445,6 +537,14 @@
   <section class="m2-sec" id="p-aim-smoothing-and-sync--presets">
     <h2>Smoothing presets</h2>
     <p>Where: <b>Settings</b> › <b>Aim</b> › <b>Smoothing</b>. Start with a preset. Go to <b>Custom</b> only if none of them feel right.</p>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-smoothing.webp' | asset_url }}" width="700" height="1128" loading="lazy"
+        alt="Hip aim, Mouse card. Smoothing shows Disabled. 1: the arrow to step through the presets.">
+      <figcaption>Figure AIM-SS.1 — Settings › Aim › Smoothing</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Smoothing arrows</b></td><td>Step through the presets.</td></tr>
+    </tbody></table>
     <div class="m2-table"><table class="m2-settings"><thead><tr><th>Preset</th><th>Feel</th><th>Use it when</th></tr></thead>
     <tbody>
       <tr><td data-label="Preset"><b>Disabled</b> (Hip default)</td><td data-label="Feel">Raw mouse movement</td><td data-label="Use it when">Your aim already feels clean</td></tr>
@@ -480,7 +580,7 @@
     </ol>
     <figure class="m2-fig">
       <img src="{{ 'exo2-ann-aim-advanced-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="The Translation screen. A: Sync to game, this game: 120, with the choices 60, 120, Custom and Off. 60 is selected. Below it: Runs at 62.5 a second, 4 reports of your 250 Hz update rate.">
-      <figcaption>Figure AIM-SS.1 — Translation, Sync to game, MW4 config</figcaption>
+      <figcaption>Figure AIM-SS.2 — Translation, Sync to game, MW4 config</figcaption>
     </figure>
     <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody><tr><td><span class="m2-letter">A</span></td><td><b>Sync to game</b></td><td>Pick the frame rate you play at. The line under it says how often the EXO sends.</td></tr></tbody></table>
@@ -501,6 +601,114 @@
   </section>
 </article>
 
+
+{%- comment -%} ===================== Translation (added 2026-11-22) ===================== {%- endcomment -%}
+<article class="m2-page" id="p-aim-translation" data-group="Aim" data-title="Translation: keys, sticks and sync" data-time="5 min"
+  data-keywords="translation keyboard movement wasd stick simulation sync to game frame rate fps run ramp diagonals turn assist script timings wait variation">
+  <header class="m2-head">
+    <p class="m2-crumb">Aim</p>
+    <h1>Translation</h1>
+    <p class="m2-get">Tune how your keys and mouse become stick movement, and sync the EXO to your game's frame rate.</p>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Mouse &amp; keyboard</span><span class="x2-badge x2-badge--plain">Advanced</span><span class="m2-time">5 min</span></div>
+  </header>
+
+  <section class="m2-sec" id="p-aim-translation--open">
+    <h2>1. Open Translation</h2>
+    <ol class="m2-steps">
+      <li>On HOME, tap <b>Settings</b>.</li>
+      <li>Tap <b>Advanced</b> (1) at the bottom to open it.</li>
+      <li>Tap <b>Translation</b>.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-tr-find.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="A config's Settings menu: Device, Aim, Mappings, AI Scripts. 1: Advanced, Translation, Script Maker and 2 more.">
+      <figcaption>Figure AIM-TRAN.1 — Settings, Advanced at the bottom</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Advanced</b></td><td>Opens Translation and the Advanced Script Maker.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-aim-translation--page">
+    <h2>2. The Translation page</h2>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-tr-page.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The Translation page. 1: Left stick movement slider, 0 percent. 2: Right stick look slider, 0 percent. 3: Keyboard movement. 4: Advanced, aiming stick keys, triggers, sync to game.">
+      <figcaption>Figure AIM-TRAN.2 — Settings › Advanced › Translation</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Left stick movement</b></td><td>How WASD becomes smooth stick movement. 0% = keys jump straight to a full push.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Right stick look</b></td><td>Added smoothing on the aim stick. 0% = none.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Keyboard movement</b></td><td>Run ramp, diagonals and turn assist.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>Advanced</b></td><td>Aiming stick keys, triggers and Sync to game.</td></tr>
+    </tbody></table>
+    <p>Most players leave both sliders at 0 %. Raise <b>Left stick movement</b> a little if your character snaps from walk to run too hard.</p>
+  </section>
+
+  <section class="m2-sec" id="p-aim-translation--keyboard-movement">
+    <h2>3. Smooth keyboard movement</h2>
+    <ol class="m2-steps">
+      <li>Tap <b>Keyboard movement</b> (3).</li>
+      <li>Switch on <b>Smooth keyboard movement</b> (1). The settings under it appear.</li>
+      <li>Set <b>Walk speed</b>, <b>Time to full run</b> and <b>Time to stop</b>.</li>
+      <li>Under <b>Corners and turns</b>, pick a <b>Diagonal speed</b> and, if you like, some <b>Turn assist</b>.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-tr-keys.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Keyboard Movement. 1: Smooth keyboard movement switch, on. 2: the help button. Below: Walk speed 55 percent, Time to full run 120 ms, Time to stop 80 ms, Diagonal speed Same as straight or Faster, Turn assist 0 percent.">
+      <figcaption>Figure AIM-TRAN.3 — Translation › Keyboard movement</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Smooth keyboard movement</b></td><td>On: WASD walks and runs like a real stick. Off: keys slam the stick to full.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>?</b></td><td>The app's own explanation.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-aim-translation--sync-to-game">
+    <h2>4. Sync to game</h2>
+    <ol class="m2-steps">
+      <li>Open <b>Advanced</b> (1) on the Translation page.</li>
+      <li>Under <b>Sync to game</b> (2), tap <b>60</b> for a 60 fps game or <b>120</b> for 120 fps.</li>
+      <li>Or tap <b>Custom</b> to type any rate from 20 to 360, or <b>Off</b>.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-tr-sync.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Translation, Advanced open. 1: Advanced. 2: Sync to game, this game 60, with 60, 120, Custom and Off. 3: the help button.">
+      <figcaption>Figure AIM-TRAN.4 — Translation › Advanced › Sync to game</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Advanced</b></td><td>Tap to open it.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Sync to game</b></td><td>60 (the default), 120, Custom (20 to 360) or Off.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>?</b></td><td>The app's own explanation.</td></tr>
+    </tbody></table>
+    <p>More on why it matters: <a href="#p-aim-smoothing-and-sync--sync-to-game">Sync to game</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-aim-translation--script-timings">
+    <h2>5. Script timings</h2>
+    <ol class="m2-steps">
+      <li>Scroll to <b>Script timings</b>.</li>
+      <li>Drag <b>Wait variation</b> (1). 0 % plays every wait exactly as written.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-tr-timing.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Script timings, Wait variation slider at 0 percent, with its help open: natural timing so no two runs are identical. 1: the Wait variation slider.">
+      <figcaption>Figure AIM-TRAN.5 — Translation › Script timings › Wait variation</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Wait variation</b></td><td>Adds a little random time to each Script wait. 0% = exact.</td></tr>
+    </tbody></table>
+    <p>All the timing settings: <a href="#p-scripts-timing">Script timing</a>.</p>
+  </section>
+
+  <section class="m2-sec" id="p-aim-translation--check">
+    <h2>Check it worked</h2>
+    <aside class="m2-call m2-call--check"><p class="m2-call-label">Check it worked</p>
+      <p>You're set when all of these are true:</p>
+      <ul><li><b>Game:</b> pressing W builds up to a run the way you set it.</li><li><b>App:</b> Sync to game shows your game's frame rate.</li></ul>
+      <p>Aim feels floaty? <a href="#p-help-aim-feels-wrong--aim-feels-floaty">My aim feels floaty</a></p></aside>
+  </section>
+</article>
 
 <article class="m2-page" id="p-aim-controller-sticks" data-group="Aim" data-title="Controller sticks" data-time="6 min">
   <header class="m2-head">
@@ -531,6 +739,15 @@
 
   <section class="m2-sec" id="p-aim-controller-sticks--modes">
     <h2>Stick modes</h2>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ct-mode.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Aim on a controller config. 1: Response Curve, open. 2: the stick modes Native, EXO Linear and Custom, with Custom picked.">
+      <figcaption>Figure AIM-ST.2 — Settings › Aim › Response Curve (controller)</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Response Curve</b></td><td>Tap to open or close the card.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Native / EXO Linear / Custom</b></td><td>Pick how the stick responds.</td></tr>
+    </tbody></table>
     <div class="m2-table"><table class="m2-settings"><thead><tr><th>Mode</th><th>What it does (from the app)</th><th>When to use it</th></tr></thead>
     <tbody>
       <tr><td data-label="Mode"><b>Native</b></td><td data-label="What it does">"The game's own aim curve, untouched."</td><td data-label="When to use it">You like the game's normal feel.</td></tr>
@@ -544,7 +761,7 @@
     <h2>Deadzones</h2>
     <figure class="m2-fig">
       <img src="{{ 'exo2-ann-aim-advanced-4.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="The Deadzones card. A: Inner at 8 percent. B: Outer at 0 percent. C: the Anti line, saying Anti is not needed here because Custom already clears this game's deadzone. D: Limit at 100 percent for both sticks. E: Deadzone shape, Round or Per-axis. Below: Response Curve, Triggers, Stop my aim drifting and Calibration.">
-      <figcaption>Figure AIM-ST.2 — Aim, controller view, Deadzones open</figcaption>
+      <figcaption>Figure AIM-ST.3 — Aim, controller view, Deadzones open</figcaption>
     </figure>
     <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody>
@@ -575,20 +792,68 @@
       <tr><td data-label="Setting"><b>Limit</b> (triggers)</td><td data-label="What it does">The most a trigger can pull.</td><td data-label="Range">10–100 %</td><td data-label="Default">100 %</td><td data-label="Start here">100 %</td><td data-label="Raise it if…">—</td><td data-label="Lower it if…">A game needs a partial pull</td></tr>
     </tbody></table></div>
     <p>On the <b>ADS</b> tab, <b>Same as Hip</b> is on by default. Switch it off to give aiming its own stick settings.</p>
-    <div class="m2-shot-todo"><b>Screenshot needed</b> — Aim, controller view, Triggers card open (L2 / R2 hair trigger, Limit), capture on a live EXO.</div>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ct-aim.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Aim on a controller config. 1: HIP tab. 2: Left stick or Right stick, right picked. 3: the Sensitivity slider at 100. 4: the help button.">
+      <figcaption>Figure AIM-ST.4 — Settings › Aim, controller config</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>HIP</b></td><td>Your sticks when you're not aiming down sights.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Left stick / Right stick</b></td><td>Pick the stick you're tuning.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Sensitivity</b></td><td>Drag left for slower, right for faster.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>?</b></td><td>The app's own explanation.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ct-triggers.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Aim, Triggers card open. 1: Triggers. 2: the R2 hair trigger slider, Off. 3: the trigger Limit slider, 100 percent.">
+      <figcaption>Figure AIM-ST.5 — Settings › Aim › Triggers</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Triggers</b></td><td>Tap to open or close the card.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>R2</b></td><td>Slide right so a light touch fires fully. L2 is the row above.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Limit</b></td><td>The most a trigger can send.</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="m2-sec" id="p-aim-controller-sticks--ads">
+    <h2>ADS: its own stick setup</h2>
+    <ol class="m2-steps">
+      <li>In Aim, tap the <b>ADS</b> tab (1).</li>
+      <li>Switch off <b>Same as Hip</b> (2) to give ADS its own speed, curve and deadzones.</li>
+      <li>Tap <b>Choose what counts as aiming</b> (3) and pick your aim button, usually L2.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ct-ads.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Aim on a controller config, ADS tab. 1: ADS. 2: Same as Hip switch, on. 3: Choose what counts as aiming. 4: the help button.">
+      <figcaption>Figure AIM-ST.6 — Settings › Aim › ADS (controller)</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>ADS</b></td><td>The settings used while you aim down sights.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Same as Hip</b></td><td>On by default. Switch off for separate ADS settings.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Choose what counts as aiming</b></td><td>The button that means "aiming".</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>?</b></td><td>The app's own explanation.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-aim-controller-sticks--calibration">
     <h2>Calibrate a PlayStation controller</h2>
-    <p>Worn sticks can drift or stop short of the edge. The EXO can re-centre and re-range a <b>DualSense</b>, <b>DualSense Edge</b> or <b>DualShock 4</b>, and save the result to the controller itself.</p>
+    <p>A worn DualSense, DualSense Edge or DualShock 4 can drift. Calibration re-centres and re-ranges its sticks.</p>
     <ol class="m2-steps">
       <li>Plug the controller into a front USB port on the EXO with a cable.</li>
-      <li>In the controller view of Aim, tap <b>Calibration</b> ("Re-centre and re-range your controller's sticks").</li>
-      <li>Follow the steps on screen. Keep your hands off for the centre step, then spin the sticks.</li>
-      <li>Save the result to the controller. <span class="m2-confirm">[CONFIRM: exact button names on the PlayStation pad screen]</span></li>
+      <li>In the controller view of Aim, scroll down and tap <b>Calibration</b> (1).</li>
+      <li>Tap <b>Calibrate stick center</b> and keep your hands off the sticks.</li>
+      <li>Tap <b>Calibrate stick range</b> and spin both sticks round their edges.</li>
+      <li>Tap <b>Save changes permanently</b> to keep the result on the controller.</li>
     </ol>
-    <div class="m2-shot-todo"><b>Screenshot needed</b> — Calibration screen with a DualSense plugged in, capture on a live EXO.</div>
-    <aside class="m2-call m2-call--warning"><p class="m2-call-label">Warning</p><p>Don't unplug the controller while it saves. If something goes wrong, run the calibration again.</p></aside>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ct-calib.webp' | asset_url }}" width="700" height="1366" loading="lazy"
+        alt="Aim on a controller config, lower down. 1: the Calibration button, Re-centre and re-range your controller's sticks.">
+      <figcaption>Figure AIM-ST.7 — Settings › Aim › Calibration</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Calibration</b></td><td>Opens the stick calibration screens.</td></tr>
+    </tbody></table>
+    <p>While Calibration is open, your console can't see that controller.</p>
   </section>
 
   <section class="m2-sec" id="p-aim-controller-sticks--related">
@@ -625,11 +890,20 @@
     <ol class="m2-steps">
       <li>On HOME, tap <b>Settings</b>, then <b>Device</b>.</li>
       <li>Scroll to <b>Mouse DPI</b>.</li>
-      <li>Know your DPI? Tap a preset (<b>800</b>, <b>1600</b>, <b>3200</b>, <b>6400</b>, <b>8000</b>, <b>12000</b>) or type it in.</li>
+      <li>Know your DPI? Tap a preset (<b>800</b>, <b>1600</b>, <b>3200</b>, <b>6400</b>, <b>8000</b>, <b>12000</b>) or type it in (1).</li>
       <li>Not sure? Tap <b>Measure my DPI</b> and go to step 2.</li>
     </ol>
     <p>The app recommends <b>3200</b> or higher. Lower DPI makes aim coarse.</p>
-    <div class="m2-shot-todo"><b>Screenshot needed</b> — Device, Mouse DPI card (presets, Or type it, Measure my DPI, Check rate (Hz)), capture on a live EXO.</div>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sm-dpi.webp' | asset_url }}" width="700" height="831" loading="lazy"
+        alt="The Mouse DPI card. 1: the DPI presets, 3,200 recommended. 2: Measure my DPI. 3: Check rate (Hz).">
+      <figcaption>Figure YOUR-MOUS.1 — Settings › Device › Mouse DPI</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>DPI presets</b></td><td>Tap your mouse's DPI, or type it in the box.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Measure my DPI</b></td><td>The app finds it with a short guided move.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Check rate (Hz)</b></td><td>Tests your mouse's polling rate.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-aim-check-your-mouse--measure-dpi">
@@ -642,6 +916,14 @@
       <li>Repeat when asked. Then tap <b>See the result</b>.</li>
       <li>Read "Your mouse is at about N DPI" and tap <b>Use N DPI</b>.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-cf-dpi.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Mouse DPI with I don't know my DPI open: your mouse's software shows it, the box or the maker's web page, or Measure it now with your mouse plugged into the EXO. 1: the DPI presets.">
+      <figcaption>Figure YOUR-MOUS.2 — I don't know my DPI: where to find it</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>DPI presets</b></td><td>Tap your DPI once you know it.</td></tr>
+    </tbody></table>
     <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Slide in a straight line and keep the mouse flat. Lift it off at the end, don't drag it back.</p></aside>
   </section>
 
@@ -653,6 +935,16 @@
       <li>Move your mouse continuously in circles until it stops.</li>
       <li>Read "Your mouse is responding at about N Hz."</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sm-dpi.webp' | asset_url }}" width="700" height="831" loading="lazy"
+        alt="The Mouse DPI card. 1: the DPI presets, 3,200 recommended. 2: Measure my DPI. 3: Check rate (Hz).">
+      <figcaption>Figure YOUR-MOUS.3 — Settings › Device › Mouse DPI: Check rate (Hz) is 3</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>DPI presets</b></td><td>Tap your mouse's DPI, or type it in the box.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Measure my DPI</b></td><td>The app finds it with a short guided move.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Check rate (Hz)</b></td><td>Tests your mouse's polling rate.</td></tr>
+    </tbody></table>
     <p>The EXO reads mice up to 1000 Hz. A faster mouse (like 8000 Hz) still works and is read at 1000 Hz.</p>
   </section>
 
@@ -703,19 +995,40 @@
       <li>Stand in open space with detail all round you, not up against a wall.</li>
       <li>Take your gun out and turn aim assist off in the game.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-measure.webp' | asset_url }}" width="700" height="704" loading="lazy"
+        alt="The Measure this game card: open a private match or the firing range on your own, stand in an open spot, take aim assist off, then tap Start and put the controller down.">
+      <figcaption>Figure SPEE-MATC.1 — Measure this game: the same set-up</figcaption>
+    </figure>
   </section>
 
   <section class="m2-sec" id="p-aim-speed-match--calibrate">
     <h2>2. Run Calibrate</h2>
     <ol class="m2-steps">
-      <li>In the app, tap <b>Settings</b> › <b>Device</b> › <b>Aim Speed Match</b>.</li>
-      <li>Tap <b>Calibration</b> ("measures your game's turn speed").</li>
-      <li>Tap the <b>Calibrate</b> button to start. It takes about eight minutes.</li>
+      <li>In the app, open <b>Settings</b> › <b>Aim</b> › <b>Hip aim</b> and switch on <b>Advanced</b>.</li>
+      <li>Tap the <b>Hip: measured</b> row (1), "reticle velocity — tap to measure". <b>Aim Speed Match</b> opens.</li>
+      <li>Tap <b>Calibrate</b> (1), "measures your game's turn speed". It takes about eight minutes.</li>
       <li>Put the controller down. Don't touch the controller, mouse or keys until it finishes.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-match-door.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Hip aim with Advanced on. 1: the row Hip: measured, reticle velocity, tap to measure.">
+      <figcaption>Figure SPEE-MATC.2 — Settings › Aim › Hip aim › Advanced</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Hip: measured</b></td><td>Opens Aim Speed Match.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-match.webp' | asset_url }}" width="700" height="475" loading="lazy"
+        alt="The Aim Speed Match screen, Reticle velocity. 1: Calibrate, measures your game's turn speed. 2: the help button.">
+      <figcaption>Figure SPEE-MATC.3 — Aim Speed Match</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Calibrate</b></td><td>Measures how fast your game turns (about eight minutes).</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>?</b></td><td>The app's own explanation.</td></tr>
+    </tbody></table>
     <p>To stop early, tap <b>Stop</b>, or hold Start / Menu (or Esc) for a second.</p>
-    <div class="m2-shot-todo"><b>Screenshot needed</b> — Calibrate card before start (About eight minutes, the 3 steps, Calibrate button) and the finished result, capture on a live EXO.</div>
-    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>You'll also find <b>Calibrate</b> under <b>Settings</b> › <b>Advanced</b> › <b>Translation</b>. Some games offer <b>Measure this game</b>, a shorter run of about two minutes with the same setup.</p></aside>
+    <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Some games offer <b>Measure this game</b>, a shorter run of about two minutes with the same setup.</p></aside>
   </section>
 
   <section class="m2-sec" id="p-aim-speed-match--check-it-worked">

@@ -23,7 +23,7 @@
     <ul class="m2-cards">
       <li><a class="m2-card" href="#p-help-app-connection--cant-find-exo"><b>The app can't find my EXO</b><span>Pairing or Bluetooth trouble.</span></a></li>
       <li><a class="m2-card" href="#p-help-ps5--controller-not-working"><b>Nothing happens on my PS5</b><span>The PS5 ignores your controls.</span></a></li>
-      <li><a class="m2-card" href="#p-help-xbox--controller-not-working"><b>Nothing happens on my Xbox</b><span>The Xbox ignores your controls.</span></a></li>
+      <li><a class="m2-card" href="#p-help-xbox--controller-not-working"><b>Nothing happens on my Xbox</b><span>The Xbox ignores your controls.</span><span class="x2-badge x2-badge--planned m2-later">Xbox support: coming later</span></a></li>
       <li><a class="m2-card" href="#p-help-pc--not-seen"><b>Windows doesn't see a controller</b><span>Nothing reacts on the PC.</span></a></li>
       <li><a class="m2-card" href="#p-help-ps5--wrong-mode"><b>HOME shows the wrong mode</b><span>PS5 Mode, Xbox Mode or PC Mode is wrong.</span></a></li>
       <li><a class="m2-card" href="#p-help-ps5--no-picture"><b>No picture on my TV</b><span>After connecting HDMI.</span></a></li>
@@ -92,7 +92,16 @@
         <li>Allow the ZeroStick app to use Bluetooth in your phone's settings.</li>
         <li>Move your phone close to the EXO.</li>
         <li>In the app, tap <b>Connect</b> and choose <b>ZeroStick EXO</b> in the list.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-gs-not-found.webp' | asset_url }}" width="700" height="742" loading="lazy"
+        alt="Connect to your ZeroStick: your EXO was not found nearby. 1: Try again. 2: Use a different EXO.">
+      <figcaption>Figure APP-CONN.1 — Your EXO was not found nearby</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Try again</b></td><td>Check the EXO is plugged in and powered, then tap here.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Use a different EXO</b></td><td>Only to connect to another EXO.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>The EXO card on HOME says <b>Connected</b>.</dd>
       <dt>Still stuck?</dt><dd>Try <a href="#p-help-reset--forget-and-repair">forget and pair again</a>, then <a href="#p-help-get-support">contact us</a>.</dd>
     </dl>
@@ -107,7 +116,15 @@
         <li>Check Bluetooth is on.</li>
         <li>Bring your phone closer to the EXO.</li>
         <li>Close the app fully and open it again.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-gs-home-offline.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="HOME with the EXO off. 1: the ZeroStick EXO card says Offline.">
+      <figcaption>Figure APP-CONN.2 — HOME, EXO offline</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Offline</b></td><td>Check the EXO's cable and power.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>HOME's EXO card changes from <b>Offline</b> to <b>Connected</b>.</dd>
       <dt>Still stuck?</dt><dd>See <a href="#p-help-app-connection--cant-find-exo">The app can't find my EXO</a>.</dd>
     </dl>
@@ -121,7 +138,19 @@
         <li>Reconnect the app (HOME should say <b>Connected</b>).</li>
         <li>Wait a few seconds for the sync.</li>
         <li>Open the setting again to check it.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-gs-home.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="HOME with the EXO connected. 1: Settings. 2: the three-dot More button. 3: the devices plugged into the EXO. 4: the ZeroStick EXO card, Connected. 5: the Active weapon card.">
+      <figcaption>Figure APP-CONN.3 — HOME: card 4 should say Connected</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Settings</b></td><td>Everything for the config that's playing: aim, mappings, Scripts.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>⋮ (More)</b></td><td>Your configs, new config and Global Settings.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Device pictures</b></td><td>What's plugged into the EXO. Tap one to see it.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>ZeroStick EXO card</b></td><td><b>Connected</b>, the console mode and what you play with.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">5</span></td><td><b>Active weapon</b></td><td>The gun the EXO sees in your game, and its AI Scripts.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>The setting shows your new value, and the game feels the change.</dd>
       <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with a screenshot of the setting.</dd>
     </dl>
@@ -134,9 +163,18 @@
       <dt>Fix</dt><dd><ol class="m2-steps">
         <li>Tap the yellow <b>!</b> chip, if there is one, and read the warning.</li>
         <li>If it's a power warning, add power on <a href="#p-platforms-power--aux">AUX/POWER</a>.</li>
-        <li>Tap <b>Send report</b> to copy a report, and email it to us.</li>
+        <li>Tap <b>Send report</b> (1) to copy a report, and email it to us.</li>
         <li>Tap <b>Dismiss</b>.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-dv-health.webp' | asset_url }}" width="700" height="416" loading="lazy"
+        alt="Part of HOME: Your EXO restarted unexpectedly. 1: Send report. 2: Dismiss.">
+      <figcaption>Figure APP-CONN.4 — HOME after an unexpected restart</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Send report</b></td><td>Copies a plain-text report. Nothing is uploaded.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Dismiss</b></td><td>Hides the message.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>The message doesn't come back while you play.</dd>
       <dt>Still stuck?</dt><dd>Send the report to <a href="#support-email"><span data-m2-email>caleb@zerostickgaming.com</span></a>.</dd>
     </dl>
@@ -163,7 +201,12 @@
         <li>Check the CONSOLE cable is firmly in the EXO and the PS5.</li>
         <li>Check your controls are in the front ports and show at the top of HOME.</li>
         <li>Unplug the CONSOLE cable, wait 5 seconds, and plug it back in.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-back.webp' | asset_url }}" width="700" height="339" loading="lazy"
+        alt="The back of the EXO, left to right: CONSOLE, AUX/POWER, AUTH, HDMI IN and HDMI OUT.">
+      <figcaption>Figure HELP-PS5.1 — The back of the EXO, every port named</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>Your controls move around the PS5 menus.</dd>
       <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> and send a screenshot of HOME.</dd>
     </dl>
@@ -175,9 +218,17 @@
       <dt>Likely cause</dt><dd>The playing config's Connection Method is set to another console.</dd>
       <dt>Fix</dt><dd><ol class="m2-steps">
         <li>On HOME, tap <b>Settings</b>, then <b>Device</b>.</li>
-        <li>Tap the <b>Connection Method</b> row.</li>
-        <li>Tap your console.</li>
-      </ol></dd>
+        <li>Tap the console row under <b>Connection Method</b>.</li>
+        <li>Tap the arrows until it shows <b>PlayStation 5</b>.</li>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-cc-ps5-chosen.webp' | asset_url }}" width="700" height="356" loading="lazy"
+        alt="The Connection Method card reading PlayStation 5. 1: the console row.">
+      <figcaption>Figure HELP-PS5.2 — Connection Method set to PlayStation 5</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>PlayStation 5</b></td><td>Tap to change it.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>HOME shows <b>PS5 Mode</b>, <b>Xbox Mode</b> or <b>PC Mode</b> to match your console.</dd>
       <dt>Still stuck?</dt><dd>Check you changed the config that's <b>PLAYING</b> in <a href="#p-app-configs--switch">Your configs</a>.</dd>
     </dl>
@@ -191,7 +242,12 @@
         <li>Unplug the dongle.</li>
         <li>Plug it firmly into <b>AUTH</b> (the USB-A port on the back), not a front port.</li>
         <li>Unplug the CONSOLE cable, wait 5 seconds, and plug it back in.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-auth.webp' | asset_url }}" width="700" height="436" loading="lazy"
+        alt="Close-up of the back of the EXO, with the AUTH USB-A port marked.">
+      <figcaption>Figure HELP-PS5.3 — AUTH, on the back: the dongle goes here, not in a front port</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>Your controls move around the PS5 menus.</dd>
       <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a>. Tell us you're on PS5 and what HOME shows.</dd>
     </dl>
@@ -205,7 +261,12 @@
         <li>Plug your headset into your DualSense, not into the EXO.</li>
         <li>Check the DualSense is plugged into a front port with a USB cable.</li>
         <li>Check the PS5's volume and mute in its sound controls.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-front.webp' | asset_url }}" width="700" height="265" loading="lazy"
+        alt="The front of the EXO. One USB-C port on the left and three USB-A ports, for controllers, a mouse and a keyboard.">
+      <figcaption>Figure HELP-PS5.4 — Your DualSense goes into a front port; your headset goes into the DualSense</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>You hear the game, and friends hear you in party chat.</dd>
       <dt>Still stuck?</dt><dd>Headset support is in final validation on first units. Please <a href="#p-help-get-support">tell us</a> your headset model.</dd>
     </dl>
@@ -220,7 +281,12 @@
         <li>Check the cable to your TV goes into <b>HDMI OUT</b>.</li>
         <li>Push both cables in firmly at each end.</li>
         <li>Check your TV is on the right input.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-hdmi.webp' | asset_url }}" width="700" height="599" loading="lazy"
+        alt="The two HDMI ports on the back of the EXO. HDMI IN takes the cable from your console. HDMI OUT goes to your TV.">
+      <figcaption>Figure HELP-PS5.5 — HDMI IN from the console, HDMI OUT to the TV</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>Your console's picture shows on the TV.</dd>
       <dt>Still stuck?</dt><dd>Plug the console straight into the TV to test the cable, then <a href="#p-help-get-support">contact us</a>.</dd>
     </dl>
@@ -234,11 +300,12 @@
     <p class="m2-crumb">Help</p>
     <h1>Xbox problems</h1>
     <p class="m2-get">Fix the most common problems on Xbox, quickest fix first.</p>
-    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Xbox</span><span class="m2-time">3 min</span></div>
+    <div class="m2-badges"><span class="x2-badge x2-badge--plain">Xbox</span><span class="x2-badge x2-badge--planned m2-later">Xbox support: coming later</span><span class="m2-time">3 min</span></div>
   </header>
 
   <section class="m2-sec m2-symptom" id="p-help-xbox--controller-not-working">
     <h2>Nothing happens on my Xbox</h2>
+    <p class="m2-later-row"><span class="x2-badge x2-badge--planned m2-later">Xbox support: coming later</span></p>
     <dl class="m2-fix">
       <dt>Likely cause</dt><dd>The config is set to another console, the controller in AUTH isn't connected, or a cable is loose.</dd>
       <dt>Fix</dt><dd><ol class="m2-steps">
@@ -246,7 +313,12 @@
         <li>Check your genuine Xbox controller is in <b>AUTH</b> with its USB cable.</li>
         <li>Check the CONSOLE cable is firmly in the EXO and the Xbox.</li>
         <li>Unplug the CONSOLE cable, wait 5 seconds, and plug it back in.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-back.webp' | asset_url }}" width="700" height="339" loading="lazy"
+        alt="The back of the EXO, left to right: CONSOLE, AUX/POWER, AUTH, HDMI IN and HDMI OUT.">
+      <figcaption>Figure HELP-XBOX.1 — The back of the EXO, every port named</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>Your controls move around the Xbox menus.</dd>
       <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> and tell us your Xbox controller model. <span class="m2-confirm">[CONFIRM: how long the first sign-in check can take]</span></dd>
     </dl>
@@ -254,13 +326,24 @@
 
   <section class="m2-sec m2-symptom" id="p-help-xbox--wrong-mode">
     <h2>HOME shows the wrong mode</h2>
+    <p class="m2-later-row"><span class="x2-badge x2-badge--planned m2-later">Xbox support: coming later</span></p>
     <dl class="m2-fix">
       <dt>Likely cause</dt><dd>The playing config's Connection Method is set to another console.</dd>
       <dt>Fix</dt><dd><ol class="m2-steps">
         <li>On HOME, tap <b>Settings</b>, then <b>Device</b>.</li>
         <li>Tap the <b>Connection Method</b> row.</li>
         <li>Tap <b>Xbox</b>.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-cc-card.webp' | asset_url }}" width="700" height="891" loading="lazy"
+        alt="The Connection Method card on the Device page. 1: the console row (here PC). 2: What you play with. 3: the help button.">
+      <figcaption>Figure HELP-XBOX.2 — Settings › Device › Connection Method</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Console row</b></td><td>Tap to pick your console.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>What you play with</b></td><td><b>Auto</b>, <b>Mouse + Keyboard</b>, <b>Controller</b> or <b>Joystick + Mouse</b>.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>?</b></td><td>The app's own explanation.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>HOME shows <b>Xbox Mode</b>.</dd>
       <dt>Still stuck?</dt><dd>Check you changed the config that's <b>PLAYING</b> in <a href="#p-app-configs--switch">Your configs</a>.</dd>
     </dl>
@@ -268,13 +351,19 @@
 
   <section class="m2-sec m2-symptom" id="p-help-xbox--controller-update">
     <h2>My controller in AUTH wants an update</h2>
+    <p class="m2-later-row"><span class="x2-badge x2-badge--planned m2-later">Xbox support: coming later</span></p>
     <dl class="m2-fix">
       <dt>Likely cause</dt><dd>The Xbox offers controller updates now and then.</dd>
       <dt>Fix</dt><dd><ol class="m2-steps">
         <li>Don't accept the update while the controller is in AUTH.</li>
         <li>Unplug the controller from the EXO.</li>
         <li>Update it straight on the Xbox, then plug it back into AUTH.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-auth.webp' | asset_url }}" width="700" height="436" loading="lazy"
+        alt="Close-up of the back of the EXO, with the AUTH USB-A port marked.">
+      <figcaption>Figure HELP-XBOX.3 — AUTH, the USB-A port on the back</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>The controller is up to date and your controls work again.</dd>
       <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a>.</dd>
     </dl>
@@ -282,13 +371,19 @@
 
   <section class="m2-sec m2-symptom" id="p-help-xbox--no-picture">
     <h2>No picture on my TV</h2>
+    <p class="m2-later-row"><span class="x2-badge x2-badge--planned m2-later">Xbox support: coming later</span></p>
     <dl class="m2-fix">
       <dt>Likely cause</dt><dd>The HDMI cables are swapped or loose.</dd>
       <dt>Fix</dt><dd><ol class="m2-steps">
         <li>Check the cable from your Xbox goes into <b>HDMI IN</b>.</li>
         <li>Check the cable to your TV goes into <b>HDMI OUT</b>.</li>
         <li>Push both cables in firmly, and check the TV input.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-hdmi.webp' | asset_url }}" width="700" height="599" loading="lazy"
+        alt="The two HDMI ports on the back of the EXO. HDMI IN takes the cable from your console. HDMI OUT goes to your TV.">
+      <figcaption>Figure HELP-XBOX.4 — HDMI IN from the console, HDMI OUT to the TV</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>Your Xbox's picture shows on the TV.</dd>
       <dt>Still stuck?</dt><dd>Plug the Xbox straight into the TV to test the cable, then <a href="#p-help-get-support">contact us</a>.</dd>
     </dl>
@@ -314,7 +409,12 @@
         <li>Check HOME says <b>PC Mode</b>. If not, see <a href="#p-help-pc--wrong-mode">the wrong mode</a>.</li>
         <li>Try another USB port on the PC.</li>
         <li>Check your game is set to use a controller.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-console.webp' | asset_url }}" width="700" height="436" loading="lazy"
+        alt="Close-up of the back of the EXO, with the CONSOLE USB-C port marked. It goes to your console or PC.">
+      <figcaption>Figure HELP-PC.1 — The PC cable goes into CONSOLE</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>Your game or Steam reacts to the EXO like a controller.</dd>
       <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with your Windows version.</dd>
     </dl>
@@ -326,9 +426,17 @@
       <dt>Likely cause</dt><dd>The playing config's Connection Method is set to a console.</dd>
       <dt>Fix</dt><dd><ol class="m2-steps">
         <li>On HOME, tap <b>Settings</b>, then <b>Device</b>.</li>
-        <li>Tap the <b>Connection Method</b> row.</li>
-        <li>Tap <b>PC</b>.</li>
-      </ol></dd>
+        <li>Tap the console row under <b>Connection Method</b>.</li>
+        <li>Tap the arrows (1) until it shows <b>PC</b>.</li>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-cc-pick-pc.webp' | asset_url }}" width="700" height="635" loading="lazy"
+        alt="The Console Connection panel on PC. 1: the arrow.">
+      <figcaption>Figure HELP-PC.2 — Console Connection on PC</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Arrows</b></td><td>Go through the consoles.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>HOME shows <b>PC Mode</b>.</dd>
       <dt>Still stuck?</dt><dd>Check you changed the config that's <b>PLAYING</b> in <a href="#p-app-configs--switch">Your configs</a>.</dd>
     </dl>
@@ -354,7 +462,15 @@
         <li>Set your in-game settings exactly as the app lists them.</li>
         <li>Check <b>Mouse DPI</b> on the Device page matches your mouse. Tap <b>Measure my DPI</b> if unsure.</li>
         <li>In <b>Aim</b>, raise <b>Speed</b> if turning feels slow, or lower it if you overshoot.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-speed.webp' | asset_url }}" width="700" height="1128" loading="lazy"
+        alt="Hip aim, Speed 64.2 (3), about 12.2 cm per 360.">
+      <figcaption>Figure FEEL-WRON.1 — Settings › Aim › Hip aim: Speed is 3</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Speed</b></td><td>Higher turns faster for the same hand movement.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>A comfortable mouse swipe turns you the amount you expect.</dd>
       <dt>Still stuck?</dt><dd>See <a href="#p-aim-mouse">Mouse aim settings</a>.</dd>
     </dl>
@@ -368,7 +484,23 @@
         <li>In <b>Aim</b>, set <b>Smoothing</b> to <b>Disabled</b> or <b>Light</b>.</li>
         <li>In <b>Advanced</b> › <b>Translation</b>, set <b>Sync to game</b> to the frame rate you play at.</li>
         <li>In Aim's Advanced settings, check <b>Feel</b> is <b>Snappy</b>.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-smoothing.webp' | asset_url }}" width="700" height="1128" loading="lazy"
+        alt="Hip aim, Smoothing Disabled. 1: the arrow to change it.">
+      <figcaption>Figure FEEL-WRON.2 — Settings › Aim: Smoothing</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Smoothing</b></td><td>Step through the presets.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-tr-sync.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Translation, Advanced, Sync to game with 60, 120, Custom and Off. 2: Sync to game.">
+      <figcaption>Figure FEEL-WRON.3 — Translation › Advanced › Sync to game</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Sync to game</b></td><td>Pick your game's frame rate.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>The view stops the moment your hand stops.</dd>
       <dt>Still stuck?</dt><dd>See <a href="#p-reference-settings--aim">every aim setting</a>.</dd>
     </dl>
@@ -382,7 +514,16 @@
         <li>In Aim's Advanced settings, set <b>Ignore tiny movement</b> to 0.</li>
         <li>Set the game's deadzone to the value on the app's list.</li>
         <li>Try raising <b>Fine aim</b> a little.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-feel.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The bottom of Advanced. 1: Ignore tiny movement. 3: Feel.">
+      <figcaption>Figure FEEL-WRON.4 — Aim › Advanced: Ignore tiny movement is 1</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Ignore tiny movement</b></td><td>Set it to 0.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Feel</b></td><td>Snappy, Balanced or Smooth.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>Tiny hand movements nudge your crosshair.</dd>
       <dt>Still stuck?</dt><dd>See <a href="#p-aim-mouse">Mouse aim settings</a>.</dd>
     </dl>
@@ -396,7 +537,19 @@
         <li>In <b>Aim</b>, tap <b>ADS aim</b>.</li>
         <li>Set ADS <b>Speed</b> to <b>Same as hip</b>, or adjust it.</li>
         <li>Open <b>Activation</b> and set <b>Activate</b> to match how long your game takes to zoom in.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ma-activation.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="ADS aim tab, Activation open. 1: ADS aim. 2: Activation. 3: Activate, 0 ms. 4: Deactivate, 0 ms. 5: Smooth ADS Transition help.">
+      <figcaption>Figure FEEL-WRON.5 — Settings › Aim › ADS aim › Activation</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>ADS aim</b></td><td>The settings used while you aim.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Activation</b></td><td>Tap to open the card.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Activate</b></td><td>How long the game takes to zoom in.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>Deactivate</b></td><td>How long it takes to zoom out.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">5</span></td><td><b>Smooth ADS Transition</b></td><td>Tap ? to see what it does.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>Aiming in feels as steady as hip fire.</dd>
       <dt>Still stuck?</dt><dd>See <a href="#p-aim-hip-and-ads">Hip fire and ADS</a>.</dd>
     </dl>
@@ -410,7 +563,17 @@
         <li>Set the game's vertical sensitivity as the app lists it.</li>
         <li>In Aim's Advanced settings, set <b>Y Scale</b> to 100.</li>
         <li>Then adjust Y Scale in small steps if you still want a change.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-cf-sheet.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The Your game settings sheet, marked REQUIRED, with the rows to set in the game. 1: your stick sensitivity boxes. 2: Your in-game FOV. 3: the help button.">
+      <figcaption>Figure FEEL-WRON.6 — Your game settings: the vertical sensitivity box is part of 1</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Your stick sensitivity</b></td><td>Type the sensitivity you set in the game (4.00 recommended).</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Your in-game FOV</b></td><td>Type the field of view you play at.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>?</b></td><td>Why these must match the game.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>Looking up and down feels as fast as turning.</dd>
       <dt>Still stuck?</dt><dd>See <a href="#p-reference-settings--aim">every aim setting</a>.</dd>
     </dl>
@@ -425,7 +588,17 @@
         <li>Move a wireless dongle closer to the mouse, or use a hub on your desk.</li>
         <li>Run <b>Check rate (Hz)</b> on the Device page.</li>
         <li>Add a little <b>Smoothing</b> if it still jitters.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sm-dpi.webp' | asset_url }}" width="700" height="831" loading="lazy"
+        alt="The Mouse DPI card. 1: the DPI presets, 3,200 recommended. 2: Measure my DPI. 3: Check rate (Hz).">
+      <figcaption>Figure FEEL-WRON.7 — Settings › Device › Mouse DPI: Check rate (Hz) is 3</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>DPI presets</b></td><td>Tap your mouse's DPI, or type it in the box.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Measure my DPI</b></td><td>The app finds it with a short guided move.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Check rate (Hz)</b></td><td>Tests your mouse's polling rate.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>A still mouse gives a still crosshair.</dd>
       <dt>Still stuck?</dt><dd>See <a href="#p-help-mouse-and-keyboard--mouse-skips">Mouse skips or feels laggy</a>.</dd>
     </dl>
@@ -450,7 +623,12 @@
         <li>Unplug the device and plug it into another front port.</li>
         <li>If you use a hub, plug the device straight into the EXO to test.</li>
         <li>Add power on <a href="#p-platforms-power--aux">AUX/POWER</a>.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-front.webp' | asset_url }}" width="700" height="265" loading="lazy"
+        alt="The front of the EXO. One USB-C port on the left and three USB-A ports, for controllers, a mouse and a keyboard.">
+      <figcaption>Figure AND-KEYB.1 — The front of the EXO: one USB-C port and three USB-A ports</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>The device's picture shows at the top of HOME.</dd>
       <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with the device's make and model.</dd>
     </dl>
@@ -464,7 +642,17 @@
         <li>Move the wireless dongle closer to your mouse.</li>
         <li>On the Device page, tap <b>Check rate (Hz)</b> and follow the steps.</li>
         <li>Set your mouse to 1000 Hz in its own software, if it can.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sm-dpi.webp' | asset_url }}" width="700" height="831" loading="lazy"
+        alt="The Mouse DPI card. 1: the DPI presets, 3,200 recommended. 2: Measure my DPI. 3: Check rate (Hz).">
+      <figcaption>Figure AND-KEYB.2 — Mouse DPI card: Check rate (Hz) is 3</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>DPI presets</b></td><td>Tap your mouse's DPI, or type it in the box.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Measure my DPI</b></td><td>The app finds it with a short guided move.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Check rate (Hz)</b></td><td>Tests your mouse's polling rate.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>The rate check shows about 1000 Hz and the crosshair moves smoothly.</dd>
       <dt>Still stuck?</dt><dd>Try the mouse with a cable, then <a href="#p-help-get-support">contact us</a>.</dd>
     </dl>
@@ -478,7 +666,17 @@
         <li>Check HOME shows the config you meant.</li>
         <li>Open <b>Settings</b> › <b>Mappings</b> and check the key.</li>
         <li>Change it back. See <a href="#p-controls-mappings">Remap buttons and keys</a>.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-mp-keys.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Mappings, Mouse and Keyboard. 1: Showing Mouse and Keyboard, Switch. 2: Bigger keys. 3: the W row, Left Stick Up.">
+      <figcaption>Figure AND-KEYB.3 — Settings › Mappings › Mouse &amp; Keyboard</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Switch</b></td><td>Go to the controller view.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Bigger keys</b></td><td>A bigger keyboard picture. Tap a key to change it.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>A binding row</b></td><td>Here W sends Left Stick Up.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>The key does what you expect in the game.</dd>
       <dt>Still stuck?</dt><dd>Check no Script uses that key: see <a href="#p-help-scripts--script-wont-stop">A Script won't stop</a>.</dd>
     </dl>
@@ -493,7 +691,17 @@
         <li>Check <b>Shortcut buttons</b> is on.</li>
         <li>Check the shortcut on the Pass-through card. The default is <span class="m2-key">1</span> + <span class="m2-key">5</span>.</li>
         <li>Press both keys at the same time.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-passthrough-card-m2.webp' | asset_url }}" width="786" height="1091" loading="lazy"
+        alt="Global Settings, General tab, Pass-through card with the 1 plus 5 shortcut. 1: Edit shortcut. 2: Turn on. 3: Shortcut buttons switch, on.">
+      <figcaption>Figure AND-KEYB.4 — Global Settings › General › Pass-through</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Edit shortcut</b></td><td>Change the keys.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Turn on</b></td><td>Start it from the app.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Shortcut buttons</b></td><td>Must be on for the keys to work.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>HOME shows <b>Passthrough mode active</b> and you can type.</dd>
       <dt>Still stuck?</dt><dd>Tap <b>Turn on</b> on the Pass-through card instead, then <a href="#p-help-get-support">contact us</a>.</dd>
     </dl>
@@ -520,7 +728,15 @@
         <li>Check you're in a match with a gun out. Menus pause detection.</li>
         <li>Open <b>AI Scripts</b> and set the <b>Gun reader frame</b> around your HUD's gun name.</li>
         <li>Check Tournament Mode is off.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-capture.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Gun reader frame, Step 1. 1: Start frame capture.">
+      <figcaption>Figure GUN-DETE.1 — AI Scripts › Gun reader frame</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Start frame capture</b></td><td>Takes a picture of your screen to set the frame.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>HOME's <b>Active weapon</b> card shows the gun in your hands.</dd>
       <dt>Still stuck?</dt><dd>See <a href="#p-auto-gun-detection">Automatic gun detection</a>, then <a href="#p-help-get-support">contact us</a>.</dd>
     </dl>
@@ -534,7 +750,12 @@
         <li>Open <b>AI Scripts</b> › <b>Gun reader frame</b>.</li>
         <li>Make the frame fit just around the gun name.</li>
         <li>Check your in-game HUD settings match the app's list.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-match.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Gun reader frame, Match the box: the example shows the box tight around the gun name.">
+      <figcaption>Figure GUN-DETE.2 — Match the box: fit it around the gun name only</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>The Active weapon card changes to the right gun when you swap.</dd>
       <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with the game and gun names.</dd>
     </dl>
@@ -544,7 +765,15 @@
     <h2>Detection stops in menus</h2>
     <dl class="m2-fix">
       <dt>Likely cause</dt><dd>That's normal. With no gun on screen, gun Scripts pause so they can't fire by mistake.</dd>
-      <dt>Fix</dt><dd><ol class="m2-steps"><li>Go back into a match and take out a gun.</li></ol></dd>
+      <dt>Fix</dt><dd><ol class="m2-steps"><li>Go back into a match and take out a gun.</li></ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-ai-home-menu.webp' | asset_url }}" width="700" height="389" loading="lazy"
+        alt="HOME, Active weapon card: Menu or paused, waiting for your weapon. 1: the card.">
+      <figcaption>Figure GUN-DETE.3 — HOME in a menu</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Active weapon</b></td><td>AI Scripts pause until a weapon is back on screen.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>The Active weapon card shows your gun again.</dd>
       <dt>Still stuck?</dt><dd>See <a href="#p-help-gun-detection--no-gun-detected">No gun is detected</a>.</dd>
     </dl>
@@ -571,7 +800,17 @@
         <li>Check what starts it (its <b>WHEN</b> part) in the Advanced Script Maker.</li>
         <li>For a per-gun Script, check the Active weapon card shows that gun.</li>
         <li>Tap the EXO card on HOME and check <b>Adapter is sending inputs</b> says <b>On</b>.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-mp-list.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Mappings, the Scripts list for this config. 1: Scripts, 3 on this config. 2: a Script's on and off switch. 3: Add a button.">
+      <figcaption>Figure HELP-SCRI.1 — Settings › Mappings › Scripts</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Scripts</b></td><td>Shows or hides the Scripts on this config.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Switch</b></td><td>Turns one Script on or off.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Add a button</b></td><td>Gives another button its own mapping or Script.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>The Script does its job when you press its trigger.</dd>
       <dt>Still stuck?</dt><dd>See <a href="#p-scripts-library">Scripts</a>, or <a href="#p-help-get-support">contact us</a> with the Script's share code.</dd>
     </dl>
@@ -585,7 +824,15 @@
         <li>Press the Script's trigger again.</li>
         <li>To stop everything at once, turn on <b>Tournament Mode</b>.</li>
         <li>Turn the Script's switch off, then check its <b>WHEN</b> part.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-gl-tournament.webp' | asset_url }}" width="700" height="432" loading="lazy"
+        alt="Global Settings, General tab. 1: the Tournament Mode switch, on.">
+      <figcaption>Figure HELP-SCRI.2 — Global Settings › General › Tournament Mode, switched on</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Tournament Mode</b></td><td>One switch turns off every Script, turbo and AI action. Remaps and stick settings stay.</td></tr>
+    </tbody></table></dd>
       <dt>Fixed when</dt><dd>The Script stops, and only runs when you want it.</dd>
       <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with the Script's share code.</dd>
     </dl>
@@ -610,7 +857,12 @@
         <li>Plug the power cable into <b>AUX/POWER</b>.</li>
         <li>Plug its other end into a USB charger or a PC USB port.</li>
         <li>Unplug any device you don't need.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-aux.webp' | asset_url }}" width="700" height="436" loading="lazy"
+        alt="Close-up of the back of the EXO, with the AUX/POWER USB-C port marked, for optional extra power.">
+      <figcaption>Figure AND-USB.1 — AUX/POWER, the optional power port on the back</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>Your devices stay connected through a whole match.</dd>
       <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with a list of what's plugged in.</dd>
     </dl>
@@ -623,7 +875,12 @@
       <dt>Fix</dt><dd><ol class="m2-steps">
         <li>Tap the yellow <b>!</b> chip and read the warning.</li>
         <li>Add power on <b>AUX/POWER</b>.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'exo2-ann-health-3.webp' | asset_url }}" width="786" height="603" loading="lazy"
+        alt="Part of HOME. A: Your EXO restarted unexpectedly. B: Send report. C: Dismiss. D: a yellow exclamation chip for a warning.">
+      <figcaption>Figure AND-USB.2 — HOME, with a warning chip (D)</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>The <b>!</b> chip goes away.</dd>
       <dt>Still stuck?</dt><dd><a href="#p-help-get-support">Contact us</a> with a screenshot of the warning.</dd>
     </dl>
@@ -638,7 +895,12 @@
         <li>Check the CONSOLE cable is firmly in at both ends.</li>
         <li>Try another USB port on the console or PC.</li>
         <li>In the app, check the config's <b>Brightness</b> on the Device page.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-console.webp' | asset_url }}" width="700" height="436" loading="lazy"
+        alt="Close-up of the back of the EXO, with the CONSOLE USB-C port marked. It goes to your console or PC.">
+      <figcaption>Figure AND-USB.3 — CONSOLE, the USB-C play cable port on the back</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>The logo glows in your config's colour.</dd>
       <dt>Still stuck?</dt><dd>Try a USB charger on <b>AUX/POWER</b>, then <a href="#p-help-get-support">contact us</a>.</dd>
     </dl>
@@ -652,7 +914,12 @@
         <li>Use a USB 2.0 hub.</li>
         <li>Give the hub its own power, if it has a power input.</li>
         <li>Add power on <b>AUX/POWER</b>.</li>
-      </ol></dd>
+      </ol>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-front.webp' | asset_url }}" width="700" height="265" loading="lazy"
+        alt="The front of the EXO. One USB-C port on the left and three USB-A ports, for controllers, a mouse and a keyboard.">
+      <figcaption>Figure AND-USB.4 — The front of the EXO: one USB-C port and three USB-A ports</figcaption>
+    </figure></dd>
       <dt>Fixed when</dt><dd>Devices on the hub show at the top of HOME.</dd>
       <dt>Still stuck?</dt><dd>Plug your devices straight into the EXO's front ports.</dd>
     </dl>
@@ -676,6 +943,12 @@
       <li>Wait 5 seconds.</li>
       <li>Plug them back in.</li>
     </ol>
+    <p>You can also tap <b>Restart adapter</b> in <b>⋮</b> › <b>Global Settings</b> › <b>General</b>.</p>
+    <figure class="m2-fig m2-fig--wide">
+      <img src="{{ 'man2-hw-back.webp' | asset_url }}" width="700" height="339" loading="lazy"
+        alt="The back of the EXO, left to right: CONSOLE, AUX/POWER, AUTH, HDMI IN and HDMI OUT.">
+      <figcaption>Figure HELP-RESE.1 — The back of the EXO, every port named</figcaption>
+    </figure>
     <p>Your configs stay saved on the EXO. The app also has a <b>Restart adapter</b> button at the bottom of <b>Global Settings</b> › <b>General</b>. <span class="m2-confirm">[CONFIRM: Restart adapter is customer-facing and what it does]</span></p>
   </section>
 
@@ -687,17 +960,45 @@
       <li>Open the app and tap <b>Connect</b>.</li>
       <li>Choose <b>ZeroStick EXO</b>.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-gs-connect.webp' | asset_url }}" width="700" height="712" loading="lazy"
+        alt="Connect to your ZeroStick. 1: Connect.">
+      <figcaption>Figure HELP-RESE.2 — Connect to your ZeroStick</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Connect</b></td><td>Then choose ZeroStick EXO in your phone's list.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-help-reset--config">
     <h2>3. Reset a config</h2>
-    <p>The safest way to start a config again is to make a new one: <a href="#p-app-new-config">Make a new config</a>. <span class="m2-confirm">[CONFIRM: whether the app has a reset-config option and its path]</span></p>
+    <p>The safest way to start a config again is to make a new one: <a href="#p-app-new-config">Make a new config</a>. Then delete the old one:</p>
+    <ol class="m2-steps">
+      <li>Open the old config's <b>Settings</b> › <b>Device</b> › <b>More</b>.</li>
+      <li>Under <b>Danger zone</b>, tap <b>Delete this config</b> (4). It can't be undone.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sm-light-rows.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Device, More. 4: Delete this config, in the Danger zone. Nothing in here can be undone.">
+      <figcaption>Figure HELP-RESE.3 — Settings › Device › More, Danger zone</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>Delete this config</b></td><td>Removes the config. It can't be undone.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-help-reset--factory">
     <h2>4. Factory reset</h2>
-    <p><span class="m2-confirm">[CONFIRM: whether a factory reset exists, how to do it, and what it erases]</span></p>
-    <aside class="m2-call m2-call--warning"><p class="m2-call-label">Warning</p><p>A factory reset would erase your configs. Copy any config you want to keep first, with <b>Copy</b> on the Device page.</p></aside>
+    <p><b>⋮</b> › <b>Global Settings</b> › <b>General</b> has a <b>Danger zone</b> at the bottom with <b>Factory reset — erase phone-app data</b>. It clears the ZeroStick app's data on your phone. <span class="m2-confirm">[CONFIRM: whether it also erases anything stored on the EXO]</span></p>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-dv-support.webp' | asset_url }}" width="700" height="653" loading="lazy"
+        alt="Global Settings, General, lower down: Restart adapter, Support with 1: Copy diagnostics, version, config and log, Credits, and Danger zone with Factory reset, erase phone-app data.">
+      <figcaption>Figure HELP-RESE.4 — Global Settings › General, lower down</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Copy diagnostics</b></td><td>Copies your versions, config and log for support.</td></tr>
+    </tbody></table>
+    <aside class="m2-call m2-call--warning"><p class="m2-call-label">Warning</p><p>Copy any config you want to keep first, with <b>Copy</b> on the Device page. Then you can paste it back.</p></aside>
   </section>
 
   <section class="m2-sec" id="p-help-reset--check">
@@ -732,15 +1033,28 @@
     <div class="m2-table"><table>
       <thead><tr><th>Send</th><th>Where to find it</th></tr></thead>
       <tbody>
-        <tr><td data-label="Send"><b>Your platform</b></td><td data-label="Where">PS5, Xbox Series X|S / Xbox One, or PC.</td></tr>
+        <tr><td data-label="Send"><b>Your platform</b></td><td data-label="Where">PS5 or PC.</td></tr>
         <tr><td data-label="Send"><b>Your game</b></td><td data-label="Where">Under the config name on HOME.</td></tr>
-        <tr><td data-label="Send"><b>EXO software version</b></td><td data-label="Where">HOME › tap the EXO card › <b>Board app</b>.</td></tr>
-        <tr><td data-label="Send"><b>App version</b></td><td data-label="Where"><span class="m2-confirm">[CONFIRM: where the app shows its version]</span></td></tr>
+        <tr><td data-label="Send"><b>EXO software version</b></td><td data-label="Where"><b>⋮</b> › <b>Global Settings</b> › <b>General</b>: the pill on the <b>ZeroStick EXO</b> card. Or HOME › tap the EXO card › <b>Board app</b>.</td></tr>
+        <tr><td data-label="Send"><b>App version</b></td><td data-label="Where">Tap <b>Copy diagnostics</b> (1) in <b>Global Settings</b> › <b>General</b> › <b>Support</b>. It copies the app and EXO versions, your config and the log. Paste it into your email.</td></tr>
         <tr><td data-label="Send"><b>A screenshot of HOME</b></td><td data-label="Where">Take it on your phone.</td></tr>
         <tr><td data-label="Send"><b>The health report</b></td><td data-label="Where">If HOME says your EXO restarted, tap <b>Send report</b> and paste it in.</td></tr>
         <tr><td data-label="Send"><b>What happened</b></td><td data-label="Where">What you did, what you expected, and what you saw.</td></tr>
       </tbody>
     </table></div>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-dv-support.webp' | asset_url }}" width="700" height="653" loading="lazy"
+        alt="Global Settings, General, lower down. 1: Copy diagnostics, version, config and log.">
+      <figcaption>Figure GET-SUPP.1 — Global Settings › General › Support</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Copy diagnostics</b></td><td>Copies versions, config and log to paste into a message to us.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-dv-version.webp' | asset_url }}" width="700" height="166" loading="lazy"
+        alt="The ZeroStick EXO card with the version pill on the right.">
+      <figcaption>Figure GET-SUPP.2 — Global Settings › General: your EXO's version</figcaption>
+    </figure>
   </section>
 
   <section class="m2-sec" id="p-help-get-support--check">
@@ -766,7 +1080,7 @@
     <div class="m2-table"><table>
       <thead><tr><th>Version</th><th>Price</th><th>Includes</th></tr></thead>
       <tbody>
-        <tr><td data-label="Version"><b>Xbox version</b></td><td data-label="Price">$149.99</td><td data-label="Includes">ZeroStick EXO and cables. Use your own genuine Xbox controller in AUTH.</td></tr>
+        <tr><td data-label="Version"><b>Xbox version</b> <span class="x2-badge x2-badge--planned m2-later">Xbox support: coming later</span></td><td data-label="Price">$149.99</td><td data-label="Includes">ZeroStick EXO and cables. Use your own genuine Xbox controller in AUTH.</td></tr>
         <tr><td data-label="Version"><b>PS5 version</b></td><td data-label="Price">$169.99</td><td data-label="Includes">ZeroStick EXO, cables and the PS5 auth dongle.</td></tr>
       </tbody>
     </table></div>

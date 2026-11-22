@@ -57,8 +57,28 @@
       <li>Tap <b>✕</b> to close. It saves by itself.</li>
     </ol>
     <figure class="m2-fig">
+      <img src="{{ 'man2-mp-press.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Which button do you want to change. 1: press the button you want on your keyboard, mouse or controller. 2: or tap it in the list, here R2.">
+      <figcaption>Figure SCR-MAP.2 — Which button do you want to change?</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Press it</b></td><td>That press isn't sent to the game.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Or tap it</b></td><td>Controller, Keyboard and Mouse tabs.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-mp-sends.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The Circle button's panel. 1: Sends, Circle. 2: Behaves, While I hold it. 3: Cross, the new output. 4: Unbind, send nothing.">
+      <figcaption>Figure SCR-MAP.3 — A button's panel</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Sends</b></td><td>What this button does in the game now.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Behaves</b></td><td>While you hold it, toggle, and more.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>New output</b></td><td>Tap it, then tap Save at the top.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>Unbind (send nothing)</b></td><td>The button sends nothing at all.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
       <img src="{{ 'exo2-ann-remap-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="Remapping Circle. A: Behaves, While I hold it. B: Sends Circle. C: the Pad tab of the picker, with Mouse, A to T, U to 0, Esc and F-keys tabs. D: Unbind, send nothing.">
-      <figcaption>Figure SCR-MAP.2 — Mappings, Circle open</figcaption>
+      <figcaption>Figure SCR-MAP.4 — Mappings, Circle open</figcaption>
     </figure>
     <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody>
@@ -81,7 +101,7 @@
     <p>In the <b>Mouse &amp; Keyboard</b> view, tap any key on the drawn keyboard, or a mouse button (<b>M1</b>–<b>M5</b>, <b>Wheel</b>). Colours show which keys are held, mapped, or run a Script.</p>
     <figure class="m2-fig">
       <img src="{{ 'exo2-ann-keyboard-map.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="The keyboard and mouse map. A: Showing Mouse and Keyboard, Switch. B: a full keyboard plus mouse buttons M1 to M5 and the wheel. C: Bigger keys. D: the Bindings list, with W to Left Stick Up, S to Left Stick Down and more.">
-      <figcaption>Figure SCR-MAP.3 — Mappings, mouse and keyboard view</figcaption>
+      <figcaption>Figure SCR-MAP.5 — Mappings, mouse and keyboard view</figcaption>
     </figure>
     <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody>
@@ -91,6 +111,34 @@
       <tr><td><span class="m2-letter">D</span></td><td><b>Bindings</b></td><td>Every key and click, and what it sends.</td></tr>
     </tbody></table>
     <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Want one button to do two jobs? Use a shift layer: <b>Add a shift layer</b>, choose the button you hold, then the button you press, then what it sends.</p></aside>
+  </section>
+
+  <section class="m2-sec" id="p-controls-mappings--scripts">
+    <h2>Buttons used by Scripts</h2>
+    <ol class="m2-steps">
+      <li>In <b>Bindings</b>, a row that reads <b>Replaced by Script</b> (1) starts a Script. Tap <b>View script</b> to open it.</li>
+      <li>A row that reads <b>Not bound</b> (2) sends nothing.</li>
+      <li>Open <b>Scripts</b> at the bottom of Mappings to switch each Script on or off.</li>
+    </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-mp-scripts.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Mappings, Bindings. 1: Cross, Replaced by Script: Jump shot, with View script. 2: Circle, Not bound.">
+      <figcaption>Figure SCR-MAP.6 — Settings › Mappings › Bindings</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Replaced by Script</b></td><td>This button starts a Script.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Not bound</b></td><td>This button sends nothing.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-mp-list.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Mappings, the Scripts list for this config. 1: Scripts, 3 on this config. 2: a Script's on and off switch. 3: Add a button.">
+      <figcaption>Figure SCR-MAP.7 — Settings › Mappings › Scripts</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Scripts</b></td><td>Shows or hides the Scripts on this config.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Switch</b></td><td>Turns one Script on or off.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Add a button</b></td><td>Gives another button its own mapping or Script.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-controls-mappings--check-it-worked">
@@ -225,15 +273,45 @@
   <section class="m2-sec" id="p-scripts-editor--build-one">
     <h2>Build a Script</h2>
     <ol class="m2-steps">
-      <li>Tap <b>New script</b>. Press (or tap) the button that should start it.</li>
-      <li>In <b>WHEN</b>, tap the behaviour chip (like <b>while held</b>) and pick how it plays.</li>
-      <li>Tap <b>Add a button press</b>. Pick a tab (<b>Pad</b>, <b>Sticks</b>, and on mouse configs <b>Mouse</b> and <b>Keys</b>), then a button.</li>
-      <li>With the step selected, pick <b>Tap</b> or <b>Hold</b> and set its time with <b>−</b> / <b>+</b>.</li>
-      <li>Add a pause or a held button from the <b>Then</b> card: <b>Wait next</b>, <b>Hold</b>, <b>Let go</b>.</li>
-      <li>Repeat until the sentence at the top reads right. Tap <b>Done</b>.</li>
+      <li>Tap <b>New script</b>. Press (or tap) the button that should start it (2 in the first picture).</li>
+      <li>Give it a name (1). In <b>WHEN</b>, tap the behaviour chip (2), like <b>while held</b>, and pick how it plays.</li>
+      <li>Tap <b>Add a button press</b> (1 in the last picture). Pick a tab (<b>Pad</b>, <b>Sticks</b>, and on mouse configs <b>Mouse</b> and <b>Keys</b>), then a button.</li>
+      <li>With the step selected (4), pick <b>Tap</b> or <b>Hold</b> and set its time with <b>−</b> / <b>+</b> (5).</li>
+      <li>Add a pause or a held button from the <b>Then</b> card: <b>Wait next</b>, <b>Hold</b>, <b>Switch config</b>.</li>
+      <li>Repeat until the sentence at the top reads right. Tap <b>Done</b> (4).</li>
     </ol>
-    <p>Use the arrows under a step to move between steps. <b>✕</b> deletes the selected step.</p>
-    <aside class="m2-call m2-call--tip"><p class="m2-call-label">Tip</p><p>Faster to record it? Do the combo once with <a href="#p-scripts-recorder">Record script</a>, then tidy the steps here.</p></aside>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-start-btn.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Which button starts it. 1: the Controller tab. 2: L2, tapped in the list.">
+      <figcaption>Figure SCR-ED.2 — Which button starts it?</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Tabs</b></td><td>Mouse, Keyboard or Controller.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>A button</b></td><td>Tap the button that should start your Script, or just press it.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-steps.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The Script editor. 1: Name it. 2: while held. 3: On. 4: the fourth step tile, Y for 80 ms. 5: the Tap for slider, 80 ms. The sentence at the top reads: when you press L2, pull LT for 120 ms, then pull RT for 120 ms, then tap X for 80 ms, and 1 more.">
+      <figcaption>Figure SCR-ED.3 — The Script editor, top</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Name it</b></td><td>Give your Script a name.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>How it plays</b></td><td>While held, once, toggle and more.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>On / Off</b></td><td>For this Script.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>Step tiles</b></td><td>Each tile is one step. Tap one to change it.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">5</span></td><td><b>Time</b></td><td>How long the press lasts, in ms.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-add.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The lower half of the editor. 1: Add a button press. 2: Feels human, adds a little natural variation. 3: Copy. 4: Done.">
+      <figcaption>Figure SCR-ED.4 — The Script editor, bottom</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Add a button press</b></td><td>Pick the next button for your Script.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Feels human</b></td><td>Adds a little natural variation to the timing.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Copy</b></td><td>Copies this Script as a share code.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>Done</b></td><td>Keeps the Script.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-scripts-editor--check-it-worked">
@@ -433,6 +511,15 @@
       <li>Do the move once. Buttons, triggers and both sticks are recorded.</li>
       <li>Press your stop button. Recording also stops by itself after 60 seconds.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-record.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Record a script: Which button should start recording. 1: press the button you want, it won't be recorded or sent to the console. 2: Cancel.">
+      <figcaption>Figure SCR-REC.2 — Record script: pick the start button</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Start button</b></td><td>Press the button that starts recording. It isn't sent to the console.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Cancel</b></td><td>Stop without recording.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-scripts-recorder--save">
@@ -442,6 +529,17 @@
       <li>Tap <b>Next — choose the button that runs it</b>.</li>
       <li>Tap <b>Use</b> for the start button, or <b>Choose a different button</b>.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-home.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The Advanced Script Maker, Scripts tab. 1: New script. 2: Paste ready-made script. 3: Record script. 4: Scripts, the Scripts on this config.">
+      <figcaption>Figure SCR-REC.3 — Advanced Script Maker: your new Script appears under Scripts (4)</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>New script</b></td><td>Build your own.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Paste ready-made script</b></td><td>Add one of the 33 ready-made Scripts.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Record script</b></td><td>Play a move once and the EXO turns it into a Script.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>Scripts</b></td><td>Your Scripts on this config. Tap one to edit it.</td></tr>
+    </tbody></table>
     <p>It's saved as "Recorded" plus the time. Open it in the Script list to rename it or tidy the steps.</p>
     <aside class="m2-call m2-call--note"><p class="m2-call-label">Note</p><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p></aside>
   </section>
@@ -480,12 +578,38 @@
     <ol class="m2-steps">
       <li>Open <b>Settings</b> › <b>Advanced</b> › <b>Advanced Script Maker</b>.</li>
       <li>Tap <b>Paste ready-made script</b> ("Pick one that is already built"), or the <b>Ready-made</b> tab.</li>
-      <li>Pick a category chip, or start with <b>Featured</b>.</li>
+      <li>Pick a family chip (2), or start with <b>Featured</b>.</li>
       <li>Tap a Script, then choose which button starts it.</li>
-      <li>Set its values, then tap <b>Add to this config</b>.</li>
+      <li>Set its values, then tap <b>Add to this config</b> (3).</li>
     </ol>
     <p>You can change anything about it afterwards in the editor. Nothing fits? Tap <b>Nothing fits? Record your own</b>.</p>
-    <div class="m2-shot-todo"><b>Screenshot needed</b> — Ready-made library (Featured cards, category chips, a Script card with Add to this config), capture on a live EXO.</div>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-ready.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The Ready-made tab. Featured: Aim assist booster, Rapid fire already on R2, Turn assist. 1: Rapid fire card. 2: the All 33 chip, with Aim 8, Firing 6, Quality of life 8 and Movement and access 11.">
+      <figcaption>Figure SCRI-LIBR.1 — Advanced Script Maker › Ready-made</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>A ready-made Script</b></td><td>Tap to add it. "already on R2" means you have it on that button.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Family chips</b></td><td>All, Aim, Firing, Quality of life, Movement &amp; access.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-library.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The ready-made library by family. Aim: Aim assist booster, Anti-recoil, Anti-recoil aiming only, Recoil pattern. 1: Show all 8 in Aim. Firing: Rapid fire (turbo), Burst fire.">
+      <figcaption>Figure SCRI-LIBR.2 — The ready-made library, by family</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Show all</b></td><td>Every Script in this family.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-setup.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The Aim assist booster sheet. 1: Started by your Aim button, L2 pulled. 2: How strong, Medium. 3: Add to this config.">
+      <figcaption>Figure SCRI-LIBR.3 — A ready-made Script's sheet</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Which button should start it?</b></td><td>Tap to change.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Its settings</b></td><td>A few values, like how strong it is.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Add to this config</b></td><td>Adds it.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-scripts-library--the-list">
@@ -539,9 +663,17 @@
     <h2>1. Copy a Script's code</h2>
     <ol class="m2-steps">
       <li>Open the Script in the Advanced Script Maker.</li>
-      <li>Scroll to the bottom and tap <b>Copy</b>.</li>
+      <li>Scroll to the bottom and tap <b>Copy</b> (1).</li>
       <li>Paste the code into a message to your friend. Codes start with <b>ZSA2.</b></li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-copy.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="A Script open in the editor, scrolled to the bottom. 1: the Copy button, next to Done.">
+      <figcaption>Figure SCR-SH.1 — The Script editor, bottom</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Copy</b></td><td>Puts this Script on your clipboard as a code. Paste it into a message.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-scripts-share--paste">
@@ -553,8 +685,16 @@
       <li>Open the Script, check it over, then save it.</li>
     </ol>
     <figure class="m2-fig">
+      <img src="{{ 'man2-sc-paste.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The Advanced Script Maker, Scripts tab, scrolled down. 1: Paste a code someone sent me.">
+      <figcaption>Figure SCR-SH.2 — Advanced Script Maker, bottom (newer build)</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Paste a code someone sent me</b></td><td>Copy the code from the message first, then tap here.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
       <img src="{{ 'exo2-ann-smart-actions-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="A gun's Scripts list. A: Rapid fire with its switch on. B: Paste a code someone sent me. C: New script, advanced.">
-      <figcaption>Figure SCR-SH.1 — A gun's Scripts list</figcaption>
+      <figcaption>Figure SCR-SH.3 — A gun's Scripts list</figcaption>
     </figure>
     <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody>
@@ -613,6 +753,14 @@
       <tr><td><span class="m2-letter">B</span></td><td><b>Manual</b></td><td>"Set the fire rate, fire at a wall, then trace each shot mark in your game."</td></tr>
       <tr><td><span class="m2-letter">C</span></td><td><b>Pull down</b></td><td>"The regular anti-recoil: pulls straight down at the speed you set. No wall needed."</td></tr>
     </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-bo2.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Anti-Recoil Lab in Black Ops II. Automatic isn't supported: this game's recoil is random. 1: Standard pull-down, For this game.">
+      <figcaption>Figure SCR-LAB.2 — Anti-Recoil Lab in Black Ops II</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Standard pull-down</b></td><td>A steady pull while you hold Fire. Turn it up or down until the gun stays still.</td></tr>
+    </tbody></table>
     <div class="m2-table"><table class="m2-settings"><thead><tr><th>Way</th><th>Works in</th><th>Best for</th></tr></thead>
     <tbody>
       <tr><td data-label="Way"><b>Pull down</b></td><td data-label="Works in">Every game</td><td data-label="Best for">Controller players. No setup: tune it while you fire.</td></tr>
@@ -634,7 +782,7 @@
     <p>While this page is open, the D-pad tunes it: up / down changes Pull down, left / right changes Pull sideways. The D-pad does nothing in the game meanwhile.</p>
     <figure class="m2-fig">
       <img src="{{ 'exo2-ann-recoil-pull-down.webp' | asset_url }}" width="786" height="1640" loading="lazy" alt="Anti-Recoil Lab Pull down tune page. 1: Hold Fire to test it. 2: Pull down at 25 percent, more if your shots still climb. 3: Pull sideways at 0 percent, minus pulls left, plus pulls right. 4: Start delay at 0 ms. Below: Strength over the magazine, with Start and Middle at 100 percent.">
-      <figcaption>Figure SCR-LAB.2 — Anti-Recoil Lab, Pull down live-tune (EXO connected)</figcaption>
+      <figcaption>Figure SCR-LAB.3 — Anti-Recoil Lab, Pull down live-tune (EXO connected)</figcaption>
     </figure>
     <table class="m2-legend"><thead><tr><th>Number</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody>
@@ -642,6 +790,27 @@
       <tr><td><span class="m2-letter">2</span></td><td><b>Pull down</b></td><td>Tap + if your shots still climb, − if they now dip.</td></tr>
       <tr><td><span class="m2-letter">3</span></td><td><b>Pull sideways</b></td><td>Minus pulls left, plus pulls right.</td></tr>
       <tr><td><span class="m2-letter">4</span></td><td><b>Start delay</b></td><td>Waits this long after you start firing before pulling.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-pad-tune.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Anti-Recoil Lab, controller live tune. 1: Hold Fire to test it. 2: Pull down 25 percent. 3: Pull sideways 0 percent. 4: Start delay 0 ms.">
+      <figcaption>Figure SCR-LAB.4 — Pull down, live tune (controller)</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Hold Fire</b></td><td>Hold Fire at a plain wall. This line shows the pull.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Pull down</b></td><td>+ if your shots still climb, − if they dip.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Pull sideways</b></td><td>Minus pulls left, plus pulls right.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>Start delay</b></td><td>Wait this long after you start firing.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-pad-accept.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Lower half of the tune page. 1: Strength over the magazine, Middle 100 percent. 2: Only while aiming down sights switch, and the D-pad tip. 3: Accept.">
+      <figcaption>Figure SCR-LAB.5 — Pull down, strength over the magazine</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Strength over the magazine</b></td><td>More or less pull at the start, middle and end.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Only while aiming down sights</b></td><td>Pull only while you aim. Your D-pad also nudges the pull.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Accept</b></td><td>Saves it as a Script on your Fire button.</td></tr>
     </tbody></table>
     <div class="m2-table"><table class="m2-settings"><thead><tr><th>Setting</th><th>What it does</th><th>Range</th><th>Default</th><th>Start here</th><th>Raise it if…</th><th>Lower it if…</th></tr></thead>
     <tbody>
@@ -668,7 +837,20 @@
     <p><b>MW4:</b> do this in the Firing Range, where the EXO reads the ammo counter. Face a lit wall with a door, a sign or lane numbers on it. Keep the moving targets out of view.</p>
     <figure class="m2-fig">
       <img src="{{ 'exo2-ann-recoil-2.webp' | asset_url }}" width="786" height="1704" loading="lazy" alt="Anti-Recoil Lab step 4, Confirm. A: the step tabs 1 Check, 2 Fire rate, 3 Fire, 4 Confirm, 5 Tune. B: Traced your magazine, 26 shots along the line; drag a tick to move it, or tap it for the arrows. C: the traced shot pattern drawn over the game picture.">
-      <figcaption>Figure SCR-LAB.3 — Anti-Recoil Lab, Automatic, step 4 Confirm</figcaption>
+      <figcaption>Figure SCR-LAB.6 — Anti-Recoil Lab, Automatic, step 4 Confirm</figcaption>
+    </figure>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-auto-fire.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Automatic, step 3 Fire: in the Firing Range, face the wall, aim down sights, press Start and hold Fire until the magazine is empty. 1: Start.">
+      <figcaption>Figure SCR-LAB.7 — Automatic, 3 Fire</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Start</b></td><td>Then hold Fire until the magazine is empty. Keep still.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-auto-found.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Automatic, step 4 Confirm: Mapped your magazine, 26 bullets, each one numbered on the wall where it hit. Drag a dot to move it.">
+      <figcaption>Figure SCR-LAB.8 — Automatic, 4 Confirm</figcaption>
     </figure>
     <table class="m2-legend"><thead><tr><th>Letter</th><th>Name</th><th>What it does</th></tr></thead>
     <tbody>
@@ -688,6 +870,33 @@
       <li>On <b>Your recoil model</b>, adjust <b>Scale X</b>, <b>Scale Y</b> and <b>Optimization level</b> (0–10).</li>
       <li>Tap <b>Accept</b>. Manual saves only when you press Accept.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-man-check.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Manual, step 1 Check: other bindings that fire are paused, Pass-through is off, Mouse DPI 1000, your in-game settings match, a private match or training area. 1: I've checked my game settings. 2: Start.">
+      <figcaption>Figure SCR-LAB.9 — Manual, 1 Check</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>I've checked my game settings</b></td><td>Switch on once your game matches this config.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Start</b></td><td>Goes to the next step.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-man-pattern.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Manual, step 3 Fire pattern: Fire pattern modification Off, Small, Medium or Large, and the steps: fire a pattern at a wall aimed down sights, put your reticle on the first shot mark, press Trace, press your fire button on each next mark, press Done.">
+      <figcaption>Figure SCR-LAB.10 — Manual, 3 Fire pattern</figcaption>
+    </figure>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-man-trace.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Fire pattern modeling: 20 shots traced, a red dotted line climbing up. 1: Done. Also Reset and Keep it, fire another pattern.">
+      <figcaption>Figure SCR-LAB.11 — Manual, tracing your shots</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Done</b></td><td>Tap when every shot is traced.</td></tr>
+    </tbody></table>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-man-model.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Manual, step 4 Model: your recoil model against your traced shots, Fire to preview, Scale X 100 percent and Scale Y 100 percent.">
+      <figcaption>Figure SCR-LAB.12 — Manual, 4 Model</figcaption>
+    </figure>
     <p>On a mouse config, the first page also offers <b>Trace with your mouse's reticle instead</b>.</p>
   </section>
 
@@ -736,6 +945,14 @@
       <li>Under <b>Firing</b>, tap <b>Rapid fire (turbo)</b>.</li>
       <li>Keep Fire as the start button. Tap <b>Add to this config</b>.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-library.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The ready-made library: Aim family, Show all 8 in Aim, then the Firing family with Rapid fire (turbo) and Burst fire.">
+      <figcaption>Figure RAPI-FIRE.1 — Ready-made library: Rapid fire (turbo) under Firing</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Show all</b></td><td>Every Script in that family.</td></tr>
+    </tbody></table>
     <p><b>Option B, build it:</b> <b>New script</b> on Fire, set <b>Over and over while I hold it</b>, then add a Fire <b>Tap</b> for 40 ms and a <b>Wait</b> of 40 ms. <a href="#p-scripts-editor">Advanced Script Maker</a></p>
   </section>
 
@@ -792,6 +1009,15 @@
       <li>Hold Fire at a wall. Tap <b>+</b> on <b>Pull down</b> until the shots stop climbing.</li>
       <li>Tap <b>Accept</b>.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-lab-pad-start.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Anti-Recoil Lab on a controller config: make anti-recoil for a gun, find a plain wall 10 to 15 m away, press Start, then hold Fire. 1: Only while aiming down sights switch. 2: Start.">
+      <figcaption>Figure ANTI-RECO.1 — Anti-Recoil Lab, controller</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Only while aiming down sights</b></td><td>Pull only while you aim.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Start</b></td><td>Then hold Fire at the wall.</td></tr>
+    </tbody></table>
     <p>Full details: <a href="#p-scripts-anti-recoil-lab--pull-down">Pull down in the Anti-Recoil Lab</a>.</p>
   </section>
 
@@ -846,6 +1072,17 @@
       <li>Open <b>Mappings</b> and tap your aim button's row (for example <b>L2</b>, or <b>Right click</b>).</li>
       <li>Tap <b>Behaves</b> and choose <b>On, then off</b>.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-mp-sends.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="A button's panel. 1: Sends. 2: Behaves, While I hold it. 3: the new output. 4: Unbind.">
+      <figcaption>Figure TOGG-AIM.1 — A button's panel: Behaves is 2</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Sends</b></td><td>What the button does.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Behaves</b></td><td>Pick the toggle behaviour here.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Output</b></td><td>Leave it as your aim button.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">4</span></td><td><b>Unbind</b></td><td>Sends nothing.</td></tr>
+    </tbody></table>
     <p><b>Option B, ready-made:</b> add <b>Aim without holding it</b> from <b>Movement &amp; access</b>. One pull keeps you aimed for a set time.</p>
   </section>
 
@@ -890,6 +1127,15 @@
       <li>Under <b>Movement &amp; access</b>, tap <b>Auto sprint</b>.</li>
       <li>Keep L3 as the start button, or pick your sprint button. Tap <b>Add to this config</b>.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-ready.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="The Ready-made tab. 1: a Featured card. 2: the family chips, including Movement and access 11.">
+      <figcaption>Figure AUTO-SPRI.1 — Ready-made: the Movement &amp; access chip is in row 2</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>A ready-made Script</b></td><td>Tap to add it.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Family chips</b></td><td>Tap Movement &amp; access.</td></tr>
+    </tbody></table>
     <p>Your own sprint press still goes through. The Script only supplies the forward stick.</p>
   </section>
 
@@ -938,6 +1184,16 @@
       <li>Under <b>Firing</b>, tap <b>Drop shot</b>.</li>
       <li>Set <b>Crouch / prone button</b> to your game's button. Tap <b>Add to this config</b>.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-setup.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="A ready-made Script's sheet. 1: the start button. 2: its settings. 3: Add to this config.">
+      <figcaption>Figure DROP-SHOT.1 — A ready-made Script's sheet</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Start button</b></td><td>Tap to change.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Settings</b></td><td>Set your crouch or prone button here on Drop shot.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">3</span></td><td><b>Add to this config</b></td><td>Adds it.</td></tr>
+    </tbody></table>
   </section>
 
   <section class="m2-sec" id="p-recipes-drop-shot--values-to-tune">
@@ -987,6 +1243,15 @@
       <li>Check "Here's what you did.", then tap <b>Next — choose the button that runs it</b>.</li>
       <li>Pick your spare button.</li>
     </ol>
+    <figure class="m2-fig">
+      <img src="{{ 'man2-sc-record.webp' | asset_url }}" width="700" height="1518" loading="lazy"
+        alt="Record a script. 1: press the button that starts recording. 2: Cancel.">
+      <figcaption>Figure KEY-COMB.1 — Record script</figcaption>
+    </figure>
+    <table class="m2-legend"><thead><tr><th>No.</th><th>Name</th><th>What it does</th></tr></thead><tbody>
+      <tr><td><span class="m2-letter m2-letter--num">1</span></td><td><b>Start button</b></td><td>Not sent to the console.</td></tr>
+      <tr><td><span class="m2-letter m2-letter--num">2</span></td><td><b>Cancel</b></td><td>Stop without recording.</td></tr>
+    </tbody></table>
     <p>Full walkthrough: <a href="#p-scripts-recorder">Record a Script</a>. For just two buttons at once, the ready-made <b>Two-button combo</b> is quicker.</p>
   </section>
 
