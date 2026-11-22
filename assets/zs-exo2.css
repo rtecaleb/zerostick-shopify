@@ -310,7 +310,7 @@ html:has(.x2), html:has(.x2) body{ overflow-x:clip; }
 .x2 .x2-navq a{ display:inline-flex; align-items:center; justify-content:center; gap:.6rem; min-height:4rem; min-width:4rem;
   padding:0 1.3rem; border-radius:99rem; border:1px solid var(--x-line2); background:rgba(255,255,255,.04);
   color:var(--x-ink); font-size:1.3rem; font-weight:700; text-decoration:none; white-space:nowrap;
-  transition:background .25s, border-color .25s; }
+  position:relative; transition:background .25s, border-color .25s; }
 .x2 .x2-navq a:hover{ border-color:rgba(255,255,255,.3); background:rgba(255,255,255,.09); }
 .x2-navq svg{ width:1.6rem; height:1.6rem; flex:none; }
 /* Desktop: the section links already fill the bar, so here the quick links
@@ -337,6 +337,14 @@ html:has(.x2), html:has(.x2) body{ overflow-x:clip; }
   .x2-navq::-webkit-scrollbar{ display:none; }
   .x2l .x2l-nav .x2-btn{ margin-left:0; flex:none; }
 }
+/* Phones: words don't fit in the bar next to the name and Pre-order, so the
+   quick links become three round 40px icon buttons (screen readers still
+   read the word). The hero right below repeats them with full labels. */
 @media (max-width:479px){
-  .x2l .x2l-nav-name{ font-size:1.5rem; }
+  .x2l .x2l-nav .x2-wrap{ gap:.8rem; }
+  .x2l .x2l-nav-name{ font-size:1.4rem; }
+  .x2-navq{ gap:.4rem; -webkit-mask-image:none; mask-image:none; }
+  .x2 .x2-navq a{ width:4rem; padding:0; }
+  .x2-navq a span{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  .x2l .x2l-nav .x2-btn{ padding:0 1.4rem; }
 }
