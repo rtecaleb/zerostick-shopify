@@ -686,3 +686,10 @@ html:has(.m2), html:has(.m2) body{ overflow-x:clip; }
   .m2-gpair{ grid-template-columns:1fr; }
 }
 @media (max-width:360px){ .m2-popgrid{ grid-template-columns:1fr; } }
+
+/* Set-up guide: PS5 / Xbox / PC paths side by side (stacked on phones) */
+.m2-gpaths{ display:grid; grid-template-columns:repeat(auto-fit,minmax(22rem,1fr)); gap:1.2rem; margin:1.2rem 0 2rem; }
+.m2-gpath{ padding:1.4rem 1.6rem; border:1px solid rgba(94,231,255,.22); border-radius:1.4rem; background:rgba(41,141,223,.07); min-width:0; }
+.m2-gpath h3{ margin:0 0 .6rem; }
+.m2-gpath ol{ margin:0; padding-left:2rem; }
+.m2-gpath p{ margin:.8rem 0 0; }
