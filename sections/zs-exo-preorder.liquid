@@ -1,0 +1,374 @@
+{% comment %}
+  ZeroStick EXO: product + PRE-ORDER page (staged; template product.zs-exo-preorder)
+  ------------------------------------------------------------------------
+  Owner decisions this page follows (2026-11-21):
+  - Pre-order that charges at checkout. Xbox version $149.99, PS5 version
+    $169.99 (the PS5 version includes the PS5 auth dongle). Prices come from
+    the product's variants in Shopify admin, never typed here.
+  - Ships January 1, 2027. US mail-order rule: the ship date is stated next to
+    the button and in the fine print, with "we'll email you and you can cancel
+    for a full refund" if it slips.
+  - One-time purchase, no subscription, no account.
+  - BEFORE the buy button: a "Questions first?" card with the Shopify contact
+    form and a Join the ZeroStick Discord button (discord_url setting: the
+    invite link isn't known yet, so it defaults to a placeholder).
+  - FCC pre-authorisation notice: OFF by default (owner handles FCC). Tick
+    "show_fcc_notice" to show the exact required wording near the button and
+    in the fine print.
+
+  How the buy box works (plain words)
+  - The two big version cards are radio buttons. Picking one copies that
+    variant's id into the hidden "id" field of the product form, updates the
+    price and the "in the box" list. assets/zs-exo-preorder.js does this.
+  - Every order line carries a visible property "Pre-order: Ships January 1,
+    2027" so it shows in the cart, checkout and order emails.
+  - "Pre-order" adds to cart with /cart/add.js and shows a small panel with
+    Checkout; without JavaScript the form simply posts to the cart.
+  - Shop Pay / other express buttons come from Shopify's payment_button.
+{% endcomment %}
+
+{%- liquid
+  assign current = product.selected_or_first_available_variant
+  assign ship_date = section.settings.ship_date
+  assign ship_line = 'Ships ' | append: ship_date | append: '. If that date changes, we’ll email you and you can cancel for a full refund.'
+  assign fcc_text = 'This device has not been authorized as required by the rules of the Federal Communications Commission. This device is not, and may not be, offered for sale or lease, or sold or leased, until authorization is obtained.'
+-%}
+
+{{ 'zs-exo2.css' | asset_url | stylesheet_tag }}
+
+<style>
+  /* everything here is scoped to .xp (this section) */
+  .xp{ padding:4rem 0 0; }
+  .xp-grid{ display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:5.6rem; align-items:start; }
+  .xp-grid > *{ min-width:0; }
+  /* gallery: product renders (from the visuals swap point) */
+  .xp-gallery{ position:sticky; top:2.4rem; }
+  .xp-main{ position:relative; aspect-ratio:1/1; border-radius:2.8rem; overflow:hidden; border:1px solid var(--x-line);
+    background:radial-gradient(80% 70% at 50% 45%,#13203a,#070a12 75%); }
+  .xp-slide{ position:absolute; inset:0; display:grid; place-items:center; padding:6%; opacity:0; transform:scale(.97);
+    transition:opacity .5s var(--x-ease), transform .7s var(--x-ease); }
+  .xp-slide.is-on{ opacity:1; transform:none; }
+  .xp-slide img{ max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; }
+  .xp-thumbs{ display:flex; gap:1rem; margin-top:1.2rem; overflow-x:auto; scrollbar-width:none; padding:.2rem; }
+  .xp-thumbs::-webkit-scrollbar{ display:none; }
+  .xp-thumb{ flex:0 0 7.6rem; height:7.6rem; padding:.6rem; border-radius:1.4rem; cursor:pointer; opacity:.6;
+    border:1px solid var(--x-line); background:#0b1120; transition:opacity .25s, border-color .25s, transform .25s var(--x-ease); }
+  .xp-thumb img{ width:100%; height:100%; object-fit:contain; }
+  .xp-thumb:hover{ opacity:1; transform:translateY(-2px); }
+  .xp-thumb[aria-current="true"]{ opacity:1; border-color:var(--x-blue2); }
+  /* buy box */
+  .xp-title{ font-size:clamp(3.4rem,4.2vw,5.4rem); line-height:1.02; letter-spacing:-.03em; font-weight:800; margin:0 0 1.2rem; }
+  .xp-sub{ color:var(--x-soft); font-size:1.7rem; margin:0 0 2.4rem; }
+  .xp-price{ display:flex; align-items:baseline; gap:1.2rem; margin:0 0 .6rem; }
+  .xp-price [data-price]{ font-size:3.4rem; font-weight:800; letter-spacing:-.02em; transition:opacity .2s; }
+  .xp-price .x2-badge{ transform:translateY(-.4rem); }
+  .xp-once{ margin:0 0 2.8rem; color:var(--x-mute); font-size:1.35rem; }
+  .xp-label{ display:block; font-size:1.3rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--x-mute); margin:0 0 1.2rem; }
+  .xp-vars{ display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin:0 0 2.4rem; border:0; padding:0; }
+  .xp-var{ position:relative; display:block; cursor:pointer; }
+  .xp-var input{ position:absolute; opacity:0; pointer-events:none; }
+  .xp-var-card{ display:block; height:100%; padding:1.8rem; border-radius:1.8rem; border:1px solid var(--x-line2); background:var(--x-card);
+    transition:border-color .25s, background .25s, transform .25s var(--x-ease), box-shadow .25s; }
+  .xp-var:hover .xp-var-card{ transform:translateY(-2px); }
+  .xp-var input:checked + .xp-var-card{ border-color:var(--x-blue2); background:linear-gradient(180deg,rgba(41,141,223,.16),var(--x-card));
+    box-shadow:0 0 0 1px var(--x-blue2) inset, 0 1.6rem 4rem -2rem rgba(41,141,223,.6); }
+  .xp-var input:focus-visible + .xp-var-card{ outline:2px solid var(--x-blue2); outline-offset:3px; }
+  .xp-var-name{ display:flex; justify-content:space-between; gap:1rem; font-size:1.8rem; font-weight:800; }
+  .xp-var-name span:last-child{ font-weight:700; color:var(--x-soft); font-size:1.6rem; }
+  .xp-var-note{ display:block; margin-top:.6rem; font-size:1.3rem; line-height:1.45; color:var(--x-soft); }
+  .xp-ask{ margin:0 0 1.8rem; padding:1.8rem; border-radius:1.8rem; border:1px solid var(--x-line); background:rgba(255,255,255,.025); }
+  .xp-ask-top{ display:flex; flex-wrap:wrap; gap:1rem 1.6rem; align-items:center; justify-content:space-between; }
+  .xp-ask-top p{ margin:0; font-weight:700; }
+  .xp-ask-top p small{ display:block; font-weight:500; color:var(--x-mute); font-size:1.3rem; }
+  .xp-ask .x2-btns{ gap:.8rem; }
+  .xp-ask .x2-btn{ min-height:4.4rem; padding:0 1.8rem; font-size:1.4rem; }
+  .xp-ask details{ margin-top:1.4rem; }
+  .xp-ask summary{ cursor:pointer; font-weight:700; color:var(--x-blue2); list-style:none; }
+  .xp-ask summary::-webkit-details-marker{ display:none; }
+  .xp-ask summary::after{ content:" +"; }
+  .xp-ask details[open] summary::after{ content:" −"; }
+  .xp-form{ display:grid; gap:1rem; margin-top:1.4rem; }
+  .xp-form label{ display:grid; gap:.4rem; font-size:1.3rem; color:var(--x-soft); }
+  .xp-form input, .xp-form textarea, .xp-form select{ font:inherit; font-size:1.5rem; color:var(--x-ink); padding:1.1rem 1.3rem; border-radius:1.2rem;
+    border:1px solid var(--x-line2); background:#0a1020; }
+  .xp-form textarea{ min-height:10rem; resize:vertical; }
+  .xp-form .x2-btn{ justify-self:start; }
+  .xp-form-ok{ padding:1.2rem 1.4rem; border-radius:1.2rem; background:rgba(61,220,151,.1); border:1px solid rgba(61,220,151,.35); color:var(--x-ink); }
+  .xp-form-err{ padding:1.2rem 1.4rem; border-radius:1.2rem; background:rgba(255,93,108,.1); border:1px solid rgba(255,93,108,.35); }
+  .xp-buy{ display:grid; gap:1rem; }
+  .xp-add{ width:100%; min-height:6rem; font-size:1.75rem; position:relative; }
+  .xp-add.is-loading{ color:transparent !important; }
+  .xp-add.is-loading::after{ content:""; position:absolute; inset:0; margin:auto; width:2.2rem; height:2.2rem; border-radius:50%;
+    border:2px solid rgba(255,255,255,.4); border-top-color:#fff; animation:xp-spin .7s linear infinite; }
+  @keyframes xp-spin{ to{ transform:rotate(360deg); } }
+  .xp-dyn .shopify-payment-button__button{ border-radius:99rem !important; min-height:5.4rem; }
+  .xp-dyn .shopify-payment-button__more-options{ color:var(--x-soft); }
+  .xp-ship{ display:flex; gap:1rem; align-items:flex-start; margin:.4rem 0 0; font-size:1.4rem; line-height:1.5; color:var(--x-ink); }
+  .xp-ship svg{ flex:0 0 2rem; width:2rem; height:2rem; color:var(--x-green); margin-top:.15rem; }
+  .xp-trust{ display:grid; grid-template-columns:1fr 1fr; gap:.8rem; margin:2.4rem 0 0; padding:0; list-style:none; }
+  .xp-trust li{ display:flex; gap:.9rem; align-items:center; padding:1.1rem 1.3rem; border-radius:1.4rem; background:var(--x-card);
+    border:1px solid var(--x-line); font-size:1.3rem; line-height:1.35; }
+  .xp-trust svg{ flex:0 0 1.8rem; width:1.8rem; height:1.8rem; color:var(--x-blue2); }
+  .xp-box{ margin:2.4rem 0 0; }
+  .xp-box ul{ margin:0; padding:0; list-style:none; display:grid; gap:.6rem; }
+  .xp-box li{ display:flex; gap:1rem; font-size:1.45rem; color:var(--x-soft); }
+  .xp-box li::before{ content:""; flex:0 0 .8rem; height:.8rem; margin-top:.7rem; border-radius:50%; background:var(--x-blue2); }
+  .xp-box li[hidden]{ display:none; }
+  .xp-need{ margin-top:1.4rem; font-size:1.35rem; color:var(--x-mute); }
+  .xp-fcc{ margin-top:1.4rem; }
+  /* toast */
+  .xp-toast{ position:fixed; left:50%; bottom:2.4rem; z-index:60; translate:-50% 150%; width:min(46rem,calc(100% - 3.2rem));
+    display:flex; align-items:center; gap:1.2rem; padding:1.2rem 1.2rem 1.2rem 1.6rem; border-radius:1.8rem;
+    background:rgba(14,21,36,.94); backdrop-filter:blur(14px); border:1px solid var(--x-line2); color:var(--x-ink);
+    box-shadow:0 2rem 5rem -1.5rem rgba(0,0,0,.8); transition:translate .5s var(--x-ease); }
+  .xp-toast.is-on{ translate:-50% 0; }
+  .xp-toast p{ flex:1; margin:0; font-size:1.4rem; line-height:1.35; }
+  .xp-toast p small{ display:block; color:var(--x-soft); font-size:1.25rem; }
+  .xp-toast a{ padding:.9rem 1.4rem; border-radius:99rem; font-size:1.3rem; font-weight:700; text-decoration:none; white-space:nowrap; color:#fff; }
+  .xp-toast .xp-t-cart{ border:1px solid var(--x-line2); }
+  .xp-toast .xp-t-go{ background:var(--x-blue); }
+  /* lower sections */
+  .xp-feats .x2-card .x2-h3{ font-size:2rem; }
+  .xp-fine{ border-top:1px solid var(--x-line); padding-top:3.2rem; }
+  @media (max-width:989px){
+    .xp{ padding-top:1.6rem; }
+    .xp-grid{ grid-template-columns:1fr; gap:3rem; }
+    .xp-gallery{ position:static; }
+    .xp-main{ border-radius:2rem; }
+  }
+  @media (max-width:420px){
+    .xp-vars{ grid-template-columns:1fr; }
+    .xp-trust{ grid-template-columns:1fr; }
+  }
+</style>
+
+<div class="x2 xp" data-xp id="buy">
+  <section class="x2-wrap xp-grid">
+    {%- comment -%} GALLERY: product renders from the one visuals swap point {%- endcomment -%}
+    <div class="xp-gallery">
+      <div class="xp-main" data-xp-main>
+        <div class="xp-slide is-on">{% render 'zs-exo2-visual', view: 'hero', loading: 'eager' %}</div>
+        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'top' %}</div>
+        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'ports-34-back' %}</div>
+        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'ports-34-front' %}</div>
+        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'exploded' %}</div>
+        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'lid-off' %}</div>
+      </div>
+      <div class="xp-thumbs" role="group" aria-label="Product pictures">
+        <button type="button" class="xp-thumb" aria-current="true" aria-label="Picture 1: three-quarter view">{% render 'zs-exo2-visual', view: 'hero', alt: '' %}</button>
+        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 2: top">{% render 'zs-exo2-visual', view: 'top', alt: '' %}</button>
+        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 3: back ports">{% render 'zs-exo2-visual', view: 'ports-34-back', alt: '' %}</button>
+        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 4: front ports">{% render 'zs-exo2-visual', view: 'ports-34-front', alt: '' %}</button>
+        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 5: exploded view">{% render 'zs-exo2-visual', view: 'exploded', alt: '' %}</button>
+        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 6: lid off">{% render 'zs-exo2-visual', view: 'lid-off', alt: '' %}</button>
+      </div>
+      <p class="x2-shot-note">Renders of the shipping design. The logo lights up in the colour you pick in the app.</p>
+    </div>
+
+    {%- comment -%} BUY BOX {%- endcomment -%}
+    <div class="xp-info">
+      <p class="x2-eyebrow">Pre-order · Ships {{ ship_date }}</p>
+      <h2 class="xp-title">{{ product.title | escape }}</h2>
+      <p class="xp-sub">{{ section.settings.subtitle }}</p>
+
+      <div class="xp-price">
+        <span data-price>{{ current.price | money }}</span>
+        <span class="x2-badge x2-badge--progress">Pre-order</span>
+      </div>
+      <p class="xp-once">One-time purchase. No subscription, no account. Charged when you place your pre-order.</p>
+
+      {%- if product.has_only_default_variant == false -%}
+        <fieldset class="xp-vars">
+          <legend class="xp-label">Choose your version</legend>
+          {%- for v in product.variants -%}
+            {%- liquid
+              assign t = v.title | downcase
+              assign is_ps5 = false
+              if t contains 'ps5' or t contains 'playstation'
+                assign is_ps5 = true
+              endif
+            -%}
+            <label class="xp-var">
+              <input type="radio" name="xp-version" value="{{ v.id }}" data-ps5="{{ is_ps5 }}"
+                     {% if v.id == current.id %}checked{% endif %}{% unless v.available %} disabled{% endunless %}>
+              <span class="xp-var-card">
+                <span class="xp-var-name"><span>{{ v.title | escape }}</span><span>{{ v.price | money }}</span></span>
+                <span class="xp-var-note">
+                  {%- if is_ps5 -%}Includes the PS5 auth dongle. Also works with PC.{%- else -%}Plug your own genuine Xbox controller into AUTH. Also works with PC.{%- endif -%}
+                </span>
+              </span>
+            </label>
+          {%- endfor -%}
+        </fieldset>
+      {%- endif -%}
+
+      {%- comment -%} QUESTIONS FIRST: contact form + Discord, placed before the button on purpose {%- endcomment -%}
+      <div class="xp-ask">
+        <div class="xp-ask-top">
+          <p>Questions before you pre-order?<small>We answer every message. Email {{ section.settings.support_email }}</small></p>
+          <div class="x2-btns">
+            <a class="x2-btn x2-btn--discord" href="{{ section.settings.discord_url }}" target="_blank" rel="noopener">Join the ZeroStick Discord</a>
+          </div>
+        </div>
+        {%- form 'contact', id: 'xp-contact', class: 'xp-form-wrap' -%}
+          {%- assign open_form = false -%}
+          {%- if form.posted_successfully? or form.errors -%}{%- assign open_form = true -%}{%- endif -%}
+          <details{% if open_form %} open{% endif %}>
+            <summary>Ask us a question</summary>
+            {%- if form.posted_successfully? -%}
+              <p class="xp-form-ok" role="status">Thanks! We got your question and will reply by email.</p>
+            {%- elsif form.errors -%}
+              <div class="xp-form-err" role="alert">{{ form.errors | default_errors }}</div>
+            {%- endif -%}
+            <div class="xp-form">
+              <input type="hidden" name="contact[subject]" value="ZeroStick EXO pre-order question">
+              <label>Name<input type="text" name="contact[name]" autocomplete="name" value="{{ form.name }}"></label>
+              <label>Email<input type="email" name="contact[email]" autocomplete="email" required value="{{ form.email }}"></label>
+              <label>Which version are you looking at?
+                <select name="contact[version]"><option>Not sure yet</option><option>Xbox version</option><option>PS5 version</option></select>
+              </label>
+              <label>Your question<textarea name="contact[body]" required>{{ form.body }}</textarea></label>
+              <button type="submit" class="x2-btn">Send question</button>
+            </div>
+          </details>
+        {%- endform -%}
+      </div>
+
+      {%- form 'product', product, id: 'xp-product-form', data-xp-form: '' -%}
+        <input type="hidden" name="id" value="{{ current.id }}" data-xp-id>
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="properties[Pre-order]" value="Ships {{ ship_date }}">
+        <div class="xp-buy">
+          <button type="submit" class="x2-btn x2-btn--primary xp-add" data-xp-add{% unless current.available %} disabled{% endunless %}>
+            {%- if current.available -%}Pre-order — ships {{ section.settings.ship_short }}{%- else -%}Unavailable{%- endif -%}
+          </button>
+          <div class="xp-dyn">{{ form | payment_button }}</div>
+          <p class="xp-ship">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+            <span>{{ ship_line }}</span>
+          </p>
+          {%- if section.settings.show_fcc_notice -%}
+            <p class="x2-notice xp-fcc">{{ fcc_text }}</p>
+          {%- endif -%}
+        </div>
+      {%- endform -%}
+
+      <ul class="xp-trust">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>One-time purchase</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/></svg>Full refund if you cancel before it ships</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Free app for iPhone &amp; Android</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16v10H4zM8 20h8M12 16v4"/></svg>PS5, Xbox and PC</li>
+      </ul>
+
+      <div class="xp-box">
+        <p class="xp-label">In the box</p>
+        <ul>
+          <li>ZeroStick EXO</li>
+          <li>HDMI cable</li>
+          <li>USB-C to USB-A power cable</li>
+          <li>Braided USB-C to USB-A controller cable</li>
+          <li data-xp-ps5-only>PS5 auth dongle</li>
+        </ul>
+        <p class="xp-need" data-xp-need-ps5>You'll also need a second HDMI cable (your console's own works).</p>
+        <p class="xp-need" data-xp-need-xbox hidden>You'll also need a second HDMI cable (your console's own works) and your own genuine Xbox controller for AUTH.</p>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} WHAT YOU GET: short feature cards (claims per EXO-LAUNCH-FEATURES + APP-FACTS) {%- endcomment -%}
+  <section class="x2-sec x2-sec--tight xp-feats">
+    <div class="x2-wrap">
+      <p class="x2-eyebrow" data-reveal>What it does</p>
+      <h2 class="x2-h2" data-reveal style="--d:.06s">Your setup. Any console.</h2>
+      <div class="x2-grid x2-grid--3" style="margin-top:3.2rem">
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal><h3 class="x2-h3">Mouse &amp; keyboard on console</h3><p>Aim with your own mouse on PS5, Xbox or PC. Set your speed in cm/360, with separate hip-fire and ADS settings and a curve made for each game.</p></article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.08s"><h3 class="x2-h3">Automatic gun detection</h3><p>With your console's HDMI running through it, the EXO reads the gun in your hands and switches that gun's Scripts on for you. Ready in Black Ops II and Modern Warfare 4; in progress in 7 more games.</p></article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.16s"><h3 class="x2-h3">Scripts, no code</h3><p>Build your own with the Advanced Script Maker, add any of 33 ready-made Scripts in a tap, record a move once, or tune recoil per gun in the Anti-Recoil Lab.</p></article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal><h3 class="x2-h3">Any controller</h3><p>DualSense, DualSense Edge, DualShock 4, Xbox controllers, Switch Pro, 8BitDo and most USB pads, wired. Remap any button to any button.</p></article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.08s"><h3 class="x2-h3">NBA 2K27 Auto green</h3><p>Watches your shot meter and lets go of shoot at the right moment. It helps with shot timing and learns yours. In progress.</p></article>
+        <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.16s"><h3 class="x2-h3">All from your phone</h3><p>The free ZeroStick app for iPhone and Android sets everything up over Bluetooth. As many configs as you want, limited only by storage.</p></article>
+      </div>
+      <p class="x2-btns" style="margin-top:2.4rem" data-reveal><a class="x2-link" href="{{ section.settings.landing_url }}">See everything the EXO does</a></p>
+    </div>
+  </section>
+
+  <section class="x2-sec x2-sec--tight">
+    <div class="x2-wrap">
+      <p class="x2-eyebrow" data-reveal>Ports</p>
+      <h2 class="x2-h2" data-reveal style="--d:.06s">Every port, explained.</h2>
+      <p class="x2-lede" data-reveal style="--d:.1s">Tap a dot, or pick a port from the list.</p>
+      <div data-reveal style="--d:.14s">{% render 'zs-exo2-visual', view: 'ports' %}</div>
+    </div>
+  </section>
+
+  <section class="x2-sec x2-sec--tight">
+    <div class="x2-wrap">
+      <p class="x2-eyebrow" data-reveal>Games</p>
+      <h2 class="x2-h2" data-reveal style="--d:.06s">29 games in the app today.</h2>
+      <p class="x2-lede" data-reveal style="--d:.1s">2 Ready, 14 In progress, 13 Planned. Every game can be picked; controller and mouse play, remaps and Scripts work in all of them.</p>
+      {% render 'zs-exo2-games', mode: 'teaser' %}
+      <p class="x2-btns" style="margin-top:2.4rem"><a class="x2-link" href="{{ section.settings.games_url }}">See all supported games</a></p>
+    </div>
+  </section>
+
+  <section class="x2-sec x2-sec--tight">
+    <div class="x2-wrap x2-narrow">
+      <p class="x2-eyebrow" data-reveal>Pre-order FAQ</p>
+      <h2 class="x2-h2" data-reveal style="--d:.06s">Good to know.</h2>
+      <div class="x2-faq" style="margin-top:2.4rem">
+        <details><summary>When will my EXO ship?</summary><div class="x2-faq-a"><p>Pre-orders ship {{ ship_date }}. If that date changes, we'll email you with the new date, and you can cancel for a full refund.</p></div></details>
+        <details><summary>When am I charged?</summary><div class="x2-faq-a"><p>When you place your pre-order. It's a one-time purchase: there's no subscription and no account to make.</p></div></details>
+        <details><summary>Can I cancel?</summary><div class="x2-faq-a"><p>Yes. Email {{ section.settings.support_email }} any time before your EXO ships and we'll refund you in full.</p></div></details>
+        <details><summary>Xbox version or PS5 version?</summary><div class="x2-faq-a"><p>Pick the console you play on. The PS5 version includes the PS5 auth dongle. For the Xbox version, you plug your own genuine Xbox controller into the AUTH port. Both versions work with PC.</p></div></details>
+        <details><summary>What else do I need?</summary><div class="x2-faq-a"><p>A phone (iPhone or Android) for the free ZeroStick app, and a second HDMI cable if you want gun detection (your console's own cable works). Xbox players also need their own genuine Xbox controller.</p></div></details>
+        <details><summary>Does it work with my controller?</summary><div class="x2-faq-a"><p>Wired DualSense, DualSense Edge, DualShock 4, Xbox Series and One controllers, Switch Pro, 8BitDo and most USB pads. Bluetooth controllers aren't supported at launch.</p></div></details>
+        <details><summary>Which games have gun detection?</summary><div class="x2-faq-a"><p>It's Ready in Call of Duty: Black Ops II and Modern Warfare 4, and in progress in Warzone, Black Ops 7, Apex Legends, Fortnite, Rust, Battlefield 6 and Counter-Strike 2. It needs your console's HDMI to run through the EXO.</p></div></details>
+        <details><summary>How do updates work?</summary><div class="x2-faq-a"><p>Updates come through the ZeroStick app.</p></div></details>
+        <details><summary>Is it allowed in my game?</summary><div class="x2-faq-a"><p>Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap and keeps your remaps and stick settings.</p></div></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="x2-sec x2-sec--tight">
+    <div class="x2-wrap x2-narrow x2-fine xp-fine">
+      <p><b>Pre-order terms.</b> {{ ship_line }} Prices: Xbox version $149.99; PS5 version $169.99 (includes the PS5 auth dongle). You're charged when you place your pre-order. One-time purchase; no subscription; no account. To cancel before shipping, email {{ section.settings.support_email }} for a full refund.</p>
+      {%- if section.settings.show_fcc_notice -%}<p>{{ fcc_text }}</p>{%- endif -%}
+      <p><b>Fair play.</b> Follow the rules of each game, event and platform you play on. Tournament Mode switches every script off in one tap.</p>
+      <p><b>Games.</b> "Ready", "In progress" and "Planned" describe game support in the ZeroStick app today and can change. Game names are trademarks of their owners; ZeroStick is not affiliated with or endorsed by them. PlayStation, PS5, Xbox and other platform names are trademarks of their owners.</p>
+      <p><b>Pictures.</b> Product pictures are renders of the shipping design. App screens are from the ZeroStick app and may change before launch.</p>
+    </div>
+  </section>
+
+  <div class="xp-toast" data-xp-toast role="status" aria-live="polite">
+    <p><span data-xp-toast-title>Pre-order added</span><small data-xp-toast-sub></small></p>
+    <a class="xp-t-cart" href="{{ routes.cart_url }}">View cart</a>
+    <a class="xp-t-go" href="/checkout">Checkout</a>
+  </div>
+</div>
+
+<script type="application/json" data-xp-data>
+{"variants":[{%- for v in product.variants -%}{"id":{{ v.id }},"title":{{ v.title | json }},"available":{{ v.available | json }},"price":{{ v.price | money | json }}}{% unless forloop.last %},{% endunless %}{%- endfor -%}],
+ "shipShort":{{ section.settings.ship_short | json }}}
+</script>
+<script src="{{ 'zs-exo2.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'zs-exo-preorder.js' | asset_url }}" defer="defer"></script>
+
+{% render 'zs-product-schema', product: product %}
+
+{% schema %}
+{
+  "name": "EXO pre-order",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "subtitle", "label": "Line under the title",
+      "default": "Mouse & keyboard or any controller, on PS5, Xbox and PC. Set up from your phone." },
+    { "type": "text", "id": "ship_date", "label": "Ship date (long)", "default": "January 1, 2027" },
+    { "type": "text", "id": "ship_short", "label": "Ship date (short, on the button)", "default": "Jan 1, 2027" },
+    { "type": "text", "id": "discord_url", "label": "Discord invite link", "info": "PLACEHOLDER until the real invite link is known.", "default": "#discord-invite-placeholder" },
+    { "type": "text", "id": "support_email", "label": "Support email", "default": "caleb@zerostickgaming.com" },
+    { "type": "text", "id": "landing_url", "label": "EXO overview page link", "default": "/pages/zerostick-exo" },
+    { "type": "text", "id": "games_url", "label": "Supported games page link", "default": "/pages/supported-games" },
+    { "type": "checkbox", "id": "show_fcc_notice", "label": "Show FCC pre-authorization notice", "info": "Off by default. Confirm the exact wording with your test lab / TCB before switching on.", "default": false }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,163 @@
+{% comment %}
+  ZeroStick EXO: professional 3D hero (staged, owner request 2026-11-21)
+  ------------------------------------------------------------------------
+  What it does
+  - Shows the poster image instantly, then (when the hero is near the
+    screen) downloads Google's model-viewer and the EXO model and fades the
+    live 3D in. Nothing heavy loads until it is needed.
+  - The model turns slowly by itself (about 18 degrees a second). Dragging
+    pauses the spin; it carries on a moment after you let go. Pinch or
+    scroll-wheel zooms (scroll-wheel only after a click, so the page still
+    scrolls normally).
+  - The lit ZS EXO logo cycles smoothly through rainbow colours. Visitors can
+    pick a fixed colour with the swatches (the real logo LEDs take the colour
+    of your config in the app).
+  - "Show ports" pins a label on every port.
+  - Reduced motion (a device setting): no spin and no colour cycling. The
+    poster stays, with a "View in 3D" button that loads a still, hand-turnable
+    model.
+  All behaviour lives in assets/zs-exo-hero3d.js (no inline scripts: the
+  Liquid parser has choked on inline scripts in this theme before).
+  The model and poster file names are set in the liquid block just below
+  (the same files snippets/zs-exo2-visual.liquid uses; change both together).
+
+  Can be added to the product template (product.zs-exo-preorder) or any page.
+{% endcomment %}
+
+{%- liquid
+  # ----- files (same files as the visuals swap point) -----
+  assign glb = 'exo2-case.glb' | asset_url
+  assign poster = 'exo2-poster.webp' | asset_url
+  assign p = product
+  if p == blank
+    assign p = all_products[section.settings.product_handle]
+  endif
+-%}
+
+{{ 'zs-exo2.css' | asset_url | stylesheet_tag }}
+
+<style>
+  /* scoped to this section: .h3d */
+  .h3d{ padding:5rem 0 6rem; background:radial-gradient(120rem 60rem at 50% 30%,#0d1830 0%,var(--x-bg) 62%); }
+  .h3d-grid{ display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr); gap:3rem; align-items:center; }
+  .h3d-copy .x2-h1{ font-size:clamp(4.4rem,6.4vw,8.8rem); }
+  .h3d-price{ display:flex; flex-wrap:wrap; gap:.6rem 1.6rem; align-items:baseline; margin:0 0 2.6rem; color:var(--x-soft); font-size:1.6rem; }
+  .h3d-price b{ color:var(--x-ink); font-size:2.4rem; letter-spacing:-.01em; }
+  .h3d-stage{ position:relative; aspect-ratio:3/2; border-radius:3rem; overflow:hidden;
+    background:radial-gradient(70% 70% at 50% 45%,rgba(41,141,223,.18),transparent 70%); }
+  .h3d-stage img.h3d-poster, .h3d-stage model-viewer{ position:absolute; inset:0; width:100%; height:100%; }
+  .h3d-stage img.h3d-poster{ object-fit:cover; transition:opacity .7s var(--x-ease); }
+  .h3d-stage model-viewer{ background:transparent; --poster-color:transparent; opacity:0; transition:opacity .9s var(--x-ease); }
+  .h3d-stage.is-live model-viewer{ opacity:1; }
+  .h3d-stage.is-live img.h3d-poster{ opacity:0; pointer-events:none; }
+  .h3d-load{ position:absolute; left:50%; bottom:1.6rem; translate:-50% 0; font-size:1.2rem; color:var(--x-mute); }
+  .h3d-stage.is-live .h3d-load{ display:none; }
+  .h3d-3dbtn{ position:absolute; left:50%; top:50%; translate:-50% -50%; display:none; }
+  .h3d-stage.is-still .h3d-3dbtn{ display:inline-flex; }
+  .h3d-stage.is-still.is-live .h3d-3dbtn{ display:none; }
+  /* port labels */
+  .h3d-tag{ display:block; border:0; padding:0; background:none; cursor:pointer; opacity:0; pointer-events:none; transition:opacity .3s; }
+  .h3d-stage.show-ports .h3d-tag[data-visible]{ opacity:1; pointer-events:auto; }
+  .h3d-tag i{ display:block; width:1.2rem; height:1.2rem; margin:0 auto; border-radius:50%; background:var(--x-blue2);
+    box-shadow:0 0 0 .35rem rgba(98,184,255,.28); }
+  .h3d-tag span{ position:absolute; left:50%; bottom:1.8rem; translate:-50% 0; white-space:nowrap; padding:.5rem .8rem; border-radius:.7rem;
+    background:#e9e9e5; color:#0b0d10; font:600 1.1rem/1.3 system-ui,sans-serif; text-align:center; pointer-events:none; }
+  .h3d-tag span b{ display:block; font-size:1.2rem; letter-spacing:.04em; }
+  /* controls under the stage */
+  .h3d-dock{ display:flex; flex-wrap:wrap; justify-content:center; gap:1rem 1.6rem; align-items:center; margin-top:1.4rem; }
+  .h3d-sw{ display:flex; gap:.6rem; align-items:center; }
+  .h3d-sw > span{ font-size:1.2rem; color:var(--x-mute); margin-right:.2rem; }
+  .h3d-sw button{ width:2.6rem; height:2.6rem; border-radius:50%; padding:0; cursor:pointer; border:2px solid var(--x-line2); background:var(--c); }
+  .h3d-sw button[aria-pressed="true"]{ border-color:#fff; box-shadow:0 0 0 2px var(--x-bg), 0 0 0 4px rgba(255,255,255,.5); }
+  .h3d-sw button[data-c="rainbow"]{ background:conic-gradient(#ff3b3b,#ffd23b,#3bff6a,#3bd8ff,#5a3bff,#ff3bd8,#ff3b3b); }
+  .h3d-chip{ font:inherit; font-size:1.3rem; font-weight:700; padding:.7rem 1.4rem; border-radius:99rem; cursor:pointer;
+    border:1px solid var(--x-line2); background:rgba(255,255,255,.04); color:var(--x-ink); }
+  .h3d-chip[aria-pressed="true"]{ border-color:var(--x-blue2); color:var(--x-blue2); }
+  .h3d-note{ text-align:center; margin:1rem 0 0; font-size:1.2rem; color:var(--x-mute); }
+  @media (max-width:989px){
+    .h3d{ padding:2.4rem 0 4rem; }
+    .h3d-grid{ grid-template-columns:1fr; gap:1.6rem; }
+    .h3d-visual{ order:-1; }
+    .h3d-stage{ aspect-ratio:4/3; border-radius:2rem; }
+  }
+</style>
+
+<section class="x2 h3d" data-exo-hero3d>
+  <div class="x2-wrap h3d-grid">
+    <div class="h3d-copy">
+      <p class="x2-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="x2-h1"><span class="x2-grad">{{ section.settings.title }}</span></h1>
+      <p class="x2-lede">{{ section.settings.text }}</p>
+      <p class="h3d-price">
+        {%- if p != blank -%}
+          <b>From {{ p.price_min | money }}</b>
+        {%- else -%}
+          <b>From $149.99</b>
+        {%- endif -%}
+        <span>Pre-order · Ships January 1, 2027</span>
+      </p>
+      <div class="x2-btns">
+        <a class="x2-btn x2-btn--primary x2-btn--lg" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }}</a>
+        <a class="x2-btn x2-btn--lg" href="{{ section.settings.cta2_url }}">{{ section.settings.cta2_label }}</a>
+      </div>
+    </div>
+
+    <div class="h3d-visual">
+      <div class="h3d-stage" data-h3d-stage>
+        <img class="h3d-poster" src="{{ poster }}" width="1600" height="1067" fetchpriority="high"
+             alt="ZeroStick EXO: white body, black lid with the lit ZS EXO logo">
+        <model-viewer data-src="{{ glb }}" alt="Interactive 3D model of the ZeroStick EXO. Drag to turn it."
+          camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="1600" rotation-per-second="18deg"
+          interaction-prompt="none" camera-orbit="-35deg 62deg auto" field-of-view="26deg"
+          min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg auto" min-field-of-view="14deg" max-field-of-view="32deg"
+          shadow-intensity="1.1" shadow-softness="0.8" exposure="1.05" environment-image="neutral" disable-pan>
+          {%- comment -%} Port labels. Positions: MAIN EXO CHAT's reference viewer (metres, model space). {%- endcomment -%}
+          <button class="h3d-tag" slot="hotspot-console" data-position="0.09087m 0.00658m -0.0012m" data-normal="0m 0m -1m" tabindex="-1"><i></i><span><b>CONSOLE</b>to your console or PC</span></button>
+          <button class="h3d-tag" slot="hotspot-aux" data-position="0.07687m 0.00658m -0.0012m" data-normal="0m 0m -1m" tabindex="-1"><i></i><span><b>AUX/POWER</b>optional extra power</span></button>
+          <button class="h3d-tag" slot="hotspot-auth" data-position="0.0593m 0.00845m -0.0012m" data-normal="0m 0m -1m" tabindex="-1"><i></i><span><b>AUTH</b>PS5 dongle or Xbox controller</span></button>
+          <button class="h3d-tag" slot="hotspot-hin" data-position="0.0385m 0.008245m -0.0012m" data-normal="0m 0m -1m" tabindex="-1"><i></i><span><b>HDMI IN</b>from your console</span></button>
+          <button class="h3d-tag" slot="hotspot-hout" data-position="0.015m 0.008245m -0.0012m" data-normal="0m 0m -1m" tabindex="-1"><i></i><span><b>HDMI OUT</b>to your TV</span></button>
+          <button class="h3d-tag" slot="hotspot-fc" data-position="0.0145m 0.00658m 0.0632m" data-normal="0m 0m 1m" tabindex="-1"><i></i><span><b>USB-C</b>controller, mouse, keyboard</span></button>
+          <button class="h3d-tag" slot="hotspot-fa1" data-position="0.038067m 0.00845m 0.0632m" data-normal="0m 0m 1m" tabindex="-1"><i></i><span><b>USB-A</b>controller, mouse, keyboard</span></button>
+          <button class="h3d-tag" slot="hotspot-fa2" data-position="0.061633m 0.00845m 0.0632m" data-normal="0m 0m 1m" tabindex="-1"><i></i><span><b>USB-A</b>controller, mouse, keyboard</span></button>
+          <button class="h3d-tag" slot="hotspot-fa3" data-position="0.0852m 0.00845m 0.0632m" data-normal="0m 0m 1m" tabindex="-1"><i></i><span><b>USB-A</b>controller, mouse, keyboard</span></button>
+        </model-viewer>
+        <button type="button" class="x2-btn x2-btn--primary h3d-3dbtn" data-h3d-load>View in 3D</button>
+        <p class="h3d-load" aria-hidden="true">Loading 3D…</p>
+      </div>
+      <div class="h3d-dock">
+        <div class="h3d-sw" role="group" aria-label="Logo colour">
+          <span>Logo</span>
+          <button type="button" data-c="rainbow" aria-pressed="true" aria-label="Rainbow"></button>
+          <button type="button" data-c="0.96,0.97,0.98" style="--c:#f4f6fa" aria-pressed="false" aria-label="White"></button>
+          <button type="button" data-c="0.16,0.55,0.87" style="--c:#298ddf" aria-pressed="false" aria-label="Blue"></button>
+          <button type="button" data-c="0.65,0.25,1" style="--c:#a640ff" aria-pressed="false" aria-label="Purple"></button>
+          <button type="button" data-c="1,0.18,0.22" style="--c:#ff2e38" aria-pressed="false" aria-label="Red"></button>
+          <button type="button" data-c="0.2,1,0.45" style="--c:#33ff73" aria-pressed="false" aria-label="Green"></button>
+        </div>
+        <button type="button" class="h3d-chip" data-h3d-ports aria-pressed="false">Show ports</button>
+      </div>
+      <p class="h3d-note">Drag to turn · the logo lights up in your config's colour, set in the app.</p>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'zs-exo-hero3d.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "EXO 3D hero",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small line above the title", "default": "Pre-order now" },
+    { "type": "text", "id": "title", "label": "Title", "default": "ZeroStick EXO" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Mouse & keyboard or any controller, on PS5, Xbox and PC. Set up from your phone. It sees the gun in your hands and switches your Scripts for you." },
+    { "type": "text", "id": "cta_label", "label": "Main button text", "default": "Choose your version" },
+    { "type": "text", "id": "cta_url", "label": "Main button link", "default": "#buy" },
+    { "type": "text", "id": "cta2_label", "label": "Second button text", "default": "Supported games" },
+    { "type": "text", "id": "cta2_url", "label": "Second button link", "default": "/pages/supported-games" },
+    { "type": "text", "id": "product_handle", "label": "Product handle (only used on non-product pages)", "default": "zerostick-exo" }
+  ],
+  "presets": [{ "name": "EXO 3D hero" }]
+}
+{% endschema %}

@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "hero3d": {
+      "type": "zs-exo-hero3d",
+      "settings": {
+        "eyebrow": "Pre-order now",
+        "title": "ZeroStick EXO",
+        "text": "Mouse & keyboard or any controller, on PS5, Xbox and PC. Set up from your phone. It sees the gun in your hands and switches your Scripts for you.",
+        "cta_label": "Choose your version",
+        "cta_url": "#buy",
+        "cta2_label": "Supported games",
+        "cta2_url": "/pages/supported-games",
+        "product_handle": "zerostick-exo"
+      }
+    },
+    "main": {
+      "type": "zs-exo-preorder",
+      "settings": {
+        "subtitle": "Mouse & keyboard or any controller, on PS5, Xbox and PC. Set up from your phone.",
+        "ship_date": "January 1, 2027",
+        "ship_short": "Jan 1, 2027",
+        "discord_url": "#discord-invite-placeholder",
+        "support_email": "caleb@zerostickgaming.com",
+        "landing_url": "/pages/zerostick-exo",
+        "games_url": "/pages/supported-games",
+        "show_fcc_notice": false
+      }
+    }
+  },
+  "order": ["hero3d", "main"]
+}
