@@ -404,6 +404,7 @@
 .m2-jlist .is-done-when{ margin-top:.3rem; color:var(--x-green); }
 .m2-jlist .m2-jthumb{ display:block; width:6.4rem; height:6.4rem; object-fit:cover; object-position:50% 20%; border-radius:1rem;
   border:1px solid var(--x-line2); background:#0a0d14; }
+.m2-jthumbw{ display:block; font-size:0; line-height:0; }
 .m2-jlist .m2-jthumb--product{ object-fit:contain; background:radial-gradient(closest-side,rgba(41,141,223,.25),transparent); border-color:var(--x-line); }
 
 /* ---------- 5. journey bar, prev/next, search, sheet, lightbox, toast ---------- */
