@@ -120,8 +120,8 @@
   {%- comment -%}
     Hover/tap-to-explain 3D PORT VIEWER (owner-approved 2026-11-21).
     Each hotspot sits on a port of the final web GLB. Positions (metres, model
-    space) come from MAIN EXO CHAT's reference viewer, matching the GLB port
-    nodes port_CONSOLE, port_AUX_POWER, port_AUTH, port_HDMI_IN, port_HDMI_OUT,
+    space) are the centres of the final web GLB's port nodes (measured from
+    MARKETING\web\exo-web.glb, which is centred on the case): port_CONSOLE, port_AUX_POWER, port_AUTH, port_HDMI_IN, port_HDMI_OUT,
     port_FRONT_USB_C, port_FRONT_USB_A_1..3:
     move a dot by editing its data-position. data-normal points out of the
     face the port is on (back = 0 0 -1, front = 0 0 1).
@@ -137,15 +137,15 @@
         camera-controls touch-action="pan-y" interaction-prompt="none" disable-pan disable-zoom
         camera-orbit="180deg 72deg auto" field-of-view="21deg" interpolation-decay="120"
         exposure="0.95" shadow-intensity="1" environment-image="neutral" tone-mapping="aces">
-        <button slot="hotspot-console" class="x2-hot" data-port="console" data-position="0.09087m 0.00658m -0.0012m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="CONSOLE port"><span>1</span></button>
-        <button slot="hotspot-aux" class="x2-hot" data-port="aux" data-position="0.07687m 0.00658m -0.0012m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="AUX/POWER port"><span>2</span></button>
-        <button slot="hotspot-auth" class="x2-hot" data-port="auth" data-position="0.0593m 0.00845m -0.0012m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="AUTH port"><span>3</span></button>
-        <button slot="hotspot-hdmi-in" class="x2-hot" data-port="hdmi-in" data-position="0.0385m 0.008245m -0.0012m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="HDMI IN port"><span>4</span></button>
-        <button slot="hotspot-hdmi-out" class="x2-hot" data-port="hdmi-out" data-position="0.015m 0.008245m -0.0012m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="HDMI OUT port"><span>5</span></button>
-        <button slot="hotspot-front-1" class="x2-hot" data-port="front" data-position="0.0145m 0.00658m 0.0632m" data-normal="0m 0m 1m" data-visibility-attribute="visible" aria-label="Front USB-C port"><span>6</span></button>
-        <button slot="hotspot-front-2" class="x2-hot" data-port="front" data-position="0.038067m 0.00845m 0.0632m" data-normal="0m 0m 1m" data-visibility-attribute="visible" aria-label="Front USB-A port"><span>7</span></button>
-        <button slot="hotspot-front-3" class="x2-hot" data-port="front" data-position="0.061633m 0.00845m 0.0632m" data-normal="0m 0m 1m" data-visibility-attribute="visible" aria-label="Front USB-A port"><span>8</span></button>
-        <button slot="hotspot-front-4" class="x2-hot" data-port="front" data-position="0.0852m 0.00845m 0.0632m" data-normal="0m 0m 1m" data-visibility-attribute="visible" aria-label="Front USB-A port"><span>9</span></button>
+        <button slot="hotspot-console" class="x2-hot" data-port="console" data-position="0.04102m 0.00748m -0.0336m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="CONSOLE port"><span>1</span></button>
+        <button slot="hotspot-aux" class="x2-hot" data-port="aux" data-position="0.02702m 0.00748m -0.0336m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="AUX/POWER port"><span>2</span></button>
+        <button slot="hotspot-auth" class="x2-hot" data-port="auth" data-position="0.00945m 0.00935m -0.0336m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="AUTH port"><span>3</span></button>
+        <button slot="hotspot-hdmi-in" class="x2-hot" data-port="hdmi-in" data-position="-0.01135m 0.00915m -0.0336m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="HDMI IN port"><span>4</span></button>
+        <button slot="hotspot-hdmi-out" class="x2-hot" data-port="hdmi-out" data-position="-0.03485m 0.00915m -0.0336m" data-normal="0m 0m -1m" data-visibility-attribute="visible" aria-label="HDMI OUT port"><span>5</span></button>
+        <button slot="hotspot-front-1" class="x2-hot" data-port="front" data-position="-0.03535m 0.00748m 0.0336m" data-normal="0m 0m 1m" data-visibility-attribute="visible" aria-label="Front USB-C port"><span>6</span></button>
+        <button slot="hotspot-front-2" class="x2-hot" data-port="front" data-position="-0.01178m 0.00935m 0.0336m" data-normal="0m 0m 1m" data-visibility-attribute="visible" aria-label="Front USB-A port"><span>7</span></button>
+        <button slot="hotspot-front-3" class="x2-hot" data-port="front" data-position="0.01178m 0.00935m 0.0336m" data-normal="0m 0m 1m" data-visibility-attribute="visible" aria-label="Front USB-A port"><span>8</span></button>
+        <button slot="hotspot-front-4" class="x2-hot" data-port="front" data-position="0.03535m 0.00935m 0.0336m" data-normal="0m 0m 1m" data-visibility-attribute="visible" aria-label="Front USB-A port"><span>9</span></button>
       </model-viewer>
     </div>
     <div class="x2-ports-side">
