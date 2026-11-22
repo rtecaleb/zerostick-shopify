@@ -40,6 +40,7 @@
   assign preorder_url = section.settings.preorder_url | default: '/products/zerostick-exo'
   assign games_url = section.settings.games_url | default: '/pages/supported-games'
   assign manual_url = section.settings.manual_url | default: '/pages/exo-manual'
+  assign contact_url = section.settings.contact_url | default: '/pages/contact'
   # The Discord invite isn't known yet: the default is a placeholder anchor.
   assign discord_url = section.settings.discord_url | default: '#discord-invite-placeholder'
   # App store links aren't known yet. While a link still starts with "#"
@@ -79,6 +80,9 @@
   <symbol id="x2l-i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2" width="11" height="20" rx="2.5"/><path d="M10.5 18.5h3"/></symbol>
   <symbol id="x2l-i-console" viewBox="0 0 24 24"><rect x="4" y="2.5" width="8" height="19" rx="2"/><rect x="14.5" y="8" width="5.5" height="13.5" rx="1.5"/><path d="M8 6v3"/></symbol>
   <symbol id="x2l-i-tv" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="x2l-i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></g></symbol>
+  <symbol id="x2l-i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-5 3.5v-3.5H5a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></g></symbol>
+  <symbol id="x2l-i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z"/><path d="M12 6.5v13"/></g></symbol>
   <symbol id="x2l-i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 7.5v.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
 </svg>
 
@@ -97,6 +101,18 @@
         <li><a href="#hardware">Hardware</a></li>
         <li><a href="#games">Games</a></li>
         <li><a href="#faq">FAQ</a></li>
+      </ul>
+      {%- comment -%}
+        Quick links: Contact, Discord and the Manual, always in the bar.
+        On phones this row scrolls sideways INSIDE the bar (it never widens
+        the page); on mid-size screens only the icons show. Styles live in
+        assets/zs-exo2.css under "quick links". The Discord link reads the
+        discord_url setting (a placeholder until the real invite is pasted in).
+      {%- endcomment -%}
+      <ul class="x2-navq" aria-label="Help links">
+        <li><a href="{{ contact_url }}" title="Contact"><svg aria-hidden="true"><use href="#x2l-i-mail"/></svg><span>Contact</span></a></li>
+        <li><a href="{{ discord_url }}" rel="noopener" title="Join Discord"><svg aria-hidden="true"><use href="#x2l-i-chat"/></svg><span>Discord</span></a></li>
+        <li><a href="{{ manual_url }}" title="Manual"><svg aria-hidden="true"><use href="#x2l-i-book"/></svg><span>Manual</span></a></li>
       </ul>
       <a class="x2-btn x2-btn--primary" href="{{ preorder_url }}">Pre-order</a>
     </div>
@@ -123,6 +139,12 @@
           <div class="x2-btns" data-x2l-in style="--d:.28s">
             <a class="x2-btn x2-btn--primary x2-btn--lg" href="{{ preorder_url }}">Pre-order</a>
             <a class="x2-btn x2-btn--lg" href="#how">How it works</a>
+          </div>
+          {%- comment -%} Second row: help links (secondary style). Discord reads the discord_url setting. {%- endcomment -%}
+          <div class="x2-btns x2-quick" data-x2l-in style="--d:.31s">
+            <a class="x2-btn x2-btn--sm" href="{{ contact_url }}"><svg aria-hidden="true"><use href="#x2l-i-mail"/></svg>Contact</a>
+            <a class="x2-btn x2-btn--sm" href="{{ discord_url }}" rel="noopener"><svg aria-hidden="true"><use href="#x2l-i-chat"/></svg>Join Discord</a>
+            <a class="x2-btn x2-btn--sm" href="{{ manual_url }}"><svg aria-hidden="true"><use href="#x2l-i-book"/></svg>Manual</a>
           </div>
           <ul class="x2l-trust" data-x2l-in style="--d:.34s">
             <li><svg aria-hidden="true"><use href="#x2l-i-check"/></svg>One-time purchase</li>
@@ -852,6 +874,7 @@
       "info": "Every Pre-order button goes here." },
     { "type": "text", "id": "games_url", "label": "Supported games page link", "default": "/pages/supported-games" },
     { "type": "text", "id": "manual_url", "label": "Manual page link", "default": "/pages/exo-manual" },
+    { "type": "text", "id": "contact_url", "label": "Contact page link", "default": "/pages/contact" },
     { "type": "text", "id": "discord_url", "label": "Discord invite link", "default": "#discord-invite-placeholder",
       "info": "Placeholder until the real invite link is known. Paste the full https://discord.gg/... link here." },
     { "type": "text", "id": "app_store_url", "label": "App Store link (iPhone)", "default": "#app-store-placeholder",

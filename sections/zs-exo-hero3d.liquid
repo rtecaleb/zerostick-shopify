@@ -100,6 +100,23 @@
         <a class="x2-btn x2-btn--primary x2-btn--lg" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label }}</a>
         <a class="x2-btn x2-btn--lg" href="{{ section.settings.cta2_url }}">{{ section.settings.cta2_label }}</a>
       </div>
+      {%- comment -%}
+        Quick links row: Pre-order (jumps to the buy box, #buy), Contact,
+        Join Discord, Manual. Styles: "quick links" in assets/zs-exo2.css.
+        The Discord button reads the discord_url setting (a placeholder until
+        the real invite link is pasted in the theme editor).
+      {%- endcomment -%}
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="h3d-i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></g></symbol>
+        <symbol id="h3d-i-chat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-5 3.5v-3.5H5a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></g></symbol>
+        <symbol id="h3d-i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z"/><path d="M12 6.5v13"/></g></symbol>
+      </svg>
+      <div class="x2-btns x2-quick">
+        <a class="x2-btn x2-btn--primary x2-btn--sm" href="{{ section.settings.preorder_url | default: '#buy' }}">Pre-order</a>
+        <a class="x2-btn x2-btn--sm" href="{{ section.settings.contact_url | default: '/pages/contact' }}"><svg aria-hidden="true"><use href="#h3d-i-mail"/></svg>Contact</a>
+        <a class="x2-btn x2-btn--sm" href="{{ section.settings.discord_url | default: '#discord-invite-placeholder' }}" rel="noopener"><svg aria-hidden="true"><use href="#h3d-i-chat"/></svg>Join Discord</a>
+        <a class="x2-btn x2-btn--sm" href="{{ section.settings.manual_url | default: '/pages/exo-manual' }}"><svg aria-hidden="true"><use href="#h3d-i-book"/></svg>Manual</a>
+      </div>
     </div>
 
     <div class="h3d-visual">
@@ -156,6 +173,11 @@
     { "type": "text", "id": "cta_url", "label": "Main button link", "default": "#buy" },
     { "type": "text", "id": "cta2_label", "label": "Second button text", "default": "Supported games" },
     { "type": "text", "id": "cta2_url", "label": "Second button link", "default": "/pages/supported-games" },
+    { "type": "header", "content": "Quick links row" },
+    { "type": "text", "id": "preorder_url", "label": "Pre-order link", "default": "#buy", "info": "#buy jumps to the buy box on the product page." },
+    { "type": "text", "id": "contact_url", "label": "Contact page link", "default": "/pages/contact" },
+    { "type": "text", "id": "discord_url", "label": "Discord invite link", "default": "#discord-invite-placeholder", "info": "Placeholder until the real invite link is known. Paste the full https://discord.gg/... link here." },
+    { "type": "text", "id": "manual_url", "label": "Manual page link", "default": "/pages/exo-manual" },
     { "type": "text", "id": "product_handle", "label": "Product handle (only used on non-product pages)", "default": "zerostick-exo" }
   ],
   "presets": [{ "name": "EXO 3D hero" }]

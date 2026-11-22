@@ -295,3 +295,41 @@ html:has(.x2), html:has(.x2) body{ overflow-x:clip; }
 .x2 .x2-aura:empty, .x2 .x2-gridlines:empty{ display:block; }
 .x2 .x2-btn{ color:var(--x-ink); }
 .x2 .x2-btn--primary, .x2 .x2-btn--discord{ color:#fff; }
+
+/* ---------- quick links (Pre-order / Contact / Discord / Manual) ----------
+   Used at the top of the EXO landing page (hero + sticky page nav) and the
+   EXO product page hero.
+   .x2-quick   = a second, smaller row of buttons under the main hero buttons.
+   .x2-btn--sm = a compact button (still 44px tall, comfortable to tap).
+   .x2-navq    = the little pill links inside the sticky page nav. */
+.x2-quick{ margin-top:1.4rem; gap:1rem; }
+.x2 .x2-btn--sm{ min-height:4.4rem; padding:0 1.8rem; font-size:1.4rem; }
+.x2-quick .x2-btn svg{ width:1.8rem; height:1.8rem; flex:none; }
+.x2-navq{ display:flex; gap:.6rem; margin:0; padding:0; list-style:none; flex:none; }
+.x2-navq li{ flex:none; }
+.x2 .x2-navq a{ display:inline-flex; align-items:center; justify-content:center; gap:.6rem; min-height:4rem; min-width:4rem;
+  padding:0 1.3rem; border-radius:99rem; border:1px solid var(--x-line2); background:rgba(255,255,255,.04);
+  color:var(--x-ink); font-size:1.3rem; font-weight:700; text-decoration:none; white-space:nowrap;
+  transition:background .25s, border-color .25s; }
+.x2 .x2-navq a:hover{ border-color:rgba(255,255,255,.3); background:rgba(255,255,255,.09); }
+.x2-navq svg{ width:1.6rem; height:1.6rem; flex:none; }
+/* Mid-size screens: the section links + quick links don't all fit with
+   words, so the quick links shrink to round icon buttons (the word is still
+   read out by screen readers and shown as a tooltip). */
+@media (min-width:990px) and (max-width:1279px){
+  .x2 .x2-navq a{ width:4rem; padding:0; }
+  .x2-navq a span{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+}
+/* Phones and tablets: the quick links sit between the name and the Pre-order
+   button and scroll sideways INSIDE the bar if they don't fit, so the page
+   itself never scrolls sideways. A soft fade on the right hints at more. */
+@media (max-width:989px){
+  .x2l .x2l-nav .x2-wrap{ gap:1rem; }
+  .x2-navq{ flex:1 1 auto; min-width:0; overflow-x:auto; scrollbar-width:none; overscroll-behavior-x:contain;
+    -webkit-mask-image:linear-gradient(90deg,#000 80%,transparent); mask-image:linear-gradient(90deg,#000 80%,transparent); }
+  .x2-navq::-webkit-scrollbar{ display:none; }
+  .x2l .x2l-nav .x2-btn{ margin-left:0; flex:none; }
+}
+@media (max-width:479px){
+  .x2l .x2l-nav-name{ font-size:1.5rem; }
+}
