@@ -313,10 +313,17 @@ html:has(.x2), html:has(.x2) body{ overflow-x:clip; }
   transition:background .25s, border-color .25s; }
 .x2 .x2-navq a:hover{ border-color:rgba(255,255,255,.3); background:rgba(255,255,255,.09); }
 .x2-navq svg{ width:1.6rem; height:1.6rem; flex:none; }
-/* Mid-size screens: the section links + quick links don't all fit with
-   words, so the quick links shrink to round icon buttons (the word is still
-   read out by screen readers and shown as a tooltip). */
-@media (min-width:990px) and (max-width:1279px){
+/* Desktop: the section links already fill the bar, so here the quick links
+   are round icon buttons (the word is still read out by screen readers and
+   shows as a tooltip on hover). Section links never wrap onto two lines;
+   on smaller laptops their spacing tightens a little so everything fits. */
+.x2l .x2l-nav-links a{ white-space:nowrap; }
+.x2l .x2l-nav-name, .x2l .x2l-nav .x2-btn{ flex:none; white-space:nowrap; }
+@media (min-width:990px) and (max-width:1149px){
+  .x2l .x2l-nav .x2-wrap{ gap:1.6rem; }
+  .x2l .x2l-nav-links{ gap:1.2rem; }
+}
+@media (min-width:990px){
   .x2 .x2-navq a{ width:4rem; padding:0; }
   .x2-navq a span{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 }
