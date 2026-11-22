@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    ZeroStick EXO v2 â€” shared design system
    --------------------------------------------------------------------------
    Used by the new (staged) EXO pages:
@@ -33,7 +33,7 @@
 }
 .x2 *, .x2 *::before, .x2 *::after{ box-sizing:border-box; }
 .x2 img{ max-width:100%; height:auto; }
-.x2 a{ color:var(--x-blue2); }
+.x2 a:not([class*="x2-btn"]){ color:var(--x-blue2); }
 .x2 :focus-visible{ outline:2px solid var(--x-blue2); outline-offset:3px; border-radius:.6rem; }
 
 /* ---------- layout ---------- */
@@ -252,7 +252,7 @@
   box-shadow:0 0 0 0 rgba(98,184,255,.6), 0 .6rem 1.6rem rgba(0,0,0,.5); transition:transform .25s var(--x-spring), background .25s;
   animation:x2-ping 2.4s ease-out infinite; }
 .x2-hot span{ pointer-events:none; }
-.x2-hot:not([visible]){ opacity:0; pointer-events:none; }
+.x2-hot:not([data-visible]){ opacity:0; pointer-events:none; }
 .x2-hot.is-on, .x2-hot:hover{ transform:scale(1.25); background:var(--x-cyan); color:#05070d; }
 @keyframes x2-ping{ 0%{ box-shadow:0 0 0 0 rgba(98,184,255,.55), 0 .6rem 1.6rem rgba(0,0,0,.5); }
   70%{ box-shadow:0 0 0 1.4rem rgba(98,184,255,0), 0 .6rem 1.6rem rgba(0,0,0,.5); } 100%{ box-shadow:0 0 0 0 rgba(98,184,255,0), 0 .6rem 1.6rem rgba(0,0,0,.5); } }
@@ -283,3 +283,15 @@
 .x2-gamesbar{ display:flex; justify-content:center; margin:0 0 3.2rem; }
 .x2-sr{ position:absolute !important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 
+
+/* ---------- theme fixes (found while building the pages) ----------
+   1. The store theme sets html,body{overflow-x:hidden}, which silently breaks
+      position:sticky (the sticky phone story, filter bars). "clip" still stops
+      sideways scrolling but lets sticky work. Only applies on pages that
+      contain an EXO v2 section (:has), so the rest of the store is untouched.
+   2. The theme's base.css hides every empty <div>; the decorative glow layers
+      are empty on purpose, so show them again. */
+html:has(.x2), html:has(.x2) body{ overflow-x:clip; }
+.x2 .x2-aura:empty, .x2 .x2-gridlines:empty{ display:block; }
+.x2 .x2-btn{ color:var(--x-ink); }
+.x2 .x2-btn--primary, .x2 .x2-btn--discord{ color:#fff; }
