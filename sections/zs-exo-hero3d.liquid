@@ -9,6 +9,8 @@
     pauses the spin; it carries on a moment after you let go. Pinch or
     scroll-wheel zooms (scroll-wheel only after a click, so the page still
     scrolls normally).
+  - Model: Draco-compressed web GLB (exo2-case.glb, ~0.68 MB; decoder from
+    gstatic, set in the JS). If Draco fails, exo2-case-full.glb (~3.4 MB) loads.
   - The lit ZS EXO logo cycles smoothly through rainbow colours. Visitors can
     pick a fixed colour with the swatches (the real logo LEDs take the colour
     of your config in the app).
@@ -27,7 +29,9 @@
 {%- liquid
   # ----- files (same files as the visuals swap point) -----
   assign glb = 'exo2-case.glb' | asset_url
-  assign poster = 'exo2-poster.webp' | asset_url
+  assign glb_full = 'exo2-case-full.glb' | asset_url
+  assign poster = 'exo3-poster-1600.webp' | asset_url
+  assign poster_sm = 'exo3-poster-800.webp' | asset_url
   assign p = product
   if p == blank
     assign p = all_products[section.settings.product_handle]
@@ -132,9 +136,9 @@
 
     <div class="h3d-visual">
       <div class="h3d-stage" data-h3d-stage>
-        <img class="h3d-poster" src="{{ poster }}" width="1600" height="1067" fetchpriority="high"
+        <img class="h3d-poster" src="{{ poster }}" srcset="{{ poster_sm }} 800w, {{ poster }} 1600w" sizes="(max-width: 989px) 100vw, 58vw" width="1600" height="1067" fetchpriority="high"
              alt="ZeroStick EXO: white body, black lid with the lit ZS EXO logo">
-        <model-viewer data-src="{{ glb }}" alt="Interactive 3D model of the ZeroStick EXO. Drag to turn it."
+        <model-viewer data-src="{{ glb }}" data-fallback="{{ glb_full }}" alt="Interactive 3D model of the ZeroStick EXO. Drag to turn it."
           camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="1600" rotation-per-second="18deg"
           interaction-prompt="none" camera-orbit="-35deg 62deg auto" field-of-view="17deg"
           min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg auto" min-field-of-view="9deg" max-field-of-view="24deg"

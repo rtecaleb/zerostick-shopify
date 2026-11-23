@@ -13,12 +13,17 @@
    4. "Show ports": toggles the port labels (hotspots) on the model.
    5. Reduced motion: no auto-spin and no colour cycling. The poster stays and
       a "View in 3D" button loads a still model the visitor can turn by hand.
+   6. Draco: the model is the Draco-compressed web GLB (~0.68 MB). model-viewer
+      is told where Google's Draco decoder lives BEFORE the model is set. If
+      the Draco model (or its decoder) fails, we load the uncompressed GLB
+      (data-fallback, ~3.4 MB) once instead.
    Material names come from MARKETING\web\exo-web.glb (same approach as MAIN
    EXO CHAT's reference viewer).
    ========================================================================== */
 (function () {
   'use strict';
   var MV_SRC = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';
+  var DRACO = 'https://www.gstatic.com/draco/versioned/decoders/1.5.6/';
   var GLOW = ['logo_insert', 'leds_D301_lens', 'leds_D302_lens', 'leds_D304_lens', 'leds_D305_lens'];
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -28,6 +33,14 @@
     var s = document.createElement('script');
     s.type = 'module'; s.src = MV_SRC; s.setAttribute('data-mv-lib', '');
     document.head.appendChild(s);
+  }
+  // resolves once model-viewer is defined, with the Draco decoder location set
+  function mvReady() {
+    loadLib();
+    return customElements.whenDefined('model-viewer').then(function () {
+      var MV = customElements.get('model-viewer');
+      if (MV && MV.dracoDecoderLocation !== DRACO) MV.dracoDecoderLocation = DRACO;
+    });
   }
 
   // hue (0..1) -> [r, g, b] (0..1), full saturation and brightness
@@ -39,9 +52,10 @@
   document.querySelectorAll('[data-exo-hero3d]').forEach(function (hero) {
     var stage = hero.querySelector('[data-h3d-stage]');
     var mv = stage.querySelector('model-viewer');
-    var mats = {}, rainbow = true, visible = true, raf = 0, last = 0, hue = 0, started = false;
+    var mats = {}, current = [0.96, 0.97, 0.98], rainbow = !reduce, visible = true, raf = 0, last = 0, hue = 0, started = false;
 
     function setGlow(rgb) {
+      current = rgb;
       GLOW.forEach(function (n) { if (mats[n]) mats[n].setEmissiveFactor(rgb); });
       var ins = mats.logo_insert;
       // tint the clear insert so the colour reads even in bright light
@@ -69,17 +83,20 @@
       started = true;
       if (reduce) mv.removeAttribute('auto-rotate');
       mv.addEventListener('load', function () {
+        mats = {};
         (mv.model && mv.model.materials || []).forEach(function (m) { mats[m.name] = m; });
         stage.classList.add('is-live');
-        if (reduce) { rainbow = false; setGlow([0.96, 0.97, 0.98]); }
+        if (reduce || !rainbow) { setGlow(current); }
         else startRainbow();
-      }, { once: true });
+      });
       mv.addEventListener('error', function () {
+        // Draco model or decoder failed: try the uncompressed model once
+        var fb = mv.getAttribute('data-fallback');
+        if (fb && mv.getAttribute('src') !== fb) { mv.setAttribute('src', fb); return; }
         // keep the poster; say so quietly
         var l = stage.querySelector('.h3d-load'); if (l) l.textContent = '3D view unavailable';
       });
-      mv.setAttribute('src', mv.getAttribute('data-src'));
-      loadLib();
+      mvReady().then(function () { mv.setAttribute('src', mv.getAttribute('data-src')); });
     }
 
     if (reduce) {

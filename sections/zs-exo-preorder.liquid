@@ -54,7 +54,7 @@
   .xp-grid > *{ min-width:0; }
   /* gallery: product renders (from the visuals swap point) */
   .xp-gallery{ position:sticky; top:2.4rem; }
-  .xp-main{ position:relative; aspect-ratio:1/1; border-radius:2.8rem; overflow:hidden; border:1px solid var(--x-line);
+  .xp-main{ position:relative; aspect-ratio:3/2; border-radius:2.8rem; overflow:hidden; border:1px solid var(--x-line);
     background:radial-gradient(80% 70% at 50% 45%,#13203a,#070a12 75%); }
   .xp-slide{ position:absolute; inset:0; display:grid; place-items:center; padding:6%; opacity:0; transform:scale(.97);
     transition:opacity .5s var(--x-ease), transform .7s var(--x-ease); }
@@ -65,6 +65,11 @@
   .xp-thumb{ flex:0 0 7.6rem; height:7.6rem; padding:.6rem; border-radius:1.4rem; cursor:pointer; opacity:.6;
     border:1px solid var(--x-line); background:#0b1120; transition:opacity .25s, border-color .25s, transform .25s var(--x-ease); }
   .xp-thumb img{ width:100%; height:100%; object-fit:contain; }
+  /* photoreal slides fill the frame (3:2 photos in a 3:2 frame) */
+  .xp-slide--photo{ padding:0; }
+  .xp-slide--photo img{ width:100%; height:100%; max-width:none; max-height:none; object-fit:cover; }
+  .xp-thumb--photo{ padding:0; overflow:hidden; }
+  .xp-thumb--photo img{ object-fit:cover; }
   .xp-thumb:hover{ opacity:1; transform:translateY(-2px); }
   .xp-thumb[aria-current="true"]{ opacity:1; border-color:var(--x-blue2); }
   /* buy box */
@@ -160,22 +165,28 @@
     {%- comment -%} GALLERY: product renders from the one visuals swap point {%- endcomment -%}
     <div class="xp-gallery">
       <div class="xp-main" data-xp-main>
-        <div class="xp-slide is-on">{% render 'zs-exo2-visual', view: 'hero', loading: 'eager' %}</div>
-        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'top' %}</div>
-        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'ports-34-back' %}</div>
-        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'ports-34-front' %}</div>
-        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'exploded' %}</div>
-        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'lid-off' %}</div>
+        <div class="xp-slide is-on xp-slide--photo">{% render 'zs-exo2-visual', view: 'hero', sizes: '(max-width: 989px) 100vw, 52vw', loading: 'eager' %}</div>
+        <div class="xp-slide xp-slide--photo">{% render 'zs-exo2-visual', view: 'desk', sizes: '(max-width: 989px) 100vw, 52vw' %}</div>
+        <div class="xp-slide xp-slide--photo">{% render 'zs-exo2-visual', view: 'top', sizes: '(max-width: 989px) 100vw, 52vw' %}</div>
+        <div class="xp-slide xp-slide--photo">{% render 'zs-exo2-visual', view: 'back-ports', sizes: '(max-width: 989px) 100vw, 52vw' %}</div>
+        <div class="xp-slide xp-slide--photo">{% render 'zs-exo2-visual', view: 'front-ports', sizes: '(max-width: 989px) 100vw, 52vw' %}</div>
+        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'ports-back', sizes: '(max-width: 989px) 100vw, 52vw' %}</div>
+        <div class="xp-slide xp-slide--photo">{% render 'zs-exo2-visual', view: 'underside', sizes: '(max-width: 989px) 100vw, 52vw' %}</div>
+        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'exploded', sizes: '(max-width: 989px) 100vw, 52vw' %}</div>
+        <div class="xp-slide">{% render 'zs-exo2-visual', view: 'lid-off', sizes: '(max-width: 989px) 100vw, 52vw' %}</div>
       </div>
       <div class="xp-thumbs" role="group" aria-label="Product pictures">
-        <button type="button" class="xp-thumb" aria-current="true" aria-label="Picture 1: three-quarter view">{% render 'zs-exo2-visual', view: 'hero', alt: '' %}</button>
-        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 2: top">{% render 'zs-exo2-visual', view: 'top', alt: '' %}</button>
-        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 3: back ports">{% render 'zs-exo2-visual', view: 'ports-34-back', alt: '' %}</button>
-        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 4: front ports">{% render 'zs-exo2-visual', view: 'ports-34-front', alt: '' %}</button>
-        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 5: exploded view">{% render 'zs-exo2-visual', view: 'exploded', alt: '' %}</button>
-        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 6: lid off">{% render 'zs-exo2-visual', view: 'lid-off', alt: '' %}</button>
+        <button type="button" class="xp-thumb xp-thumb--photo" aria-current="true" aria-label="Picture 1: three-quarter view, logo lit blue">{% render 'zs-exo2-visual', view: 'hero', sizes: '8rem' %}</button>
+        <button type="button" class="xp-thumb xp-thumb--photo" aria-current="false" aria-label="Picture 2: on a desk">{% render 'zs-exo2-visual', view: 'desk', sizes: '8rem' %}</button>
+        <button type="button" class="xp-thumb xp-thumb--photo" aria-current="false" aria-label="Picture 3: top, lit logo">{% render 'zs-exo2-visual', view: 'top', sizes: '8rem' %}</button>
+        <button type="button" class="xp-thumb xp-thumb--photo" aria-current="false" aria-label="Picture 4: back ports">{% render 'zs-exo2-visual', view: 'back-ports', sizes: '8rem' %}</button>
+        <button type="button" class="xp-thumb xp-thumb--photo" aria-current="false" aria-label="Picture 5: front ports">{% render 'zs-exo2-visual', view: 'front-ports', sizes: '8rem' %}</button>
+        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 6: back ports, labelled">{% render 'zs-exo2-visual', view: 'ports-back', sizes: '8rem' %}</button>
+        <button type="button" class="xp-thumb xp-thumb--photo" aria-current="false" aria-label="Picture 7: underside">{% render 'zs-exo2-visual', view: 'underside', sizes: '8rem' %}</button>
+        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 8: exploded view">{% render 'zs-exo2-visual', view: 'exploded', sizes: '8rem' %}</button>
+        <button type="button" class="xp-thumb" aria-current="false" aria-label="Picture 9: lid off">{% render 'zs-exo2-visual', view: 'lid-off', sizes: '8rem' %}</button>
       </div>
-      <p class="x2-shot-note">Renders of the shipping design. The logo lights up in the colour you pick in the app.</p>
+      <p class="x2-shot-note">Photoreal renders of the shipping design. The logo lights up in the colour you pick in the app.</p>
     </div>
 
     {%- comment -%} BUY BOX {%- endcomment -%}
@@ -304,6 +315,18 @@
         <article class="x2-card x2-card--glow" data-x2-glow data-reveal style="--d:.16s"><h3 class="x2-h3">All from your phone</h3><p>The free ZeroStick app for iPhone and Android sets everything up over Bluetooth. As many configs as you want, limited only by storage.</p></article>
       </div>
       <p class="x2-btns" style="margin-top:2.4rem" data-reveal><a class="x2-link" href="{{ section.settings.landing_url }}">See everything the EXO does</a></p>
+    </div>
+  </section>
+
+  <section class="x2-sec x2-sec--tight" aria-labelledby="xp-colour">
+    <div class="x2-wrap">
+      <p class="x2-eyebrow" data-reveal>Your colour</p>
+      <h2 class="x2-h2" id="xp-colour" data-reveal style="--d:.06s">Lit in your config's colour.</h2>
+      <p class="x2-lede" data-reveal style="--d:.1s">Give each config its own colour in the app and see which one is on at a glance.</p>
+      <div class="x2-showcase" data-reveal style="--d:.14s;margin-top:2.4rem">
+        {% render 'zs-exo2-visual', view: 'colours', sizes: '(max-width: 989px) 100vw, 56vw' %}
+        <div class="x2-showcase-side">{% render 'zs-exo2-visual', view: 'loop' %}</div>
+      </div>
     </div>
   </section>
 

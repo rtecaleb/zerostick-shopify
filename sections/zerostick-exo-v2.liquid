@@ -731,12 +731,39 @@
         </div>
       </div>
       <div class="x2l-xp-art">
-        {% render 'zs-exo2-visual', view: 'hero', class: 'l1' %}
+        {% render 'zs-exo2-visual', view: 'hero-render', class: 'l1', sizes: '(max-width: 989px) 100vw, 50vw' %}
         {% render 'zs-exo2-visual', view: 'lid-off', class: 'l2' %}
         {% render 'zs-exo2-visual', view: 'exploded', class: 'l3' %}
       </div>
     </div>
   </div>
+
+  {%- comment -%}
+    ===== 8a. PHOTOREAL SHOWCASE (2026-11-22) =====
+    Logo colour gallery, the rainbow logo loop, the desk shot and the port
+    photos, all from snippets/zs-exo2-visual.liquid (responsive WebP, lazy).
+  {%- endcomment -%}
+  <section class="x2-sec" aria-labelledby="x2l-look">
+    <div class="x2-wrap">
+      <div class="x2-center">
+        <p class="x2-eyebrow" data-reveal>Your colour</p>
+        <h2 class="x2-h2" id="x2l-look" data-reveal style="--d:.06s">The logo lights up in your config's colour.</h2>
+        <p class="x2-lede" data-reveal style="--d:.12s">Pick a colour per config in the app, so you can see which one is on at a glance.</p>
+      </div>
+      <div class="x2-showcase" data-reveal style="margin-top:3.2rem">
+        {% render 'zs-exo2-visual', view: 'colours', sizes: '(max-width: 989px) 100vw, 56vw' %}
+        <div class="x2-showcase-side">
+          {% render 'zs-exo2-visual', view: 'loop' %}
+          {% render 'zs-exo2-visual', view: 'desk', class: 'x2-photo', sizes: '(max-width: 989px) 100vw, 44vw' %}
+        </div>
+      </div>
+      <ul class="x2-photos" data-reveal style="margin-top:2.4rem">
+        <li><figure>{% render 'zs-exo2-visual', view: 'back-ports', class: 'x2-photo', sizes: '(max-width: 989px) 100vw, 33vw' %}<figcaption>Back, left to right: CONSOLE, AUX/POWER, AUTH, HDMI IN, HDMI OUT.</figcaption></figure></li>
+        <li><figure>{% render 'zs-exo2-visual', view: 'front-ports', class: 'x2-photo', sizes: '(max-width: 989px) 100vw, 33vw' %}<figcaption>Front: 1 USB-C and 3 USB-A for your controls.</figcaption></figure></li>
+        <li><figure>{% render 'zs-exo2-visual', view: 'underside', class: 'x2-photo', sizes: '(max-width: 989px) 100vw, 33vw' %}<figcaption>Underneath: four rubber feet.</figcaption></figure></li>
+      </ul>
+    </div>
+  </section>
 
   <section class="x2-sec">
     <div class="x2-wrap">

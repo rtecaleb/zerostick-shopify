@@ -1,6 +1,6 @@
 {% comment %}
   ==========================================================================
-  ZeroStick EXO product visuals Ã¢â‚¬â€ THE ONE SWAP POINT
+  ZeroStick EXO product visuals: THE ONE SWAP POINT
   --------------------------------------------------------------------------
   Every staged EXO page (landing v2, pre-order product page, games page,
   manual v2) draws the product through this snippet, so when the official
@@ -23,20 +23,41 @@
   If the owner switches to the rev 2.1 case, the MARKETING folder is
   regenerated with the same names: re-export these files, nothing else changes.
 
-  NOTE: no image here carries port callouts. Port-labelled images are on
+  PHOTOREAL SET (2026-11-22, owner-approved), from ...\PHOTOREAL\:
+    exo3-<key>-{800,1600,2400}.webp  responsive WebP, served with srcset
+      hero-<blue|purple|red|green|white>  stills/01-hero-3q-front_<c>
+      top            stills/02-top-logo_blue
+      back-ports     stills/04-back-ports_blue      front-ports  stills/06-front-ports-closeup_blue
+      underside      stills/05-underside            desk         stills/07-lifestyle-desk_blue
+      ports-back-lbl / ports-front-lbl  amazon-white/03-back-ports + 02-front with port
+                     callouts drawn at the PORTS.md positions (back: CONSOLE, AUX/POWER,
+                     AUTH, HDMI IN, HDMI OUT; front: USB-C + 3 x USB-A)
+    exo3-logo-<c>-{400,800}.webp     stills/03-logo-closeup_<c> (colour swatches)
+    exo3-poster-{800,1600}.webp      MARKETING\web\exo-poster.jpg
+    exo3-logo-loop.mp4/.webm (+ -poster.webp)  animation/ZS-EXO_logo-wave-loop, 720p
+    exo2-case-full.glb               MARKETING\web\exo-web.glb (fallback when Draco fails)
+  The old renders (exo2-exploded / exo2-lid-off, plus exo2-hero-34 for the
+  exploded scroll sequence only) stay: there is no photoreal equivalent.
+
+  NOTE (historical): no image here carries port callouts. Port-labelled images are on
   hold until the verified MARKETING set (PORTS.md) arrives.
 
   Usage:
     {% render 'zs-exo2-visual', view: 'viewer' %}             interactive 3D
     {% render 'zs-exo2-visual', view: 'hero', loading: 'eager' %}
     {% render 'zs-exo2-visual', view: 'top' %}  'front' 'exploded' 'lid-off' 'board-top' 'board-bottom'
-  Optional: class: 'my-class', alt: 'custom alt text'
+    photoreal: 'hero' (colour: 'red'...), 'top', 'back-ports', 'front-ports', 'underside', 'desk',
+               'ports-back' / 'ports-front' (labelled), 'hero-render' (old render, exploded sequence)
+    {% render 'zs-exo2-visual', view: 'colours' %}   logo colour gallery
+    {% render 'zs-exo2-visual', view: 'loop' %}      rainbow logo loop video
+  Optional: class: 'my-class', alt: 'custom alt text', sizes: '(max-width: 989px) 100vw, 50vw'
   ==========================================================================
 {% endcomment %}
 
 {%- liquid
   # ----- asset names (change these when the MARKETING set lands) -----
   assign f_glb = 'exo2-case.glb'
+  assign f_glb_full = 'exo2-case-full.glb'
   assign f_hero = 'exo2-hero-34.webp'
   assign f_top = 'exo2-top.webp'
   assign f_front = 'exo2-front.webp'
@@ -102,10 +123,12 @@
     the screen, then cross-fades to the live model (drag to spin, pinch/scroll
     to zoom). Reduced-motion users get no auto-rotate.
   {%- endcomment -%}
-  <div class="x2-stage {{ class }}" data-x2-model>
-    <img class="x2-stage-poster" src="{{ f_poster | asset_url }}" width="1600" height="1067"
-         alt="{{ alt | default: 'ZeroStick EXO, 3D view' | escape }}" loading="{{ lazy }}" decoding="async">
-    <model-viewer data-src="{{ f_glb | asset_url }}" alt="{{ alt | default: 'Interactive 3D model of the ZeroStick EXO. Drag to rotate.' | escape }}"
+  <div class="x2-stage {{ class }}" data-x2-model data-x2-rainbow>
+    <img class="x2-stage-poster" src="{{ 'exo3-poster-1600.webp' | asset_url }}"
+         srcset="{{ 'exo3-poster-800.webp' | asset_url }} 800w, {{ 'exo3-poster-1600.webp' | asset_url }} 1600w"
+         sizes="{{ sizes | default: '(max-width: 989px) 100vw, 55vw' }}" width="1600" height="1067"
+         alt="{{ alt | default: 'ZeroStick EXO, 3D view' | escape }}" loading="{{ lazy }}" decoding="async"{% if lazy == 'eager' %} fetchpriority="high"{% endif %}>
+    <model-viewer data-src="{{ f_glb | asset_url }}" data-fallback="{{ f_glb_full | asset_url }}" alt="{{ alt | default: 'Interactive 3D model of the ZeroStick EXO. Drag to rotate.' | escape }}"
       camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="0" rotation-per-second="14deg"
       interaction-prompt="none" camera-orbit="-32deg 64deg auto" min-camera-orbit="auto 10deg auto" max-camera-orbit="auto 95deg auto"
       field-of-view="20deg" min-field-of-view="12deg" max-field-of-view="26deg"
@@ -133,7 +156,7 @@
     <div class="x2-stage x2-stage--ports" data-x2-model>
       <img class="x2-stage-poster" src="{{ f_ports_back | asset_url }}" width="1600" height="800"
            alt="ZeroStick EXO back panel with each port named: CONSOLE, AUX/POWER, AUTH, HDMI IN and HDMI OUT" loading="lazy" decoding="async">
-      <model-viewer data-src="{{ f_glb | asset_url }}" alt="3D model of the ZeroStick EXO with a marker on every port"
+      <model-viewer data-src="{{ f_glb | asset_url }}" data-fallback="{{ f_glb_full | asset_url }}" alt="3D model of the ZeroStick EXO with a marker on every port"
         camera-controls touch-action="pan-y" interaction-prompt="none" disable-pan disable-zoom
         camera-orbit="180deg 72deg auto" field-of-view="15deg" interpolation-decay="120"
         exposure="0.95" shadow-intensity="1" environment-image="neutral" tone-mapping="aces">
@@ -159,31 +182,102 @@
         <li data-port="auth" data-face="back"><b><i>3</i>AUTH <small>USB-A</small></b><p>PS5 version: the included PS5 auth dongle. Xbox version: your own genuine Xbox controller.</p></li>
         <li data-port="hdmi-in" data-face="back"><b><i>4</i>HDMI IN</b><p>From your console. This is how the EXO sees the game for automatic gun detection.</p></li>
         <li data-port="hdmi-out" data-face="back"><b><i>5</i>HDMI OUT</b><p>To your TV or monitor. Your picture passes straight through.</p></li>
-        <li data-port="front" data-face="front"><b><i>6â€“9</i>Front ports <small>1 Ã— USB-C + 3 Ã— USB-A</small></b><p>Plug in controllers, a mouse, a keyboard or a USB hub. Any front port works for any of them.</p></li>
+        <li data-port="front" data-face="front"><b><i>6–9</i>Front ports <small>1 × USB-C + 3 × USB-A</small></b><p>Plug in controllers, a mouse, a keyboard or a USB hub. Any front port works for any of them.</p></li>
       </ol>
     </div>
   </div>
-{%- elsif v == 'ports-back' or v == 'ports-front' or v == 'ports-34-back' or v == 'ports-34-front' -%}
+{%- elsif v == 'colours' -%}
+  {%- comment -%}
+    Logo colour gallery: the big photo swaps when a swatch is picked
+    (assets/zs-exo2.js, "logo colour gallery"). Hidden photos are lazy and
+    display:none, so only the colour someone picks is downloaded.
+  {%- endcomment -%}
+  {%- assign cols = 'blue,purple,red,green,white' | split: ',' -%}
+  <div class="x2-colours {{ class }}" data-x2-colours>
+    <div class="x2-colours-main">
+      {%- for c in cols -%}
+        {%- assign k = 'exo3-hero-' | append: c -%}
+        <img data-c-img="{{ c }}"{% if forloop.first %} class="is-on"{% endif %}
+             src="{{ k | append: '-1600.webp' | asset_url }}"
+             srcset="{{ k | append: '-800.webp' | asset_url }} 800w, {{ k | append: '-1600.webp' | asset_url }} 1600w, {{ k | append: '-2400.webp' | asset_url }} 2400w"
+             sizes="{{ sizes | default: '(max-width: 989px) 100vw, 60vw' }}" width="1600" height="1067" loading="lazy" decoding="async"
+             alt="ZeroStick EXO with the ZS EXO logo lit {{ c }}">
+      {%- endfor -%}
+    </div>
+    <div class="x2-colours-pick" role="group" aria-label="Logo colour">
+      {%- for c in cols -%}
+        {%- assign k = 'exo3-logo-' | append: c -%}
+        <button type="button" data-c-btn="{{ c }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">
+          <img src="{{ k | append: '-400.webp' | asset_url }}" srcset="{{ k | append: '-400.webp' | asset_url }} 400w, {{ k | append: '-800.webp' | asset_url }} 800w"
+               sizes="(max-width: 989px) 20vw, 12rem" width="400" height="267" loading="lazy" decoding="async" alt="">
+          <span>{{ c | capitalize }}</span>
+        </button>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- elsif v == 'loop' -%}
+  {%- comment -%}
+    Rainbow logo loop (8 s, 720p, no sound). Muted + playsinline so phones
+    autoplay it. The sources only load when it nears the screen and it
+    pauses off screen (assets/zs-exo2.js, "logo loop video"). Reduced
+    motion: no autoplay, the poster shows with play controls.
+  {%- endcomment -%}
+  <video class="x2-loop {{ class }}" data-x2-video muted loop playsinline autoplay preload="none" width="1280" height="720"
+         poster="{{ 'exo3-logo-loop-poster.webp' | asset_url }}"
+         aria-label="{{ alt | default: 'The ZeroStick EXO logo glowing through the colours of the rainbow' | escape }}">
+    <source data-src="{{ 'exo3-logo-loop.webm' | asset_url }}" type="video/webm">
+    <source data-src="{{ 'exo3-logo-loop.mp4' | asset_url }}" type="video/mp4">
+  </video>
+{%- else -%}
   {%- liquid
-    assign ph = 800
+    # photoreal stills (responsive srcset). Old renders keep their single file.
+    assign key = ''
+    assign w = 1600
+    assign h = 1067
     case v
+      when 'hero'
+        assign c = colour | default: 'blue'
+        assign key = 'exo3-hero-' | append: c
+        assign default_alt = 'ZeroStick EXO: white body, black lid with the ZS EXO logo lit ' | append: c
+      when 'top'
+        assign key = 'exo3-top'
+        assign default_alt = 'ZeroStick EXO seen from above: black lid with the lit ZS EXO logo'
+      when 'back-ports', 'ports-34-back'
+        assign key = 'exo3-back-ports'
+        assign default_alt = 'ZeroStick EXO back, left to right: CONSOLE (USB-C), AUX/POWER (USB-C), AUTH (USB-A), HDMI IN and HDMI OUT'
+      when 'front-ports', 'ports-34-front', 'front'
+        assign key = 'exo3-front-ports'
+        assign default_alt = 'Close-up of the ZeroStick EXO front: one USB-C port and three USB-A ports'
+      when 'underside'
+        assign key = 'exo3-underside'
+        assign default_alt = 'ZeroStick EXO underside: white base with a honeycomb pattern and four rubber feet'
+      when 'desk'
+        assign key = 'exo3-desk'
+        assign default_alt = 'ZeroStick EXO on a desk with its logo lit blue and cables plugged in'
       when 'ports-back'
-        assign pf = f_ports_back
+        assign key = 'exo3-ports-back-lbl'
+        assign h = 933
+        assign default_alt = 'ZeroStick EXO back, seen from behind, left to right: CONSOLE (USB-C, to the console or PC), AUX/POWER (USB-C, optional extra power), AUTH (USB-A, PS5 auth dongle or Xbox controller), HDMI IN (from the console), HDMI OUT (to the TV)'
       when 'ports-front'
-        assign pf = f_ports_front
-      when 'ports-34-back'
-        assign pf = f_ports_34_back
-        assign ph = 1067
-      else
-        assign pf = f_ports_34_front
-        assign ph = 1067
+        assign key = 'exo3-ports-front-lbl'
+        assign h = 933
+        assign default_alt = 'ZeroStick EXO front: one USB-C port on the left and three USB-A ports, for controllers, mouse, keyboard or a USB hub'
+      when 'hero-render'
+        assign file = f_hero
+        assign w = hero_w
+        assign h = hero_h
+        assign default_alt = 'ZeroStick EXO: white body, black lid with the lit ZS EXO logo'
     endcase
   -%}
-  <img class="{{ class }}" src="{{ pf | asset_url }}" width="1600" height="{{ ph }}"
-       alt="{% if v contains 'back' %}ZeroStick EXO back, seen from behind, left to right: CONSOLE (USB-C, to the console or PC), AUX/POWER (USB-C, optional extra power), AUTH (USB-A, PS5 auth dongle or Xbox controller), HDMI IN (from the console), HDMI OUT (to the TV){% else %}ZeroStick EXO front: one USB-C port on the left and three USB-A ports, for controllers, mouse, keyboard or a USB hub{% endif %}"
-       loading="{{ lazy }}" decoding="async">
-{%- else -%}
+  {%- if key != '' -%}
+  <img class="{{ class }}" src="{{ key | append: '-1600.webp' | asset_url }}"
+       srcset="{{ key | append: '-800.webp' | asset_url }} 800w, {{ key | append: '-1600.webp' | asset_url }} 1600w, {{ key | append: '-2400.webp' | asset_url }} 2400w"
+       sizes="{{ sizes | default: '(max-width: 989px) 100vw, 50vw' }}" width="{{ w }}" height="{{ h }}"
+       alt="{{ alt | default: default_alt | escape }}" loading="{{ lazy }}" decoding="async"
+       {% if lazy == 'eager' %}fetchpriority="high"{% endif %}>
+  {%- else -%}
   <img class="{{ class }}" src="{{ file | asset_url }}" width="{{ w }}" height="{{ h }}"
        alt="{{ alt | default: default_alt | escape }}" loading="{{ lazy }}" decoding="async"
        {% if lazy == 'eager' %}fetchpriority="high"{% endif %}>
+  {%- endif -%}
 {%- endif -%}

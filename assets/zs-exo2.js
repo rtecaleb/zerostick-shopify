@@ -84,23 +84,70 @@
     steps.forEach(function (s) { so.observe(s); });
   });
 
-  /* ---------- 4. 3D model: load model-viewer only when needed ---------- */
+  /* ---------- 4. 3D model: load model-viewer only when needed ----------
+     The model is the Draco-compressed web GLB. model-viewer is told where
+     Google's Draco decoder lives before any model is set; if the Draco model
+     (or the decoder) fails, the uncompressed GLB in data-fallback loads once.
+     A stage with data-x2-rainbow cycles the logo glow through the rainbow
+     (logo_insert + the 4 LED lenses, via setEmissiveFactor). */
   var MV_SRC = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js';
+  var DRACO = 'https://www.gstatic.com/draco/versioned/decoders/1.5.6/';
+  var GLOW = ['logo_insert', 'leds_D301_lens', 'leds_D302_lens', 'leds_D304_lens', 'leds_D305_lens'];
   var mvLoading = false;
   function loadModelViewer() {
     if (mvLoading || window.customElements && customElements.get('model-viewer')) return;
+    if (document.querySelector('script[data-mv-lib]')) return;
     mvLoading = true;
     var s = document.createElement('script');
-    s.type = 'module'; s.src = MV_SRC;
+    s.type = 'module'; s.src = MV_SRC; s.setAttribute('data-mv-lib', '');
     document.head.appendChild(s);
+  }
+  function mvReady() {
+    loadModelViewer();
+    return customElements.whenDefined('model-viewer').then(function () {
+      var MV = customElements.get('model-viewer');
+      if (MV && MV.dracoDecoderLocation !== DRACO) MV.dracoDecoderLocation = DRACO;
+    });
+  }
+  function hueToRgb(h) {
+    var i = Math.floor(h * 6), f = h * 6 - i, q = 1 - f;
+    return [[1, f, 0], [q, 1, 0], [0, 1, f], [0, q, 1], [f, 0, 1], [1, 0, q]][i % 6];
+  }
+  function rainbow(stage, mv) {
+    var mats = {}, raf = 0, last = 0, hue = 0, seen = true;
+    (mv.model && mv.model.materials || []).forEach(function (m) { mats[m.name] = m; });
+    function glow(rgb) {
+      GLOW.forEach(function (n) { if (mats[n]) mats[n].setEmissiveFactor(rgb); });
+      var ins = mats.logo_insert;
+      if (ins) ins.pbrMetallicRoughness.setBaseColorFactor([0.25 + 0.75 * rgb[0], 0.25 + 0.75 * rgb[1], 0.25 + 0.75 * rgb[2], 1]);
+    }
+    if (reduce) { glow([0.96, 0.97, 0.98]); return; }
+    function tick(t) {
+      raf = 0;
+      if (!seen || document.hidden) return;
+      if (t - last > 40) { hue = (hue + (t - last) / 9000) % 1; last = t; glow(hueToRgb(hue)); }
+      raf = requestAnimationFrame(tick);
+    }
+    function go() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); } }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { seen = es[0].isIntersecting; if (seen) go(); }).observe(stage);
+    }
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) go(); });
+    go();
   }
   function wakeStage(stage) {
     var mv = stage.querySelector('model-viewer');
     if (!mv) return;
     if (reduce) { mv.removeAttribute('auto-rotate'); }
-    if (!mv.getAttribute('src')) mv.setAttribute('src', mv.dataset.src);
-    mv.addEventListener('load', function () { stage.classList.add('is-live'); }, { once: true });
-    loadModelViewer();
+    mv.addEventListener('load', function () {
+      stage.classList.add('is-live');
+      if (stage.hasAttribute('data-x2-rainbow')) rainbow(stage, mv);
+    }, { once: true });
+    mv.addEventListener('error', function () {
+      var fb = mv.getAttribute('data-fallback');
+      if (fb && mv.getAttribute('src') !== fb) mv.setAttribute('src', fb);
+    });
+    mvReady().then(function () { if (!mv.getAttribute('src')) mv.setAttribute('src', mv.dataset.src); });
   }
   var stages = document.querySelectorAll('.x2 [data-x2-model]');
   if (stages.length) {
@@ -189,4 +236,40 @@
       });
     });
   }
+
+  /* ---------- 7. logo colour gallery ---------- */
+  // Swatch buttons swap the big photo. Hidden photos are lazy, so only the
+  // colour someone picks is downloaded.
+  document.querySelectorAll('.x2 [data-x2-colours]').forEach(function (box) {
+    var imgs = box.querySelectorAll('[data-c-img]');
+    var btns = box.querySelectorAll('[data-c-btn]');
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var c = b.getAttribute('data-c-btn');
+        btns.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+        imgs.forEach(function (i) { i.classList.toggle('is-on', i.getAttribute('data-c-img') === c); });
+      });
+    });
+  });
+
+  /* ---------- 8. logo loop video: load + play only near the screen ---------- */
+  document.querySelectorAll('.x2 [data-x2-video]').forEach(function (v) {
+    function wake() {
+      v.querySelectorAll('source[data-src]').forEach(function (s) { s.src = s.getAttribute('data-src'); s.removeAttribute('data-src'); });
+      v.load();
+      if (reduce) { v.removeAttribute('autoplay'); v.setAttribute('controls', ''); return; }
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    }
+    if ('IntersectionObserver' in window) {
+      var vo = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) {
+            if (v.querySelector('source[data-src]')) wake();
+            else if (!reduce) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+          } else if (!v.paused) v.pause();
+        });
+      }, { rootMargin: '200px 0px' });
+      vo.observe(v);
+    } else wake();
+  });
 })();

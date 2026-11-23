@@ -341,7 +341,7 @@
 .m2-hero-kicker{ margin:0 0 1.4rem; font-size:1.25rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--x-blue2); }
 .m2-hero h1{ font-size:clamp(3.8rem,5.4vw,6.4rem); line-height:1; margin:0 0 1.6rem; }
 .m2-hero-art{ position:relative; }
-.m2-hero-art img{ position:relative; z-index:1; display:block; width:100%; height:auto; filter:drop-shadow(0 3rem 4rem rgba(0,0,0,.6)); animation:m2-float 7s ease-in-out infinite; }
+.m2-hero-art img{ position:relative; z-index:1; display:block; width:100%; height:auto; border-radius:2.4rem; filter:drop-shadow(0 3rem 4rem rgba(0,0,0,.6)); animation:m2-float 7s ease-in-out infinite; }
 .m2-hero-art::before{ content:""; position:absolute; inset:15% 10% 5%; border-radius:50%; background:radial-gradient(closest-side,rgba(41,141,223,.45),transparent);
   filter:blur(3rem); }
 @keyframes m2-float{ 0%,100%{ transform:translate3d(0,0,0); } 50%{ transform:translate3d(0,-1rem,0); } }
@@ -405,7 +405,7 @@
 .m2-jlist .m2-jthumb{ display:block; width:6.4rem; height:6.4rem; object-fit:cover; object-position:50% 20%; border-radius:1rem;
   border:1px solid var(--x-line2); background:#0a0d14; }
 .m2-jthumbw{ display:block; font-size:0; line-height:0; }
-.m2-jlist .m2-jthumb--product{ object-fit:contain; background:radial-gradient(closest-side,rgba(41,141,223,.25),transparent); border-color:var(--x-line); }
+.m2-jlist .m2-jthumb--product{ object-fit:cover; object-position:50% 50%; background:radial-gradient(closest-side,rgba(41,141,223,.25),transparent); border-color:var(--x-line); }
 
 /* ---------- 5. journey bar, prev/next, search, sheet, lightbox, toast ---------- */
 .m2-journey{ display:flex; align-items:center; gap:1.6rem; margin:0 0 2.8rem; padding:1.2rem 1.6rem; border-radius:1.4rem;
