@@ -45,7 +45,7 @@
 {%- liquid
   # The Discord invite isn't known yet: the default is a placeholder.
   # Paste the real invite link into the section setting when you have it.
-  assign discord_url = section.settings.discord_url | default: '#discord-invite-placeholder'
+  assign discord_url = section.settings.discord_url | default: 'https://discord.gg/qXTrrMYanb'
   # The app store links aren't known yet either (placeholders start with #).
   assign app_store_url = section.settings.app_store_url | default: '#app-store-placeholder'
   assign play_store_url = section.settings.play_store_url | default: '#play-store-placeholder'
@@ -204,7 +204,7 @@
       "type": "text",
       "id": "discord_url",
       "label": "Discord invite link",
-      "default": "#discord-invite-placeholder",
+      "default": "https://discord.gg/qXTrrMYanb",
       "info": "Paste the ZeroStick Discord invite. Until then the manual shows a note to email support."
     },
     {

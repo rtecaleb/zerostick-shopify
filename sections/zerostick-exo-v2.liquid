@@ -42,7 +42,7 @@
   assign manual_url = section.settings.manual_url | default: '/pages/exo-manual'
   assign contact_url = section.settings.contact_url | default: '/pages/contact'
   # The Discord invite isn't known yet: the default is a placeholder anchor.
-  assign discord_url = section.settings.discord_url | default: '#discord-invite-placeholder'
+  assign discord_url = section.settings.discord_url | default: 'https://discord.gg/qXTrrMYanb'
   # Discord: only a permanent invite (https://discord.gg/... or
   # https://discord.com/invite/...) counts. Until one is pasted in, every
   # Discord button/link on this page is hidden so nobody hits a dead link.
@@ -932,7 +932,7 @@
     { "type": "text", "id": "games_url", "label": "Supported games page link", "default": "/pages/supported-games" },
     { "type": "text", "id": "manual_url", "label": "Manual page link", "default": "/pages/exo-manual" },
     { "type": "text", "id": "contact_url", "label": "Contact page link", "default": "/pages/contact" },
-    { "type": "text", "id": "discord_url", "label": "Discord invite link", "default": "#discord-invite-placeholder",
+    { "type": "text", "id": "discord_url", "label": "Discord invite link", "default": "https://discord.gg/qXTrrMYanb",
       "info": "Placeholder until the real invite link is known. Paste the full https://discord.gg/... link here." },
     { "type": "text", "id": "app_store_url", "label": "App Store link (iPhone)", "default": "#app-store-placeholder",
       "info": "The 'Get it for iPhone' button stays hidden while this starts with #." },

@@ -42,7 +42,7 @@
   assign preorder_url = section.settings.preorder_url | default: '/products/zerostick-exo'
   # The Discord invite link is not known yet. Until Caleb pastes the real
   # invite into the section setting, this placeholder anchor is used.
-  assign discord_url = section.settings.discord_url | default: '#discord-invite-placeholder'
+  assign discord_url = section.settings.discord_url | default: 'https://discord.gg/qXTrrMYanb'
   # Discord: only a permanent invite (https://discord.gg/... or
   # https://discord.com/invite/...) counts. Until one is pasted in, every
   # Discord button/link on this page is hidden so nobody hits a dead link.
@@ -767,7 +767,7 @@
       "id": "discord_url",
       "label": "Discord invite link",
       "info": "Paste the real ZeroStick Discord invite here. Until then a placeholder is used.",
-      "default": "#discord-invite-placeholder"
+      "default": "https://discord.gg/qXTrrMYanb"
     },
     {
       "type": "text",

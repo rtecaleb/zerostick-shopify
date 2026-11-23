@@ -35,7 +35,7 @@
   # Discord: only a permanent invite (https://discord.gg/... or
   # https://discord.com/invite/...) counts. Until one is pasted in, the
   # Join Discord button is hidden so nobody hits a dead link.
-  assign discord_url = section.settings.discord_url | default: '#discord-invite-placeholder'
+  assign discord_url = section.settings.discord_url | default: 'https://discord.gg/qXTrrMYanb'
   assign discord_ready = false
   assign discord_start = discord_url | slice: 0, 8
   if discord_start == 'https://'
@@ -187,7 +187,7 @@
     { "type": "header", "content": "Quick links row" },
     { "type": "text", "id": "preorder_url", "label": "Pre-order link", "default": "#buy", "info": "#buy jumps to the buy box on the product page." },
     { "type": "text", "id": "contact_url", "label": "Contact page link", "default": "/pages/contact" },
-    { "type": "text", "id": "discord_url", "label": "Discord invite link", "default": "#discord-invite-placeholder", "info": "Placeholder until the real invite link is known. Paste the full https://discord.gg/... link here." },
+    { "type": "text", "id": "discord_url", "label": "Discord invite link", "default": "https://discord.gg/qXTrrMYanb", "info": "Placeholder until the real invite link is known. Paste the full https://discord.gg/... link here." },
     { "type": "text", "id": "manual_url", "label": "Manual page link", "default": "/pages/exo-manual" },
     { "type": "text", "id": "product_handle", "label": "Product handle (only used on non-product pages)", "default": "zerostick-exo" }
   ],

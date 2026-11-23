@@ -29,7 +29,7 @@
 
 {%- liquid
   assign current = product.selected_or_first_available_variant
-  assign discord_url = section.settings.discord_url | default: '#discord-invite-placeholder'
+  assign discord_url = section.settings.discord_url | default: 'https://discord.gg/qXTrrMYanb'
   # Discord: only a permanent invite (https://discord.gg/... or
   # https://discord.com/invite/...) counts. Until one is pasted in, every
   # Discord button/link on this page is hidden so nobody hits a dead link.
@@ -379,7 +379,7 @@
       "default": "Mouse & keyboard or any controller, on PS5, Xbox and PC. Set up from your phone." },
     { "type": "text", "id": "ship_date", "label": "Ship date (long)", "default": "January 1, 2027" },
     { "type": "text", "id": "ship_short", "label": "Ship date (short, on the button)", "default": "Jan 1, 2027" },
-    { "type": "text", "id": "discord_url", "label": "Discord invite link", "info": "PLACEHOLDER until the real invite link is known.", "default": "#discord-invite-placeholder" },
+    { "type": "text", "id": "discord_url", "label": "Discord invite link", "info": "PLACEHOLDER until the real invite link is known.", "default": "https://discord.gg/qXTrrMYanb" },
     { "type": "text", "id": "support_email", "label": "Support email", "default": "caleb@zerostickgaming.com" },
     { "type": "text", "id": "landing_url", "label": "EXO overview page link", "default": "/pages/zerostick-exo" },
     { "type": "text", "id": "games_url", "label": "Supported games page link", "default": "/pages/supported-games" },
