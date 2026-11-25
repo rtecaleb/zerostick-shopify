@@ -26,7 +26,14 @@
 <meta property="og:type" content="{{ og_type }}">
 <meta property="og:description" content="{{ og_description | escape }}">
 
-{%- if page_image -%}
+{%- if request.page_type == 'product' and product.handle == 'zerostick-exo' -%}
+  {%- comment -%} EXO: photoreal hero, not the old render in the product media (2026-11-24). {%- endcomment -%}
+  {%- assign og_exo = 'exo3-hero-blue-1600.webp' | asset_url | split: '//' | last | prepend: 'https://' -%}
+  <meta property="og:image" content="{{ og_exo }}">
+  <meta property="og:image:secure_url" content="{{ og_exo }}">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="1067">
+{%- elsif page_image -%}
   <meta property="og:image" content="http:{{ page_image | image_url }}">
   <meta property="og:image:secure_url" content="https:{{ page_image | image_url }}">
   <meta property="og:image:width" content="{{ page_image.width }}">

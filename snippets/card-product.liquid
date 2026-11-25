@@ -59,7 +59,15 @@
           class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
           style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
         >
-          {%- if card_product.featured_media -%}
+          {%- if card_product.handle == 'zerostick-exo' -%}
+            {%- comment -%} EXO: photoreal theme image instead of the old render in the product media (2026-11-24). {%- endcomment -%}
+            <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
+              <div class="media media--transparent media--hover-effect">
+                {%- if lazy_load == false -%}{%- assign exo_load = 'eager' -%}{%- else -%}{%- assign exo_load = 'lazy' -%}{%- endif -%}
+                {% render 'zs-exo2-visual', view: 'hero', class: 'motion-reduce', loading: exo_load, alt: card_product.title, sizes: '(min-width: 990px) 25vw, (min-width: 750px) 33vw, 50vw' %}
+              </div>
+            </div>
+          {%- elsif card_product.featured_media -%}
             <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
               <div class="media media--transparent media--hover-effect">
                 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}

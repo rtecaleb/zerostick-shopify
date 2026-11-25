@@ -327,16 +327,15 @@ body:has(.x2l) .site-header{ position:relative; }
 .x2-js .x2l-xp{ height:300vh; }
 .x2l-xp-stage{ position:relative; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); align-items:center; gap:4rem; }
 .x2-js .x2l-xp-stage{ position:sticky; top:var(--x2l-top); height:calc(100vh - var(--x2l-top)); }
-.x2l-xp-art{ position:relative; height:min(62vh,64rem); }
-.x2l-xp-art img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; will-change:opacity,transform; }
-/* three renders cross-fade: assembled -> lid off -> exploded.
+.x2l-xp-art{ position:relative; width:100%; aspect-ratio:3/2; max-height:min(62vh,64rem); overflow:hidden;
+  border-radius:var(--x-radius); background:#1a1b1f; box-shadow:0 2.4rem 6rem -2rem rgba(0,0,0,.55); }
+.x2l-xp-art img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; will-change:opacity,transform; }
+/* three photoreal stills cross-fade: hero 3/4 -> back ports -> on a desk.
    --a goes 0->1 between 25% and 42% of the track, --b between 55% and 72%. */
 .x2l-xp{ --a:clamp(0,(var(--sp,0) - .25) / .17,1); --b:clamp(0,(var(--sp,0) - .55) / .17,1); }
-.x2l-xp-art .l1{ opacity:calc(1 - var(--a)); transform:scale(calc(.94 + var(--sp,0) * .1)) rotate(calc(var(--sp,0) * -3deg)); }
-.x2l-xp-art .l2{ opacity:calc(var(--a) - var(--b)); transform:scale(calc(.94 + var(--sp,0) * .1)); }
-.x2l-xp-art .l3{ opacity:var(--b); transform:scale(calc(.9 + var(--sp,0) * .12)) translate3d(0,calc((1 - var(--b)) * 3rem),0); }
-.x2l-xp-art::before{ content:""; position:absolute; left:10%; right:10%; bottom:4%; height:20%; border-radius:50%;
-  background:radial-gradient(closest-side,rgba(41,141,223,.45),transparent); filter:blur(2rem); }
+.x2l-xp-art .l1{ opacity:calc(1 - var(--a)); transform:scale(calc(1 + var(--sp,0) * .08)); }
+.x2l-xp-art .l2{ opacity:calc(var(--a) - var(--b)); transform:scale(calc(1.02 + var(--sp,0) * .06)); }
+.x2l-xp-art .l3{ opacity:var(--b); transform:scale(calc(1.1 - var(--b) * .1)); }
 .x2l-xp-caps{ position:relative; min-height:26rem; }
 .x2l-xp-cap{ position:absolute; inset:0 0 auto; transition:opacity .5s var(--x-ease), transform .6s var(--x-ease); }
 .x2-js .x2l-xp-cap{ opacity:0; transform:translate3d(0,2rem,0); pointer-events:none; }
@@ -347,7 +346,7 @@ body:has(.x2l) .site-header{ position:relative; }
   transform:scaleX(var(--f,0)); }
 @media (max-width:989px){
   .x2l-xp-stage{ grid-template-columns:1fr; gap:1.6rem; align-content:center; }
-  .x2l-xp-art{ height:min(38vh,40rem); order:-1; }
+  .x2l-xp-art{ max-height:min(38vh,40rem); order:-1; }
   .x2l-xp-caps{ min-height:22rem; }
   .x2-js .x2l-xp{ height:260vh; }
 }
@@ -414,7 +413,7 @@ body:has(.x2l) .site-header{ position:relative; }
   .x2l-flow .node{ opacity:1; transform:none; }
   .x2l-flow .pl{ display:none; }
   .x2l-scan::after{ display:none; }
-  /* exploded sequence: no pinning, just the exploded render and all captions */
+  /* hardware sequence: no pinning, just the last still and all captions */
   .x2-js .x2l-xp{ height:auto; }
   .x2-js .x2l-xp-stage{ position:relative; top:auto; height:auto; padding:4rem 0; }
   .x2l-xp-art .l1, .x2l-xp-art .l2{ display:none; }

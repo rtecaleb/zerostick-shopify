@@ -696,10 +696,10 @@
 
   {%- comment -%}
     ===== 8. HARDWARE =====
-    a) Pinned sequence: three renders cross-fade (assembled > lid off >
-       exploded) while you scroll through a tall track. The landing JS writes
-       --sp (0..1) on .x2l-xp and turns on the matching caption. With reduced
-       motion it's just the exploded render and all three captions.
+    a) Pinned sequence: three photoreal stills cross-fade (hero 3/4 > back
+       ports > on a desk) while you scroll through a tall track. The landing JS
+       writes --sp (0..1) on .x2l-xp and turns on the matching caption. With
+       reduced motion it's just the desk still and all three captions.
     b) The owner-approved 3D port viewer (hover or tap a dot).
     c) Specs and in the box.
   {%- endcomment -%}
@@ -720,20 +720,20 @@
           <p class="x2-lede">A white body and a black lid, with the ZS EXO logo lit in your config's colour. Honeycomb vents keep it cool.</p>
         </div>
         <div class="x2l-xp-cap" data-cap="1">
-          <p class="x2-eyebrow">Lid off</p>
-          <h3 class="x2-h2">One board. Every port.</h3>
+          <p class="x2-eyebrow">Around the back</p>
+          <h3 class="x2-h2">Every port, labelled.</h3>
           <p class="x2-lede">Five ports on the back for your console, power, auth and HDMI. Four on the front for everything you play with.</p>
         </div>
         <div class="x2l-xp-cap" data-cap="2">
-          <p class="x2-eyebrow">Exploded</p>
-          <h3 class="x2-h2">Lid, logo, board, body.</h3>
+          <p class="x2-eyebrow">On your desk</p>
+          <h3 class="x2-h2">Set it up. Then forget it.</h3>
           <p class="x2-lede">Your Scripts, aim and gun reading all run right here on the EXO. Your phone only sets things up.</p>
         </div>
       </div>
       <div class="x2l-xp-art">
-        {% render 'zs-exo2-visual', view: 'hero-render', class: 'l1', sizes: '(max-width: 989px) 100vw, 50vw' %}
-        {% render 'zs-exo2-visual', view: 'lid-off', class: 'l2' %}
-        {% render 'zs-exo2-visual', view: 'exploded', class: 'l3' %}
+        {% render 'zs-exo2-visual', view: 'hero', class: 'l1', sizes: '(max-width: 989px) 100vw, 56vw' %}
+        {% render 'zs-exo2-visual', view: 'back-ports', class: 'l2', sizes: '(max-width: 989px) 100vw, 56vw' %}
+        {% render 'zs-exo2-visual', view: 'desk', class: 'l3', sizes: '(max-width: 989px) 100vw, 56vw' %}
       </div>
     </div>
   </div>

@@ -87,9 +87,8 @@
       </div>
     </div>
     <div>
-      <img class="zx-photo" src="{{ 'exo-render-front.webp' | asset_url }}" width="1600" height="972"
-           alt="ZeroStick EXO: a slim black adapter with the ZS EXO logo on the lid, USB-C and three USB-A ports along the front and the button on the side">
-      <p class="zx-render-cap">ZeroStick EXO — product render.</p>
+      {% render 'zs-exo2-visual', view: 'hero', class: 'zx-photo', loading: 'eager', sizes: '(max-width: 749px) 100vw, 50vw' %}
+      <p class="zx-render-cap">ZeroStick EXO.</p>
     </div>
   </div>
 
@@ -112,15 +111,13 @@
   <h2>The hardware</h2>
   <div class="zx-hw">
     <figure>
-      <img src="{{ 'exo-render-back.webp' | asset_url }}" width="1600" height="840" loading="lazy"
-           alt="Back of the EXO with its labelled ports: Console and Aux / Power (USB-C), Auth (USB-A), Ethernet, and HDMI In and Out">
+      {% render 'zs-exo2-visual', view: 'ports-back', sizes: '(max-width: 749px) 100vw, 50vw' %}
       <figcaption><strong>Every port labelled.</strong> CONSOLE goes to your console or PC, AUX/POWER
       powers the EXO, AUTH takes the controller that handles your console's security check, and
       HDMI IN and OUT pass your game's picture through for AI Scripts and Screen Assist.</figcaption>
     </figure>
     <figure>
-      <img src="{{ 'exo-render-board.webp' | asset_url }}" width="1600" height="887" loading="lazy"
-           alt="The EXO's circuit board, designed by ZeroStick in California">
+      {% render 'zs-exo2-visual', view: 'top', sizes: '(max-width: 749px) 100vw, 50vw' %}
       <figcaption><strong>Our own board, designed in California.</strong> A dedicated processor for
       your inputs and scripts, a separate chip that talks to the console, built-in HDMI capture,
       and Wi-Fi and Bluetooth — all on one board.</figcaption>

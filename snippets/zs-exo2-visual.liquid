@@ -7,21 +7,11 @@
   marketing renders / GLB arrive (ZS CORE\Enclosure\REV 2 v3 ...\MARKETING\)
   you only change the file names in the "asset names" block below.
 
-  Current files (2026-11-21, from ...\REV 2 v3 (final board 562dc5fb)\MARKETING\:
-  white tub #E9E9E5, black cap lid #1D1E22, logo shown lit in neutral white):
-    exo2-case.glb          MARKETING\\web\\exo-web-draco.glb (final web model, ~665 KB)
-    exo2-poster.webp       MARKETING\\web\\exo-poster.jpg (3D poster while loading)
-    exo2-hero-34.webp      renders/07-three-quarter-front-left
-    exo2-top.webp          renders/05-top
-    exo2-front.webp        renders/01-front (unlabelled front ports)
-    exo2-exploded.webp     renders/09-exploded
-    exo2-lid-off.webp      renders/10-lid-off
-    exo2-ports-back/front.webp      annotated/port-map-back|front-transparent (verified)
-    exo2-ports-34-back/front.webp   annotated/port-map-three-quarter-*-transparent
-    exo2-board-top.webp    rev 2 board render, top (final-pack renders)
-    exo2-board-bottom.webp rev 2 board render, bottom
-  If the owner switches to the rev 2.1 case, the MARKETING folder is
-  regenerated with the same names: re-export these files, nothing else changes.
+  3D files: exo2-case.glb = MARKETING\web\exo-web-draco.glb (Draco, ~665 KB),
+  exo2-case-full.glb = MARKETING\web\exo-web.glb (fallback).
+  The old matched renders (exo2-hero-34, exo2-top, exo2-front, exo2-exploded,
+  exo2-lid-off, exo2-ports-*, exo2-board-*, exo2-poster) were retired on
+  2026-11-24: every picture below is photoreal.
 
   PHOTOREAL SET (2026-11-22, owner-approved), from ...\PHOTOREAL\:
     exo3-<key>-{800,1600,2400}.webp  responsive WebP, served with srcset
@@ -36,18 +26,17 @@
     exo3-poster-{800,1600}.webp      MARKETING\web\exo-poster.jpg
     exo3-logo-loop.mp4/.webm (+ -poster.webp)  animation/ZS-EXO_logo-wave-loop, 720p
     exo2-case-full.glb               MARKETING\web\exo-web.glb (fallback when Draco fails)
-  The old renders (exo2-exploded / exo2-lid-off, plus exo2-hero-34 for the
-  exploded scroll sequence only) stay: there is no photoreal equivalent.
-
-  NOTE (historical): no image here carries port callouts. Port-labelled images are on
-  hold until the verified MARKETING set (PORTS.md) arrives.
+    exo3-hw-<console|aux|auth|hdmi>-{800,1600,2400}.webp  single-port close-ups
+                     cropped from stills/04-back-ports_blue (manual), made 2026-11-24
+  There is no photoreal exploded or lid-off view, so those views are gone:
+  old view names ('exploded', 'lid-off', 'hero-render', 'board-*') now fall
+  back to the photoreal hero / top so no page can show an old render.
 
   Usage:
     {% render 'zs-exo2-visual', view: 'viewer' %}             interactive 3D
     {% render 'zs-exo2-visual', view: 'hero', loading: 'eager' %}
-    {% render 'zs-exo2-visual', view: 'top' %}  'front' 'exploded' 'lid-off' 'board-top' 'board-bottom'
     photoreal: 'hero' (colour: 'red'...), 'top', 'back-ports', 'front-ports', 'underside', 'desk',
-               'ports-back' / 'ports-front' (labelled), 'hero-render' (old render, exploded sequence)
+               'ports-back' / 'ports-front' (labelled)
     {% render 'zs-exo2-visual', view: 'colours' %}   logo colour gallery
     {% render 'zs-exo2-visual', view: 'loop' %}      rainbow logo loop video
   Optional: class: 'my-class', alt: 'custom alt text', sizes: '(max-width: 989px) 100vw, 50vw'
@@ -55,65 +44,11 @@
 {% endcomment %}
 
 {%- liquid
-  # ----- asset names (change these when the MARKETING set lands) -----
   assign f_glb = 'exo2-case.glb'
   assign f_glb_full = 'exo2-case-full.glb'
-  assign f_hero = 'exo2-hero-34.webp'
-  assign f_top = 'exo2-top.webp'
-  assign f_front = 'exo2-front.webp'
-  assign f_poster = 'exo2-poster.webp'
-  assign f_ports_back = 'exo2-ports-back.webp'
-  assign f_ports_34_back = 'exo2-ports-34-back.webp'
-  assign f_ports_34_front = 'exo2-ports-34-front.webp'
-  assign f_ports_front = 'exo2-ports-front.webp'
-  assign f_exploded = 'exo2-exploded.webp'
-  assign f_lid_off = 'exo2-lid-off.webp'
-  assign f_board_top = 'exo2-board-top.webp'
-  assign f_board_bottom = 'exo2-board-bottom.webp'
-  # pixel sizes of the files above (lets the browser reserve space: no jumping)
-  assign hero_w = 1800
-  assign hero_h = 1025
-  # -------------------------------------------------------------------
-
+  assign f_ports_back = 'exo3-ports-back-lbl-1600.webp'
   assign v = view | default: 'hero'
   assign lazy = loading | default: 'lazy'
-  case v
-    when 'top'
-      assign file = f_top
-      assign w = 1500
-      assign h = 963
-      assign default_alt = 'ZeroStick EXO seen from above: black lid with the ZS EXO logo'
-    when 'front'
-      assign file = f_front
-      assign w = 1500
-      assign h = 263
-      assign default_alt = 'ZeroStick EXO front: one USB-C port and three USB-A ports'
-    when 'exploded'
-      assign file = f_exploded
-      assign w = 1600
-      assign h = 1518
-      assign default_alt = 'ZeroStick EXO exploded view: black lid, clear logo, circuit board and white body'
-    when 'lid-off'
-      assign file = f_lid_off
-      assign w = 1600
-      assign h = 1163
-      assign default_alt = 'ZeroStick EXO with the lid off, showing the board inside the white body'
-    when 'board-top'
-      assign file = f_board_top
-      assign w = 1400
-      assign h = 870
-      assign default_alt = 'The ZeroStick EXO circuit board, top side (render)'
-    when 'board-bottom'
-      assign file = f_board_bottom
-      assign w = 1400
-      assign h = 870
-      assign default_alt = 'The ZeroStick EXO circuit board, bottom side (render)'
-    else
-      assign file = f_hero
-      assign w = hero_w
-      assign h = hero_h
-      assign default_alt = 'ZeroStick EXO: white body, black lid with the lit ZS EXO logo'
-  endcase
 -%}
 
 {%- if v == 'viewer' -%}
@@ -154,7 +89,7 @@
   {%- endcomment -%}
   <div class="x2-ports {{ class }}" data-x2-ports>
     <div class="x2-stage x2-stage--ports" data-x2-model>
-      <img class="x2-stage-poster" src="{{ f_ports_back | asset_url }}" width="1600" height="800"
+      <img class="x2-stage-poster" src="{{ f_ports_back | asset_url }}" width="1600" height="933"
            alt="ZeroStick EXO back panel with each port named: CONSOLE, AUX/POWER, AUTH, HDMI IN and HDMI OUT" loading="lazy" decoding="async">
       <model-viewer data-src="{{ f_glb | asset_url }}" data-fallback="{{ f_glb_full | asset_url }}" alt="3D model of the ZeroStick EXO with a marker on every port"
         camera-controls touch-action="pan-y" interaction-prompt="none" disable-pan disable-zoom
@@ -230,8 +165,7 @@
   </video>
 {%- else -%}
   {%- liquid
-    # photoreal stills (responsive srcset). Old renders keep their single file.
-    assign key = ''
+    # photoreal stills (responsive srcset)
     assign w = 1600
     assign h = 1067
     case v
@@ -239,7 +173,7 @@
         assign c = colour | default: 'blue'
         assign key = 'exo3-hero-' | append: c
         assign default_alt = 'ZeroStick EXO: white body, black lid with the ZS EXO logo lit ' | append: c
-      when 'top'
+      when 'top', 'board-top', 'board-bottom'
         assign key = 'exo3-top'
         assign default_alt = 'ZeroStick EXO seen from above: black lid with the lit ZS EXO logo'
       when 'back-ports', 'ports-34-back'
@@ -262,22 +196,14 @@
         assign key = 'exo3-ports-front-lbl'
         assign h = 933
         assign default_alt = 'ZeroStick EXO front: one USB-C port on the left and three USB-A ports, for controllers, mouse, keyboard or a USB hub'
-      when 'hero-render'
-        assign file = f_hero
-        assign w = hero_w
-        assign h = hero_h
-        assign default_alt = 'ZeroStick EXO: white body, black lid with the lit ZS EXO logo'
+      else
+        assign key = 'exo3-hero-blue'
+        assign default_alt = 'ZeroStick EXO: white body, black lid with the ZS EXO logo lit blue'
     endcase
   -%}
-  {%- if key != '' -%}
   <img class="{{ class }}" src="{{ key | append: '-1600.webp' | asset_url }}"
        srcset="{{ key | append: '-800.webp' | asset_url }} 800w, {{ key | append: '-1600.webp' | asset_url }} 1600w, {{ key | append: '-2400.webp' | asset_url }} 2400w"
        sizes="{{ sizes | default: '(max-width: 989px) 100vw, 50vw' }}" width="{{ w }}" height="{{ h }}"
        alt="{{ alt | default: default_alt | escape }}" loading="{{ lazy }}" decoding="async"
        {% if lazy == 'eager' %}fetchpriority="high"{% endif %}>
-  {%- else -%}
-  <img class="{{ class }}" src="{{ file | asset_url }}" width="{{ w }}" height="{{ h }}"
-       alt="{{ alt | default: default_alt | escape }}" loading="{{ lazy }}" decoding="async"
-       {% if lazy == 'eager' %}fetchpriority="high"{% endif %}>
-  {%- endif -%}
 {%- endif -%}
